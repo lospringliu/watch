@@ -10,9 +10,6 @@ const timeAgo = useTimeAgo(date)
 </script>
 
 <template>
-  <div class="grid">
-    <vue3-youtube videoid="essbptEnceE" />
-  </div>
   <youtube-videos />
   <div>Built {{ timeAgo }}</div>
   <ReloadPrompt />
