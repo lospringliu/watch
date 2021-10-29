@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue"
+import { ref, onMounted  } from "vue"
 import Vue3Youtube from "./Vue3Youtube.vue"
-import * as axios from 'axios'
+import axios from 'axios'
 
+import useYoutubeVideos from "../composables/useYoutubeVideos"
 const gapi = axios.create({ baseURL: 'https://youtube.googleapis.com/youtube/v3/' })
 gapi.defaults.headers.common.Accept = 'application/json'
 
@@ -33,38 +34,39 @@ const youtube = {
     'PLBsA1M_J2ICIvMjsj_U7lIdeq-E8AW-bM', // 杨世光
   ],
 }
-const videos = ref([])
 
+const { videos, getYoutubeVideos  } = useYoutubeVideos(ref(youtube.channels))
 onMounted(async () => {
   const key = localStorage.getItem('google-api-key') || "AIzaSyB45Wu2r4NUvLS04fC4UDCEhi2ofPEOxNo"
-  youtube.channels.forEach(async(channel) => {
-    try {
-      const response = await gapi.get('channels', makeParams({ key, id: channel }))
-      if (response.data.pageInfo.totalResults === 1) {
-        // is valid channel
-        const playlistId = response.data.items[0].contentDetails.relatedPlaylists.uploads
-        const resp = await gapi.get('playlistItems', makeParams({ key, playlistId }))
-        resp.data.items.forEach(item => new Date() - new Date(item.contentDetails.videoPublishedAt) < 2 * 24 * 60 * 60 * 1000 && videos.value.push(item.contentDetails))
-        videos.value.sort((x, y) => x.videoPublishedAt > y.videoPublishedAt ? -1 : 1)
-      }
-      else {
-        console.log(`${channel} is not a valid channel`)
-      }
-    }
-    catch (e) {
-      console.log(e)
-    }
-  })
-  youtube.playlists.forEach(async(playlistId) => {
-    try {
-      const resp = await gapi.get('playlistItems', makeParams({ key, playlistId }))
-      resp.data.items.forEach(item => new Date() - new Date(item.contentDetails.videoPublishedAt) < 2 * 24 * 60 * 60 * 1000 && videos.value.push(item.contentDetails))
-      videos.value.sort((x, y) => x.videoPublishedAt > y.videoPublishedAt ? -1 : 1)
-    }
-    catch (e) {
-      console.log(e)
-    }
-  })
+  await getYoutubeVideos()
+  // youtube.channels.forEach(async(channel) => {
+  //   try {
+  //     const response = await gapi.get('channels', makeParams({ key, id: channel }))
+  //     if (response.data.pageInfo.totalResults === 1) {
+  //       // is valid channel
+  //       const playlistId = response.data.items[0].contentDetails.relatedPlaylists.uploads
+  //       const resp = await gapi.get('playlistItems', makeParams({ key, playlistId }))
+  //       resp.data.items.forEach(item => new Date() - new Date(item.contentDetails.videoPublishedAt) < 2 * 24 * 60 * 60 * 1000 && videos.value.push(item.contentDetails))
+  //       videos.value.sort((x, y) => x.videoPublishedAt > y.videoPublishedAt ? -1 : 1)
+  //     }
+  //     else {
+  //       console.log(`${channel} is not a valid channel`)
+  //     }
+  //   }
+  //   catch (e) {
+  //     console.log(e)
+  //   }
+  // })
+  // youtube.playlists.forEach(async(playlistId) => {
+  //   try {
+  //     const resp = await gapi.get('playlistItems', makeParams({ key, playlistId }))
+  //     resp.data.items.forEach(item => new Date() - new Date(item.contentDetails.videoPublishedAt) < 2 * 24 * 60 * 60 * 1000 && videos.value.push(item.contentDetails))
+  //     videos.value.sort((x, y) => x.videoPublishedAt > y.videoPublishedAt ? -1 : 1)
+  //   }
+  //   catch (e) {
+  //     console.log(e)
+  //   }
+  // })
 })
 </script>
 
