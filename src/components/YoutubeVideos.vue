@@ -11,7 +11,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div v-for="video in videosComputed" :key="video.videoId">
+  <div v-for="video in videosComputed" :key="video.videoId" :id="video.videoId">
     <Youtube :id="video.videoId" :title="video.videoId" />
   </div>
 </template>
