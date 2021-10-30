@@ -8,6 +8,7 @@
     <script src="https://cdn-tailwindcss.vercel.app/?plugins=typography,aspect-ratio"></script>
     <script>
       tailwind.config = {
+        darkMode: "class",
         theme: {
           extend: {
             colors: {
@@ -19,16 +20,16 @@
     </script>
     <style type="text/tailwindcss">
       .btn {
-        @apply shadow px-5 py-2 bg-lavender inline-block text-green-800 font-medium rounded hover:bg-red-300
+        @apply text-white text-teal-500 border border-solid border-teal-500 hover:bg-teal-500 active:bg-teal-600 font-bold uppercase text-xs px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150
       }
       .heading1 {
-        @apply uppercase text-4xl text-lavender text-center
+        @apply uppercase text-2xl text-lavender text-center font-bold
       }
     </style>
   </head>
-  <body class="dark grid gap-4 place-content-center min-h-screen">
+  <body class="bg-white dark:bg-gray-800 grid gap-4 place-content-center min-h-screen">
     <h1 class="heading1">youtube api</h1>
-    <div id="app" class="grid items-center place-items-center gap-2 sm:p-2 sm:gap-4 md:gap-6 md:grid-cols-2 lg:gap-8 lg:grid-cols-3 xl:grid-cols-4 text-center text-gray-700 dark:text-gray-200"></div>
+    <div id="app" class="grid items-center place-items-center gap-2 sm:p-2 sm:gap-4 md:gap-6 md:grid-cols-2 lg:gap-8 lg:grid-cols-3 xl:grid-cols-4 text-center text-blue-500 dark:text-blue-300"></div>
     <script type="module" src="/src/main.ts"></script>
     <script>
       (function() {

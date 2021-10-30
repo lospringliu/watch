@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { UseTimeAgo } from '@vueuse/components'
 defineProps<{
   id: string
   title?: string
+  date?: string
   width?: number
   height?: number
 }>()
@@ -17,4 +19,9 @@ defineProps<{
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
     allowfullscreen
   ></iframe>
+  <div class="min-w-xs max-w-sm min-h-4 max-h-12">
+  <UseTimeAgo v-slot="{ timeAgo }" :time="new Date(date)">
+    {{ timeAgo }}
+  </UseTimeAgo>
+  </div>
 </template>

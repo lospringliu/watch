@@ -11,6 +11,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.9.3",
+    "@vueuse/components": "^6.7.4",
     "@vueuse/core": "^6.7.4",
     "@vueuse/integrations": "^6.7.4",
     "async-await-foreach": "^1.0.4",

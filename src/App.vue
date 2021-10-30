@@ -9,6 +9,6 @@ const timeAgo = useTimeAgo(date)
 
 <template>
   <YoutubeVideos />
-  <div class="text-blue-500">Built {{ timeAgo }}</div>
+  <div class="grid md:col-span-2 lg:col-span-3 xl:col-span-4 text-center text-blue-500">Built {{ timeAgo }}</div>
   <ReloadPrompt />
 </template>
