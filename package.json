@@ -2,8 +2,8 @@
   "name": "vitev",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
+    "dev": "env DEBUG=vite-plugin-pwa:* vite",
+    "build": "env DEBUG=vite-plugin-pwa:* vite build",
     "serve": "vite preview"
   },
   "dependencies": {
@@ -11,11 +11,13 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.9.3",
+    "@vueuse/core": "^6.7.4",
     "@vueuse/integrations": "^6.7.4",
     "async-await-foreach": "^1.0.4",
     "axios": "^0.24.0",
     "typescript": "^4.4.3",
     "vite": "^2.6.4",
+    "vite-plugin-pwa": "^0.11.3",
     "vue-tsc": "^0.3.0"
   }
 }
