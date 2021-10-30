@@ -5,7 +5,7 @@
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
-    <script src="https://cdn-tailwindcss.vercel.app/?plugins=typography"></script>
+    <script src="https://cdn-tailwindcss.vercel.app/?plugins=typography,aspect-ratio"></script>
     <script>
       tailwind.config = {
         theme: {
@@ -27,8 +27,8 @@
     </style>
   </head>
   <body class="grid gap-4 place-content-center min-h-screen">
-    <h1 class="heading1">youtube videos with api</h1>
-    <div id="app" class="p-0 max-w-8xl grid gap-2 sm:p-2 sm:gap-4 md:gap-6 md:grid-cols-2 lg:gap-8 lg:grid-cols-3 xl:grid-cols-4 text-center text-gray-700 dark:text-gray-200"></div>
+    <h1 class="heading1">youtube api</h1>
+    <div id="app" class="grid items-center place-items-center gap-2 sm:p-2 sm:gap-4 md:gap-6 md:grid-cols-2 lg:gap-8 lg:grid-cols-3 xl:grid-cols-4 text-center text-gray-700 dark:text-gray-200"></div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

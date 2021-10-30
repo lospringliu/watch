@@ -61,7 +61,7 @@ async function fetchYoutubeVideos (channels: any) {
       console.log(e)
     }
   })
-  console.log(videos)
+  // console.log(videos)
   return videos
 }
 export {
