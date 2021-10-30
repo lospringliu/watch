@@ -4,7 +4,7 @@
         width="100%"
         height="100%"
         @ready="onReady"
-        ref="youtube" />
+        :ref="videoid" />
 </template>
 
 <script lang="ts">

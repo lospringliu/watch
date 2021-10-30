@@ -1,4 +1,5 @@
 import axios from 'axios'
+import seventh from "seventh"
 const gapi = axios.create({ baseURL: 'https://youtube.googleapis.com/youtube/v3/' })
 gapi.defaults.headers.common.Accept = 'application/json'
 
@@ -24,13 +25,14 @@ const youtube = {
   playlists: [
     'UURdpxiOm4HrwGI24Kv6MBKQ', // David郑经纬
     'UURByPS00RZsAUe2DTCoHuFQ', // 好奇大叔UncleCurious
-    'UUdXqCN_HtF_RjlsHzDSnJIQ', // GermanCheese
+    'UUdXqCN_HtF_RjlsHzDSnJIQ', // German Cheese
     'UUoCHlYM3srHBmg21mK1-JPg', // 老楊到處說
     'PLBsA1M_J2ICIvMjsj_U7lIdeq-E8AW-bM', // 杨世光
   ],
 }
 
 async function fetchYoutubeVideos (channels: string[] = [""]) {
+  await seventh.resolveTimeout(5000)
   return [
     { videoId: 'cqw6g6Zw0hM', videoPublishedAt: '2021-10-28T03:30:16Z' },
     { videoId: 'LonYIwJE5hw', videoPublishedAt: '2021-10-27T03:30:06Z' },
