@@ -1,28 +1,21 @@
 {
-  "name": "vitevue",
-  "version": "1.0.0",
+  "name": "vitev",
+  "version": "0.0.0",
   "scripts": {
-    "start": "npm run run-build && npm run serve",
-    "dev": "env DEBUG=vite-plugin-pwa:* vite",
-    "build": "env DEBUG=vite-plugin-pwa:* vite build",
-    "run-build": "env DEBUG=vite-plugin-pwa:* BASE_URL=/ SOURCE_MAP=true vite build",
-    "serve": "vite serve dist"
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "serve": "vite preview"
   },
   "dependencies": {
     "vue": "^3.2.16"
   },
   "devDependencies": {
-    "@rollup/plugin-replace": "^3.0.0",
     "@vitejs/plugin-vue": "^1.9.3",
-    "@vueuse/core": "^6.7.4",
+    "@vueuse/integrations": "^6.7.4",
+    "async-await-foreach": "^1.0.4",
     "axios": "^0.24.0",
-    "https-localhost": "^4.7.0",
-    "seventh": "^0.7.40",
-    "tailwindcss": "^2.2.19",
     "typescript": "^4.4.3",
     "vite": "^2.6.4",
-    "vite-plugin-pwa": "^0.11.3",
-    "vue-tsc": "^0.3.0",
-    "vue3-youtube": "^0.1.8"
+    "vue-tsc": "^0.3.0"
   }
 }

@@ -5,12 +5,30 @@
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
-    <script src="https://www.youtube.com/player_api"></script>
+    <script src="https://cdn-tailwindcss.vercel.app/?plugins=typography"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              lavender: '#5e1ec7'
+            }
+          }
+        }
+      }
+    </script>
+    <style type="text/tailwindcss">
+      .btn {
+        @apply shadow px-5 py-2 bg-lavender inline-block text-green-800 font-medium rounded hover:bg-red-300
+      }
+      .heading1 {
+        @apply uppercase text-4xl text-lavender text-center
+      }
+    </style>
   </head>
-  <body class="grid place-items-center min-h-screen">
-    <div id="app" 
-      class="p-0 max-w-8xl grid gap-2 sm:p-2 sm:gap-4 md:gap-6 md:grid-cols-2 lg:gap-8 lg:grid-cols-3 xl:grid-cols-4 text-center text-gray-700 dark:text-gray-200">
-    </div>
+  <body class="grid gap-4 place-content-center min-h-screen">
+    <h1 class="heading1">youtube videos with api</h1>
+    <div id="app" class="p-0 max-w-8xl grid gap-2 sm:p-2 sm:gap-4 md:gap-6 md:grid-cols-2 lg:gap-8 lg:grid-cols-3 xl:grid-cols-4 text-center text-gray-700 dark:text-gray-200"></div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

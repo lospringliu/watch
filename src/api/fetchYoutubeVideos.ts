@@ -1,7 +1,8 @@
 import axios from 'axios'
-import seventh from "seventh"
+import AsyncForEach from "async-await-foreach"
 const gapi = axios.create({ baseURL: 'https://youtube.googleapis.com/youtube/v3/' })
 gapi.defaults.headers.common.Accept = 'application/json'
+const key = "AIzaSyB45Wu2r4NUvLS04fC4UDCEhi2ofPEOxNo"
 
 function makeParams(options = {}) {
   return {
@@ -31,13 +32,37 @@ const youtube = {
   ],
 }
 
-async function fetchYoutubeVideos (channels: string[] = [""]) {
-  await seventh.resolveTimeout(5000)
-  return [
-    { videoId: 'cqw6g6Zw0hM', videoPublishedAt: '2021-10-28T03:30:16Z' },
-    { videoId: 'LonYIwJE5hw', videoPublishedAt: '2021-10-27T03:30:06Z' },
-    { videoId: 'SKy450A2RQI', videoPublishedAt: '2021-10-26T03:30:11Z' }
-  ]
+async function fetchYoutubeVideos (channels: any) {
+  const videos: any = []
+  await AsyncForEach(youtube.channels, async (channel) => {
+    try {
+      const response = await gapi.get('channels', makeParams({ key, id: channel }))
+      if (response.data.pageInfo.totalResults === 1) {
+        const playlistId = response.data.items[0].contentDetails.relatedPlaylists.uploads
+        const resp = await gapi.get('playlistItems', makeParams({ key, playlistId }))
+        resp.data.items.forEach(item => new Date().valueOf() - new Date(item.contentDetails.videoPublishedAt).valueOf() < 2 * 24 * 60 * 60 * 1000 && videos.push(item.contentDetails))
+        videos.sort((x, y) => x.videoPublishedAt > y.videoPublishedAt ? -1 : 1)
+      }
+      else {
+        console.log(`${channel} is not a valid channel`)
+      }
+    }
+    catch (e) {
+      console.log(e)
+    }
+  })
+  await  AsyncForEach(youtube.playlists, async (playlistId) => {
+    try {
+      const resp = await gapi.get('playlistItems', makeParams({ key, playlistId }))
+      resp.data.items.forEach(item => new Date().valueOf() - new Date(item.contentDetails.videoPublishedAt).valueOf() < 2 * 24 * 60 * 60 * 1000 && videos.push(item.contentDetails))
+      videos.sort((x, y) => x.videoPublishedAt > y.videoPublishedAt ? -1 : 1)
+    }
+    catch (e) {
+      console.log(e)
+    }
+  })
+  console.log(videos)
+  return videos
 }
 export {
   fetchYoutubeVideos
