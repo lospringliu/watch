@@ -16,6 +16,7 @@
     "@vueuse/integrations": "^6.7.4",
     "async-await-foreach": "^1.0.4",
     "axios": "^0.24.0",
+    "pinia": "^2.0.0",
     "typescript": "^4.4.3",
     "vite": "^2.6.4",
     "vite-plugin-pwa": "^0.11.3",

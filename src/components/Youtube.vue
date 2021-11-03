@@ -12,6 +12,7 @@ defineProps<{
 </script>
 
 <template>
+  <div class="grid aspect-w-16 aspect-h-9">
   <iframe
     :src="`https://www.youtube.com/embed/${id}`"
     :title="title"
@@ -19,7 +20,8 @@ defineProps<{
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
     allowfullscreen
   ></iframe>
-  <div class="min-w-xs max-w-sm min-h-4 max-h-12">
+  </div>
+  <div class="min-w-xs min-h-4">
   <UseTimeAgo v-slot="{ timeAgo }" :time="new Date(date)">
     {{ timeAgo }}
   </UseTimeAgo>
