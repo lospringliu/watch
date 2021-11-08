@@ -10,16 +10,19 @@
     "vue": "^3.2.16"
   },
   "devDependencies": {
+    "@types/youtube": "^0.0.46",
     "@vitejs/plugin-vue": "^1.9.3",
     "@vueuse/components": "^6.7.4",
     "@vueuse/core": "^6.7.4",
     "@vueuse/integrations": "^6.7.4",
     "async-await-foreach": "^1.0.4",
     "axios": "^0.24.0",
+    "get-youtube-id": "^1.0.1",
     "pinia": "^2.0.0",
     "typescript": "^4.4.3",
     "vite": "^2.6.4",
     "vite-plugin-pwa": "^0.11.3",
+    "vue-plyr": "^7.0.0",
     "vue-tsc": "^0.3.0"
   }
 }

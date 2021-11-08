@@ -12,14 +12,19 @@ defineProps<{
 </script>
 
 <template>
+  <!--
   <div class="grid aspect-w-16 aspect-h-9">
-  <iframe
-    :src="`https://www.youtube.com/embed/${id}`"
-    :title="title"
-    frameborder="1"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    allowfullscreen
-  ></iframe>
+    <iframe
+      :src="`https://www.youtube.com/embed/${id}`"
+      :title="title"
+      frameborder="1"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+  </div>
+  -->
+  <div class="grid">
+    <img class="w-full" :src="`https://i.ytimg.com/vi/${id}/hqdefault.jpg`" >
   </div>
   <div class="min-w-xs min-h-4">
   <UseTimeAgo v-slot="{ timeAgo }" :time="new Date(date)">
