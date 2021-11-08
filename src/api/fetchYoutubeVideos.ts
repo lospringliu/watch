@@ -1,12 +1,17 @@
 import axios from 'axios'
 import AsyncForEach from "async-await-foreach"
+import { videos } from "../stores/useStore"
 const gapi = axios.create({ baseURL: 'https://youtube.googleapis.com/youtube/v3/' })
 gapi.defaults.headers.common.Accept = 'application/json'
 const key = "AIzaSyB45Wu2r4NUvLS04fC4UDCEhi2ofPEOxNo"
 
-const options_default = {
-  part: 'contentDetails',
-  maxResults: 10,
+function makeParams(options = {}) {
+  return {
+    params: Object.assign({}, {
+      part: 'snippet,contentDetails',
+      maxResults: 20,
+    }, options),
+  }
 }
 const youtube = {
   channels: [
@@ -18,6 +23,11 @@ const youtube = {
     'UCd6umYVQpBZ9CIyCwe8Kg7w', // chengyue
     'UCXRoo1Gp89SCbhdR_xEIp0w', // beimei cuige
     'UCnrxxRlv2ZSSW4ApuEy8C0w', // 谦秋论
+    'UCnUprfZhHRzfcLHdLS-f6aw', // 司马南
+    'UCC22zTYPmf9p20E_abhp-uw', // 残月
+    'UCr_F4Y9iboUKlg_ZPm4jkVQ', // 老梁
+    'UCJncdiH3BQUBgCroBmhsUhQ', // 观察网
+    'UCXkOTZJ743JgVhJWmNV8F3Q', // 寒国人
   ],
   playlists: [
     'UURdpxiOm4HrwGI24Kv6MBKQ', // David郑经纬
@@ -25,51 +35,26 @@ const youtube = {
     'UUdXqCN_HtF_RjlsHzDSnJIQ', // German Cheese
     'UUoCHlYM3srHBmg21mK1-JPg', // 老楊到處說
     'PLBsA1M_J2ICIvMjsj_U7lIdeq-E8AW-bM', // 杨世光
+    'PU2IpIQXiLrMV3EAMjfKbcUw', // 雪石
+    'UU-8fdTrDRgiJhSq3wRsaF-g', // 寒梅
   ],
-}
-async function byPlaylist(playlistId: string, options = { key } as any) {
-  const youtubeVideos = []
-  try {
-    const resp = await gapi.get('playlistItems', {params: { ...options_default, playlistId, ...options }})
-    resp.data.items.forEach(item => {
-      youtubeVideos.push(item.contentDetails)
-    })
-    youtubeVideos.sort((x, y) => x.videoPublishedAt > y.videoPublishedAt ? -1 : 1)
-    return youtubeVideos
-  }
-  catch (e) {
-    console.log(e)
-    return youtubeVideos
-  }
-}
-async function byChannel(channelId: string, options = { key } as any) {
-  let youtubeVideos = []
-  try {
-    const response = await gapi.get('channels', {params: { ...options_default, id: channelId, ...options }})
-    if (response.data.pageInfo.totalResults === 1) {
-      const playlistId = response.data.items[0].contentDetails.relatedPlaylists.uploads
-      if (playlistId) {
-        youtubeVideos = await byPlaylist(playlistId)
-      }
-    }
-    else {
-      console.log(`${channelId} is not a valid channel`)
-    }
-    return youtubeVideos
-  }
-  catch (e) {
-    console.log(e)
-    return youtubeVideos
-  }
 }
 
 async function fetchYoutubeVideos (channels: any) {
-  const videos: any = []
+  // const videos: any = []
   await AsyncForEach(youtube.channels, async (channel) => {
     try {
-      const youtubeVideos = await byChannel(channel)
-      youtubeVideos.forEach(video => new Date().valueOf() - new Date(video.videoPublishedAt).valueOf() < 2 * 24 * 60 * 60 * 1000 && videos.push(video))
-      videos.sort((x, y) => x.videoPublishedAt > y.videoPublishedAt ? -1 : 1)
+      const response = await gapi.get('channels', makeParams({ key, id: channel }))
+      if (response.data.pageInfo.totalResults === 1) {
+        const playlistId = response.data.items[0].contentDetails.relatedPlaylists.uploads
+        const resp = await gapi.get('playlistItems', makeParams({ key, playlistId }))
+        resp.data.items.forEach(item => new Date().valueOf() - new Date(item.contentDetails.videoPublishedAt).valueOf() < 7 * 24 * 60 * 60 * 1000 && videos.add(item.contentDetails))
+        // resp.data.items.forEach(item => videos.add(item.contentDetails))
+        videos.videos.sort((x, y) => x.videoPublishedAt > y.videoPublishedAt ? -1 : 1)
+      }
+      else {
+        console.log(`${channel} is not a valid channel`)
+      }
     }
     catch (e) {
       console.log(e)
@@ -77,21 +62,17 @@ async function fetchYoutubeVideos (channels: any) {
   })
   await  AsyncForEach(youtube.playlists, async (playlistId) => {
     try {
-      const youtubeVideos = await byPlaylist(playlistId)
-      youtubeVideos.forEach(video => new Date().valueOf() - new Date(video.videoPublishedAt).valueOf() < 2 * 24 * 60 * 60 * 1000 && videos.push(video))
-      videos.sort((x, y) => x.videoPublishedAt > y.videoPublishedAt ? -1 : 1)
+      const resp = await gapi.get('playlistItems', makeParams({ key, playlistId }))
+      resp.data.items.forEach(item => new Date().valueOf() - new Date(item.contentDetails.videoPublishedAt).valueOf() < 7 * 24 * 60 * 60 * 1000 && videos.add(item.contentDetails))
+      // resp.data.items.forEach(item => videos.add(item.contentDetails))
+      videos.videos.sort((x, y) => x.videoPublishedAt > y.videoPublishedAt ? -1 : 1)
     }
     catch (e) {
       console.log(e)
     }
   })
-  // console.log(videos)
-  return videos
+  return videos.videos
 }
-
 export {
-  youtube,
-  byPlaylist,
-  byChannel,
   fetchYoutubeVideos
 }

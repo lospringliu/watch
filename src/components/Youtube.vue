@@ -1,34 +1,22 @@
 <script setup lang="ts">
-import { UseTimeAgo } from '@vueuse/components'
-defineProps<{
-  id: string
-  title?: string
-  date?: string
-  width?: number
-  height?: number
+import { IVideo } from "../types"
+import { onMounted } from "vue"
+import { playing, playlist, videos } from "../stores/useStore"
+const props = defineProps<{
+  videoId: string
 }>()
-//    :width="width"
-//    :height="height"
+const play = () => {
+  playing.playing = videos.videos.find(v => v.videoId === props.videoId)
+}
+const queue = () => {
+  playlist.add(videos.videos.find(v => v.videoId === props.videoId))
+}
 </script>
 
 <template>
-  <!--
-  <div class="grid aspect-w-16 aspect-h-9">
-    <iframe
-      :src="`https://www.youtube.com/embed/${id}`"
-      :title="title"
-      frameborder="1"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen
-    ></iframe>
-  </div>
-  -->
-  <div class="grid">
-    <img class="w-full" :src="`https://i.ytimg.com/vi/${id}/hqdefault.jpg`" >
-  </div>
-  <div class="min-w-xs min-h-4">
-  <UseTimeAgo v-slot="{ timeAgo }" :time="new Date(date)">
-    {{ timeAgo }}
-  </UseTimeAgo>
+  <div class="relative">
+    <img :src="`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`" />
+    <p class="absolute text-white font-4xl left-0 bottom-0" @click="play">PLAY</p>
+    <p class="absolute text-white font-4xl right-0 bottom-0" @click="queue">QUEUE</p>
   </div>
 </template>

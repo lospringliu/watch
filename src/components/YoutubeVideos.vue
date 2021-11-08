@@ -1,16 +1,17 @@
 <script setup lang="ts">
-import { computed, onMounted  } from "vue"
+import { onMounted  } from "vue"
 import Youtube from './Youtube.vue'
 import useYoutubeVideos from "../composables/useYoutubeVideos"
-const { videos, getYoutubeVideos  } = useYoutubeVideos([])
-const videosComputed = computed(() => videos.value.slice(0,24))
+import { videos } from "../stores/useStore"
+const { getYoutubeVideos  } = useYoutubeVideos([])
+setInterval(() => getYoutubeVideos(), 1000 * 60 * 60)
 onMounted(async () => {
   await getYoutubeVideos()
 })
 </script>
 
 <template>
-  <div v-for="video in videosComputed" :key="video.videoId" :id="video.videoId">
-    <Youtube :id="video.videoId" :title="video.videoId" :date="video.videoPublishedAt" />
+  <div v-for="video in videos.videos" :key="video.videoId" class="mx-auto">
+    <Youtube :videoId="video.videoId" />
   </div>
 </template>
