@@ -4,16 +4,26 @@ import Vue3Youtube from './Vue3Youtube.vue'
 // import useYoutubeVideos from "../composables/useYoutubeVideos"
 // const { videos, getYoutubeVideos  } = useYoutubeVideos([])
 //    <vue3-youtube :videoid="video.videoId" />
-import { playing, playlist } from "../stores/useStore"
+import { playing, playlist, videos } from "../stores/useStore"
 const youtube = ref(null)
-watch(playlist.playlist, (value, old_value) => {
-  const videos = value.map(video => video.videoId)
-  const index = videos.findIndex(v => v === playing.playing.videoId)
+watch(playlist.playlist, async (value, old_value) => {
+  console.log(youtube.value)
+  const playlistVideos = value.map(video => video.videoId)
+  const index = playlistVideos.findIndex(v => v === playing.playing.videoId)
+  // try {
+  //   const videoId = youtube.value.getVideoEmbedCode()
+  //   console.log(`videoId=${videoId}`)
+  //   const currentTime = youtube.value.getCurrentTime()
+  //   console.log(`currentTime=${currentTime}`)
+  //   playing.playing = videos.videos.find(v => v.videoId === videoId)
+  //   playing.playing.currentTime = currentTime
+  // } catch (e) {}
   if (index !== -1) {
-    youtube.value.loadPlaylist(videos.join(","), index)
+    youtube.value.loadPlaylist(playlistVideos.join(","), index)
   } else {
-    youtube.value.loadPlaylist(videos.join(","))
+    youtube.value.loadPlaylist(playlistVideos.join(","))
   }
+  youtube.value.setPlaybackRate(1.5)
 })
 </script>
 

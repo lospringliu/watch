@@ -1,9 +1,10 @@
+import { IVideo } from "../types"
 import { createPinia, defineStore, setActivePinia } from "pinia"
 setActivePinia(createPinia())
 
 const useVideoStore = defineStore('videos', {
   state: () => {
-    return { videos: [] }
+    return { videos: [] as IVideo[] }
   },
   actions: {
     add(video) {
@@ -35,7 +36,7 @@ const useVideoStore = defineStore('videos', {
 
 const usePlaylistStore = defineStore('playlist', {
   state: () => {
-    return { playlist: [{ videoId: 'PuiSlj3u47E', videoPublishedAt: '2021-11-05T03:30:02Z' }] }
+    return { playlist: [] as IVideo[] }
   },
   actions: {
     add(video, leading=false) {
@@ -59,7 +60,7 @@ const usePlaylistStore = defineStore('playlist', {
 
 const usePlayingStore = defineStore('playing', {
   state: () => {
-    return { playing: { videoId: 'PuiSlj3u47E', videoPublishedAt: '2021-11-05T03:30:02Z' } }
+    return { playing: { videoId: 'PuiSlj3u47E', videoPublishedAt: '2021-11-05T03:30:02Z' } as IVideo }
   },
   actions: {
     play(video) {

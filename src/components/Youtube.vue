@@ -17,7 +17,7 @@ const queue = () => {
 <template>
   <div class="relative">
     <img :src="`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`" />
-    <PlayIcon class="absolute w-8 h-8 text-white left-0 bottom-0 hover:text-teal-300" @click="play" />
-    <ViewListIcon class="absolute w-8 h-8 text-white right-0 bottom-0 hover:text-teal-300" @click="queue" />
+    <PlayIcon class="absolute w-8 h-8 text-white left-0 bottom-0 hover:scale-125 hover:text-teal-300" @click="play" />
+    <ViewListIcon class="absolute w-8 h-8 text-white right-0 bottom-0 hover:scale-125 hover:text-teal-300" @click="queue" />
   </div>
 </template>
