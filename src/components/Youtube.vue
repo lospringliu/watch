@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { IVideo } from "../types"
 import { onMounted } from "vue"
+import { PlayIcon, ViewListIcon } from '@heroicons/vue/outline'
 import { playing, playlist, videos } from "../stores/useStore"
 const props = defineProps<{
   videoId: string
@@ -16,7 +17,7 @@ const queue = () => {
 <template>
   <div class="relative">
     <img :src="`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`" />
-    <p class="absolute text-white font-4xl left-0 bottom-0" @click="play">PLAY</p>
-    <p class="absolute text-white font-4xl right-0 bottom-0" @click="queue">QUEUE</p>
+    <PlayIcon class="absolute w-8 h-8 text-white left-0 bottom-0 hover:text-teal-300" @click="play" />
+    <ViewListIcon class="absolute w-8 h-8 text-white right-0 bottom-0 hover:text-teal-300" @click="queue" />
   </div>
 </template>
