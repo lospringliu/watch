@@ -3,8 +3,7 @@ import { onMounted  } from "vue"
 import YoutubeVideo from './YoutubeVideo.vue'
 import useYoutubeVideos from "../composables/useYoutubeVideos"
 import { videos, prefers } from "../stores/useStore"
-// const { getYoutubeVideos  } = useYoutubeVideos(prefers.channels_playlists)
-const { getYoutubeVideos  } = useYoutubeVideos(prefers)
+const { getYoutubeVideos  } = useYoutubeVideos()
 setInterval(() => getYoutubeVideos(), 1000 * 60 * 60)
 onMounted(async () => {
   await getYoutubeVideos()

@@ -18,12 +18,16 @@ watch(playing.playing, async (value, old_value) => {
 watch(playlist.playlist, async (value, old_value) => {
   // console.log(youtube.value)
   const playlistVideos = value.map(video => video.videoId)
-  const index = playlistVideos.findIndex(v => v === playing.playing.videoId)
+  const index = playlistVideos.findIndex(v => v === (playing.playing.videoId || ""))
   try {
     const videoId = YID(youtube.value.getVideoUrl())
-    playing.playing = videos.videos.find(v => v.videoId === videoId)
-    const currentTime = youtube.value.getCurrentTime()
-    playing.playing.currentTime = currentTime
+    if (videoId) {
+      const video = videos.videos.find(v => v.videoId === videoId)
+      // if (video) { playing.playing = video }
+      const currentTime = youtube.value.getCurrentTime()
+      console.log(currentTime)
+      // playing.playing.currentTime = Math.floor(currentTime)
+    }
   } catch (e) {}
   if (index !== -1) {
     youtube.value.loadPlaylist(playlistVideos.join(","), index)
