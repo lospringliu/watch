@@ -68,8 +68,20 @@ const usePlayingStore = defineStore('playing', {
     }
   }
 })
+
+const usePrefersStore = defineStore('prefers', {
+  state: () => {
+    return { playbackRate: 1.5 }
+  },
+  actions: {
+    setPlaybackRate(rate) {
+      this.playbackRate = rate
+    }
+  }
+})
 const playing = usePlayingStore()
 const playlist = usePlaylistStore()
 const videos = useVideoStore()
+const prefers = usePrefersStore()
 
-export {playing, playlist, videos}
+export {playing, playlist, videos, prefers}
