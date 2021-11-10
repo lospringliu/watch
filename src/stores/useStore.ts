@@ -96,6 +96,7 @@ const usePrefersStore = defineStore('prefers', {
         'PLBsA1M_J2ICIvMjsj_U7lIdeq-E8AW-bM', // 杨世光
         'UU2IpIQXiLrMV3EAMjfKbcUw', // 雪石
         'UU-8fdTrDRgiJhSq3wRsaF-g', // 寒梅
+        'UUOo6xtjQu3LuRzMTfFkGrSA', // 迷彩虎
       ],
     }
   },
