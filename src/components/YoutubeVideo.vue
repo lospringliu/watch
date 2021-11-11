@@ -10,12 +10,12 @@ const props = defineProps<{
 const play = () => {
   const video = videos.videos.find(v => v.videoId === props.video.videoId)
   playing.playing = JSON.parse(JSON.stringify(props.video))
-  let index=0
+  let index = -1
   if (playingInList.playing.hasOwnProperty("videoId")) {
-    index = playlist.playlist.findIndex(v => v.videoId === props.video.videoId)
+    index = playlist.playlist.findIndex(v => v.videoId === playingInList.playing.videoId)
   }
   if (index === -1) {
-    playlist.playlist.unshift(video)
+    playlist.playlist.push(video)
   } else {
     playlist.playlist.splice(index, 0, video)
   }
