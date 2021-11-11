@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IVideo } from "../types"
+import { IVideo, IChannel } from "../types"
 import { onMounted, PropType } from "vue"
 import { PlayIcon, ViewListIcon } from '@heroicons/vue/outline'
 import { playing, playingInList, playlist, videos } from "../stores/useStore"
@@ -32,6 +32,7 @@ const timeAgo = useTimeAgo(new Date(props.video.videoPublishedAt))
     <img :src="`https://i.ytimg.com/vi/${video.videoId}/hqdefault.jpg`" />
     <PlayIcon class="absolute w-16 h-16 text-white left-0 bottom-0 hover:scale-125 hover:text-teal-300" @click="play" />
     <ViewListIcon class="absolute w-16 h-16 text-white right-0 bottom-0 hover:scale-125 hover:text-teal-300" @click="queue" />
-    <p class="absolute left-1 top-0 text-blue-100">{{ timeAgo }}</p>
+    <p class="absolute left-1 top-0 text-blue-100">{{ video.channel.name }}</p>
+    <p class="absolute right-1 top-0 text-blue-100">{{ timeAgo }}</p>
   </div>
 </template>
