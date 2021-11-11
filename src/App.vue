@@ -11,6 +11,7 @@ const timeAgo = useTimeAgo(date)
 </script>
 
 <template>
+  <ReloadPrompt />
   <div class="bg-black">
     <div class="min-w-xs lg:mx-12 xl:mx-24">
       <YoutubePlayer />
@@ -20,5 +21,4 @@ const timeAgo = useTimeAgo(date)
     <YoutubeVideos />
   </div>
   <div class="text-center text-blue-500">Built {{ timeAgo }}</div>
-  <ReloadPrompt />
 </template>
