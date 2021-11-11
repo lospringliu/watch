@@ -2,15 +2,26 @@
 import { IVideo } from "../types"
 import { onMounted, PropType } from "vue"
 import { PlayIcon, ViewListIcon } from '@heroicons/vue/outline'
-import { playing, playlist, videos } from "../stores/useStore"
+import { playing, playingInList, playlist, videos } from "../stores/useStore"
 import { useTimeAgo } from '@vueuse/core'
 const props = defineProps<{
   video: IVideo 
 }>()
 const play = () => {
-  playing.playing = videos.videos.find(v => v.videoId === props.video.videoId)
+  const video = videos.videos.find(v => v.videoId === props.video.videoId)
+  playing.playing = JSON.parse(JSON.stringify(props.video))
+  let index=0
+  if (playingInList.playing.hasOwnProperty("videoId")) {
+    index = playlist.playlist.findIndex(v => v.videoId === props.video.videoId)
+  }
+  if (index === -1) {
+    playlist.playlist.unshift(video)
+  } else {
+    playlist.playlist.splice(index, 0, video)
+  }
 }
 const queue = () => {
+  playing.playing = {} as IVideo
   playlist.add(videos.videos.find(v => v.videoId === props.video.videoId))
 }
 const timeAgo = useTimeAgo(new Date(props.video.videoPublishedAt))

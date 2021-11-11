@@ -34,6 +34,32 @@ const useVideoStore = defineStore('videos', {
   },
 })
 
+const useVideoFeaturedStore = defineStore('featured', {
+  state: () => {
+    return { videos: [{videoId: "LJ7Y2MRV0kg", videoPublishedAt: "2019-11-26T04:07:54Z"},
+                      {videoId: "DPK7D_Q46YI", videoPublishedAt: "2020-04-18T09:01:31Z"}] as IVideo[] }
+  },
+  getters: {
+    playing() {
+      return this.videos[Math.floor(Math.random() * this.videos.length)]
+    }
+  },
+  actions: {
+    add(video) {
+      const index = this.videos.findIndex(v => v.videoId === video.videoId)
+      if (index === -1) {
+        this.videos.push(video)
+      }
+    },
+    remove(video) {
+      const index = this.videos.findIndex(v => v.videoId === video.videoId)
+      if (index !== -1) {
+        this.videos.splice(index, 1)
+      }
+    },
+  },
+})
+
 const usePlaylistStore = defineStore('playlist', {
   state: () => {
     return { playlist: [] as IVideo[] }
@@ -60,7 +86,7 @@ const usePlaylistStore = defineStore('playlist', {
 
 const usePlayingStore = defineStore('playing', {
   state: () => {
-    return { playing: { videoId: 'PuiSlj3u47E', videoPublishedAt: '2021-11-05T03:30:02Z' } as IVideo }
+    return { playing: { } as IVideo }
   },
   actions: {
     play(video) {
@@ -130,6 +156,7 @@ const playing = usePlayingStore()
 const playingInList = usePlayingInListStore()
 const playlist = usePlaylistStore()
 const videos = useVideoStore()
+const featured = useVideoFeaturedStore()
 const prefers = usePrefersStore()
 
-export {playing, playingInList, playlist, videos, prefers}
+export {playing, playingInList, playlist, videos, featured, prefers}

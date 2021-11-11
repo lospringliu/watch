@@ -6,17 +6,16 @@ import Youtube from './Youtube.vue'
 // import useYoutubeVideos from "../composables/useYoutubeVideos"
 // const { videos, getYoutubeVideos  } = useYoutubeVideos([])
 //    <vue3-youtube :videoid="video.videoId" />
-import { playing, playingInList, playlist, videos, prefers } from "../stores/useStore"
+import { playing, playingInList, playlist, featured, prefers } from "../stores/useStore"
 const youtube = ref(null)
+const playingVideo = ref(null)
 const play = () => {
   youtube.value.playVideo()
   youtube.value.setPlaybackRate(prefers.playbackRate)
 }
-watch(playing.playing, async (value, old_value) => {
-  youtube.value.setPlaybackRate(prefers.playbackRate)
-})
 watch(playlist.playlist, async (value, old_value) => {
   // console.log(youtube.value)
+  let index = -1, currentTime = 0
   const playlistVideos = value.map(video => video.videoId)
   try {
     const videoId = YID(youtube.value.getVideoUrl())
@@ -27,24 +26,29 @@ watch(playlist.playlist, async (value, old_value) => {
       } else {
         playingInList.playing = JSON.parse(JSON.stringify(value[0]))
       }
-      const currentTime = Math.floor(youtube.value.getCurrentTime())
+      currentTime = Math.floor(youtube.value.getCurrentTime())
       playingInList.playing.currentTime = Math.floor(currentTime)
     }
   } catch (e) {}
-  const index = playlistVideos.findIndex(v => v === (playingInList.playing.videoId || ""))
+  if (playing.playing.hasOwnProperty("videoId")) {
+    index = value.findIndex(v => v.videoId === playing.playing.videoId)
+    currentTime = 0
+  } else if(playingInList.playing.hasOwnProperty("videoId")) {
+    index = value.findIndex(v => v.videoId === playingInList.playing.videoId)
+  } else {}
   if (index !== -1) {
-    youtube.value.loadPlaylist(playlistVideos.join(","), index, playingInList.playing.currentTime)
-    // setTimeout(() => youtube.value.seekTo(playingInList.playing?.currentTime || 1), 1000)
+    youtube.value.loadPlaylist(playlistVideos.join(","), index, currentTime)
   } else {
     youtube.value.loadPlaylist(playlistVideos.join(","))
   }
   youtube.value.setPlaybackRate(prefers.playbackRate)
 })
+playingVideo.value = featured.playing
 </script>
 
 <template>
   <Youtube
-  :src="`https://www.youtube.com/watch?v=${playing.playing.videoId}`"
+  :src="`https://www.youtube.com/watch?v=${playingVideo.videoId}`"
   @ready="play"
   ref="youtube" />
 </template>
