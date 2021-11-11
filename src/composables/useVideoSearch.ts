@@ -8,6 +8,7 @@ export default function useVideoSearch(videos: any) {
     })
   })
 
+
   return {
     searchQuery,
     videosMatchingSearchQuery
