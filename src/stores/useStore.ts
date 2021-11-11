@@ -69,9 +69,21 @@ const usePlayingStore = defineStore('playing', {
   }
 })
 
+const usePlayingInListStore = defineStore('playingInList', {
+  state: () => {
+    return { playing: {} as IVideo }
+  },
+  actions: {
+    play(video) {
+      this.playing = video
+    }
+  }
+})
+
 const usePrefersStore = defineStore('prefers', {
   state: () => {
     return {
+      youtubeAppKey: "AIzaSyB45Wu2r4NUvLS04fC4UDCEhi2ofPEOxNo",
       playbackRate: 1.5,
       channels: [
         'UC7Ky7FjJBI7ojx2Yqz2pkNQ', // 萨沙
@@ -87,6 +99,8 @@ const usePrefersStore = defineStore('prefers', {
         'UCr_F4Y9iboUKlg_ZPm4jkVQ', // 老梁
         'UCJncdiH3BQUBgCroBmhsUhQ', // 观察网
         'UCXkOTZJ743JgVhJWmNV8F3Q', // 寒国人
+        'UCSgGqt-30oXBq0-n0K-t4Nw', // 科技袁人
+        'UCEjqTrvJdLG7Eo0KP1AzYJw', // 大佬时空
       ],
       playlists: [
         'UURdpxiOm4HrwGI24Kv6MBKQ', // David郑经纬
@@ -97,6 +111,7 @@ const usePrefersStore = defineStore('prefers', {
         'UU2IpIQXiLrMV3EAMjfKbcUw', // 雪石
         'UU-8fdTrDRgiJhSq3wRsaF-g', // 寒梅
         'UUOo6xtjQu3LuRzMTfFkGrSA', // 迷彩虎
+        'UU5uh3zVGmvyQoks_LxBJ-5Q', // 郑国成
       ],
     }
   },
@@ -112,8 +127,9 @@ const usePrefersStore = defineStore('prefers', {
   }
 })
 const playing = usePlayingStore()
+const playingInList = usePlayingInListStore()
 const playlist = usePlaylistStore()
 const videos = useVideoStore()
 const prefers = usePrefersStore()
 
-export {playing, playlist, videos, prefers}
+export {playing, playingInList, playlist, videos, prefers}

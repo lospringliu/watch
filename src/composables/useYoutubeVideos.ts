@@ -1,7 +1,7 @@
 import { IVideo } from '../types'
 import { fetchYoutubeVideos } from '../api/fetchYoutubeVideos'
 import { prefers } from '../stores/useStore'
-import { ref, onMounted, watch } from 'vue'
+import { ref, watch } from 'vue'
 
 export default function useYoutubeVideos() {
   const videos = ref([] as IVideo[])
@@ -9,7 +9,7 @@ export default function useYoutubeVideos() {
     videos.value = await fetchYoutubeVideos(prefers.channels_playlists)
   }
 
-  onMounted(getYoutubeVideos)
+  // onMounted(getYoutubeVideos)
   watch([prefers.channels, prefers.playlists], getYoutubeVideos)
 
   return {

@@ -1,14 +1,14 @@
 <script setup lang="ts">
+import { IVideo } from "../types"
 import { ref, onMounted, watch } from "vue"
 import YID from "get-youtube-id"
 import Youtube from './Youtube.vue'
 // import useYoutubeVideos from "../composables/useYoutubeVideos"
 // const { videos, getYoutubeVideos  } = useYoutubeVideos([])
 //    <vue3-youtube :videoid="video.videoId" />
-import { playing, playlist, videos, prefers } from "../stores/useStore"
+import { playing, playingInList, playlist, videos, prefers } from "../stores/useStore"
 const youtube = ref(null)
 const play = () => {
-  youtube.value.seekTo(playing.playing?.currentTime || 1)
   youtube.value.playVideo()
   youtube.value.setPlaybackRate(prefers.playbackRate)
 }
@@ -18,19 +18,23 @@ watch(playing.playing, async (value, old_value) => {
 watch(playlist.playlist, async (value, old_value) => {
   // console.log(youtube.value)
   const playlistVideos = value.map(video => video.videoId)
-  const index = playlistVideos.findIndex(v => v === (playing.playing.videoId || ""))
   try {
     const videoId = YID(youtube.value.getVideoUrl())
     if (videoId) {
-      const video = videos.videos.find(v => v.videoId === videoId)
-      // if (video) { playing.playing = video }
-      const currentTime = youtube.value.getCurrentTime()
-      console.log(currentTime)
-      // playing.playing.currentTime = Math.floor(currentTime)
+      const currentVideo = value.find(v => v.videoId === videoId)
+      if (currentVideo) {
+        playingInList.playing = JSON.parse(JSON.stringify(currentVideo))
+      } else {
+        playingInList.playing = JSON.parse(JSON.stringify(value[0]))
+      }
+      const currentTime = Math.floor(youtube.value.getCurrentTime())
+      playingInList.playing.currentTime = Math.floor(currentTime)
     }
   } catch (e) {}
+  const index = playlistVideos.findIndex(v => v === (playingInList.playing.videoId || ""))
   if (index !== -1) {
-    youtube.value.loadPlaylist(playlistVideos.join(","), index)
+    youtube.value.loadPlaylist(playlistVideos.join(","), index, playingInList.playing.currentTime)
+    // setTimeout(() => youtube.value.seekTo(playingInList.playing?.currentTime || 1), 1000)
   } else {
     youtube.value.loadPlaylist(playlistVideos.join(","))
   }
