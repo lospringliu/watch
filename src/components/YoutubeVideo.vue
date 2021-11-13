@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { IVideo, IChannel } from "../types"
-import { onMounted, PropType } from "vue"
+import { IVideo } from "../types"
 import { PlayIcon, ViewListIcon } from '@heroicons/vue/outline'
-import { playing, playingInList, playlist, videos } from "../stores/useStore"
+import { playing, playingInList, playlist, videos, filtering } from "../stores/useStore"
 import { useTimeAgo } from '@vueuse/core'
 const props = defineProps<{
   video: IVideo 
@@ -25,6 +24,13 @@ const queue = () => {
   playlist.add(videos.videos.find(v => v.videoId === props.video.videoId))
 }
 const timeAgo = useTimeAgo(new Date(props.video.videoPublishedAt))
+const alertKeyword = () => {
+  if (filtering.channel === props.video.channel.name) {
+    filtering.setChannel({name: "", id: ""})
+  } else {
+    filtering.setChannel(props.video.channel)
+  }
+}
 </script>
 
 <template>
@@ -32,7 +38,7 @@ const timeAgo = useTimeAgo(new Date(props.video.videoPublishedAt))
     <img :src="`https://i.ytimg.com/vi/${video.videoId}/hqdefault.jpg`" />
     <PlayIcon class="absolute w-16 h-16 text-white left-0 bottom-0 hover:scale-125 hover:text-teal-300" @click="play" />
     <ViewListIcon class="absolute w-16 h-16 text-white right-0 bottom-0 hover:scale-125 hover:text-teal-300" @click="queue" />
-    <p class="absolute left-1 top-0 text-blue-100">{{ video.channel.name }}</p>
-    <p class="absolute right-1 top-0 text-blue-100">{{ timeAgo }}</p>
+    <p class="absolute left-2 top-0 text-blue-100 hover:scale-125" @click="alertKeyword">{{ video.channel.name }}</p>
+    <p class="absolute right-2 top-0 text-blue-100">{{ timeAgo }}</p>
   </div>
 </template>

@@ -155,11 +155,30 @@ const usePrefersStore = defineStore('prefers', {
     }
   }
 })
+
+const useFilteringStore = defineStore('filtering', {
+  state: () => {
+    return { channel: "", keyword: "", limit: 60}
+  },
+  actions: {
+    setChannel(channel: IChannel) {
+      this.channel = channel.name
+    },
+    setKeyword(keyword) {
+      this.keyword = keyword
+    },
+    setLimit(limit) {
+      this.limit = +limit
+    }
+  }
+})
+
 const playing = usePlayingStore()
 const playingInList = usePlayingInListStore()
 const playlist = usePlaylistStore()
 const videos = useVideoStore()
 const featured = useVideoFeaturedStore()
 const prefers = usePrefersStore()
+const filtering = useFilteringStore()
 
-export {playing, playingInList, playlist, videos, featured, prefers}
+export {playing, playingInList, playlist, videos, featured, prefers, filtering}
