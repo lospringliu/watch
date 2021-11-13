@@ -34,7 +34,7 @@ const alertKeyword = () => {
 </script>
 
 <template>
-  <div class="relative cursor-pointer border-2 border-dark-900 hover:opacity-90 hover:border-blue-900">
+  <div class="relative cursor-pointer border-y-2 border-light-100 dark:border-light-800 hover:opacity-90 hover:border-teal-700">
     <img :src="`https://i.ytimg.com/vi/${video.videoId}/hqdefault.jpg`" />
     <PlayIcon class="absolute w-16 h-16 text-white left-0 bottom-0 hover:scale-125 hover:text-teal-300" @click="play" />
     <ViewListIcon class="absolute w-16 h-16 text-white right-0 bottom-0 hover:scale-125 hover:text-teal-300" @click="queue" />

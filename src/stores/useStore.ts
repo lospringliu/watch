@@ -141,6 +141,7 @@ const usePrefersStore = defineStore('prefers', {
         { id: 'UUOo6xtjQu3LuRzMTfFkGrSA', name: "迷彩虎" },
         { id: 'UU5uh3zVGmvyQoks_LxBJ-5Q', name: "郑国成" },
         { id: 'UUnyPxKrdrXDjlBBucRAIuuA', name: "圆脸波士顿" },
+        { id: 'UUgo_-fjJxnLwwwq5dSY72rg', name: "自话总裁" },
       ] as IChannel[]
     }
   },
