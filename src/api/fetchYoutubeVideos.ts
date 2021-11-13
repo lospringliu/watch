@@ -11,7 +11,7 @@ function makeParams(options = {}) {
   return {
     params: Object.assign({}, {
       part: 'snippet,contentDetails',
-      maxResults: 20,
+      maxResults: 25,
     }, options),
   }
 }
@@ -32,7 +32,7 @@ async function fetchYoutubeVideos (channels: IChannel[] = []) {
       resp.data.items.forEach(item => {
         const video: IVideo = item.contentDetails
         video.channel = channel
-        new Date().valueOf() - new Date(video.videoPublishedAt).valueOf() < 3 * 24 * 60 * 60 * 1000 && videos.add(video)
+        videos.add(video)
       })
       // resp.data.items.forEach(item => new Date().valueOf() - new Date(item.contentDetails.videoPublishedAt).valueOf() < 3 * 24 * 60 * 60 * 1000 && videos.add(item.contentDetails))
       // resp.data.items.forEach(item => videos.add(item.contentDetails))

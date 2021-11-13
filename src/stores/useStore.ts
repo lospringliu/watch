@@ -158,7 +158,7 @@ const usePrefersStore = defineStore('prefers', {
 
 const useFilteringStore = defineStore('filtering', {
   state: () => {
-    return { channel: "", keyword: "", limit: 60}
+    return { channel: "", keyword: "", limit: 100}
   },
   actions: {
     setChannel(channel: IChannel) {
