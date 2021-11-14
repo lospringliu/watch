@@ -6,6 +6,7 @@ export const usePrefersStore = defineStore('prefers', {
     return {
       youtubeAppKey: "AIzaSyB45Wu2r4NUvLS04fC4UDCEhi2ofPEOxNo",
       playbackRate: 1.5,
+      maxResults: 50,
       channels: [
         { id: 'UC7Ky7FjJBI7ojx2Yqz2pkNQ', name: "萨沙" },
         { id: 'UCH2BtkEp1kHY7o9TCIhYaFA', name: "萨沙环球" },
