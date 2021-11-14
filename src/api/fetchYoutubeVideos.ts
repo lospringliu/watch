@@ -24,12 +24,25 @@ async function fetchYoutubeVideos (channels: IChannel[] = []) {
     try {
       if (is_channel) {
         const response = await gapi.get('channels', makeParams({ key: prefers.youtubeAppKey, id: channel.id }))
-        if (response.data.pageInfo.totalResults === 1) {
-          playlistId = response.data.items[0].contentDetails.relatedPlaylists.uploads
+        if (response.data.pageInfo.totalResults === 1 ) {
+          const item = response.data.items[0]
+          if (item.kind === "youtube#channel") {
+            if (!channel.hasOwnProperty("title")) {
+              channel.title = item.snippet.title
+            }
+            if (item.contentDetails.relatedPlaylists.hasOwnProperty("uploads")) {
+              playlistId = item.contentDetails.relatedPlaylists.uploads
+            }
+          } else {
+            return
+          }
         }
       }
       const resp = await gapi.get('playlistItems', makeParams({ key: prefers.youtubeAppKey, playlistId }))
       resp.data.items.forEach(item => {
+        if (!channel.hasOwnProperty("title")) {
+          channel.title = item.snippet.channelTitle
+        }
         const video: IVideo = item.contentDetails
         video.channel = channel
         videos.add(video)

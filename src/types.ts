@@ -1,6 +1,7 @@
 export interface IChannel {
   id: string
-  name: string
+  name?: string
+  title?: string
 }
 
 export interface IVideo {
