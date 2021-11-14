@@ -4,7 +4,8 @@ import { defineStore } from "pinia"
 export const usePrefersStore = defineStore('prefers', {
   state: () => {
     return {
-      youtubeAppKey: "AIzaSyB45Wu2r4NUvLS04fC4UDCEhi2ofPEOxNo",
+      youtubeAccess: true,
+      youtubeAppKey: "AIzaSyB13mMqUQ9q7GxSJ4c28l1wAoYGLNw-rkE",
       playbackRate: 1.5,
       maxResults: 50,
       channels: [
