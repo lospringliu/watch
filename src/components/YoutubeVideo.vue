@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { IVideo } from "../types"
-import { PlayIcon, ViewListIcon } from '@heroicons/vue/outline'
+import IconPlay from '~icons/heroicons-outline/play'
+import IconPlaylist from '~icons/ic/outline-playlist-add-check-circle'
 import { playing, playingInList, playlist, videos, filtering } from "../stores"
 import { useTimeAgo } from '@vueuse/core'
 const props = defineProps<{
@@ -36,8 +37,8 @@ const alertKeyword = () => {
 <template>
   <div class="relative cursor-pointer border-y-2 border-light-100 dark:border-light-800 hover:opacity-90 hover:border-teal-700">
     <img :src="`https://i.ytimg.com/vi/${video.videoId}/hqdefault.jpg`" />
-    <PlayIcon class="absolute w-16 h-16 text-white left-0 bottom-0 hover:scale-125 hover:text-teal-300" @click="play" />
-    <ViewListIcon class="absolute w-16 h-16 text-white right-0 bottom-0 hover:scale-125 hover:text-teal-300" @click="queue" />
+    <IconPlay class="absolute w-16 h-16 text-white left-0 bottom-0 hover:scale-125 hover:text-teal-300" @click="play" />
+    <IconPlaylist class="absolute w-16 h-16 text-white right-0 bottom-0 hover:scale-125 hover:text-teal-300" @click="queue" />
     <p class="absolute left-2 top-1 font-semibold text-2xl text-blue-100 hover:scale-125 hover:text-teal-300" @click="alertKeyword">{{ video.channel.name }}</p>
     <p class="absolute right-2 top-1 text-blue-100">{{ timeAgo }}</p>
   </div>
