@@ -24,6 +24,7 @@ export const usePrefersStore = defineStore('prefers', {
         { id: 'UCEjqTrvJdLG7Eo0KP1AzYJw', name: "大佬时空" },
         { id: 'UCUBhobCkTLhgfUNRAgHSYmw', name: "科学声音" },
         { id: 'UCD_gy8DWV_DhjJ-bQXF5dGQ', name: "磊哥" },
+        { id: 'UCI-ECZ-pbvFL2fLtskq2GPA', name: "老伍" },
       ] as IChannel[],
       playlists: [
         { id: 'PLBsA1M_J2ICIvMjsj_U7lIdeq-E8AW-bM', name: "杨世光" },
