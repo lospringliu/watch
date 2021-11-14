@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { isDark, toggleDark } from '../logic'
 import { SunIcon, MoonIcon, VariableIcon } from '@heroicons/vue/outline'
+import IconSettings from '~icons/carbon/settings'
 </script>
 
 <template>
@@ -11,6 +12,9 @@ import { SunIcon, MoonIcon, VariableIcon } from '@heroicons/vue/outline'
     </button>
     <button class="mx-auto mx-4" @click="toggleDark()">
       <VariableIcon class="w-8 h-8" />
+    </button>
+    <button class="mx-auto mx-4" @click="toggleDark()">
+      <IconSettings class="w-8 h-8" />
     </button>
   </nav>
 </template>
