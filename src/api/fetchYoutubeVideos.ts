@@ -1,8 +1,8 @@
 import axios from 'axios'
 import { IVideo, IChannel } from "../types"
 import AsyncForEach from "async-await-foreach"
-import { videos } from "../stores/useStore"
-import { prefers } from "../stores/useStore"
+import { videos } from "../stores"
+import { prefers } from "../stores"
 const gapi = axios.create({ baseURL: 'https://youtube.googleapis.com/youtube/v3/' })
 gapi.defaults.headers.common.Accept = 'application/json'
 

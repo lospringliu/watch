@@ -1,6 +1,6 @@
 import { ref, computed } from 'vue'
 import { IVideo } from "../types"
-import { videos, filtering } from "../stores/useStore"
+import { videos, filtering } from "../stores"
 
 export default function useVideoSearch() {
   const searchQuery = ref(filtering)

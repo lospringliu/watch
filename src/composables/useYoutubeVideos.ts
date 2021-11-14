@@ -1,6 +1,6 @@
 import { IVideo } from '../types'
 import { fetchYoutubeVideos } from '../api/fetchYoutubeVideos'
-import { prefers } from '../stores/useStore'
+import { prefers } from '../stores'
 import { ref, watch } from 'vue'
 
 export default function useYoutubeVideos() {
