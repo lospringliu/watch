@@ -27,7 +27,7 @@ const settings_prefers = ref(prefers)
     </div>
     <div v-show="settings_prefers.youtubeAccess">
       <div>youtube api key:
-        <input type="text" :value="settings_prefers.youtubeAppKey" />
+        <input type="text" v-model="settings_prefers.youtubeAppKey" />
       </div>
       <div>play back rate:
         <input type="number" v-model="settings_prefers.playbackRate" />

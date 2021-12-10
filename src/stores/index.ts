@@ -18,6 +18,16 @@ const featured = useVideoFeaturedStore()
 const prefers = usePrefersStore()
 const filtering = useFilteringStore()
 
+
+prefers.$subscribe((mutation, state) => {
+  // import { MutationType } from 'pinia'
+  // mutation.type // 'direct' | 'patch object' | 'patch function'
+  // mutation.storeId // 'cart'
+  // mutation.payload // patch object passed to cartStore.$patch()
+  console.log(mutation)
+  prefers.save()
+})
+
 export {playing, playingInList, playlist, videos, featured, prefers, filtering}
 export {
   pinia,
