@@ -13,6 +13,17 @@ const prefers_initial = { playbackRate: 1.0,
 }
 // db.data = { version: "0.0.1", prefers: prefers_initial }
 db.data ||= { version: "0.0.1", prefers: prefers_initial }
+// sync from initial
+prefers_initial.channels.forEach(channel => {
+  if (db.data.prefers.channels.filter(c => c.id === channel.id).length === 0) {
+    db.data.prefers.channels.push(channel)
+  }
+})
+prefers_initial.playlists.forEach(playlist => {
+  if (db.data.prefers.playlists.filter(p => p.id === playlist.id).length === 0) {
+    db.data.prefers.playlists.push(playlist)
+  }
+})
 
 export const usePrefersStore = defineStore('prefers', {
   state: () => {
