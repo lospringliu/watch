@@ -1,23 +1,6 @@
 <template>
-  <div class="video-container">
-    <div ref="youtube"></div>
-  </div>
+  <div class="aspect-video" ref="youtube"></div>
 </template>
-
-<style>
-.video-container {
-  position: relative;
-  padding-bottom: 56.25%;
-  padding-top: 30px;
-  height: 0;
-  overflow: hidden; }
-.video-container iframe, .video-container object, .video-container embed {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-}
-</style>
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
@@ -47,19 +30,16 @@ const YouTube = defineComponent({
       type: String as PropType<string>,
       required: true,
     },
-    host: String as PropType<string>,
+    host: {
+      type: String as PropType<string>,
+      default: 'https://www.youtube.com'
+    },
     vars: Object as PropType<PlayerVars>,
   },
   computed: {
     id(): string {
       return getYouTubeID(this.src) || this.src
-    },
-    wrapperStyle(): Record<string, string> {
-      return {
-        width: '100%',
-        position: 'relative',
-      }
-    },
+    }
   },
   data() {
         // height: '100%',
@@ -126,9 +106,10 @@ const YouTube = defineComponent({
       this.initiated = true
       // eslint-disable-next-line no-undef
       this.player = new YT.Player(this.$refs.youtube as HTMLElement, {
-        // width: "100%",
-        // height: "100%",
+        width: "100%",
+        height: "100%",
         videoId: this.id,
+        host: this.host,
         playerVars: this.vars,
         events: {
           onReady: (e) => {
@@ -434,9 +415,6 @@ const YouTube = defineComponent({
     },
   },
   watch: {
-    width() {
-      this.player?.setSize(+this.width, +this.height)
-    },
     src() {
       if (this.initiated && this.player) {
         this.player.loadVideoById(this.id)

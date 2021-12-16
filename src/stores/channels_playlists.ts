@@ -2,6 +2,7 @@ import { IChannel } from "../types"
 export const CHANNELS = [ 
     { id: 'UC7Ky7FjJBI7ojx2Yqz2pkNQ', name: '萨沙', title: 'SHA SA 萨莎 Саша' },
     { id: 'UCH2BtkEp1kHY7o9TCIhYaFA', name: '萨沙环球', title: '萨莎-环球频道-shasa-Саша' },
+    { id: 'UCd6lmxWKVkCBUubage0hmWA', name: '萨沙底层', title: 'SHA SA-萨莎-底层逻辑-саша' },
     { id: 'UCwNGgFvBpxtU8JagZLzztzQ', name: '岩论', title: 'Yan Talk' },
     { id: 'UCkZ9vSvx7lg9FvZifpbH2FA', name: '老兵', title: '民族阵线-老兵莱昂' },
     { id: 'UCE05tYKEsEk7Qmhwg5pqcKw', name: '杨峰', title: '杨风時評' },
