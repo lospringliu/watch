@@ -18,7 +18,8 @@ export const CHANNELS = [
     { id: 'UCEjqTrvJdLG7Eo0KP1AzYJw', name: '大佬时空', title: '大佬时空' },
     { id: 'UCUBhobCkTLhgfUNRAgHSYmw', name: '科学声音', title: '科学声音' },
     { id: 'UCD_gy8DWV_DhjJ-bQXF5dGQ', name: '磊哥', title: '磊哥聊政经' },
-    { id: 'UCI-ECZ-pbvFL2fLtskq2GPA', name: '老伍', title: '老伍和他的朋友们' }
+    { id: 'UCI-ECZ-pbvFL2fLtskq2GPA', name: '老伍', title: '老伍和他的朋友们' },
+    { id: 'UC9Q8KmHEHhDl_2LSiQNGLaQ', name: '大刘', title: '大刘说说' }
   ] as IChannel[]
 export const PLAYLISTS = [
     { id: 'PLBsA1M_J2ICIvMjsj_U7lIdeq-E8AW-bM', name: '杨世光', title: '楊世光在金錢爆' },
