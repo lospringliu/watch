@@ -1,14 +1,93 @@
+import path from "node:path"
+import { fileURLToPath } from "node:url"
+const filename = fileURLToPath(import.meta.url)
+const dirname = path.dirname(filename)
+
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import Icons from 'unplugin-icons/vite'
+import IconsResolver from 'unplugin-icons/resolver'
 import { VitePWA } from 'vite-plugin-pwa'
 import replace from '@rollup/plugin-replace'
 
+import Components from 'unplugin-vue-components/vite'
+import AutoImport from 'unplugin-auto-import/vite'
+import VueI18n from '@intlify/vite-plugin-vue-i18n'
+import Pages from 'vite-plugin-pages'
+
+const moduleExclude = match => {
+  const m = id => id.indexOf(match) > -1
+  return {
+    name: `exclude-${match}`,
+    resolveId(id) {
+      if (m(id)) return id
+    },
+    load(id) {
+      if (m(id)) return `export default {}`
+    },
+  }
+}
+
 // https://vitejs.dev/config/
 export default defineConfig({
+  resolve: {
+    alias: {
+      '~/': `${path.resolve(dirname, 'src')}/`,
+      '@/': `${path.resolve(dirname, 'src')}/`,
+      // '@composables': '@gun-vue/composables',
+      // '@components': '@gun-vue/components',
+      '@composables': path.resolve(dirname, 'src/gun/composables'),
+      '@components': path.resolve(dirname, 'src/gun/components'),
+      // process: "process/browser",
+      // stream: "stream-browserify",
+      // zlib: "browserify-zlib",
+      // util: "util",
+      // web3: path.resolve(dirname, "./node_modules/web3/dist/web3.min.js"),
+    },
+  },
   plugins: [
-    Icons({compiler: "vue3"}),
     vue(),
+    // https://github.com/hannoeru/vite-plugin-pages
+    Pages({
+      extensions: ['vue', 'md'],
+    }),
+    // https://github.com/antfu/unplugin-icons
+    Icons({
+      compiler: "vue3",
+      autoInstall: true,
+    }),
+    // https://github.com/antfu/unplugin-vue-components
+    Components({
+      // allow auto load markdown components under `./src/components/`
+      dirs: ["src/components", "src/gun/components"],
+      // dirs: ["src/components"],
+      directoryAsNamespace: true,
+      extensions: ['vue', 'md'],
+      // allow auto import and register components used in markdown
+      include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
+      resolvers: [
+        IconsResolver({
+          componentPrefix: '',
+          // enabledCollections: ['carbon']
+        }),
+      ],
+      dts: 'src/components.d.ts',
+    }),
+    AutoImport({
+      imports: [
+        'vue',
+        'vue-router',
+        'vue-i18n',
+        '@vueuse/head',
+        '@vueuse/core',
+      ],
+      dts: 'src/auto-imports.d.ts',
+    }),
+    VueI18n({
+      runtimeOnly: true,
+      compositionOnly: true,
+      include: [path.resolve(__dirname, 'locales/**')],
+    }),
     VitePWA({
       mode: 'development',
       base: '/',
@@ -39,6 +118,29 @@ export default defineConfig({
     }),
     replace({
       __DATE__: new Date().toISOString(),
-    })
-  ]
+    }),
+  ],
+  optimizeDeps: {
+    include: [
+      'vue',
+      'vue-router',
+      '@vueuse/core',
+      '@vueuse/head',
+      'gun',
+      'gun/gun',
+      'gun/sea',
+      'gun/sea.js',
+      'gun/lib/then',
+      'gun/lib/webrtc',
+      'gun/lib/radix',
+      'gun/lib/radisk',
+      'gun/lib/store',
+      'gun/lib/rindexed',
+      // 'interactjs',
+    ],
+    exclude: [
+      'vue-demi',
+      moduleExclude('text-encoding')
+    ],
+  },
 })

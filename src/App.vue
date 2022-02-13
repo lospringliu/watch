@@ -1,28 +1,48 @@
-<script setup lang="ts">
-import YoutubeVideos from './components/YoutubeVideos.vue'
-import { useTimeAgo } from '@vueuse/core'
-import ReloadPrompt from './components/ReloadPrompt.vue'
-import YoutubePlayer from './components/YoutubePlayer.vue'
-import Navier from './components/Navier.vue'
-// import VuePlyr from 'vue-plyr'
-// import 'vue-plyr/dist/vue-plyr.css'
-// replaced dyanmicaly
-const date = '__DATE__'
-const timeAgo = useTimeAgo(date)
+<script setup>
+import { useRoute, useRouter } from "vue-router";
+import { watch, watchEffect } from "vue";
+import { currentRoom, rootRoom } from "@composables";
+
+
+const router = useRouter()
+const route = useRoute();
+watchEffect(() => {
+  if (route.query?.room) {
+    currentRoom.pub = route.query.room
+  }
+});
+
+watch(() => currentRoom.pub, (pub) => {
+  if (pub == rootRoom.pub) {
+    router.push({ path: route.path, query: {} })
+  } else {
+    router.push({ path: route.path, query: { room: pub } })
+  }
+})
+
 </script>
 
-<template>
-  <ReloadPrompt />
-  <div class="bg-black">
-    <div class="min-w-xs lg_mx-12 xl_mx-24">
-      <YoutubePlayer />
-    </div>
-  </div>
-  <div class="bg-cyan-300">
-    <Navier />
-  </div>
-  <div class="bg-white dark_bg-gray-800 grid grid-col grid-cols-1 gap-2 min-w-xs place-content-center sm_px-2 sm_gap-4 md_px-4 md_gap-6 md_grid-cols-2 lg_gap-8 lg_grid-cols-3 xl_grid-cols-4 text-center text-gray-700 dark_text-gray-200">
-    <YoutubeVideos />
-  </div>
-  <div class="text-center text-blue-500">Built {{ timeAgo }}</div>
+<template lang="pug">
+nav-bar
+.p-0.flex-1
+  router-view(v-slot="{ Component }")
+    transition(name="fade" mode="out-in")
+      component(:is="Component")
+.flex.flex-col.items-center.bg-dark-100.p-4.bg-opacity-30.sticky.bottom-0
+  util-tools
 </template>
+
+<style lang="postcss">
+html {
+  scroll-behavior: smooth;
+  hyphens: auto;
+  overscroll-behavior-y: contain;
+}
+body {
+  @apply bg-light-400 dark_bg-dark-100;
+  overscroll-behavior-y: contain;
+}
+#app {
+  @apply min-h-100vh flex flex-col;
+}
+</style>
