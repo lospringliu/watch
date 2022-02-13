@@ -35,11 +35,11 @@ const alertKeyword = () => {
 </script>
 
 <template>
-  <div class="relative cursor-pointer border-b-2 border-light-200 dark:border-dark-200 hover:opacity-90 hover:border-teal-700">
+  <div class="relative cursor-pointer border-b-2 border-light-200 dark_border-dark-200 hover_opacity-90 hover_border-teal-700">
     <img :src="`https://i.ytimg.com/vi/${video.videoId}/hqdefault.jpg`" />
-    <IconPlay class="absolute w-16 h-16 text-white left-0 bottom-0 hover:scale-125 hover:text-teal-300" @click="play" />
-    <IconPlaylist class="absolute w-16 h-16 text-white right-0 bottom-0 hover:scale-125 hover:text-teal-300" @click="queue" />
-    <p class="absolute left-2 top-1 font-semibold text-xl text-blue-100 hover:scale-125 hover:text-teal-300" @click="alertKeyword">{{ video.channel.title || video.channel.name }}</p>
+    <IconPlay class="absolute w-16 h-16 text-white left-0 bottom-0 hover_scale-125 hover_text-teal-300" @click="play" />
+    <IconPlaylist class="absolute w-16 h-16 text-white right-0 bottom-0 hover_scale-125 hover_text-teal-300" @click="queue" />
+    <p class="absolute left-2 top-1 font-semibold text-xl text-blue-100 hover_scale-125 hover_text-teal-300" @click="alertKeyword">{{ video.channel.title || video.channel.name }}</p>
     <p class="absolute right-2 top-1 text-blue-100">{{ timeAgo }}</p>
   </div>
 </template>
