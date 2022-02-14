@@ -3,7 +3,6 @@
 import { computed } from 'vue'
 
 const routes = {
-  "/": "Home",
   "/space/": "Space",
   "/chats/": "Chats",
   "/posts/": "Posts",
@@ -15,7 +14,7 @@ import { useUser, currentRoom, useBackground, useColor } from '@composables';
 
 const { user } = useUser()
 
-const bg = computed(() => useBackground(currentRoom.pub, 1200))
+const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200 }))
 
 const color = useColor('light')
 
@@ -35,7 +34,7 @@ a.fixed.top-0.left-0.z-1000(href="/#")
     @user="$router.push(`/users/${$event}`)" @room="$router.push(`/rooms/${$event}`)"
     @post="$router.push(`/posts/${$event}`)"
     )
-.flex.flex-wrap.items-center.bg-light-900.p-2.shadow-lg.sticky.top-18(:style="{ backgroundColor: color.hex(currentRoom.pub) }")
+.flex.flex-wrap.items-center.bg-light-900.p-2.shadow-lg.sticky.top-18.z-2(:style="{ backgroundColor: color.hex(currentRoom.pub) }")
   router-link.p-2.rounded-xl.cursor-pointer(
     v-for="(link, l) in routes" :key="link" 
     :to="l" 

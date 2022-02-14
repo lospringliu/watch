@@ -1,9 +1,8 @@
-import { pinia } from "./stores"
+import { pinia } from "~/stores"
 import { createApp } from "vue";
 import App from "./app.vue";
 
 import "./index.css";
-// import "virtual:windi.css";
 import "@components/styles/index.css";
 
 import { createRouter, createWebHashHistory } from "vue-router";
