@@ -1,9 +1,9 @@
 <template>
-  <div class="aspect-video" ref="youtube"></div>
+  <div ref="youtubevideo"></div>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
+import type { PropType } from 'vue'
 import getYouTubeID from 'get-youtube-id'
 
 interface Window {
@@ -63,11 +63,11 @@ const YouTube = defineComponent({
       initiated: false,
       ready: false,
       iframeStyle: {
-        position: 'absolute',
-        top: '0',
-        left: '0',
-        width: '100%',
-        height: '100%',
+        position: "absolute",
+        top: "0",
+        left: "0",
+        width: "100%",
+        height: "100%",
       },
     }
     return data
@@ -105,7 +105,7 @@ const YouTube = defineComponent({
     initPlayer(): void {
       this.initiated = true
       // eslint-disable-next-line no-undef
-      this.player = new YT.Player(this.$refs.youtube as HTMLElement, {
+      this.player = new YT.Player(this.$refs.youtubevideo as HTMLElement, {
         width: "100%",
         height: "100%",
         videoId: this.id,
@@ -430,3 +430,4 @@ export type Methods = (typeof YouTube)['methods']
 
 export default YouTube
 </script>
+

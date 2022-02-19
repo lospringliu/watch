@@ -30,9 +30,9 @@ const { search, slug, tags, addTag } = useTagList()
 
 <style lang="postcss" scoped>
 .tag {
-  @apply cursor-pointer flex-grow bg-light-700 rounded-md shadow-md m-1 py-2 px-2 hover_bg-light-200;
-}
-.new {
-  @apply bg-dark-100 text-white;
+  @apply cursor-pointer flex-grow bg-light-700 rounded-md shadow-md m-1 py-2 px-2 hover_(bg-light-200);
+  &.new {
+    @apply bg-dark-100 text-white;
+  }
 }
 </style>

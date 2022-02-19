@@ -8,6 +8,7 @@ import vue from '@vitejs/plugin-vue'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import { VitePWA } from 'vite-plugin-pwa'
+import WindiCSS from "vite-plugin-windicss";
 import replace from '@rollup/plugin-replace'
 
 import Components from 'unplugin-vue-components/vite'
@@ -34,10 +35,10 @@ export default defineConfig({
     alias: {
       '~/': `${path.resolve(dirname, 'src')}/`,
       '@/': `${path.resolve(dirname, 'src')}/`,
-      // '@composables': '@gun-vue/composables',
-      // '@components': '@gun-vue/components',
       '@composables': path.resolve(dirname, 'src/gun/composables'),
       '@components': path.resolve(dirname, 'src/gun/components'),
+      // '@composables': '@gun-vue/composables',
+      // '@components': '@gun-vue/components',
       // process: "process/browser",
       // stream: "stream-browserify",
       // zlib: "browserify-zlib",
@@ -56,13 +57,22 @@ export default defineConfig({
       compiler: "vue3",
       autoInstall: true,
     }),
+    WindiCSS({
+      scan: {
+        dirs: ["src"],
+        include: ["index.md"],
+        exclude: ["**/examples/**/*", "/node_modules/"],
+        fileExtensions: ["vue", "ts", "md"],
+      },
+    }),
     // https://github.com/antfu/unplugin-vue-components
     Components({
       // allow auto load markdown components under `./src/components/`
       dirs: ["src/components", "src/gun/components"],
       // dirs: ["src/components"],
       directoryAsNamespace: true,
-      extensions: ['vue', 'md'],
+      globalNamespaces: ["global"],
+      extensions: ['vue'],
       // allow auto import and register components used in markdown
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
       resolvers: [

@@ -49,7 +49,9 @@ playingVideo.value = featured.playing
 
 <template>
   <Youtube
-  :src="`https://www.youtube.com/watch?v=${playingVideo.videoId}`"
-  @ready="play"
-  ref="youtube" />
+    class="aspect-video"
+    ref="youtube"
+    :src="`https://www.youtube.com/watch?v=${playingVideo.videoId}`"
+    @ready="play"
+  />
 </template>

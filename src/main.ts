@@ -1,8 +1,7 @@
-import { pinia } from "~/stores"
 import { createApp } from "vue";
 import App from "./app.vue";
 
-import "./index.css";
+import "virtual:windi.css";
 import "@components/styles/index.css";
 
 import { createRouter, createWebHashHistory } from "vue-router";
@@ -21,7 +20,6 @@ const router = createRouter({
 });
 
 const app = createApp(App);
-app.use(pinia)
 
 app.use(router).mount("#app");
 
