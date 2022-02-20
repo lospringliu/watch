@@ -79,7 +79,7 @@ declare module 'vue' {
     PostCard: typeof import('./gun/components/post/Card.vue')['default']
     PostFeedBlock: typeof import('./gun/components/post/feed/Block.vue')['default']
     PostFeedLabel: typeof import('./gun/components/post/feed/Label.vue')['default']
-    PostFeedList: typeof import('./gun/components/post/feed/List.vue')['default']
+    PostFeedList: typeof import('./gun/components/post/feed/list.vue')['default']
     PostForm: typeof import('./gun/components/post/Form.vue')['default']
     PostList: typeof import('./gun/components/post/List.vue')['default']
     PostPage: typeof import('./gun/components/post/Page.vue')['default']
