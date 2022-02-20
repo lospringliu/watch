@@ -10,6 +10,7 @@ import IconsResolver from 'unplugin-icons/resolver'
 import { VitePWA } from 'vite-plugin-pwa'
 import WindiCSS from "vite-plugin-windicss";
 import replace from '@rollup/plugin-replace'
+import Layouts from 'vite-plugin-vue-layouts'
 
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
@@ -52,6 +53,8 @@ export default defineConfig({
     Pages({
       extensions: ['vue', 'md'],
     }),
+    // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
+    Layouts(),
     // https://github.com/antfu/unplugin-icons
     Icons({
       compiler: "vue3",

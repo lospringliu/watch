@@ -8,7 +8,7 @@ export default defineConfig({
   separator: "_",
   darkMode: 'class',
   // https://windicss.org/posts/v30.html#attributify-mode
-  attributify: true,
+  // attributify: true,
 
   plugins: [
     AspectRatio,

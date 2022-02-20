@@ -20,13 +20,14 @@ watch(() => currentRoom.pub, (pub) => {
   }
 })
 
+
+//  nav-bar
 const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, light: 0.8, overlay: 0.5 }))
 
 </script>
 
 <template lang="pug">
 .p-0.flex.flex-col(style="flex: 1000 1 100%" :style="{ ...bg }")
-  nav-bar
   router-view(v-slot="{ Component }")
     transition(name="fade" mode="out-in")
       component(:is="Component")
