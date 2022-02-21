@@ -24,12 +24,13 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200 }))
 
 const color = useColor('light')
 
+// img.w-18.transition-all.duration-500.ease-in-out(src="/favicon.svg")
 </script>
 
 <template lang="pug">
 .flex.flex-col
   a.fixed.top-0.left-0.z-1000(href="/#")
-    img.w-20.transition-all.duration-500.ease-in-out(src="/favicon.svg")
+    p.pt-2.font-bold.text-6xl.text-left.text-green-500.text-opacity-50.write-vertical-left.text-stroke-sm.text-stroke-blue-500 W
   .min-h-8vh.flex.flex-wrap.items-center.gap-2.p-2.bg-light-900.shadow-xl.z-400.sticky.w-full.bg-cover.top-0(
     :style="{ ...bg }"
     )
@@ -44,14 +45,14 @@ const color = useColor('light')
       ph-house(v-if="link == 'Rooms'")
       ph-chats-teardrop(v-if="link == 'Chats'")
       ph-users(v-if="link == 'Users'")
-      .ml-1 {{ link }}
+      .ml-1.hidden.md_block {{ link }}
     .flex-1
     user-icon(
       :size="40"
       @user="$router.push(`/users/${$event}`)" @room="$router.push(`/rooms/${$event}`)"
       @post="$router.push(`/posts/${$event}`)"
       )
-    room-icon(@room="$router.push(`/rooms/${$event}`)" @rooms="$router.push(`/rooms/`)")
+    room-icon.hidden.md_block(@room="$router.push(`/rooms/${$event}`)" @rooms="$router.push(`/rooms/`)")
 
     
 </template>
