@@ -31,7 +31,7 @@ const color = useColor('light')
 .flex.flex-col
   a.fixed.top-0.left-0.z-1000(href="/#")
     p.pt-2.font-bold.text-6xl.text-left.text-green-500.text-opacity-50.write-vertical-left.text-stroke-sm.text-stroke-blue-500 W
-  .min-h-8vh.flex.flex-wrap.items-center.gap-1.md_gap-2.p-1.md_p-2.bg-light-900.shadow-xl.z-400.sticky.w-full.bg-cover.top-0(
+  .min-h-8vh.flex.flex-wrap.items-center.gap-2.p-2.bg-light-900.shadow-xl.z-400.sticky.w-full.bg-cover.top-0(
     :style="{ ...bg }"
     )
     .w-4.h-12
@@ -46,7 +46,7 @@ const color = useColor('light')
       ph-chats-teardrop(v-if="link == 'Chats'")
       ph-users(v-if="link == 'Users'")
       .hidden.md_block {{ link }}
-    .flex-1.hidden.md_block
+    .flex-1.hidden.sm_block
     user-icon(
       :size="40"
       @user="$router.push(`/users/${$event}`)" @room="$router.push(`/rooms/${$event}`)"
@@ -63,7 +63,7 @@ const color = useColor('light')
 }
 
 .link {
-  @apply p-2 rounded-xl cursor-pointer flex items-center;
+  @apply p-1 py-2 sm_px-2 md_px-4 lg_px-8 rounded-xl cursor-pointer flex items-center;
 }
 </style>
 
