@@ -31,7 +31,7 @@ const color = useColor('light')
 .flex.flex-col
   a.fixed.top-0.left-0.z-1000(href="/#")
     p.pt-2.font-bold.text-6xl.text-left.text-green-500.text-opacity-50.write-vertical-left.text-stroke-sm.text-stroke-blue-500 W
-  .min-h-8vh.flex.flex-wrap.items-center.gap-2.p-2.bg-light-900.shadow-xl.z-400.sticky.w-full.bg-cover.top-0(
+  .min-h-8vh.flex.flex-wrap.items-center.gap-1.md_gap-2.p-1.md_p-2.bg-light-900.shadow-xl.z-400.sticky.w-full.bg-cover.top-0(
     :style="{ ...bg }"
     )
     .w-4.h-12
@@ -45,8 +45,8 @@ const color = useColor('light')
       ph-house(v-if="link == 'Rooms'")
       ph-chats-teardrop(v-if="link == 'Chats'")
       ph-users(v-if="link == 'Users'")
-      .ml-1.hidden.md_block {{ link }}
-    .flex-1
+      .hidden.md_block {{ link }}
+    .flex-1.hidden.md_block
     user-icon(
       :size="40"
       @user="$router.push(`/users/${$event}`)" @room="$router.push(`/rooms/${$event}`)"
