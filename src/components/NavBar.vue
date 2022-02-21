@@ -29,13 +29,13 @@ const color = useColor('light')
 
 <template lang="pug">
 .flex.flex-col
-  a.fixed.top-0.left-0.z-1000(href="/#")
+  a.fixed.top-0.left-0.z-1000.hidden.sm_block(href="/#")
     p.pt-2.font-bold.text-6xl.text-left.text-green-500.text-opacity-50.write-vertical-left.text-stroke-sm.text-stroke-blue-500 W
   .min-h-8vh.flex.flex-wrap.items-center.gap-2.p-2.bg-light-900.shadow-xl.z-400.sticky.w-full.bg-cover.top-0(
     :style="{ ...bg }"
     )
     .w-4.h-12
-    .flex-1
+    .flex-1.hidden.sm_block
     router-link.link(
       v-for="(link, l) in routes" :key="link" 
       :to="l" ) 
