@@ -106,9 +106,9 @@ export default defineConfig({
       base: '/',
       includeAssets: ['favicon.svg'],
       manifest: {
-        name: 'PWA Basic',
-        short_name: 'PWA Basic',
-        theme_color: '#ffffff',
+        name: 'MOI',
+        short_name: 'MOI',
+        theme_color: '#ff0088',
         icons: [
           {
             src: 'pwa-192x192.png', // <== don't add slash, for testing
