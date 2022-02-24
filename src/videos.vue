@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import YoutubeVideos from '~/components/YoutubeVideos.vue'
 import { useTimeAgo } from '@vueuse/core'
-import ReloadPrompt from '~/components/ReloadPrompt.vue'
 import YoutubePlayer from '~/components/YoutubePlayer.vue'
 import Navier from '~/components/Navier.vue'
 // import VuePlyr from 'vue-plyr'
@@ -13,7 +12,6 @@ const timeAgo = useTimeAgo(date)
 
 <template>
   <div>
-    <ReloadPrompt />
     <div class="bg-black min-w-xs md_px-12 lg_px-24 xl_px-48">
       <YoutubePlayer />
     </div>

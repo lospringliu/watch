@@ -17,7 +17,7 @@ const close = async() => {
 <template>
   <div
     v-if="offlineReady || needRefresh"
-    class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-teal-500"
+    class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-teal-400"
     role="alert"
   >
     <div class="mb-1">
@@ -28,10 +28,10 @@ const close = async() => {
         New content available, click on reload button to update.
       </span>
     </div>
-    <button v-if="needRefresh" @click="updateServiceWorker()" class="btn">
+    <button v-if="needRefresh" @click="updateServiceWorker()" class="button">
       Reload
     </button>
-    <button @click="close" class="btn">
+    <button @click="close" class="button">
       Close
     </button>
   </div>
