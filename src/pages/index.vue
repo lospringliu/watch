@@ -30,19 +30,4 @@ import { currentRoom, rootRoom } from '@composables';
           .text-2xl Rooms
           p Open data collections
 
-      .my-4 We're building basic components and data structures as a foundation for various Vue 3 apps to built by anyone. Feel free to play with it and to make any contributions! 
-      .flex.flex-wrap
-        a.button.m-2.flex.items-center(href="/docs/" target="_blank")
-          la-book-open.mr-4.text-3xl
-          .text-xl Documentation
-        a.button.m-2.flex.items-center(href="https://www.npmjs.com/org/gun-vue" target="_blank")
-          la-npm.mr-4.text-3xl
-          .text-xl Packages
-        a.button.m-2.flex.items-center(href="https://github.com/defucc/gun-vue" target="_blank")
-          la-github.mr-4.text-3xl
-          .text-xl Repository
-        a.button.m-2.flex.items-center(href="https://ko-fi.com/davay" target="_blank")
-          cib-ko-fi.mr-4.text-3xl
-          .text-xl Sponsorship
-
 </template>

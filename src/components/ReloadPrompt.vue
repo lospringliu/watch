@@ -28,12 +28,14 @@ const close = async() => {
         New content available, click on reload button to update.
       </span>
     </div>
-    <button v-if="needRefresh" @click="updateServiceWorker()" class="button">
-      Reload
-    </button>
-    <button @click="close" class="button">
-      Close
-    </button>
+    <div class="flex justify-between rounded-lg px-4">
+      <button v-if="needRefresh" @click="updateServiceWorker()" class="button">
+        Reload
+      </button>
+      <button @click="close" class="button">
+        Close
+      </button>
+    </div>
   </div>
 </template>
 

@@ -7,8 +7,8 @@ const routes = {
   "/space/": "Space",
   "/chats/": "Chats",
   "/posts/": "Posts",
-  "/users/": "Users",
-  "/rooms/": "Rooms",
+  // "/users/": "Users",
+  // "/rooms/": "Rooms",
 };
 
 const icons = {
