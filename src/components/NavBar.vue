@@ -28,16 +28,17 @@ const color = useColor('light')
 // a.fixed.left-0.top-0.z-1000(href="/#")
 //   p.font-bold.text-6xl.text-left.text-green-500.text-opacity-50.write-vertical-right.text-stroke-sm.text-stroke-blue-500 M
 //  .w-4.h-12
+//  @apply p-1 py-2 sm_px-2 md_px-4 lg_px-8 rounded-xl cursor-pointer flex items-center;
 </script>
 
 <template lang="pug">
 .flex.flex-col
-  .min-h-4vh.md_min-h-6vh.flex.flex-wrap.items-center.gap-2.p-2.bg-light-900.shadow-xl.z-400.sticky.w-full.bg-cover.top-0(
+  .min-h-4vh.md_min-h-6vh.justify-between.flex.flex-wrap.items-center.gap-2.p-2.bg-light-900.shadow-xl.z-400.sticky.w-full.bg-cover.top-0(
     :style="{ ...bg }"
     )
     router-link.link(to="/")
-      .font-bold.text-3xl.text-lefttext-green-500.text-opacity-50.text-stroke-sm.text-stroke-blue-500 MOI
-    .flex-1
+      .font-bold.text-4xl.text-left.write-vertical-right.text-green-700.text-opacity-10.text-stroke-sm.text-stroke-blue-700 M
+    .flex-1.hidden.sm_block
     router-link.link(
       v-for="(link, l) in routes" :key="link" 
       :to="l" ) 
@@ -48,7 +49,7 @@ const color = useColor('light')
       ph-chats-teardrop(v-if="link == 'Chats'")
       ph-users(v-if="link == 'Users'")
       .hidden.md_block {{ link }}
-    .flex-1
+    .flex-1.hidden.sm_block
     user-icon(
       :size="32"
       @user="$router.push(`/users/${$event}`)" @room="$router.push(`/rooms/${$event}`)"
@@ -65,7 +66,7 @@ const color = useColor('light')
 }
 
 .link {
-  @apply p-1 py-2 sm_px-2 md_px-4 lg_px-8 rounded-xl cursor-pointer flex items-center;
+  @apply sm_px-4 md_px-6 lg_px-8 rounded-xl cursor-pointer flex items-center;
 }
 </style>
 
