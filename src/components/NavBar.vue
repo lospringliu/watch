@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 
 import { computed } from 'vue'
 
@@ -8,7 +8,7 @@ const routes = {
   "/chats/": "Chats",
   "/posts/": "Posts",
   // "/users/": "Users",
-  // "/rooms/": "Rooms",
+  "/rooms/": "Rooms",
 };
 
 const icons = {
@@ -25,16 +25,18 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200 }))
 const color = useColor('light')
 
 // img.w-18.transition-all.duration-500.ease-in-out(src="/favicon.svg")
+// a.fixed.left-0.top-0.z-1000(href="/#")
+//   p.font-bold.text-6xl.text-left.text-green-500.text-opacity-50.write-vertical-right.text-stroke-sm.text-stroke-blue-500 M
+//  .w-4.h-12
 </script>
 
 <template lang="pug">
 .flex.flex-col
-  a.fixed.left-0.top-0.z-1000(href="/#")
-    p.font-bold.text-6xl.text-left.text-green-500.text-opacity-50.write-vertical-right.text-stroke-sm.text-stroke-blue-500 W
   .min-h-4vh.md_min-h-6vh.flex.flex-wrap.items-center.gap-2.p-2.bg-light-900.shadow-xl.z-400.sticky.w-full.bg-cover.top-0(
     :style="{ ...bg }"
     )
-    .w-8.h-12
+    router-link.link(to="/")
+      .font-bold.text-3xl.text-lefttext-green-500.text-opacity-50.text-stroke-sm.text-stroke-blue-500 MOI
     .flex-1
     router-link.link(
       v-for="(link, l) in routes" :key="link" 
@@ -48,7 +50,7 @@ const color = useColor('light')
       .hidden.md_block {{ link }}
     .flex-1
     user-icon(
-      :size="40"
+      :size="32"
       @user="$router.push(`/users/${$event}`)" @room="$router.push(`/rooms/${$event}`)"
       @post="$router.push(`/posts/${$event}`)"
       )

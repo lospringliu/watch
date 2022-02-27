@@ -8,5 +8,6 @@ export interface IVideo {
   videoId: string
   videoPublishedAt: string
   currentTime?: number
+  channelId?: string 
   channel?: IChannel
 }

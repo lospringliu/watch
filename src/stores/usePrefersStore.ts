@@ -1,8 +1,7 @@
-import { IVideo, IChannel } from "../types"
 import { defineStore } from "pinia"
 import { Storage } from "../services/storage"
 import { CHANNELS, PLAYLISTS } from "./channels_playlists"
-const db = new Storage("local_prefers")
+const db = new Storage("prefers")
 db.read()
 const prefers_initial = { playbackRate: 1.0,
   maxResults: 50,
@@ -14,6 +13,12 @@ const prefers_initial = { playbackRate: 1.0,
 // db.data = { version: "0.0.1", prefers: prefers_initial }
 db.data ||= { version: "0.0.1", prefers: prefers_initial }
 // sync from initial
+if (!db.data.prefers.hasOwnProperty("youtubeAppKey")) db.data.prefers.youtubeAppKey = prefers_initial.youtubeAppKey
+if (!db.data.prefers.hasOwnProperty("youtubeAccess")) db.data.prefers.youtubeAccess = prefers_initial.youtubeAccess
+if (!db.data.prefers.hasOwnProperty("playbackRate")) db.data.prefers.playbackRate = prefers_initial.playbackRate
+if (!db.data.prefers.hasOwnProperty("maxResults")) db.data.prefers.maxResults = prefers_initial.maxResults
+if (!db.data.prefers.hasOwnProperty("channels")) db.data.prefers.channels = prefers_initial.channels
+if (!db.data.prefers.hasOwnProperty("playlists")) db.data.prefers.playlists = prefers_initial.playlists
 prefers_initial.channels.forEach(channel => {
   if (db.data.prefers.channels.filter(c => c.id === channel.id).length === 0) {
     db.data.prefers.channels.push(channel)

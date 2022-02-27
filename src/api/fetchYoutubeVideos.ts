@@ -3,22 +3,26 @@ import { IVideo, IChannel } from "../types"
 import AsyncForEach from "async-await-foreach"
 import { videos } from "../stores"
 import { prefers } from "../stores"
+import { put_video } from "~/composables/useVideos"
 const gapi = axios.create({ baseURL: 'https://youtube.googleapis.com/youtube/v3/' })
 gapi.defaults.headers.common.Accept = 'application/json'
-
 
 function makeParams(options = {}) {
   return {
     params: Object.assign({}, {
       part: 'snippet,contentDetails',
-      maxResults: Math.min(50, prefers.maxResults),
+      // maxResults: Math.min(50, prefers.maxResults),
+      maxResults: Math.min(10, prefers.maxResults),
     }, options),
   }
 }
 
-async function fetchYoutubeVideos (channels: IChannel[] = []) {
-  // const videos: any = []
-  await AsyncForEach(channels, async (channel) => {
+export async function fetchYoutubeVideos (channels: IChannel[] = []) {
+  if (!prefers.youtubeAppKey) {
+    console.log(`... bypass fetching videos no api key`)
+    return videos.videos
+  }
+  await AsyncForEach(channels.slice(0,10), async (channel) => {
     const is_channel = channel.id.startsWith('UC')
     let playlistId = channel.id
     try {
@@ -45,18 +49,15 @@ async function fetchYoutubeVideos (channels: IChannel[] = []) {
         }
         const video: IVideo = item.contentDetails
         video.channel = channel
-        videos.add(video)
+        put_video(video) // put to gun
+        // videos.add(video) // direct store operation
       })
       // resp.data.items.forEach(item => new Date().valueOf() - new Date(item.contentDetails.videoPublishedAt).valueOf() < 3 * 24 * 60 * 60 * 1000 && videos.add(item.contentDetails))
       // resp.data.items.forEach(item => videos.add(item.contentDetails))
       videos.videos.sort((x, y) => x.videoPublishedAt > y.videoPublishedAt ? -1 : 1)
-    }
-    catch (e) {
+    } catch (e) {
       console.log(e)
     }
   })
   return videos.videos
-}
-export {
-  fetchYoutubeVideos
 }

@@ -1,4 +1,10 @@
 import { IChannel } from "../types"
+export const IPFSCIDS = [
+  "Qme7ojVGevRjWD6KVRPnL5w8fwrNYFn9YTiYptvKhzKHjZ",
+  "QmeQ44yxX9SkC5pZvBq6mXAo7JaUxy63LsGPJcdPbMDqcQ",
+  "QmVsXBF7xQpxJ8LVCpRkwhvdUfTZPbvgFMZYbtzrW4C9mF",
+  "QmYU7B99SfPzHXmTVVBReqcNRBxm725fiowCmFBPiMQGyU"
+]
 export const CHANNELS = [ 
     { id: 'UC7Ky7FjJBI7ojx2Yqz2pkNQ', name: '萨沙', title: 'SHA SA 萨莎 Саша' },
     { id: 'UCH2BtkEp1kHY7o9TCIhYaFA', name: '萨沙环球', title: '萨莎-环球频道-shasa-Саша' },

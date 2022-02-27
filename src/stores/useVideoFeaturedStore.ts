@@ -1,10 +1,10 @@
 import { IVideo } from "../types"
 import { defineStore } from "pinia"
+import { globalState } from "./globalState"
 
 export const useVideoFeaturedStore = defineStore('featured', {
   state: () => {
-    return { videos: [{videoId: "LJ7Y2MRV0kg", videoPublishedAt: "2019-11-26T04:07:54Z"},
-                      {videoId: "DPK7D_Q46YI", videoPublishedAt: "2020-04-18T09:01:31Z"}] as IVideo[] }
+    return { videos: globalState.FEATURED as IVideo[] }
   },
   getters: {
     playing() {

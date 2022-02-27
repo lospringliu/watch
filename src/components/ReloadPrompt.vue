@@ -29,10 +29,10 @@ const close = async() => {
       </span>
     </div>
     <div class="flex justify-between rounded-lg px-4">
-      <button v-if="needRefresh" @click="updateServiceWorker()" class="button">
+      <button v-if="needRefresh" @click="updateServiceWorker()" class="button text-cyan-600">
         Reload
       </button>
-      <button @click="close" class="button">
+      <button @click="close" class="button text-cyan-400">
         Close
       </button>
     </div>
