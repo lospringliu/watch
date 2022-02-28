@@ -6,34 +6,55 @@ import IconSun from '~icons/heroicons-outline/sun'
 import IconMoon from '~icons/heroicons-outline/moon'
 import IconSettings from '~icons/carbon/settings'
 import { prefers } from "../stores"
+const { t, availableLocales, locale } = useI18n()
 const flag_settings = ref(false)
+const flag_user = ref(false)
 const toggleSettings = useToggle(flag_settings)
+const toggleUser = useToggle(flag_user)
+const toggleLocales = () => {
+  const locales = availableLocales
+  locale.value = locales[(locales.indexOf(locale.value) + 1) % locales.length]
+}
 const settings_prefers = ref(prefers)
+watch(flag_settings, (value, old_value) => {
+  prefers.save()
+})
+// <button class="mx-auto mx-4" @click="toggleDark()">
+//    <button class="mx-auto mx-4" :title="t('button.toggle_dark')" @click="toggleDark()">
 </script>
 
 <template>
   <nav class="text-center text-xl mt-0 mx-auto">
-    <button class="mx-auto mx-4" @click="toggleDark()">
+    <button class="mx-auto mx-4" :title="t('button.toggle_dark')" @click="toggleDark()">
       <IconSun class="w-8 h-8" v-if="isDark" />
       <IconMoon class="w-8 h-8" v-else />
+    </button>
+    <button class="ma-auto mx-4" :title="t('button.toggle_langs')" @click="toggleLocales">
+      <carbon-language />
     </button>
     <button class="mx-auto mx-4" @click="toggleSettings()">
       <IconSettings class="w-8 h-8" />
     </button>
   </nav>
   <div class="grid grid-col place-content-center w-sm" v-if="flag_settings">
-    <div>youtube access:
-      <input type="checkbox" :value="settings_prefers.youtubeAccess ? 'checked' : ''" />
-    </div>
-    <div v-show="settings_prefers.youtubeAccess">
-      <div>youtube api key:
-        <input type="text" v-model="settings_prefers.youtubeAppKey" />
-      </div>
-      <div>play back rate:
-        <input type="number" v-model="settings_prefers.playbackRate" />
-      </div>
-      <div>max items per query:
-        <input type="number" v-model="settings_prefers.maxResults" />
+    <div class="mt-8 max-w-lg">
+      <div class="grid grid-cols-1 gap-6 text-gray-700 dark_text-gray-500">
+        <label class="block">
+          <input type="checkbox" v-model="prefers.youtubeAccess"  class="mt-1 mr-4" />
+          <span>Have Youtube access? {{ prefers.youtubeAccess }}</span>
+        </label>
+        <label v-show="prefers.youtubeAccess" class="block">
+          <span>Youtube API Key</span>
+          <input type="text" v-model.lazy="prefers.youtubeAppKey" class="mt-1 block w-full" placeholder="google api key" />
+        </label>
+        <label v-show="prefers.youtubeAccess" class="block">
+          <span>API return max results</span>
+          <input type="text" v-model.number="prefers.maxResults" class="mt-1 block w-full" placeholder="google api key" />
+        </label>
+        <label class="block">
+          <span>Playback rate</span>
+          <input type="number" v-model.number="prefers.playbackRate"  class="mt-1 block w-full" />
+        </label>
       </div>
     </div>
   </div>

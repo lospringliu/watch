@@ -12,7 +12,7 @@ function makeParams(options = {}) {
     params: Object.assign({}, {
       part: 'snippet,contentDetails',
       // maxResults: Math.min(50, prefers.maxResults),
-      maxResults: Math.min(10, prefers.maxResults),
+      maxResults: Math.min(50, prefers.maxResults),
     }, options),
   }
 }
@@ -22,7 +22,7 @@ export async function fetchYoutubeVideos (channels: IChannel[] = []) {
     console.log(`... bypass fetching videos no api key`)
     return videos.videos
   }
-  await AsyncForEach(channels.slice(0,10), async (channel) => {
+  await AsyncForEach(channels, async (channel) => {
     const is_channel = channel.id.startsWith('UC')
     let playlistId = channel.id
     try {
@@ -49,11 +49,11 @@ export async function fetchYoutubeVideos (channels: IChannel[] = []) {
         }
         const video: IVideo = item.contentDetails
         video.channel = channel
-        put_video(video) // put to gun
-        // videos.add(video) // direct store operation
+        const delta = new Date().valueOf() - new Date(video.videoPublishedAt).valueOf()
+        if (delta < 24 * 60 * 60 * 1000) { // 1 day
+          put_video(video) // put to gun
+        }
       })
-      // resp.data.items.forEach(item => new Date().valueOf() - new Date(item.contentDetails.videoPublishedAt).valueOf() < 3 * 24 * 60 * 60 * 1000 && videos.add(item.contentDetails))
-      // resp.data.items.forEach(item => videos.add(item.contentDetails))
       videos.videos.sort((x, y) => x.videoPublishedAt > y.videoPublishedAt ? -1 : 1)
     } catch (e) {
       console.log(e)

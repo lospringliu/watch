@@ -13,6 +13,7 @@ declare module 'vue' {
     AccountProfile: typeof import('./gun/components/account/Profile.vue')['default']
     AccountReactions: typeof import('./gun/components/account/Reactions.vue')['default']
     AccountStars: typeof import('./gun/components/account/Stars.vue')['default']
+    CarbonLanguage: typeof import('~icons/carbon/language')['default']
     ChatMessage: typeof import('./gun/components/chat/Message.vue')['default']
     ChatRoom: typeof import('./gun/components/chat/Room.vue')['default']
     EmbedYoutube: typeof import('./gun/components/embed/Youtube.vue')['default']

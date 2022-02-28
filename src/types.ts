@@ -11,3 +11,12 @@ export interface IVideo {
   channelId?: string 
   channel?: IChannel
 }
+
+export interface AppContext<HasRouter extends boolean = true> {
+  app: App<Element>
+  router: HasRouter extends true ? Router : undefined
+  routes: HasRouter extends true ? RouteRecordRaw[] : undefined
+  head: HeadClient | undefined
+}
+
+export type UserModule = (ctx: AppContext) => void

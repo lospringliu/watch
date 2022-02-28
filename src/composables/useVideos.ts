@@ -33,7 +33,7 @@ prefers.channels_playlists.forEach(channel => {
 })
 
 watch(videos, (value, old_value) => {
-  console.log(`watched videos change`)
+  console.log(`watched videos change ${Object.keys(value).length}`)
   Object.values(value).forEach(video => {
     if (channels.hasOwnProperty(video.channelId)) {
       video.channel = channels[video.channelId]
