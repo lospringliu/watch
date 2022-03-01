@@ -1,8 +1,7 @@
 import axios from 'axios'
 import { IVideo, IChannel } from "../types"
 import AsyncForEach from "async-await-foreach"
-import { videos } from "../stores"
-import { prefers } from "../stores"
+import { videos, prefers } from "../stores"
 import { put_video } from "~/composables/useVideos"
 const gapi = axios.create({ baseURL: 'https://youtube.googleapis.com/youtube/v3/' })
 gapi.defaults.headers.common.Accept = 'application/json'
@@ -12,7 +11,7 @@ function makeParams(options = {}) {
     params: Object.assign({}, {
       part: 'snippet,contentDetails',
       // maxResults: Math.min(50, prefers.maxResults),
-      maxResults: Math.min(20, prefers.maxResults),
+      maxResults: Math.min(50, prefers.maxResults),
     }, options),
   }
 }
@@ -43,7 +42,7 @@ export async function fetchYoutubeVideos (channels: IChannel[] = []) {
         }
       }
       const resp = await gapi.get('playlistItems', makeParams({ key: prefers.youtubeAppKey, playlistId }))
-      resp.data.items.forEach(item => {
+      resp.data.items.forEach(async (item) => {
         if (!channel.hasOwnProperty("title")) {
           channel.title = item.snippet.channelTitle
         }
@@ -51,10 +50,9 @@ export async function fetchYoutubeVideos (channels: IChannel[] = []) {
         video.channel = channel
         const delta = new Date().valueOf() - new Date(video.videoPublishedAt).valueOf()
         if (delta < 2 * 24 * 60 * 60 * 1000) { // 2 day
-          put_video(video) // put to gun
+          await put_video(video) // put to gun
         }
       })
-      // videos.videos.sort((x, y) => x.videoPublishedAt > y.videoPublishedAt ? -1 : 1)
     } catch (e) {
       console.log(e)
     }
