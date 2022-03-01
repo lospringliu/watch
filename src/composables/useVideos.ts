@@ -20,6 +20,20 @@ cref.map().once((d,k) => {
     gchannels[channel.id] = d
   }
 })
+vref.map().once((d,k) => {
+  console.log(`${k}: ${d.videoId || "unknown video"}`)
+  if (gvideos.hasOwnProperty(k)) return
+  let video = videos.videos.find(v => v.videoId === k)
+  if (video) {
+    console.log(`found channel in gun ${k}`)
+    gvideos[video.videoId] = {videoId: video.videoId, videoPublishedAt: video.videoPublishedAt, channelId: video.channel.id}
+  } else {
+    if (d.hasOwnProperty("videoId") && d.hasOwnProperty("videoPublsihedAt") && d.hasOwnProperty("channelId")) {
+      video = { videoId: d.videoId, videoPublishedAt: d.videoPublishedAt, channelId: d.channelId}
+      gvideos[k] = d
+    }
+  }
+})
 prefers.channels_playlists.forEach(channel => {
   console.log(channel)
   console.log(`.!. not found channel in gun ${channel.id}`)
@@ -48,7 +62,7 @@ watch(gchannels, (value, old_value) => {
 export function useVideos() {
   if (!listening) {
     listening = true
-    vref.map().once((data, k) => {
+    vref.map().on((data, k) => {
       if (globalState.debug) {
         console.log(`see video update ${key}`)
         // console.log(data)
@@ -72,7 +86,7 @@ export function useVideos() {
       }
     })
     // }, true)  // delta value
-    cref.map().once((data, key) => {
+    cref.map().on((data, key) => {
       if (globalState.debug) {
         console.log(`see channel update ${key}`)
         // console.log(data)

@@ -50,7 +50,7 @@ export async function fetchYoutubeVideos (channels: IChannel[] = []) {
         const video: IVideo = item.contentDetails
         video.channel = channel
         const delta = new Date().valueOf() - new Date(video.videoPublishedAt).valueOf()
-        if (delta < 24 * 60 * 60 * 1000) { // 1 day
+        if (delta < 2 * 24 * 60 * 60 * 1000) { // 2 day
           put_video(video) // put to gun
         }
       })
