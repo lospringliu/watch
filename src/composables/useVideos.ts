@@ -9,8 +9,8 @@ const gun = useGun()
 const user = useUser()
 const gvideos = reactive({})
 const gchannels = reactive({})
-const vref = gun.get("moimine").get("videos").get("youtube")
-const cref = gun.get("moimine").get("channels").get("youtube")
+const vref = gun.get("moiminemoi").get("videos").get("youtube")
+const cref = gun.get("moiminemoi").get("channels").get("youtube")
 let listening = false
 cref.map().once((d,k) => {
   console.log(`${k}: ${d.name || "unknown channel"}`)

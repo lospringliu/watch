@@ -12,7 +12,7 @@ function makeParams(options = {}) {
     params: Object.assign({}, {
       part: 'snippet,contentDetails',
       // maxResults: Math.min(50, prefers.maxResults),
-      maxResults: Math.min(10, prefers.maxResults),
+      maxResults: Math.min(20, prefers.maxResults),
     }, options),
   }
 }
