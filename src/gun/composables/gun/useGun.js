@@ -14,8 +14,8 @@ import "gun/nts";
 
 import { useStorage } from "@vueuse/core";
 
-export const defaultPeer = "https://etogun.glitch.me/gun";
-export const peer = useStorage("peer", "https://etogun.glitch.me/gun");
+export const defaultPeer = "http://relay.bcapps.ca/gun";
+export const peer = useStorage("peer", "http://relay.bcapps.ca/gun");
 // export let peers = ["http://192.168.1.42:4200/gun"];
 // export let peers = ["http://localhost:4200/gun"];
 

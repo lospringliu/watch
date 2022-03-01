@@ -32,10 +32,10 @@ app.mount("#app");
 import { useVideos } from "@/composables/useVideos"
 import { currentRoom } from "@composables";
 
-const {vref, cref, videos, channels} = useVideos()
-globalThis.videos = videos
+const {vref, cref, gvideos, gchannels} = useVideos()
+globalThis.gvideos = gvideos
 globalThis.vref = vref
-globalThis.channels = channels
+globalThis.gchannels = gchannels
 globalThis.cref = cref
 router.beforeEach((to, from, next) => {
   if (!currentRoom.isRoot && !to.query?.room) {

@@ -12,7 +12,7 @@ function makeParams(options = {}) {
     params: Object.assign({}, {
       part: 'snippet,contentDetails',
       // maxResults: Math.min(50, prefers.maxResults),
-      maxResults: Math.min(50, prefers.maxResults),
+      maxResults: Math.min(10, prefers.maxResults),
     }, options),
   }
 }
@@ -54,7 +54,7 @@ export async function fetchYoutubeVideos (channels: IChannel[] = []) {
           put_video(video) // put to gun
         }
       })
-      videos.videos.sort((x, y) => x.videoPublishedAt > y.videoPublishedAt ? -1 : 1)
+      // videos.videos.sort((x, y) => x.videoPublishedAt > y.videoPublishedAt ? -1 : 1)
     } catch (e) {
       console.log(e)
     }
