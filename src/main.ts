@@ -7,6 +7,10 @@ import "@components/styles/index.css";
 import { createRouter, createWebHashHistory } from "vue-router";
 import generatedRoutes from 'virtual:generated-pages'
 import { setupLayouts } from 'virtual:generated-layouts'
+
+import { useVideos } from "@/composables/useVideos"
+import { currentRoom } from "@composables";
+
 const routes_layouts = setupLayouts(generatedRoutes)
 
 const router = createRouter({
@@ -29,14 +33,14 @@ Object.values(import.meta.globEager('./modules/*.ts')).forEach(i => i.install?.(
 
 app.mount("#app");
 
-import { useVideos } from "@/composables/useVideos"
-import { currentRoom } from "@composables";
+Promise.resolve().then(async () => {
+  const {vref, cref, gvideos, gchannels} = await useVideos()
+  globalThis.gvideos = gvideos
+  globalThis.vref = vref
+  globalThis.gchannels = gchannels
+  globalThis.cref = cref
+}) 
 
-const {vref, cref, gvideos, gchannels} = useVideos()
-globalThis.gvideos = gvideos
-globalThis.vref = vref
-globalThis.gchannels = gchannels
-globalThis.cref = cref
 router.beforeEach((to, from, next) => {
   if (!currentRoom.isRoot && !to.query?.room) {
     next({ ...to, query: { room: currentRoom.pub } });
