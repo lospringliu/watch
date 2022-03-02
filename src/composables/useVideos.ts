@@ -9,22 +9,54 @@ const gchannels = reactive({})
 const vref = gun.get("testmoimoi").get("videos").get("youtube")
 const cref = gun.get("testmoimoi").get("channels").get("youtube")
 let listening = false
-
+// cref.once(d => {
+//   Object.keys(d).forEach(k => {
+//     if (k === "_") return
+//     if (!gchannels.hasOwnProperty(k)) {
+//       console.log(`channel ${k}`)
+//       const cc = prefers.channels_playlists.find(e => e.id === k)
+//       if (cc) { // channel in prefers
+//         const channel = { id: cc.id, name: cc.name, title: cc.title}
+//         gchannels[k] = channel
+//       } else { // read from gun
+//         cref.get(k).once(v => {
+//           if (v.hasOwnProperty("id") && v.hasOwnProperty("name") && v.hasOwnProperty("title")) {
+//             const channel = { id: v.id, name: v.name, title: v.title}
+//             gchannels[k] = channel
+//             prefers.addChannelPlaylist(channel)
+//           } else {
+//             console.log(`strange channel in gun ${v}`)
+//           }
+//         })
+//       }
+//     }
+//   })
+// })
 cref.map().once((d,k) => {
-  console.log(`channel ${k}: ${d.name || "unknown channel"}`)
-  if (gchannels.hasOwnProperty(k)) return
-  if (d.hasOwnProperty("id") && d.hasOwnProperty("name") && d.hasOwnProperty("title")) {
-    const channel = { id: d.id, name: d.name, title: d.title }
-    gchannels[k] = channel
+  if (!gchannels.hasOwnProperty(k)) {
+    console.log(`channel ${k}: ${d.name}`)
+    const cc = prefers.channels_playlists.find(e => e.id === k)
+    if (cc) { // channel in prefers
+      const channel = { id: cc.id, name: cc.name, title: cc.title}
+      gchannels[k] = channel
+    } else if (d.id && d.name && d.title) { // read from gun
+      const channel = { id: d.id, name: d.name, title: d.title }
+      gchannels[k] = channel
+      prefers.addChannelPlaylist(channel)
+    } else {
+      console.log(`strange channel in gun ${d}`)
+    }
   }
 })
 vref.map().once((d,k) => {
-  console.log(`video ${k}: ${d.videoId || "unknown video"}`)
-  if (gvideos.hasOwnProperty(k)) return
-  if (d.hasOwnProperty("videoId") && d.hasOwnProperty("videoPublsihedAt") && d.hasOwnProperty("channelId")) {
-    const video = { videoId: d.videoId, videoPublishedAt: d.videoPublishedAt, channelId: d.channelId}
-    console.log(`found video in gun ${k}`)
-    gvideos[k] = video
+  if (!gvideos.hasOwnProperty(k)) {
+    console.log(`video ${k}: ${d.videoId}`)
+    if (d.videoId && d.videoPublishedAt && d.channelId) {
+      const video = { videoId: d.videoId, videoPublishedAt: d.videoPublishedAt, channelId: d.channelId}
+      gvideos[k] = video
+    } else {
+      console.log(`strange video in gun ${d}`)
+    }
   }
 })
 
@@ -46,52 +78,33 @@ watch(gchannels, (value, old_value) => {
 export function useVideos() {
   if (!listening) {
     listening = true
-    vref.map().on((data, k) => {
-      // if (globalState.debug) {
-      //   console.log(`    see video update ${k}`)
-      // }
-      const video = {} as IVideo
-      const video_keys = []
-      let valid = true
-      Object.keys(data).forEach(key => {
-        if (globalState.VIDEOKEYS.videoKeys.includes(key)) {
-          video[key] = data[key]
-          video_keys.push(key)
+    vref.map().on((d, k) => {
+      if (!gvideos.hasOwnProperty(k)) {
+        console.log(`video ${k}: ${d.videoId}`)
+        if (d.videoId && d.videoPublishedAt && d.channelId) {
+          const video = { videoId: d.videoId, videoPublishedAt: d.videoPublishedAt, channelId: d.channelId}
+          gvideos[k] = video
+        } else {
+          console.log(`strange video in gun ${d}`)
+          console.log(d)
         }
-      })
-      globalState.VIDEOKEYS.videoKeysRequired.forEach(key => {
-        if (!video_keys.includes(key)) {
-          valid = false
-        }
-      })
-      if (valid) {
-        gvideos[video.videoId] = video
       }
     })
     // }, true)  // delta value
-    cref.map().on((data, k) => {
-      // if (globalState.debug) {
-      //   console.log(`    see channel update ${k}`)
-      // }
-      const channel = {} as IChannel
-      const channel_keys = []
-      let valid = true
-      Object.keys(data).forEach(key => {
-        if (globalState.VIDEOKEYS.channelKeys.includes(key)) {
-          channel[key] = data[key]
-          channel_keys.push(key)
+    cref.map().on((d, k) => {
+      if (!gchannels.hasOwnProperty(k)) {
+        console.log(`channel ${k}: ${d.name}`)
+        const cc = prefers.channels_playlists.find(e => e.id === k)
+        if (cc) { // channel in prefers
+          const channel = { id: cc.id, name: cc.name, title: cc.title}
+          gchannels[k] = channel
+        } else if (d.id && d.name && d.title) { // read from gun
+          const channel = { id: d.id, name: d.name, title: d.title }
+          gchannels[k] = channel
+          prefers.addChannelPlaylist(channel)
+        } else {
+          console.log(`strange channel in gun ${d}`)
         }
-      })
-      globalState.VIDEOKEYS.channelKeysRequired.forEach(key => {
-        if (!channel_keys.includes(key)) {
-          valid = false
-        }
-      })
-      if (valid) {
-        gchannels[channel.id] = channel
-      } else {
-        console.log(`missing keys?`)
-        console.log(channel)
       }
     })
   }
@@ -100,32 +113,34 @@ export function useVideos() {
 }
 
 export async function put_channel(pchannel) {
-  if (gchannels.hasOwnProperty(pchannel.id)) {
-    return
-  }
-  const {id, name, title} = pchannel
-  const channel = {id, name, title}
-  const node = await cref.get(id).then()
-  if (!node) {
-    gchannels[channel.id] = channel
-    cref.get(id).put(channel)
-    globalState.debug && console.log(`... put channel ${channel.id}`)
-  } else { // channel is already in gun, check if needs update
-    console.log(`channel exists ${node.name}`)
+  if (!gchannels[pchannel.id]) {
+    if (pchannel.id && pchannel.name && pchannel.title) {
+      const channel = {id: pchannel.id, name: pchannel.name, title: pchannel.title}
+      const node = await cref.get(channel.id).then()
+      if (!node) {
+        gchannels[channel.id] = channel
+        cref.get(channel.id).put(channel)
+        globalState.debug && console.log(`... put channel ${channel.id}`)
+      }
+    }
   }
 }
 
 export async function put_video(video_object) {
-  const { videoId, videoPublishedAt, channel } = video_object
-  if (channel && !gchannels.hasOwnProperty(channel.id)) {
-    await put_channel(channel)
+  if (gvideos[video_object.videoId]) return
+  if (video_object.videoId && video_object.videoPublishedAt && video_object.channel) {
+    const video = {
+      videoId: video_object.videoId,
+      videoPublishedAt: video_object.videoPublishedAt,
+      channelId: video_object.channel.id
+    }
+    if (!gchannels.hasOwnProperty(video.channelId)) {
+      await put_channel(video_object.channel)
+    }
+    const node = await vref.get(video.videoId).then()
+    if (!node) { // video is already in gun, check if needs update
+      vref.get(video.videoId).put(video)
+    }
+    gvideos[video.videoId] = video
   }
-  const video = { videoId, videoPublishedAt, channelId: channel.id }
-  const node = await vref.get(videoId).then()
-  if (!node) { // video is already in gun, check if needs update
-    vref.get(videoId).put(video)
-  } else {
-    console.log(`video exists ${node.videoId}`)
-  }
-  gvideos[video.videoId] = video
 }

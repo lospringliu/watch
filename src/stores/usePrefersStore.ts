@@ -40,6 +40,13 @@ export const usePrefersStore = defineStore('prefers', {
     }
   },
   actions: {
+    addChannelPlaylist(cp) {
+      if (cp.startsWith("UC")) {
+        this.channels.push(cp)
+      } else {
+        this.playlists.push(cp)
+      }
+    },
     setPlaybackRate(rate) {
       this.playbackRate = rate
     },
