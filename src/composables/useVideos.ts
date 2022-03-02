@@ -10,29 +10,6 @@ const gchannels = reactive({})
 const vref = gun.get("moitestmoitestmoi").get("videos").get("youtube")
 const cref = gun.get("moitestmoitestmoi").get("channels").get("youtube")
 let listening = false
-// cref.once(d => {
-//   Object.keys(d).forEach(k => {
-//     if (k === "_") return
-//     if (!gchannels.hasOwnProperty(k)) {
-//       console.log(`channel ${k}`)
-//       const cc = prefers.channels_playlists.find(e => e.id === k)
-//       if (cc) { // channel in prefers
-//         const channel = { id: cc.id, name: cc.name, title: cc.title}
-//         gchannels[k] = channel
-//       } else { // read from gun
-//         cref.get(k).once(v => {
-//           if (v.hasOwnProperty("id") && v.hasOwnProperty("name") && v.hasOwnProperty("title")) {
-//             const channel = { id: v.id, name: v.name, title: v.title}
-//             gchannels[k] = channel
-//             prefers.addChannelPlaylist(channel)
-//           } else {
-//             console.log(`strange channel in gun ${v}`)
-//           }
-//         })
-//       }
-//     }
-//   })
-// })
 
 watch(gvideos, (value, old_value) => {
   console.log(`watched videos change ${Object.keys(value).length}`)
@@ -52,7 +29,7 @@ watch(gchannels, (value, old_value) => {
 export async function initVideos() {
   cref.map().once((d,k) => {
     if (!gchannels.hasOwnProperty(k)) {
-      console.log(`channel ${k}: ${d.name}`)
+      console.log(`channel ${d.name}`)
       const cc = prefers.channels_playlists.find(e => e.id === k)
       if (cc) { // channel in prefers
         const channel = { id: cc.id, name: cc.name, title: cc.title}
@@ -68,7 +45,7 @@ export async function initVideos() {
   })
   vref.map().once((d,k) => {
     if (!gvideos.hasOwnProperty(k)) {
-      console.log(`video ${k}: ${d.videoId}`)
+      console.log(`video ${d.videoId}`)
       if (d.videoId && d.videoPublishedAt && d.channelId) {
         const video = { videoId: d.videoId, videoPublishedAt: d.videoPublishedAt, channelId: d.channelId}
         gvideos[k] = video
@@ -89,12 +66,12 @@ export async function useVideos() {
     listening = true
     vref.map().on((d, k) => {
       if (!gvideos.hasOwnProperty(k)) {
-        console.log(`video ${k}: ${d.videoId}`)
+        console.log(`video ${d.videoId}`)
         if (d.videoId && d.videoPublishedAt && d.channelId) {
           const video = { videoId: d.videoId, videoPublishedAt: d.videoPublishedAt, channelId: d.channelId}
           gvideos[k] = video
         } else {
-          console.log(`strange video in gun ${d}`)
+          // console.log(`strange video in gun ${d}`)
           console.log(d)
         }
       }
@@ -102,7 +79,7 @@ export async function useVideos() {
     }, true)  // delta value
     cref.map().on((d, k) => {
       if (!gchannels.hasOwnProperty(k)) {
-        console.log(`channel ${k}: ${d.name}`)
+        console.log(`channel ${d.name}`)
         const cc = prefers.channels_playlists.find(e => e.id === k)
         if (cc) { // channel in prefers
           const channel = { id: cc.id, name: cc.name, title: cc.title}

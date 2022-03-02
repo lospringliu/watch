@@ -25,15 +25,15 @@ watch(flag_settings, (value, old_value) => {
 
 <template>
   <nav class="text-center text-xl mt-0 mx-auto">
-    <button class="mx-auto mx-4" :title="t('button.toggle_dark')" @click="toggleDark()">
-      <IconSun class="w-8 h-8" v-if="isDark" />
-      <IconMoon class="w-8 h-8" v-else />
+    <button class="mx-2" :title="t('button.toggle_dark')" @click="toggleDark()">
+      <ph-sun class="mx-2" v-if="isDark" />
+      <ph-moon class="mx-2" v-else />
     </button>
-    <button class="ma-auto mx-4" :title="t('button.toggle_langs')" @click="toggleLocales">
-      <carbon-language />
+    <button class="mx-2" :title="t('button.toggle_langs')" @click="toggleLocales">
+      <ph-translate class="mx-2" />
     </button>
-    <button class="mx-auto mx-4" @click="toggleSettings()">
-      <IconSettings class="w-8 h-8" />
+    <button class="mx-2" @click="toggleSettings()">
+      <ph-gear class="mx-2" />
     </button>
   </nav>
   <div class="grid grid-col place-content-center w-sm" v-if="flag_settings">
