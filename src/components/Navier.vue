@@ -24,15 +24,15 @@ watch(flag_settings, (value, old_value) => {
 </script>
 
 <template>
-  <nav class="text-center text-xl mt-0 mx-auto">
-    <button class="mx-2" :title="t('button.toggle_dark')" @click="toggleDark()">
+  <nav class="flex justify-center items-center text-center text-xl py-1 mx-auto">
+    <button :title="t('button.toggle_dark')" @click="toggleDark()">
       <ph-sun class="mx-2" v-if="isDark" />
       <ph-moon class="mx-2" v-else />
     </button>
-    <button class="mx-2" :title="t('button.toggle_langs')" @click="toggleLocales">
+    <button :title="t('button.toggle_langs')" @click="toggleLocales">
       <ph-translate class="mx-2" />
     </button>
-    <button class="mx-2" @click="toggleSettings()">
+    <button :title="t('button.settings')" @click="toggleSettings()">
       <ph-gear class="mx-2" />
     </button>
   </nav>
