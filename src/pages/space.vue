@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { currentRoom } from '@composables'
 
 let audio
@@ -20,12 +20,12 @@ function leave() {
   }
   leaveAudio.play()
 }
+//    transition(name="fade")
 </script>
 
 <template lang='pug'>
 .flex.flex-col.items-center 
   space-plane(@user="$router.push('/users/' + $event)" :key="currentRoom.pub" @enter="enter()" @leave="leave()")
   router-view(v-slot="{ Component }")
-    transition(name="fade")
-      component(:is="Component")
+    component(:is="Component")
 </template>

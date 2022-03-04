@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "gun": "echo file:../../gun-0.2020.1235.tgz"
   },
   "dependencies": {
     "@gun-vue/components": "^0.7.4",
@@ -29,9 +30,13 @@
     "async-await-foreach": "^1.0.4",
     "autoprefixer": "^10.4.2",
     "axios": "^0.24.0",
+    "buffer": "^6.0.3",
+    "events": "^3.3.0",
     "get-youtube-id": "^1.0.1",
+    "js-yaml": "^4.1.0",
     "pinia": "^2.0.11",
     "postcss": "^8.4.6",
+    "process": "^0.11.10",
     "pug": "^3.0.2",
     "tailwindcss": "^3.0.22",
     "typescript": "^4.5.5",

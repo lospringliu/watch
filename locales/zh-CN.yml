@@ -13,3 +13,30 @@ intro:
   whats-your-name: 输入你的名字
   aka: 曾用名
 not-found: 未找到页面
+gunvue:
+  create_profile_field: 新建属性
+  go_homepage: 去个人页面
+  or: 或者
+  add: 新增
+  view: 查看
+  enter: 进入
+  renew: 更新
+  reactions: 回应
+  my_rooms: 我的空间
+  save_keys: 请确保安全存储你的密钥供以后使用
+  already_account: 我已经有账号了
+  login_saved_key: 用保存的密钥登录
+  login_paste: 粘贴
+  paste_keys: 粘贴密钥
+  login_qr: 二维码
+  login_json: 文件
+  create_account: 创建新账号
+  refresh_keys: 点触圆圈更新密钥
+  enter_alias: 输入姓名或者昵称
+  authenticate: 认证登录
+  enter_enc_pass: 输入加密密码
+  enter_password: 输入密码
+  set_enc_pass: 设置
+  show_enc_pass: 显示
+  mates: 好友
+  my_mates: 我的好友

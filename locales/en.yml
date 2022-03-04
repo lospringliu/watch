@@ -13,3 +13,30 @@ intro:
   whats-your-name: What's your name?
   aka: AKA
 not-found: Not found
+gunvue:
+  create_profile_field: New profile field
+  go_homepage: Go to my page
+  or: or
+  add: Add
+  view: View
+  enter: Enter
+  renew: Renew
+  reactions: Reactions
+  my_rooms: My rooms
+  save_keys: Please make sure to safely store your cryptographic keypair to be able to use it again later
+  already_account: I already have an account
+  login_saved_key: Login with a saved key
+  login_paste: Paste
+  paste_keys: Paste your key pair here
+  login_qr: QR
+  login_json: JSON
+  create_account: Create a new account
+  refresh_keys: Tap the circle to generate a new key
+  enter_alias: Enter your name or nickname
+  authenticate: Authenticate
+  enter_enc_pass: Enter a passphrase to encrypt your key with
+  enter_password: Enter the password
+  set_enc_pass: Set
+  show_enc_pass: Show
+  mates: Friends
+  my_mates: My friends

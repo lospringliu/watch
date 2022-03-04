@@ -29,6 +29,8 @@ const color = useColor('light')
 //   p.font-bold.text-6xl.text-left.text-green-500.text-opacity-50.write-vertical-right.text-stroke-sm.text-stroke-blue-500 M
 //  .w-4.h-12
 //  @apply p-1 py-2 sm_px-2 md_px-4 lg_px-8 rounded-xl cursor-pointer flex items-center;
+//  router-link.link(to="/")
+//    a(href="/")
 </script>
 
 <template lang="pug">
@@ -55,7 +57,7 @@ const color = useColor('light')
       @user="$router.push(`/users/${$event}`)" @room="$router.push(`/rooms/${$event}`)"
       @post="$router.push(`/posts/${$event}`)"
       )
-    room-icon.hidden.md_block(@room="$router.push(`/rooms/${$event}`)" @rooms="$router.push(`/rooms/`)")
+    room-icon.hidden.lg_block(@room="$router.push(`/rooms/${$event}`)" @rooms="$router.push(`/rooms/`)")
 
     
 </template>
