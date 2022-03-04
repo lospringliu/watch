@@ -1,6 +1,5 @@
 <script setup>
 import { useUser, selectedUser, safeHash } from '@composables';
-import { ref, onMounted } from 'vue'
 
 const props = defineProps({
   size: { type: Number, default: 42 }
@@ -9,7 +8,7 @@ const props = defineProps({
 const { user } = useUser()
 
 
-defineEmits(['room', 'user', 'post'])
+defineEmits(['room', 'user', 'post','chat'])
 
 </script>
 
@@ -38,6 +37,7 @@ div
       :pub="selectedUser.pub" 
       @user="$emit('user', $event)" 
       @post="$emit('post', safeHash($event))"
+      @chat="$emit('chat', selectedUser.pub)"
       @close="selectedUser.pub = null"
       :key="selectedUser.pub"
       )

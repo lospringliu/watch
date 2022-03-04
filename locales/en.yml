@@ -1,3 +1,4 @@
+moi: Mine
 button:
   about: About
   back: Back
@@ -12,22 +13,58 @@ intro:
   hi: Hi, {name}!
   whats-your-name: What's your name?
   aka: AKA
+pages:
+  space: Spaces
+  space_description: 2D meeting space
+  posts: Posts
+  posts_description: Immutable Publications
+  rooms: Rooms
+  rooms_description: Open data collections
 not-found: Not found
 gunvue:
+  features: Features
+  post_feed_search: Search for a feed
   create_profile_field: New profile field
   go_homepage: Go to my page
+  login_for_message: Log in to post messages
   or: or
+  share: Share
   add: Add
+  add2: Add
+  upload: Upload
+  download: Download
+  download2: Download
+  visibility: Show hidden
   view: View
+  send: Send
   enter: Enter
   renew: Renew
+  leave: Leave
+  submit: Submit
+  reset: Reset
+  post_title: Title
+  post_title_add: Add a heading
+  post_statement: Short text statement
+  chat_chats: Chats
+  chat_new: New chat
+  space_enter: Click here to join the space
+  room_room: ROOM
+  room_add: Add room
+  room_generate: Generate a new room
+  room_browse: Browse rooms
+  room_hosts: Hosts
+  room_tools: Tools
+  util_copy: Copy
+  util_copied: Copied
   reactions: Reactions
   my_rooms: My rooms
   save_keys: Please make sure to safely store your cryptographic keypair to be able to use it again later
   already_account: I already have an account
   login_saved_key: Login with a saved key
-  login_paste: Paste
+  your_message: Your message
   paste_keys: Paste your key pair here
+  login_paste: Paste
+  stars: Stars
   login_qr: QR
   login_json: JSON
   create_account: Create a new account
@@ -40,3 +77,5 @@ gunvue:
   show_enc_pass: Show
   mates: Friends
   my_mates: My friends
+  encrypted: Encrypted
+  plaintext: Plain Text

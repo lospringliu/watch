@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import YoutubeVideos from '~/components/YoutubeVideos.vue'
-import { useTimeAgo } from '@vueuse/core'
 import YoutubePlayer from '~/components/YoutubePlayer.vue'
 import Navier from '~/components/Navier.vue'
 // import VuePlyr from 'vue-plyr'
 // import 'vue-plyr/dist/vue-plyr.css'
 // replaced dyanmicaly
+import { useTimeAgo } from '@vueuse/core'
 const date = '__DATE__'
 const timeAgo = useTimeAgo(date)
 </script>

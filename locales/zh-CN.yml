@@ -1,3 +1,4 @@
+moi: 我的
 button:
   about: 关于
   back: 返回
@@ -12,26 +13,62 @@ intro:
   hi: 你好，{name}
   whats-your-name: 输入你的名字
   aka: 曾用名
+pages:
+  space: 空间
+  space_description: 二维会议空间
+  posts: 发布
+  posts_description: 不可篡改出版
+  rooms: 房间
+  rooms_description: 开放数据集
 not-found: 未找到页面
 gunvue:
+  features: 特性
+  post_feed_search: 搜索反馈
   create_profile_field: 新建属性
   go_homepage: 去个人页面
+  login_for_message: 登录后发送信息
   or: 或者
+  share: 分享
   add: 新增
+  add2: 新增
+  upload: 上传
+  download: 下载
+  download2: 下载
+  visibility: 可见
   view: 查看
+  send: 发送
   enter: 进入
   renew: 更新
+  leave: 离开
+  submit: 提交
+  reset: 重置
+  post_title: 题目
+  post_title_add: 添加标题
+  post_statement: 声明
+  chat_chats: 交谈
+  chat_new: 新交谈
+  space_enter: 点触加入空间
+  room_room: 空间
+  room_add: 添加空间
+  room_generate: 生成新空间
+  room_browse: 浏览空间
+  room_hosts: 主人
+  room_tools: 工具
+  util_copy: 复制
+  util_copied: 已复制
   reactions: 回应
   my_rooms: 我的空间
   save_keys: 请确保安全存储你的密钥供以后使用
   already_account: 我已经有账号了
   login_saved_key: 用保存的密钥登录
-  login_paste: 粘贴
+  your_message: 你的信息
   paste_keys: 粘贴密钥
+  login_paste: 粘贴
+  stars: 红星
   login_qr: 二维码
   login_json: 文件
   create_account: 创建新账号
-  refresh_keys: 点触圆圈更新密钥
+  refresh_keys: 点触图案更新密钥
   enter_alias: 输入姓名或者昵称
   authenticate: 认证登录
   enter_enc_pass: 输入加密密码
@@ -40,3 +77,5 @@ gunvue:
   show_enc_pass: 显示
   mates: 好友
   my_mates: 我的好友
+  encrypted: 密文
+  plaintext: 明文

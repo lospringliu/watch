@@ -9,7 +9,7 @@ import "gun/lib/radix";
 import "gun/lib/radisk";
 import "gun/lib/store";
 import "gun/lib/rindexed";
-import "gun/lib/webrtc"; // test need the patch https://github.com/amark/gun/pull/1210/files
+// import "gun/lib/webrtc";
 import "gun/nts";
 
 import { useStorage } from "@vueuse/core";

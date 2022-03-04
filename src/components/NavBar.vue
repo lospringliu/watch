@@ -56,6 +56,7 @@ const color = useColor('light')
       :size="32"
       @user="$router.push(`/users/${$event}`)" @room="$router.push(`/rooms/${$event}`)"
       @post="$router.push(`/posts/${$event}`)"
+      @chat="$router.push(`/users/${$event}/chat`)"
       )
     room-icon.hidden.lg_block(@room="$router.push(`/rooms/${$event}`)" @rooms="$router.push(`/rooms/`)")
 
