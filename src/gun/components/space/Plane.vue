@@ -25,6 +25,7 @@ watch(guestCount, (next, prev) => {
 })
 
 
+const { t } = useI18n()
 </script>
 
 <template lang='pug'>
@@ -33,7 +34,7 @@ watch(guestCount, (next, prev) => {
     v-if="!space.joined && user.is" 
     @click="join()"
     :style="{ borderColor: user.color }"
-    ) Click here to join the space
+    ) {{ t('gunvue.space_enter') }}
   svg.h-80vh.w-98vw(
     ref="plane"
     style="cursor:none;"

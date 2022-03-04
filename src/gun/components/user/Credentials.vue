@@ -30,19 +30,20 @@ const encPair = computed(() => {
   return safePair.value ? pass?.safe?.enc : JSON.stringify(user.pair())
 });
 
+const { t } = useI18n()
 </script>
 
 <template lang='pug'>
 .flex.flex-col.items-stretch.pb-4.border-1.border-dark-100.border-opacity-10.max-w-120.mx-auto(v-if="user.is && !user.safe?.saved")
   slot
-    .mt-4.mx-6 Please make sure to safely store your cryptographic keypair to be able to use it again later
+    .mt-4.mx-6 {{ t('gunvue.save_keys') }}
   user-pass
   .flex.p-4.items-center.bg-dark-100.bg-opacity-20.mt-2.shadow-inset(v-if="encPair")
     .flex.flex-col.w-34.items-center(:style="{ color: safePair ? 'green' : 'red' }")
       button.m-2.button.text-2xl(@click="safePair = !safePair")
         la-lock(v-if="safePair")
         la-unlock(v-else)
-      .text-sm {{ safePair ? 'Encrypted' : 'Plain Text' }}
+      .text-sm {{ safePair ? t('gunvue.encrypted') : t('gunvue.plaintext') }}
       .text-m Key Pair
     .flex.flex-wrap
       button.m-2.button.items-center(v-if="canShare" @click="share({ title: 'Your key pair', text: encPair })" :class="{ active: current == 'pass' }")
@@ -51,8 +52,8 @@ const encPair = computed(() => {
       button.m-2.button.items-center(v-if="canCopy" @click="copy(encPair)")
         la-copy
         transition(name="fade")
-          .px-2(v-if="copied") Copied!
-          .px-2(v-else) Copy
+          .px-2(v-if="copied") {{ t('gunvue.util_copied') }}!
+          .px-2(v-else) {{ t('gunvue.util_copy') }}
       a.m-2.button.items-center(@click="show('links')" target="_blank" :href="safePair ? pass.links.pass : pass.links.pair" )
         la-link
         .px-2 Link

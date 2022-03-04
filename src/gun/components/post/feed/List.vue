@@ -9,12 +9,13 @@ const colorDeep = useColor('dark')
 
 const { search, slug, tags, addTag } = useTagList()
 
+const { t } = useI18n()
 </script>
 
 <template lang="pug">
 .flex.flex-col
   .relative
-    input.w-full.p-2.rounded-xl.shadow-inner.text-lg(v-model="search" placeholder="Search for a feed" ref="input")
+    input.w-full.p-2.rounded-xl.shadow-inner.text-lg(v-model="search" :placeholder="t('gunvue.post_feed_search')" ref="input")
     .absolute.right-6.top-2 {{ tags.results.length }}/{{ tags.count }}
   .flex.flex-wrap.absolute.top-30.bg-light-300.left-2.right-2.p-2.rounded-2xl.shadow-xl.z-1000(v-if="search")
     transition-group(name="fade")

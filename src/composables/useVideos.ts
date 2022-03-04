@@ -26,7 +26,7 @@ watch(gchannels, (value, old_value) => {
   console.log(`watched channels change ${Object.keys(value).length}`)
 })
 
-export async function initVideos() {
+export async function initChannels() {
   cref.map().once((d,k) => {
     if (!gchannels.hasOwnProperty(k)) {
       console.log(`channel ${d.name}`)
@@ -43,6 +43,14 @@ export async function initVideos() {
       }
     }
   })
+  await AsyncForEach(prefers.channels_playlists, async (c) => {
+    if (!gchannels[c.id]) {
+      await put_channel({id: c.id, name: c.name, title: c.title})
+    }
+  })
+}
+
+export async function initVideos() {
   vref.map().once((d,k) => {
     if (!gvideos.hasOwnProperty(k)) {
       console.log(`video ${d.videoId}`)
@@ -52,11 +60,6 @@ export async function initVideos() {
       } else {
         console.log(`strange video in gun ${d}`)
       }
-    }
-  })
-  await AsyncForEach(prefers.channels_playlists, async (c) => {
-    if (!gchannels[c.id]) {
-      await put_channel({id: c.id, name: c.name, title: c.title})
     }
   })
 }
@@ -94,7 +97,13 @@ export async function useVideos() {
       }
     // })
     }, true)  // delta value
+    await initChannels()
     await initVideos()
+    await AsyncForEach(prefers.channels_playlists, async (c) => {
+      if (!gchannels[c.id]) {
+        await put_channel({id: c.id, name: c.name, title: c.title})
+      }
+    })
   }
   
   return { gvideos, vref, gchannels, cref }

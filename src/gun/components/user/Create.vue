@@ -25,6 +25,7 @@ function createUser() {
   }))
 }
 
+const { t } = useI18n()
 </script>
 
 <template>
@@ -33,8 +34,8 @@ function createUser() {
     v-if="!user.is"
     :style="{ backgroundColor: colorDeep.hex(newPair?.pub || '') }"
   >
-    <div class="text-xl font-bold">Create a new account</div>
-    <div class="mb-4 mt-2">Tap the circle to generate a new key</div>
+    <div class="text-xl font-bold">{{ t('gunvue.create_account') }}</div>
+    <div class="mb-4 mt-2">{{ t('gunvue.refresh_keys') }}</div>
     <account-avatar
       class="cursor-pointer shadow-xl border-8"
       v-if="newPair"
@@ -52,13 +53,13 @@ function createUser() {
           <fad-random-1dice class="text-3xl"></fad-random-1dice>
         </button>
       </div>
-      <input class="p-4 rounded-2xl my-2" v-model="name" placeholder="Enter your name or nickname" />
+      <input class="p-4 rounded-2xl my-2" v-model="name" :placeholder="t('gunvue.enter_alias')" />
       <button
         class="button w-full flex justify-center items-center"
         @click="createUser()"
         v-if="newPair && !user.is && name"
         :style="{ backgroundColor: colorLight.hex(newPair.pub) }"
-      >Authenticate</button>
+      >{{ t('gunvue.authenticate') }}</button>
     </div>
   </div>
 </template> 

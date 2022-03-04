@@ -8,6 +8,7 @@ const { account } = useAccount(user.pub)
 
 const newField = ref('')
 
+const { t } = useI18n()
 </script>
 
 <template lang='pug'>
@@ -17,8 +18,8 @@ const newField = ref('')
       v-for="(d, k) in account.profile" :key="d"
       :field="k" :content="d")
     .flex.items-center.flex-wrap
-      input.p-2.rounded-lg.shadow-md(v-model="newField" @keydown.enter="addProfileField(newField)" placeholder="New profile field")
+      input.p-2.rounded-lg.shadow-md(v-model="newField" @keydown.enter="addProfileField(newField)" :placeholder="t('gunvue.create_profile_field')")
       button.m-2.button.items-center(@click="addProfileField(newField)")
         la-plus
-        .p-1.text-sm Add
+        .p-1.text-sm {{ t('gunvue.add') }}
 </template>

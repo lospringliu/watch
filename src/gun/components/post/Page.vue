@@ -20,6 +20,7 @@ const colorDeep = computed(() => useColor('deep').hex(props.hash))
 const { post, download, downloading } = usePost({ hash: props.hash })
 
 
+const { t } = useI18n()
 </script>
 
 <template lang='pug'>
@@ -65,12 +66,12 @@ const { post, download, downloading } = usePost({ hash: props.hash })
             .m-2(v-if="post?.statement") {{ post?.statement }} 
           .flex.flex-wrap.p-4.bg-dark-50.bg-opacity-25.w-full.items-center.rounded-b-xl.gap-1
             util-share
-              p Share
+              p {{ t('gunvue.share') }}
             post-action-update(:hash="hash" )
             button.button.flex.items-center(@click="download()")
               la-file-download(v-if="!downloading")
               la-redo-alt.animate-spin(v-else)
-              .ml-2 Download
+              .ml-2 {{ t('gunvue.download2') }}
 
 
       .my-4.mx-2.z-20.max-w-90vw(

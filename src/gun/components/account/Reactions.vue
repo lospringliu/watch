@@ -49,11 +49,12 @@ gun.user(currentRoom.pub).get('links').map().on((d, k) => {
 })
 
 
+const { t } = useI18n()
 </script>
 
 <template lang='pug'>
 .flex.flex-col
-  .text-xl.font-bold.mb-2 Reactions
+  .text-xl.font-bold.mb-2 {{ t('gunvue.reactions') }}
   .flex.flex-wrap.gap-4 
     .p-2.flex.flex-wrap.bg-light-800.shadow-md.rounded-xl.gap-2
       transition-group(name="fade")

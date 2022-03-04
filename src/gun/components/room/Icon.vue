@@ -15,6 +15,7 @@ const bg = computed(() => useBackground({
   attachment: 'local'
 }))
 
+const { t } = useI18n()
 </script>
 
 <template lang="pug">
@@ -27,7 +28,7 @@ const bg = computed(() => useBackground({
     .ml-2.text-sm(v-if="currentRoom?.profile?.name") {{ currentRoom.profile.name.substring(0, 15) }}
   ui-panel.break-all(:open="open" :closeButton="false" @close="open = false")
     room-page(@room="$emit('room', $event)" :key="currentRoom.pub" @rooms="$emit('rooms')")
-      button.button.m-4(@click="$emit('rooms'); open = false") Browse rooms
+      button.button.m-4(@click="$emit('rooms'); open = false") {{ t('gunvue.room_browse') }}
       
 
 </template>

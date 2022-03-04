@@ -20,12 +20,13 @@ const rooms = computed(() => {
 const open = ref(false)
 
 
+const { t } = useI18n()
 </script>
 
 <template lang='pug'>
 .flex.flex-col
   .flex.p-4.bg-light-900.rounded-xl.mb-2.items-center.cursor-pointer.shadow-sm.hover_shadow-md.transition(@click="open = !open")
-    .text-lg.font-bold My rooms
+    .text-lg.font-bold {{ t('gunvue.my_rooms') }}
     .flex-1 
     .text-md.font-bold.mr-2 {{ Object.keys(rooms).length }}
     la-angle-down(v-if="!open")
@@ -40,11 +41,11 @@ const open = ref(false)
           .p-4.flex.flex-wrap.gap-1
             button.button(@click="$emit('browse', room)")
               la-eye
-              .ml-2 View
+              .ml-2 {{ t('gunvue.view') }}
             button.button(@click="enterRoom(room)")
               ion-enter-outline
-              .ml-2 Enter
+              .ml-2 {{ t('gunvue.enter') }}
             button.button(@click="recreateRoom(enc)")
               la-tools
-              .ml-2 Renew
+              .ml-2 {{ t('gunvue.renew') }}
 </template>

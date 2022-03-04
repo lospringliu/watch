@@ -10,6 +10,7 @@ function isSafe() {
   user.db.get('safe').get('saved').put(true)
 }
 
+const { t } = useI18n()
 </script>
 
 <template lang='pug'>
@@ -27,5 +28,5 @@ function isSafe() {
     button.p-4.m-4.rounded-xl.font-bold.text-lg.shadow-md(
       @click="$emit('user', user.pub); $emit('close')"
       :style="{ backgroundColor: user.color }"
-    ) Go to my page
+    ) {{ t('gunvue.go_homepage') }}
 </template>

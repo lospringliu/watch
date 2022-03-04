@@ -47,27 +47,28 @@ function reset() {
   emit('close')
 }
 
+const { t } = useI18n()
 </script>
 
 <template lang='pug'>
 form.w-full.flex.flex-col.p-2.shadow-xl.m-1.rounded-2xl(action="javascript:void(0);")
   input.font-bold.text-xl(
     v-model="postData.title" 
-    placeholder="Title" 
+    :placeholder="t('gunvue.post_title')" 
     autofocus 
     v-if="add.title"
     ref="titleInput"
     )
   textarea.text-1rem.leading-relaxed(
     v-model="postData.statement" 
-    placeholder="Short text statement"
+    :placeholder="t('gunvue.post_statement')"
     @keyup.enter.ctrl="submit()"
     )
   .flex.flex-wrap
     button.button.m-1(
       @click="add.title = !add.title" 
       :class="{ active: postData.title }"
-      title="Add a heading"
+      :title="t('gunvue.post_title_add')"
       )
       tabler-heading
     form-picture(
@@ -98,7 +99,7 @@ form.w-full.flex.flex-col.p-2.shadow-xl.m-1.rounded-2xl(action="javascript:void(
         @click="submit()"
         )
         la-check
-        .font-bold.ml-2 Submit
+        .font-bold.ml-2 {{ t('gunvue.submit') }}
       button.m-1.button.text-xl( @click="reset()")
         la-trash-alt
   ui-layer(:open="add.youtube" @close="add.youtube = false" :offset="'22vh'")

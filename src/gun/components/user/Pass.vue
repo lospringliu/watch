@@ -2,6 +2,7 @@
 import { usePass } from '@composables'
 const { pass } = usePass();
 
+const { t } = useI18n()
 </script>
 
 <template lang='pug'>
@@ -9,7 +10,7 @@ const { pass } = usePass();
   .flex.items-center.mb-4
     .mx-2
       la-asterisk
-    .px-1 Enter a passphrase to encrypt your key with
+    .px-1 {{ t('gunvue.enter_enc_pass') }}
   .flex.items-center.px-4
     .ml-1.flex.flex-col.items-center
 
@@ -24,8 +25,8 @@ const { pass } = usePass();
       v-if="pass.input.length >= pass.minLength"
     ) 
       la-check
-      .ml-2 Set
+      .ml-2 {{ t('gunvue.set_enc_pass') }}
     button.button.items-center(v-if="pass?.safe?.enc" @click="pass.show = !pass.show")
       la-eye
-      .ml-2 Show
+      .ml-2 {{ t('gunvue.show_enc_pass') }}
 </template>

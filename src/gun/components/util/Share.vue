@@ -10,6 +10,7 @@ const { share, isSupported: canShare } = useShare()
 const address = computed(() => {
   return location.value.href + location.value.search
 })
+const { t } = useI18n()
 </script>
 
 <template lang='pug'>
@@ -25,9 +26,9 @@ const address = computed(() => {
       .flex.text-lg.mt-2
         button.button.text-lg.font-normal.items-center(v-if="canCopy")
           la-copy(@click="copy(address)")
-          .ml-2(v-if="copied") Copied!
-          .ml-2(v-else) Copy
+          .ml-2(v-if="copied") {{ t('gunvue.util_copied') }}!
+          .ml-2(v-else) {{ t('gunvue.util_copy') }}
         button.button.text-lg.font-normal.items-center(v-if="canShare")
           la-share(@click="share({ title: 'Look at this', text: 'A gun-vue page', url: address })")
-          .ml-2 Send
+          .ml-2 {{ t('gunvue.send') }}
 </template>

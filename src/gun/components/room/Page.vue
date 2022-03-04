@@ -27,6 +27,7 @@ const colorDeep = useColor('deep')
 
 const bg = computed(() => useBackground({ pub: roomPub.value, size: 1200, attachment: 'local' }))
 
+const { t } = useI18n()
 </script>
 
 <template lang='pug'>
@@ -41,7 +42,7 @@ const bg = computed(() => useBackground({ pub: roomPub.value, size: 1200, attach
             @update="updateRoomProfile('name', $event)"
           )
           .flex.items-center.flex-wrap
-            .font-bold.mr-2 Hosts: 
+            .font-bold.mr-2 {{ t('gunvue.room_hosts') }}: 
             .p-2(v-for="(enc, host) in room.hosts" :key="host")
               account-badge( :pub="host" :selectable="true")
               room-features(:features="enc") Tools
@@ -50,14 +51,14 @@ const bg = computed(() => useBackground({ pub: roomPub.value, size: 1200, attach
       .flex.flex-wrap
         button.button(v-if="room.hosts?.[user.pub]?.enc" @click="recreateRoom(room.hosts?.[user.pub]?.enc)")
           la-tools
-          .ml-2 Renew
+          .ml-2 {{ t('gunvue.renew') }}
         .flex.flex-wrap.py-4(v-if="roomPub != rootRoom.pub")
           button.button(@click="enterRoom(roomPub)" v-if="currentRoom.pub !== roomPub")
             ion-enter-outline
-            .ml-2 Enter
+            .ml-2 {{ t('gunvue.enter') }}
           button.button(@click="leaveRoom()" v-else)
             ion-exit-outline
-            .ml-2 Leave
+            .ml-2 {{ t('gunvue.leave') }}
   .text-center.flex.flex-col.items-center
     .m-2.p-4.shadow-lg.rounded-2xl
       .text-sm.font-mono {{ room.profile }}

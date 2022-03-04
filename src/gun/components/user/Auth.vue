@@ -37,27 +37,28 @@ async function decode() {
   pair.value = await SEA.decrypt(pair.value, passphrase.value);
 }
 
+const { t } = useI18n()
 </script>
 
 <template lang="pug">
 .flex.flex-col.my-4.flex-1.items-center.bg-light-700.rounded-3xl.p-4.shadow-lg
-  .font-bold.text-xl I already have an account
-  .text-md Login with a saved key
+  .font-bold.text-xl {{ t('gunvue.already_account') }}
+  .text-md {{ t('gunvue.login_saved_key') }}
   .flex
     button.button.m-2.cursor-pointer.flex.items-center(@click="show('key')")
       la-key.text-xl
-      .p-1.ml-1.font-bold Paste
+      .p-1.ml-1.font-bold {{ t('gunvue.login_paste') }}
     label.button.m-2.cursor-pointer.flex.items-center(for="qr-input")
       la-qrcode.text-xl
-      .p-1.ml-1.font-bold QR
+      .p-1.ml-1.font-bold {{ t('gunvue.login_qr') }}
     label.button.m-2.cursor-pointer.flex.items-center(for="json-input")
       la-file-code.text-xl
-      .p-1.ml-1.font-bold JSON
+      .p-1.ml-1.font-bold {{ t('gunvue.login_json') }}
   form.flex(v-if="passphrase !== null")
     input.py-1.px-4.m-1.rounded-xl(
       autofocus type="text" 
       v-model="passphrase" 
-      placeholder="Enter the password"
+      :placeholder="t('gunvue.enter_password')"
       )
     button.button.text-2xl(@click="decode()" type="submit")
       la-sign-in-alt
@@ -77,6 +78,6 @@ async function decode() {
         v-if="current == 'key'" 
         v-model="pair" 
         key="text" 
-        placeholder="Paste your key pair here"
+        :placeholder="t('gunvue.paste_keys')"
         )
 </template> 

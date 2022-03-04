@@ -22,6 +22,7 @@ watch(messages, () => {
     emit('newMessage')
 }, { deep: true });
 
+const { t } = useI18n()
 </script>
 
 <template lang='pug'>
@@ -31,7 +32,7 @@ watch(messages, () => {
     transition(name="fade")
       .flex.flex-col.bg-dark-300.bg-opacity-70.gap-2.min-h-full.overflow-y-scroll.scroll-smooth.absolute.sm_static.z-20.w-220px.max-w-full.max-h-full.text-light-900.backdrop-filter.backdrop-blur-xl(style="flex: 1 1 320px" v-if="isLarge || (panelOpen && !isLarge)" ref="chatsPanel")
         .flex.flex-wrap
-          .text-xl.font-bold.p-2 Chats 
+          .text-xl.font-bold.p-2 {{ t('gunvue.chat_chats') }} 
           .flex-1
           .cursor-pointer.self-center.text-2xl.p-2(@click="adding = !adding")
             transition(name="fade" mode="out-in")
@@ -41,7 +42,7 @@ watch(messages, () => {
           input.p-2.m-2.w-full.rounded-xl.text-dark-800(
             v-model="newChat" 
             @keyup.enter="addChat(newChat); newChat = ''; adding = false"
-            placeholder="New chat"
+            :placeholder="t('gunvue.chat_new')"
             )
         .flex.flex-col.p-2.gap-2.h-full
           .font-bold.bg-light-100.bg-opacity-30.rounded-xl.px-2.cursor-pointer.flex(
