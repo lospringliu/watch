@@ -33,6 +33,7 @@ const files = [
 ]
 const REPLACES = { // key: [flag_context, flag_binding,  en, zh, pre_regex, pre_replace, post_regex, post_replace]
   cred_saved: [false, false, `I've stored my key securely`, "我已经安全保存好了"],
+  tools: [false, false, "Tools", "工具", "", "", ":"],
   features: [false, false, "Features", "特性", "", "", ":"],
   post_feed_search: [false, true, "Search for a feed", "搜索反馈", `placeholder="`],
   create_profile_field: [false, true, "New profile field", "新建属性", `placeholder="`],

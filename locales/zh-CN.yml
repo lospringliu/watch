@@ -4,6 +4,7 @@ button:
   back: 返回
   go: 确定
   home: 首页
+  info: 信息
   settings: 设置
   toggle_dark: 切换深色模式
   toggle_langs: 切换语言
@@ -23,6 +24,7 @@ pages:
 not-found: 未找到页面
 gunvue:
   cred_saved: 我已经安全保存好了
+  tools: 工具
   features: 特性
   post_feed_search: 搜索反馈
   create_profile_field: 新建属性
@@ -66,6 +68,7 @@ gunvue:
   paste_keys: 粘贴密钥
   login_paste: 粘贴
   stars: 红星
+  cred_keypair: 密钥对
   cred_qr: 二维码
   cred_share: 分享
   cred_link: 连接

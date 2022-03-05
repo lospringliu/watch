@@ -44,7 +44,7 @@ const { t } = useI18n()
         la-lock(v-if="safePair")
         la-unlock(v-else)
       .text-sm {{ safePair ? t('gunvue.encrypted') : t('gunvue.plaintext') }}
-      .text-m Key Pair
+      .text-m {{ t('gunvue.cred_keypair') }}
     .flex.flex-wrap
       button.m-2.button.items-center(v-if="canShare" @click="share({ title: 'Your key pair', text: encPair })" :class="{ active: current == 'pass' }")
         la-share
@@ -59,7 +59,7 @@ const { t } = useI18n()
         .px-2 {{ t('gunvue.cred_link') }}
       button.m-2.button.items-center(@click="show('qr')")
         la-qrcode
-        .px-2 QR
+        .px-2 {{ t('gunvue.cred_qr') }}
       button.m-2.button.items-center(@click="show('key')")
         la-envelope-open-text
         .px-2 {{ t('gunvue.cred_text') }}
