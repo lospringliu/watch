@@ -18,7 +18,7 @@ if (globalState.platform.android) {
   gun2 = useGun2({})
 } else {
   gun = useGun()
-  gun = useGun2()
+  gun2 = useGun2()
 }
 import { currentRoom } from "@composables";
 import { useVideos } from "@/composables/useVideos"
