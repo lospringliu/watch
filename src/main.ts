@@ -12,12 +12,14 @@ import platform from 'platform-detect'
 import { globalState } from './stores/globalState'
 globalState.platform = platform
 
-import { useGun } from "@composables/gun"
-let gun
+import { useGun, useGun2 } from "@composables/gun"
+let gun, gun2
 if (globalState.platform.android) {
   gun = useGun({})
+  gun2 = useGun2({})
 } else {
   gun = useGun()
+  gun = useGun2()
 }
 import { useVideos } from "@/composables/useVideos"
 import { currentRoom } from "@composables";
