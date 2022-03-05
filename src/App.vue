@@ -11,11 +11,11 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, ligh
 //   util-tools
 //   component(:is="Videos")
 // .p-0.flex.flex-col(style="flex: 1000 1 100%" :style="{ ...bg }")
+// transition(name="fade" mode="out-in")
 </script>
 
 <template lang="pug">
-transition(name="fade" mode="out-in")
-  Videos
+Videos
 </template>
 
 <style lang="postcss">
