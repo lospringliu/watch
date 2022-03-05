@@ -12,7 +12,7 @@ import platform from 'platform-detect'
 import { globalState } from './stores/globalState'
 globalState.platform = platform
 
-import { useGun } from "@/composables/useGun"
+import { useGun } from "@composables/gun"
 let gun
 if (globalState.platform.android) {
   gun = useGun({})
