@@ -32,11 +32,9 @@ const timeAgo = useTimeAgo(date)
 html {
   scroll-behavior: smooth;
   hyphens: auto;
-  overscroll-behavior-y: contain;
 }
 body {
   @apply bg-light-400 dark_bg-dark-100;
-  overscroll-behavior-y: contain;
 }
 #app {
   @apply w-100vw min-h-100vh flex flex-col;
