@@ -8,6 +8,17 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import generatedRoutes from 'virtual:generated-pages'
 import { setupLayouts } from 'virtual:generated-layouts'
 
+import platform from 'platform-detect'
+import { globalState } from './stores/globalState'
+globalState.platform = platform
+
+import { useGun } from "@/composables/useGun"
+let gun
+if (globalState.platform.android) {
+  gun = useGun({})
+} else {
+  gun = useGun()
+}
 import { useVideos } from "@/composables/useVideos"
 import { currentRoom } from "@composables";
 

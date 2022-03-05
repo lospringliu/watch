@@ -26,6 +26,8 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, ligh
 
 // .flex.flex-col.items-end.fixed.bottom-2.left-2.z-10000
 //   util-tools
+//  overscroll-behavior-y: contain;
+//  overscroll-behavior-y: contain;
 </script>
 
 <template lang="pug">
@@ -39,11 +41,9 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, ligh
 html {
   scroll-behavior: smooth;
   hyphens: auto;
-  overscroll-behavior-y: contain;
 }
 body {
   @apply bg-light-400 dark_bg-dark-100;
-  overscroll-behavior-y: contain;
 }
 #app {
   @apply min-h-100vh flex flex-col;

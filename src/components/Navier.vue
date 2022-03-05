@@ -2,15 +2,13 @@
 import { ref } from "vue"
 import { useToggle } from "@vueuse/core"
 import { isDark, toggleDark } from '../logic'
-import IconSun from '~icons/heroicons-outline/sun'
-import IconMoon from '~icons/heroicons-outline/moon'
-import IconSettings from '~icons/carbon/settings'
 import { prefers } from "../stores"
+import { globalState } from '../stores/globalState'
 const { t, availableLocales, locale } = useI18n()
 const flag_settings = ref(false)
-const flag_user = ref(false)
+const flag_info = ref(false)
+const toggleInfo = useToggle(flag_info)
 const toggleSettings = useToggle(flag_settings)
-const toggleUser = useToggle(flag_user)
 const toggleLocales = () => {
   const locales = availableLocales
   locale.value = locales[(locales.indexOf(locale.value) + 1) % locales.length]
@@ -35,9 +33,23 @@ watch(flag_settings, (value, old_value) => {
     <button :title="t('button.settings')" @click="toggleSettings()">
       <ph-gear class="mx-2" />
     </button>
+    <button :title="t('button.info')" @click="toggleInfo()">
+      <ph-info class="mx-2" />
+    </button>
   </nav>
-  <div class="grid grid-col place-content-center w-sm" v-if="flag_settings">
-    <div class="mt-8 max-w-lg">
+  <div class="grid grid-col place-content-center" v-if="flag_info">
+    <div class="mt-8 max-w-md">
+      <div class="grid grid-cols-1 gap-6 text-gray-700 dark_text-gray-500">
+        <code>
+          <pre>
+            {{ globalState.platform }}
+          </pre>
+        </code>
+      </div>
+    </div>
+  </div>
+  <div class="grid grid-col place-content-center" v-if="flag_settings">
+    <div class="mt-8 max-w-md">
       <div class="grid grid-cols-1 gap-6 text-gray-700 dark_text-gray-500">
         <label class="block">
           <input type="checkbox" v-model="prefers.youtubeAccess"  class="mt-1 mr-4" />
