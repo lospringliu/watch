@@ -50,7 +50,7 @@ const { t } = useI18n()
       .p-1.ml-1.font-bold {{ t('gunvue.login_paste') }}
     label.button.m-2.cursor-pointer.flex.items-center(for="qr-input")
       la-qrcode.text-xl
-      .p-1.ml-1.font-bold {{ t('gunvue.login_qr') }}
+      .p-1.ml-1.font-bold {{ t('gunvue.cred_qr') }}
     label.button.m-2.cursor-pointer.flex.items-center(for="json-input")
       la-file-code.text-xl
       .p-1.ml-1.font-bold {{ t('gunvue.login_json') }}

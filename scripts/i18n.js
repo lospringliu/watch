@@ -32,6 +32,7 @@ const files = [
   "src/gun/components/post/feed/List.vue",
 ]
 const REPLACES = { // key: [flag_context, flag_binding,  en, zh, pre_regex, pre_replace, post_regex, post_replace]
+  cred_saved: [false, false, `I've stored my key securely`, "我已经安全保存好了"],
   features: [false, false, "Features", "特性", "", "", ":"],
   post_feed_search: [false, true, "Search for a feed", "搜索反馈", `placeholder="`],
   create_profile_field: [false, true, "New profile field", "新建属性", `placeholder="`],
@@ -75,6 +76,12 @@ const REPLACES = { // key: [flag_context, flag_binding,  en, zh, pre_regex, pre_
   paste_keys: [false, true, "Paste your key pair here", "粘贴密钥", `placeholder="`],
   login_paste: [false, false, "Paste", "粘贴", "font-bold "],
   stars: [false, false, "Stars", "红星", `font-bold `],
+  cred_keypair: [false, false, "Key Pair", "密钥对", "text-m "],
+  cred_qr: [false, false, "QR", "二维码", "px-2 "],
+  cred_share: [false, false, "Share", "分享", "px-1 "],
+  cred_link: [false, false, "Link", "连接", "px-2 "],
+  cred_text: [false, false, "Text", "文本", "px-2 "],
+  cred_json: [false, false, "JSON", "文件", "px-2 "],
   login_qr: [false, false, "QR", "二维码", "font-bold "],
   login_json: [false, false, "JSON", "文件", "font-bold "],
   create_account: [false, false, "Create a new account", "创建新账号"],

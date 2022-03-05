@@ -48,7 +48,7 @@ const { t } = useI18n()
     .flex.flex-wrap
       button.m-2.button.items-center(v-if="canShare" @click="share({ title: 'Your key pair', text: encPair })" :class="{ active: current == 'pass' }")
         la-share
-        .px-1 Share
+        .px-1 {{ t('gunvue.cred_share') }}
       button.m-2.button.items-center(v-if="canCopy" @click="copy(encPair)")
         la-copy
         transition(name="fade")
@@ -56,16 +56,16 @@ const { t } = useI18n()
           .px-2(v-else) {{ t('gunvue.util_copy') }}
       a.m-2.button.items-center(@click="show('links')" target="_blank" :href="safePair ? pass.links.pass : pass.links.pair" )
         la-link
-        .px-2 Link
+        .px-2 {{ t('gunvue.cred_link') }}
       button.m-2.button.items-center(@click="show('qr')")
         la-qrcode
         .px-2 QR
       button.m-2.button.items-center(@click="show('key')")
         la-envelope-open-text
-        .px-2 Text
+        .px-2 {{ t('gunvue.cred_text') }}
       button.m-2.button.items-center(@click="downloadFile(encPair, 'text/json', (user.name || 'account') + '.json', false); current = null")
         la-file-code
-        .px-2 JSON
+        .px-2 {{ t('gunvue.cred_json') }}
   .flex.w-full.justify-center.mt-4(v-if="current")
     transition-group(name="fade")
       textarea.p-4.text-sm.flex-1.rounded-xl(
@@ -77,7 +77,7 @@ const { t } = useI18n()
       qr-show.max-w-600px(v-if="current == 'qr'" key="qr" :data="safePair ? pass.links.pass : pass.links.pair")
   button.button.mx-8.justify-center(@click="$emit('close')")
     la-check
-    .ml-2 I've stored my key securely
+    .ml-2 {{ t('gunvue.cred_saved') }}
 </template>
 
 <style scoped>

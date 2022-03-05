@@ -22,6 +22,7 @@ pages:
   rooms_description: Open data collections
 not-found: Not found
 gunvue:
+  cred_saved: Ive stored my key securely
   features: Features
   post_feed_search: Search for a feed
   create_profile_field: New profile field
@@ -65,6 +66,11 @@ gunvue:
   paste_keys: Paste your key pair here
   login_paste: Paste
   stars: Stars
+  cred_qr: QR
+  cred_share: Share
+  cred_link: Link
+  cred_text: Text
+  cred_json: JSON
   login_qr: QR
   login_json: JSON
   create_account: Create a new account
