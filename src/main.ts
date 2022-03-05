@@ -1,37 +1,9 @@
 import { createApp } from "vue";
 import App from "./App.vue";
+import { useVideos } from "@/composables/useVideos"
 
 import "virtual:windi.css";
 import "@components/styles/index.css";
-
-import { createRouter, createWebHashHistory } from "vue-router";
-import generatedRoutes from 'virtual:generated-pages'
-import { setupLayouts } from 'virtual:generated-layouts'
-
-import { useVideos } from "@/composables/useVideos"
-import { currentRoom } from "@composables";
-
-const routes_layouts = setupLayouts(generatedRoutes)
-
-// const router = createRouter({
-//   history: createWebHashHistory(),
-//   routes: [...routes_layouts],
-//   // routes: [...routes],
-//   scrollBehavior(to, from, savedPosition) {
-//     if (savedPosition) {
-//       return savedPosition;
-//     } else {
-//       return { top: 0, behavior: "smooth" };
-//     }
-//   },
-// });
-
-const app = createApp(App);
-// app.use(router)
-// install all modules under `modules/`
-Object.values(import.meta.globEager('./modules/*.ts')).forEach(i => i.install?.({ app }))
-
-app.mount("#app");
 
 Promise.resolve().then(async () => {
   const {vref, cref, gvideos, gchannels} = await useVideos()
@@ -40,3 +12,7 @@ Promise.resolve().then(async () => {
   globalThis.gchannels = gchannels
   globalThis.cref = cref
 }) 
+
+const app = createApp(App);
+Object.values(import.meta.globEager('./modules/*.ts')).forEach(i => i.install?.({ app }))
+app.mount("#app");
