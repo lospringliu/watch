@@ -24,7 +24,6 @@ pages:
 not-found: Not found
 gunvue:
   cred_saved: Ive stored my key securely
-  tools: Tools
   features: Features
   post_feed_search: Search for a feed
   create_profile_field: New profile field

@@ -33,7 +33,6 @@ const files = [
 ]
 const REPLACES = { // key: [flag_context, flag_binding,  en, zh, pre_regex, pre_replace, post_regex, post_replace]
   cred_saved: [false, false, `I've stored my key securely`, "我已经安全保存好了"],
-  tools: [false, false, "Tools", "工具", "", "", ":"],
   features: [false, false, "Features", "特性", "", "", ":"],
   post_feed_search: [false, true, "Search for a feed", "搜索反馈", `placeholder="`],
   create_profile_field: [false, true, "New profile field", "新建属性", `placeholder="`],
@@ -65,7 +64,7 @@ const REPLACES = { // key: [flag_context, flag_binding,  en, zh, pre_regex, pre_
   room_generate: [false, false, "Generate a new room", "生成新空间"],
   room_browse: [false, false, "Browse rooms", "浏览空间"],
   room_hosts: [false, false, "Hosts", "主人", "", "", ":"],
-  room_tools: [false, false, "Tools", "工具", "", "", ":"],
+  room_tools: [false, false, "Tools", "工具", `\\) `, ") "],
   util_copy: [false, false, "Copy", "复制", `\\) `, `) `],
   util_copied: [false, false, "Copied", "已复制", `\\) `, `) `],
   reactions: [false, false, "Reactions", "回应"],

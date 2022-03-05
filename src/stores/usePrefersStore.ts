@@ -1,6 +1,7 @@
 import { defineStore } from "pinia"
 import { Storage } from "../services/storage"
 import { CHANNELS, PLAYLISTS } from "./channels_playlists"
+import { IChannel } from "../types"
 const db = new Storage("prefers")
 db.read()
 const prefers_initial = { playbackRate: 1.0,
@@ -40,11 +41,13 @@ export const usePrefersStore = defineStore('prefers', {
     }
   },
   actions: {
-    addChannelPlaylist(cp) {
-      if (cp.startsWith("UC")) {
-        this.channels.push(cp)
-      } else {
-        this.playlists.push(cp)
+    addChannelPlaylist(cp: IChannel) {
+      if (this.channels.filter(c => c.id === cp.id).length === 0) {
+        if (cp.id.startsWith("UC")) {
+          this.channels.push(cp)
+        } else {
+          this.playlists.push(cp)
+        }
       }
     },
     setPlaybackRate(rate) {

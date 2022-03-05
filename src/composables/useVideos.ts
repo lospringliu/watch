@@ -7,8 +7,9 @@ import AsyncForEach from "async-await-foreach"
 const gun = useGun()
 const gvideos = reactive({})
 const gchannels = reactive({})
-const vref = gun.get("moitestmoitestmoi").get("videos").get("youtube")
-const cref = gun.get("moitestmoitestmoi").get("channels").get("youtube")
+// const baseref = gun.get("moitestmoitestmoitest")
+const vref = gun.get("moitestmoitestmoitest").get("videos").get("youtube")
+const cref = gun.get("moitestmoitestmoitest").get("channels").get("youtube")
 let listening = false
 
 watch(gvideos, (value, old_value) => {
@@ -27,6 +28,7 @@ watch(gchannels, (value, old_value) => {
 })
 
 export async function initChannels() {
+  console.log(`init channels`)
   cref.map().once((d,k) => {
     if (!gchannels.hasOwnProperty(k)) {
       console.log(`channel ${d.name}`)
@@ -37,7 +39,7 @@ export async function initChannels() {
       } else if (d.id && d.name && d.title) { // read from gun
         const channel = { id: d.id, name: d.name, title: d.title }
         gchannels[k] = channel
-        prefers.addChannelPlaylist(channel)
+        // prefers.addChannelPlaylist(channel)
       } else {
         console.log(`strange channel in gun ${d}`)
       }
@@ -48,6 +50,7 @@ export async function initChannels() {
       await put_channel({id: c.id, name: c.name, title: c.title})
     }
   })
+  return { gvideos, vref, gchannels, cref }
 }
 
 export async function initVideos() {
@@ -97,16 +100,7 @@ export async function useVideos() {
       }
     // })
     }, true)  // delta value
-    await initChannels()
-    await initVideos()
-    await AsyncForEach(prefers.channels_playlists, async (c) => {
-      if (!gchannels[c.id]) {
-        await put_channel({id: c.id, name: c.name, title: c.title})
-      }
-    })
   }
-  
-  return { gvideos, vref, gchannels, cref }
 }
 
 export async function put_channel(pchannel) {

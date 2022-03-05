@@ -11,7 +11,7 @@ function makeParams(options = {}) {
     params: Object.assign({}, {
       part: 'snippet,contentDetails',
       // maxResults: Math.min(50, prefers.maxResults),
-      maxResults: Math.min(50, prefers.maxResults),
+      maxResults: Math.min(5, prefers.maxResults),
     }, options),
   }
 }
@@ -22,7 +22,7 @@ export async function fetchYoutubeVideos (channels: IChannel[] = []) {
     console.log(`... bypass fetching videos no api key`)
     return videos.videos
   }
-  await AsyncForEach(channels, async (channel) => {
+  await AsyncForEach(channels.slice(0,2), async (channel) => {
     const is_channel = channel.id.startsWith('UC')
     let playlistId = channel.id
     try {

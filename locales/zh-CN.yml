@@ -24,7 +24,6 @@ pages:
 not-found: 未找到页面
 gunvue:
   cred_saved: 我已经安全保存好了
-  tools: 工具
   features: 特性
   post_feed_search: 搜索反馈
   create_profile_field: 新建属性

@@ -21,9 +21,9 @@ if (globalState.platform.android) {
   gun2 = useGun2()
 }
 import { currentRoom } from "@composables";
-import { useVideos } from "@/composables/useVideos"
 
 import App from "./App.vue";
+import { initChannels, useVideos } from "./composables/useVideos";
 
 const routes_layouts = setupLayouts(generatedRoutes)
 
@@ -48,11 +48,12 @@ Object.values(import.meta.globEager('./modules/*.ts')).forEach(i => i.install?.(
 app.mount("#app");
 
 Promise.resolve().then(async () => {
-  const {vref, cref, gvideos, gchannels} = await useVideos()
+  const {vref, cref, gvideos, gchannels} = await initChannels()
   globalThis.gvideos = gvideos
   globalThis.vref = vref
   globalThis.gchannels = gchannels
   globalThis.cref = cref
+  await useVideos()
 }) 
 
 router.beforeEach((to, from, next) => {

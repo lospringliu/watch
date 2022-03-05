@@ -45,7 +45,7 @@ const { t } = useI18n()
             .font-bold.mr-2 {{ t('gunvue.room_hosts') }}: 
             .p-2(v-for="(enc, host) in room.hosts" :key="host")
               account-badge( :pub="host" :selectable="true")
-              room-features(:features="enc") Tools
+              room-features(:features="enc") {{ t('gunvue.room_tools') }}
         .flex-1
       room-features.my-4(:features="room.features")
       .flex.flex-wrap
