@@ -30,6 +30,7 @@ declare module 'vue' {
     NavBar: typeof import('./components/NavBar.vue')['default']
     Navier: typeof import('./components/Navier.vue')['default']
     PhGear: typeof import('~icons/ph/gear')['default']
+    PhInfo: typeof import('~icons/ph/info')['default']
     PhMoon: typeof import('~icons/ph/moon')['default']
     PhSun: typeof import('~icons/ph/sun')['default']
     PhTranslate: typeof import('~icons/ph/translate')['default']

@@ -4,6 +4,7 @@ button:
   back: Back
   go: GO
   home: Home
+  info: Information
   settings: Settings
   toggle_dark: Toggle dark mode
   toggle_langs: Change languages

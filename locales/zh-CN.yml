@@ -4,6 +4,7 @@ button:
   back: 返回
   go: 确定
   home: 首页
+  info: 信息
   settings: 设置
   toggle_dark: 切换深色模式
   toggle_langs: 切换语言
