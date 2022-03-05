@@ -13,23 +13,23 @@ import { currentRoom } from "@composables";
 
 const routes_layouts = setupLayouts(generatedRoutes)
 
-const router = createRouter({
-  history: createWebHashHistory(),
-  routes: [...routes_layouts],
-  // routes: [...routes],
-  scrollBehavior(to, from, savedPosition) {
-    if (savedPosition) {
-      return savedPosition;
-    } else {
-      return { top: 0, behavior: "smooth" };
-    }
-  },
-});
+// const router = createRouter({
+//   history: createWebHashHistory(),
+//   routes: [...routes_layouts],
+//   // routes: [...routes],
+//   scrollBehavior(to, from, savedPosition) {
+//     if (savedPosition) {
+//       return savedPosition;
+//     } else {
+//       return { top: 0, behavior: "smooth" };
+//     }
+//   },
+// });
 
 const app = createApp(App);
-app.use(router)
+// app.use(router)
 // install all modules under `modules/`
-Object.values(import.meta.globEager('./modules/*.ts')).forEach(i => i.install?.({ app, router, routes: routes_layouts }))
+Object.values(import.meta.globEager('./modules/*.ts')).forEach(i => i.install?.({ app }))
 
 app.mount("#app");
 
@@ -40,11 +40,3 @@ Promise.resolve().then(async () => {
   globalThis.gchannels = gchannels
   globalThis.cref = cref
 }) 
-
-router.beforeEach((to, from, next) => {
-  if (!currentRoom.isRoot && !to.query?.room) {
-    next({ ...to, query: { room: currentRoom.pub } });
-  } else {
-    next();
-  }
-});

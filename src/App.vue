@@ -1,24 +1,7 @@
 <script setup lang="ts">
-import { useRoute, useRouter } from "vue-router";
 import { watch, watchEffect, computed } from "vue";
 import { currentRoom, rootRoom, useBackground } from "@composables";
-
-
-const router = useRouter()
-const route = useRoute();
-watchEffect(() => {
-  if (route.query?.room) {
-    currentRoom.pub = route.query.room
-  }
-});
-
-watch(() => currentRoom.pub, (pub) => {
-  if (pub == rootRoom.pub) {
-    router.push({ path: route.path, query: {} })
-  } else {
-    router.push({ path: route.path, query: { room: pub } })
-  }
-})
+import Videos from "@/pages/videos.vue"
 
 
 //  nav-bar
@@ -26,13 +9,13 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, ligh
 
 // .flex.flex-col.items-end.fixed.bottom-2.left-2.z-10000
 //   util-tools
+//   component(:is="Videos")
 </script>
 
 <template lang="pug">
 .p-0.flex.flex-col(style="flex: 1000 1 100%" :style="{ ...bg }")
-  router-view(v-slot="{ Component }")
-    transition(name="fade" mode="out-in")
-      component(:is="Component")
+  transition(name="fade" mode="out-in")
+    Videos
 </template>
 
 <style lang="postcss">
