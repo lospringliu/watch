@@ -3,7 +3,7 @@ import { ref } from "vue"
 import { useToggle } from "@vueuse/core"
 import { isDark, toggleDark } from '../logic'
 import { prefers } from "../stores"
-import platform from 'platform-detect'
+import { globalState } from '../stores/globalState'
 const { t, availableLocales, locale } = useI18n()
 const flag_settings = ref(false)
 const flag_info = ref(false)
@@ -42,7 +42,7 @@ watch(flag_settings, (value, old_value) => {
       <div class="grid grid-cols-1 gap-6 text-gray-700 dark_text-gray-500">
         <code>
           <pre>
-            {{ platform }}
+            {{ globalState.platform }}
           </pre>
         </code>
       </div>
