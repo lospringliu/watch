@@ -42,7 +42,7 @@ export let gun2;
 
 export function useGun() {
   if (!gun) {
-    gun = Gun({ peers: [peer.value], localStorage: false });
+    gun = Gun({ peers: [peer.value], localStorage: true });
   }
   return gun;
 }
@@ -55,7 +55,7 @@ export function useGun() {
 
 export function useGun2() {
   if (!gun2) {
-    gun2 = Gun({ peers: [peer.value], localStorage: false });
+    gun2 = Gun({ peers: [peer.value], localStorage: true });
   }
   return gun2;
 }
