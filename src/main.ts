@@ -1,5 +1,4 @@
 import { createApp } from "vue";
-import App from "./App.vue";
 
 import "virtual:windi.css";
 import "@components/styles/index.css";
@@ -21,8 +20,10 @@ if (globalState.platform.android) {
   gun = useGun()
   gun = useGun2()
 }
-import { useVideos } from "@/composables/useVideos"
 import { currentRoom } from "@composables";
+import { useVideos } from "@/composables/useVideos"
+
+import App from "./App.vue";
 
 const routes_layouts = setupLayouts(generatedRoutes)
 
