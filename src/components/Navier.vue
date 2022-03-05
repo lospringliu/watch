@@ -2,15 +2,10 @@
 import { ref } from "vue"
 import { useToggle } from "@vueuse/core"
 import { isDark, toggleDark } from '../logic'
-import IconSun from '~icons/heroicons-outline/sun'
-import IconMoon from '~icons/heroicons-outline/moon'
-import IconSettings from '~icons/carbon/settings'
 import { prefers } from "../stores"
 const { t, availableLocales, locale } = useI18n()
 const flag_settings = ref(false)
-const flag_user = ref(false)
 const toggleSettings = useToggle(flag_settings)
-const toggleUser = useToggle(flag_user)
 const toggleLocales = () => {
   const locales = availableLocales
   locale.value = locales[(locales.indexOf(locale.value) + 1) % locales.length]
