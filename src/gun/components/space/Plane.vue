@@ -35,7 +35,7 @@ const { t } = useI18n()
     @click="join()"
     :style="{ borderColor: user.color }"
     ) {{ t('gunvue.space_enter') }}
-  svg.h-100vh.w-100vw(
+  svg.h-98vh.w-98vw(
     ref="plane"
     style="cursor:none;"
     @click="place(); !user.is ? user.auth = true : null"
