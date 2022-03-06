@@ -109,7 +109,7 @@ export default defineConfig({
         name: 'MOI',
         short_name: 'MOI',
         display: "standalone",
-        theme_color: '#ff0088',
+        theme_color: '#ccebff',
         icons: [
           {
             src: 'pwa-192x192.png', // <== don't add slash, for testing
