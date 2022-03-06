@@ -108,6 +108,7 @@ export default defineConfig({
       manifest: {
         name: 'MOI',
         short_name: 'MOI',
+        display: "standalone",
         theme_color: '#ff0088',
         icons: [
           {

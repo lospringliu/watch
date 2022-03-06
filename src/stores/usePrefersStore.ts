@@ -37,11 +37,12 @@ export const usePrefersStore = defineStore('prefers', {
   },
   getters: {
     channels_playlists() {
-      return [ ...this.channels, ...this.playlists ]
+      return [ ...this.channels, ...this.playlists ].filter(c => c.id.length > 20)
     }
   },
   actions: {
     addChannelPlaylist(cp: IChannel) {
+      if (cp.id.length < 20) return
       if (this.channels.filter(c => c.id === cp.id).length === 0) {
         if (cp.id.startsWith("UC")) {
           this.channels.push(cp)
