@@ -25,6 +25,8 @@ not-found: Not found
 gunvue:
   cred_saved: Ive stored my key securely
   features: Features
+  form_text_hint: Main text content (with **markdown** support)
+  form_add_to_post: Add to post
   post_feed_search: Search for a feed
   create_profile_field: New profile field
   go_homepage: Go to my page
@@ -43,7 +45,9 @@ gunvue:
   renew: Renew
   leave: Leave
   submit: Submit
+  load: Load
   reset: Reset
+  reset2: Reset
   post_title: Title
   post_title_add: Add a heading
   post_statement: Short text statement
@@ -73,6 +77,10 @@ gunvue:
   cred_link: Link
   cred_text: Text
   cred_json: JSON
+  form_link: Paste a link
+  form_link_url: Paste a URL
+  form_youtube: Add a youtube video
+  form_youtube_video: Paste a Youtube video link
   login_qr: QR
   login_json: JSON
   create_account: Create a new account

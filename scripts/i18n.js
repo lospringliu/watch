@@ -30,10 +30,15 @@ const files = [
   "src/gun/components/post/List.vue",
   "src/gun/components/post/Page.vue",
   "src/gun/components/post/feed/List.vue",
+  "src/gun/components/form/Text.vue",
+  "src/gun/components/form/Youtube.vue",
+  "src/gun/components/form/Link.vue",
 ]
 const REPLACES = { // key: [flag_context, flag_binding,  en, zh, pre_regex, pre_replace, post_regex, post_replace]
   cred_saved: [false, false, `I've stored my key securely`, "我已经安全保存好了"],
   features: [false, false, "Features", "特性", "", "", ":"],
+  form_text_hint: [false, true, "Main text content \\(with \\*\\*markdown\\*\\* support\\)", "正文内容(支持**markdown**)", `placeholder="`],
+  form_add_to_post: [false, false, "Add to post", "添加到文章", `ml-2 `],
   post_feed_search: [false, true, "Search for a feed", "搜索反馈", `placeholder="`],
   create_profile_field: [false, true, "New profile field", "新建属性", `placeholder="`],
   go_homepage: [false, false, "Go to my page", "去个人页面"],
@@ -52,7 +57,9 @@ const REPLACES = { // key: [flag_context, flag_binding,  en, zh, pre_regex, pre_
   renew: [false, false, "Renew", "更新", `ml-2 `],
   leave: [false, false, "Leave", "离开", `ml-2 `],
   submit: [false, false, "Submit", "提交", `ml-2 `],
+  load: [false, false, "Load", "导入", `ml-2 `],
   reset: [false, false, "Reset", "重置", `\\) `, `) `],
+  reset2: [false, false, "Reset", "重置", `ml-2 `],
   post_title: [false, true, "Title", "题目", `placeholder="`],
   post_title_add: [false, true, "Add a heading", "添加标题", `title="`],
   post_statement: [false, true, "Short text statement", "声明", `placeholder="`],
@@ -82,6 +89,10 @@ const REPLACES = { // key: [flag_context, flag_binding,  en, zh, pre_regex, pre_
   cred_link: [false, false, "Link", "连接", "px-2 "],
   cred_text: [false, false, "Text", "文本", "px-2 "],
   cred_json: [false, false, "JSON", "文件", "px-2 "],
+  form_link: [false, false, "Paste a link", "粘贴链接", "text-lg "],
+  form_link_url: [false, true, "Paste a URL", "粘贴链接地址", `placeholder="`],
+  form_youtube: [false, false, "Add a youtube video", "添加Youtube视频", "font-bold "],
+  form_youtube_video: [false, true, "Paste a Youtube video link", "粘贴Youtube视频链接", `placeholder="`],
   login_qr: [false, false, "QR", "二维码", "font-bold "],
   login_json: [false, false, "JSON", "文件", "font-bold "],
   create_account: [false, false, "Create a new account", "创建新账号"],
@@ -112,7 +123,7 @@ async function update_locales() {
   zh.gunvue = {}
   Object.keys(REPLACES).forEach(k => {
     let v = REPLACES[k]
-    en.gunvue[k] = v[2].replace(/'|"/g, "").replace(/Mates/,"Friends").replace(/mates/, "friends")
+    en.gunvue[k] = v[2].replace(/'|"|\\/g, "").replace(/Mates/,"Friends").replace(/mates/, "friends")
     zh.gunvue[k] = v[3]
   })
   if (JSON.stringify(en) !== JSON.stringify(en_ori)) {

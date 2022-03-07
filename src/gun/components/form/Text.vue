@@ -47,19 +47,20 @@ function importPostFile(event) {
     }
   });
 }
+const { t } = useI18n()
 </script>
 
 <template lang='pug'>
 .flex.flex-col
   .flex.flex-col.text-left.p-4
-    textarea#myMD(ref="md"  placeholder="Main text content (with **markdown** support)")
+    textarea#myMD(ref="md"  :placeholder="t('gunvue.form_text_hint')")
   .flex.flex-wrap.bg-dark-100.p-4
     button.button.m-1(@click="$emit('close')")
       la-check
-      .ml-2 Add to post
+      .ml-2 {{ t('gunvue.form_add_to_post') }}
     label.m-1.button.cursor-pointer.flex.items-center(for="import-post")
       la-markdown
-      .ml-2 Load
+      .ml-2 {{ t('gunvue.load') }}
     input#import-post.hidden(
       tabindex="-1"
       type="file",
@@ -70,7 +71,7 @@ function importPostFile(event) {
     .flex-1
     button.button.m-1(@click="text = ''")
       la-trash
-      .ml-2 Reset
+      .ml-2 {{ t('gunvue.reset2') }}
 </template>
 
 <style lang="postcss" scoped>

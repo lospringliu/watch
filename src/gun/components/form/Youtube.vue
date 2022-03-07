@@ -27,14 +27,15 @@ function youtubeLinkParser(url) {
   }
 }
 
+const { t } = useI18n()
 </script>
 
 <template lang='pug'>
 .p-4.text-lg
   .flex.items-center.mb-2
     la-youtube
-    .text-xl.ml-2.font-bold Add a youtube video
-  input.p-4.my-4.w-full.border-1.border-dark-300(v-model="link" autofocus placeholder="Paste a Youtube video link")
+    .text-xl.ml-2.font-bold {{ t('gunvue.form_youtube') }}
+  input.p-4.my-4.w-full.border-1.border-dark-300(v-model="link" autofocus :placeholder="t('gunvue.form_youtube_video')")
   embed-youtube.min-w-80vw.mt-2(v-if="id" :video="id")
 </template>
 

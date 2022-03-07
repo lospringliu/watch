@@ -39,8 +39,7 @@ const color = useColor('light')
     :style="{ ...bg }"
     )
     router-link.link(to="/")
-      .font-bold.text-4xl.text-left.write-vertical-right.text-green-700.text-opacity-10.text-stroke-sm.text-stroke-blue-700 M
-    .flex-1.hidden.sm_block
+      .bg-transparent.font-bold.text-4xl.text-left.write-vertical-right.text-green-700.text-opacity-10.text-stroke-sm.text-stroke-blue-700 M
     router-link.link(
       v-for="(link, l) in routes" :key="link" 
       :to="l" ) 
@@ -51,7 +50,6 @@ const color = useColor('light')
       ph-chats-teardrop(v-if="link == 'Chats'")
       ph-users(v-if="link == 'Users'")
       .hidden.md_block {{ link }}
-    .flex-1.hidden.sm_block
     user-icon(
       :size="32"
       @user="$router.push(`/users/${$event}`)" @room="$router.push(`/rooms/${$event}`)"
@@ -69,7 +67,7 @@ const color = useColor('light')
 }
 
 .link {
-  @apply sm_px-4 md_px-6 lg_px-8 rounded-xl cursor-pointer flex items-center;
+  @apply rounded-xl cursor-pointer flex items-center;
 }
 </style>
 

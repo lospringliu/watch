@@ -21,6 +21,7 @@ watchEffect(() => {
   }
 })
 
+const { t } = useI18n()
 </script>
 
 <template lang='pug'>
@@ -29,8 +30,8 @@ watchEffect(() => {
     la-link
   ui-layer(:open="add" @close="add = false")
     .p-4.max-w-600px
-      .text-lg Paste a link
-      input.text-sm.p-4.my-4(ref="input" type="url" v-model="url" placeholder="Paste a URL")
+      .text-lg {{ t('gunvue.form_link') }}
+      input.text-sm.p-4.my-4(ref="input" type="url" v-model="url" :placeholder="t('gunvue.form_link_url')")
 </template>
 
 <style lang="postcss" scoped>

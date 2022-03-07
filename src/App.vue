@@ -6,6 +6,16 @@ import { currentRoom, rootRoom, useBackground } from "@composables";
 
 const router = useRouter()
 const route = useRoute();
+onMounted(() => {
+  console.log(`app mounted`)
+  const languages = usePreferredLanguages()
+  const { locale } = useI18n()
+  const language = languages.value[0]
+  if (language.startsWith("zh")) {
+    locale.value = "zh-CN"
+  } else if (language.startsWith("ru")) {
+  } else {}
+})
 watchEffect(() => {
   if (route.query?.room) {
     currentRoom.pub = route.query.room
