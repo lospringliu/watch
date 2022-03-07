@@ -1,6 +1,6 @@
 {
   "background_color": "#fff",
-  "display": "standalone",
+  "display": "fullscreen",
   "homepage_url": "https://watch.bcapps.ca",
   "providedBy": {
     "name": "MOI",
