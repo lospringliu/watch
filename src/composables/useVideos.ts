@@ -7,9 +7,10 @@ import AsyncForEach from "async-await-foreach"
 const gun = useGun()
 const gvideos = reactive({})
 const gchannels = reactive({})
-// const baseref = gun.get("moitestmoitestmoitest")
-const vref = gun.get("moitestmoitestmoitest").get("videos").get("youtube")
-const cref = gun.get("moitestmoitestmoitest").get("channels").get("youtube")
+const vref = gun.get("moiiommoiiom").get("youtube").get("videos")
+const pref = gun.get("moiiommoiiom").get("youtube").get("published") // indexing
+const cref = gun.get("moiiommoiiom").get("youtube").get("channels")
+// cref.get(`channelId`).get("published") // indexing
 let listening = false
 
 watch(gvideos, (value, old_value) => {
@@ -20,6 +21,8 @@ watch(gvideos, (value, old_value) => {
       const channel = gchannels[gvideo.channelId]
       video.channel = channel
       videos.add(video) // direct store operation
+    } else {
+      console.log(`.!. channel not found ${gvideo.channelId} for video ${gvideo.videoId}`)
     }
   })
 })
@@ -37,8 +40,9 @@ export async function initChannels() {
         const channel = { id: cc.id, name: cc.name, title: cc.title}
         gchannels[k] = channel
       } else if (d.id && d.name && d.title) { // read from gun
-        const channel = { id: d.id, name: d.name, title: d.title }
-        gchannels[k] = channel
+        // const channel = { id: d.id, name: d.name, title: d.title }
+        delete d._
+        gchannels[k] = d
         // prefers.addChannelPlaylist(channel)
       } else {
         console.log(`strange channel in gun ${d}`)
@@ -50,18 +54,20 @@ export async function initChannels() {
       await put_channel({id: c.id, name: c.name, title: c.title})
     }
   })
-  return { gvideos, vref, gchannels, cref }
+  return { gvideos, vref, pref, gchannels, cref }
 }
 
 export async function initVideos() {
-  vref.map().once((d,k) => {
+  pref.get({'.': {'>': new Date().toJSON().slice(0,9)}}).once().map().once((d,k) => {
     if (!gvideos.hasOwnProperty(k)) {
       console.log(`video ${d.videoId}`)
       if (d.videoId && d.videoPublishedAt && d.channelId) {
-        const video = { videoId: d.videoId, videoPublishedAt: d.videoPublishedAt, channelId: d.channelId}
-        gvideos[k] = video
+        // const video = { videoId: d.videoId, videoPublishedAt: d.videoPublishedAt, channelId: d.channelId}
+        delete d._
+        gvideos[k] = d
       } else {
-        console.log(`strange video in gun ${d}`)
+        console.log(`strange video in gun ${k}`)
+        console.log(d)
       }
     }
   })
@@ -70,20 +76,26 @@ export async function initVideos() {
 export async function useVideos() {
   if (!listening) {
     listening = true
-    vref.map().on((d, k) => {
+    // vref.map().on((d, k) => {
+    //   if (k === "published" || k === "channels") { return }
+    pref.get({'.': {'>': new Date().toJSON().slice(0,10)}}).once().map().on((d,k) => {
       if (!gvideos.hasOwnProperty(k)) {
         console.log(`video ${d.videoId}`)
         if (d.videoId && d.videoPublishedAt && d.channelId) {
-          const video = { videoId: d.videoId, videoPublishedAt: d.videoPublishedAt, channelId: d.channelId}
-          gvideos[k] = video
+          // const video = { videoId: d.videoId, videoPublishedAt: d.videoPublishedAt, channelId: d.channelId}
+          delete d._
+          gvideos[k] = d
         } else {
-          // console.log(`strange video in gun ${d}`)
+          console.log(`strange video in gun ${d}`)
           console.log(d)
         }
+      } else {
+        // video property update ?
       }
     // })
     }, true)  // delta value
     cref.map().on((d, k) => {
+      if (k === "published") { console.log('key published'); return }
       if (!gchannels.hasOwnProperty(k)) {
         console.log(`channel ${d.name}`)
         const cc = prefers.channels_playlists.find(e => e.id === k)
@@ -91,12 +103,16 @@ export async function useVideos() {
           const channel = { id: cc.id, name: cc.name, title: cc.title}
           gchannels[k] = channel
         } else if (d.id && d.name && d.title) { // read from gun
-          const channel = { id: d.id, name: d.name, title: d.title }
-          gchannels[k] = channel
-          prefers.addChannelPlaylist(channel)
+          // const channel = { id: d.id, name: d.name, title: d.title }
+          delete d._
+          gchannels[k] = d
+          // prefers.addChannelPlaylist(channel)
         } else {
-          console.log(`strange channel in gun ${d}`)
+          console.log(`strange channel in gun ${k}`)
+          console.log(d)
         }
+      } else {
+        // channel property update ?
       }
     // })
     }, true)  // delta value
@@ -118,20 +134,32 @@ export async function put_channel(pchannel) {
 }
 
 export async function put_video(video_object) {
-  if (gvideos[video_object.videoId]) return
   if (video_object.videoId && video_object.videoPublishedAt && video_object.channel) {
-    const video = {
+    const video: IVideo = {
       videoId: video_object.videoId,
       videoPublishedAt: video_object.videoPublishedAt,
       channelId: video_object.channel.id
     }
+    if (video_object.hasOwnProperty("ipfs")) {
+      video.ipfs = video_object.ipfs
+    }
     if (!gchannels.hasOwnProperty(video.channelId)) {
       await put_channel(video_object.channel)
     }
-    const node = await vref.get(video.videoId).then()
-    if (!node) { // video is already in gun, check if needs update
-      vref.get(video.videoId).put(video)
+    let node = await vref.get(video.videoId).then()
+    if (!node) {
+      node = vref.get(video.videoId).put(video)
+    } // video is now in gun, to check if needs update
+    let published = await pref.get(video.videoPublishedAt).then()
+    if (!published) {
+      published = pref.get(video.videoPublishedAt).put(video)
+    } // video is now indexed by publish timestamp
+    let published_in_channel = await cref.get(video.channelId).get("published").get(video.videoPublishedAt).then()
+    if (!published_in_channel) {
+      published_in_channel = cref.get(video.channelId).get("published").get(video.videoPublishedAt).put(video)
+    } // video is now indexed by publish timestamp
+    if (!gvideos[video.videoPublishedAt]) {
+      gvideos[video.videoPublishedAt] = video
     }
-    gvideos[video.videoId] = video
   }
 }

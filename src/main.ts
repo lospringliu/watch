@@ -48,11 +48,12 @@ Object.values(import.meta.globEager('./modules/*.ts')).forEach(i => i.install?.(
 app.mount("#app");
 
 Promise.resolve().then(async () => {
-  const {vref, cref, gvideos, gchannels} = await initChannels()
+  const {vref, pref, cref, gvideos, gchannels} = await initChannels()
   globalThis.gvideos = gvideos
   globalThis.vref = vref
   globalThis.gchannels = gchannels
   globalThis.cref = cref
+  globalThis.pref = pref
   await useVideos()
 }) 
 
