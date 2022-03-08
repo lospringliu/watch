@@ -25,6 +25,9 @@ pages:
   rooms_description: Open data collections
   chats: Chats
   users: Users
+  youtube_access: Have Youtube access
+  youtube_per_query: Records return per API query
+  youtube_playback_rate: Playback rate
 not-found: Not found
 gunvue:
   cred_saved: Ive stored my key securely

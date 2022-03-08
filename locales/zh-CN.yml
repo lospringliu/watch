@@ -25,6 +25,9 @@ pages:
   rooms_description: 开放数据集
   chats: 聊天
   users: 用户
+  youtube_access: 能访问Youtube
+  youtube_per_query: API查询返回数目
+  youtube_playback_rate: 播放速度
 not-found: 未找到页面
 gunvue:
   cred_saved: 我已经安全保存好了

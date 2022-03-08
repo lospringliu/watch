@@ -1,7 +1,11 @@
 <script setup lang="ts">
 
 import { computed } from 'vue'
-const { t } = useI18n()
+const { t, availableLocales, locale } = useI18n()
+const toggleLocales = () => {
+  const locales = availableLocales
+  locale.value = locales[(locales.indexOf(locale.value) + 1) % locales.length]
+}
 
 const routes = {
   "/space/": "Space",
@@ -31,7 +35,7 @@ const color = useColor('light')
 
 <template lang="pug">
 .flex.flex-col
-  .min-h-4vh.md_min-h-6vh.justify-between.flex.flex-wrap.items-center.gap-2.p-2.bg-light-900.shadow-xl.z-400.sticky.w-full.bg-cover.top-0(
+  .min-h-4vh.md_min-h-6vh.justify-between.flex.flex-wrap.items-center.bg-light-900.shadow-xl.z-400.sticky.w-full.bg-cover.top-0(
     :style="{ ...bg }"
     )
     router-link.link(to="/")
@@ -51,6 +55,9 @@ const color = useColor('light')
     router-link.link(to="/rooms/")
       ph-house
       .hidden.md_block {{ t('pages.rooms') }}
+    <button :title="t('button.toggle_langs')" @click="toggleLocales">
+      <ph-translate />
+    </button>
     user-icon(
       :size="32"
       @user="$router.push(`/users/${$event}`)" @room="$router.push(`/rooms/${$event}`)"
