@@ -15,11 +15,12 @@ intro:
   whats-your-name: 输入你的名字
   aka: 曾用名
 pages:
+  videos: 视频
   space: 空间
-  space_description: 二维会议空间
+  space_description: 会议 空间
   posts: 发布
-  posts_description: 不可篡改出版
-  rooms: 房间
+  posts_description: 防篡改出版
+  rooms: 地盘
   rooms_description: 开放数据集
 not-found: 未找到页面
 gunvue:
@@ -38,7 +39,7 @@ gunvue:
   upload: 上传
   download: 下载
   download2: 下载
-  visibility: 可见
+  visibility: 屏蔽
   view: 查看
   send: 发送
   enter: 进入
@@ -51,26 +52,27 @@ gunvue:
   post_title: 题目
   post_title_add: 添加标题
   post_statement: 声明
-  chat_chats: 交谈
-  chat_new: 新交谈
+  chat_chats: 聊天
+  chat_new: 新聊天
   space_enter: 点触加入空间
-  room_room: 空间
-  room_add: 添加空间
-  room_generate: 生成新空间
-  room_browse: 浏览空间
-  room_hosts: 主人
+  room_room: 地盘
+  room_new_name: 新地盘名称
+  room_add: 添加地盘
+  room_generate: 生成新地盘
+  room_browse: 浏览地盘
+  room_hosts: 堂主
   room_tools: 工具
   util_copy: 复制
   util_copied: 已复制
   reactions: 回应
-  my_rooms: 我的空间
+  my_rooms: 我的地盘
   save_keys: 请确保安全存储你的密钥供以后使用
   already_account: 我已经有账号了
   login_saved_key: 用保存的密钥登录
   your_message: 你的信息
   paste_keys: 粘贴密钥
   login_paste: 粘贴
-  stars: 红星
+  stars: 赞
   cred_keypair: 密钥对
   cred_qr: 二维码
   cred_share: 分享

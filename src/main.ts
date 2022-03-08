@@ -11,15 +11,6 @@ import platform from 'platform-detect'
 import { globalState } from './stores/globalState'
 globalState.platform = platform
 
-// import { useGun, useGun2 } from "@composables/gun"
-// let gun, gun2
-// if (globalState.platform.android) {
-//   gun = useGun({})
-//   gun2 = useGun2({})
-// } else {
-//   gun = useGun()
-//   gun2 = useGun2()
-// }
 import { currentRoom } from "@composables";
 
 import App from "./App.vue";

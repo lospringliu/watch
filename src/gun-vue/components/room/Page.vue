@@ -48,11 +48,11 @@ const { t } = useI18n()
               room-features(:features="enc") {{ t('gunvue.room_tools') }}
         .flex-1
       room-features.my-4(:features="room.features")
-      .flex.flex-wrap
+      .flex.flex-wrap.justify-between
         button.button(v-if="room.hosts?.[user.pub]?.enc" @click="recreateRoom(room.hosts?.[user.pub]?.enc)")
           la-tools
           .ml-2 {{ t('gunvue.renew') }}
-        .flex.flex-wrap.py-4(v-if="roomPub != rootRoom.pub")
+        .flex.flex-wrap(v-if="roomPub != rootRoom.pub")
           button.button(@click="enterRoom(roomPub)" v-if="currentRoom.pub !== roomPub")
             ion-enter-outline
             .ml-2 {{ t('gunvue.enter') }}

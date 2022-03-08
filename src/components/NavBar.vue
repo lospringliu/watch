@@ -1,13 +1,13 @@
 <script setup lang="ts">
 
 import { computed } from 'vue'
+const { t } = useI18n()
 
 const routes = {
-  "/videos/": "Videos",
   "/space/": "Space",
   "/chats/": "Chats",
   "/posts/": "Posts",
-  // "/users/": "Users",
+  "/users/": "Users",
   "/rooms/": "Rooms",
 };
 
@@ -15,13 +15,9 @@ const icons = {
   'Space': 'ic-round-filter-center-focus'
 }
 
-
 import { useUser, currentRoom, useBackground, useColor } from '@composables';
-
 const { user } = useUser()
-
 const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200 }))
-
 const color = useColor('light')
 
 // img.w-18.transition-all.duration-500.ease-in-out(src="/favicon.svg")
@@ -40,10 +36,12 @@ const color = useColor('light')
     )
     router-link.link(to="/")
       .bg-transparent.font-bold.text-4xl.text-left.write-vertical-right.text-green-700.text-opacity-10.text-stroke-sm.text-stroke-blue-700 M
+    router-link.link(to="/videos/")
+      ph-video-camera
+      .hidden.md_block {{ t('pages.videos') }}
     router-link.link(
       v-for="(link, l) in routes" :key="link" 
       :to="l" ) 
-      ph-video-camera(v-if="link == 'Videos'")
       ph-hands-clapping(v-if="link == 'Space'")
       ph-newspaper(v-if="link == 'Posts'")
       ph-house(v-if="link == 'Rooms'")
