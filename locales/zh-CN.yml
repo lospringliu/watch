@@ -17,11 +17,14 @@ intro:
 pages:
   videos: 视频
   space: 空间
+  spaces: 空间
   space_description: 会议 空间
   posts: 发布
   posts_description: 防篡改出版
   rooms: 地盘
   rooms_description: 开放数据集
+  chats: 聊天
+  users: 用户
 not-found: 未找到页面
 gunvue:
   cred_saved: 我已经安全保存好了

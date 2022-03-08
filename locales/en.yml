@@ -16,12 +16,15 @@ intro:
   aka: AKA
 pages:
   videos: Videos
-  space: Spaces
+  space: Space
+  spaces: Spaces
   space_description: 2D Meeting space
   posts: Posts
   posts_description: Immutable Publications
   rooms: Rooms
   rooms_description: Open data collections
+  chats: Chats
+  users: Users
 not-found: Not found
 gunvue:
   cred_saved: Ive stored my key securely

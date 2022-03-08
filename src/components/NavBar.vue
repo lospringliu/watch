@@ -39,15 +39,18 @@ const color = useColor('light')
     router-link.link(to="/videos/")
       ph-video-camera
       .hidden.md_block {{ t('pages.videos') }}
-    router-link.link(
-      v-for="(link, l) in routes" :key="link" 
-      :to="l" ) 
-      ph-hands-clapping(v-if="link == 'Space'")
-      ph-newspaper(v-if="link == 'Posts'")
-      ph-house(v-if="link == 'Rooms'")
-      ph-chats-teardrop(v-if="link == 'Chats'")
-      ph-users(v-if="link == 'Users'")
-      .hidden.md_block {{ link }}
+    router-link.link(to="/space/")
+      ph-hands-clapping
+      .hidden.md_block {{ t('pages.space') }}
+    router-link.link(to="/posts/")
+      ph-newspaper
+      .hidden.md_block {{ t('pages.posts') }}
+    router-link.link(to="/chats/")
+      ph-chats-teardrop
+      .hidden.md_block {{ t('pages.chats') }}
+    router-link.link(to="/rooms/")
+      ph-house
+      .hidden.md_block {{ t('pages.rooms') }}
     user-icon(
       :size="32"
       @user="$router.push(`/users/${$event}`)" @room="$router.push(`/rooms/${$event}`)"

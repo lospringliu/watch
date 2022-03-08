@@ -20,7 +20,7 @@ const { t } = useI18n()
 
         router-link.shadow-md.m-2.p-2.flex-1.flex.flex-col.items-center.bg-light-800.rounded-2xl(to="/space/")
           ic-round-filter-center-focus.text-80px.mb-2
-          .text-2xl {{ t(`pages.space`) }}
+          .text-2xl {{ t(`pages.spaces`) }}
           .p-0 {{ t('pages.space_description')}}
 
         router-link.shadow-md.m-2.p-2.flex-1.flex.flex-col.items-center.bg-light-800.rounded-2xl(to="/posts/")
