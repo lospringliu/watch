@@ -31,7 +31,6 @@ const color = useColor('light')
 //  @apply p-1 py-2 sm_px-2 md_px-4 lg_px-8 rounded-xl cursor-pointer flex items-center;
 //  router-link.link(to="/")
 //    a(href="/")
-//      .bg-transparent.font-bold.text-4xl.text-left.write-vertical-right.text-green-700.text-opacity-10.text-stroke-sm.text-stroke-blue-700 M
 //      cryptocurrency-moac
 </script>
 
@@ -40,8 +39,8 @@ const color = useColor('light')
   .min-h-4vh.md_min-h-6vh.justify-between.flex.flex-wrap.items-center.bg-light-900.shadow-xl.z-400.sticky.w-full.bg-cover.top-0(
     :style="{ ...bg }"
     )
-    router-link.link(to="/#")
-      span.bg-transparent.font-bold.text-4xl.text-left.write-vertical-right.text-green-700.text-opacity-10.text-stroke-sm.text-stroke-blue-700 M
+    router-link.link(to="/")
+      .bg-transparent.font-bold.py-2.text-4xl.text-left.write-vertical-right.text-green-700.text-opacity-10.text-stroke-sm.text-stroke-blue-700 M
     router-link.link(to="/videos/")
       ph-video-camera
       .hidden.md_block {{ t('pages.videos') }}
