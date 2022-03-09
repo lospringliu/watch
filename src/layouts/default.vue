@@ -21,6 +21,6 @@ globalState.safearea = {top, right, bottom, left}
 const navbar = ref(null)
 const { height } = useElementSize(navbar)
 // const clstop = computed(() => `top-${top.value}`)
-const stltop = computed(() => `padding-top: ${top.value};`)
+const stltop = computed(() => `padding-top: ${top.value === "0px" ? +top.value.replace("px","") - 21 : 0}px;`)
 const style = computed(() => `padding-top: ${Math.floor(height.value)}px;`)
 </script>
