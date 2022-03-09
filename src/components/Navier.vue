@@ -13,13 +13,6 @@ const settings_prefers = ref(prefers)
 watch(flag_settings, (value, old_value) => {
   prefers.save()
 })
-const {
-  top,
-  right,
-  bottom,
-  left,
-} = useScreenSafeArea()
-globalState.safearea = {top, right, bottom, left}
 // <button class="mx-auto mx-4" @click="toggleDark()">
 //    <button class="mx-auto mx-4" :title="t('button.toggle_dark')" @click="toggleDark()">
 </script>

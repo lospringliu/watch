@@ -8,8 +8,15 @@
   </main>
 </template>
 <script setup lang="ts">
-  const navbar = ref(null)
-  const { height } = useElementSize(navbar)
-  // const style = computed(() => `pt-${Math.floor(height.value)}px`)
-  const style = computed(() => `padding-top: ${Math.floor(height.value)}px;`)
+import { globalState } from '../stores/globalState'
+const {
+  top,
+  right,
+  bottom,
+  left,
+} = useScreenSafeArea()
+globalState.safearea = {top, right, bottom, left}
+const navbar = ref(null)
+const { height } = useElementSize(navbar)
+const style = computed(() => `padding-top: ${(Math.floor(+top.value.replace("px","")) + Math.floor(height.value))}px;`)
 </script>

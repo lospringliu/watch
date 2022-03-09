@@ -7,8 +7,8 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import generatedRoutes from 'virtual:generated-pages'
 import { setupLayouts } from 'virtual:generated-layouts'
 
-import platform from 'platform-detect'
 import { globalState } from './stores/globalState'
+import platform from 'platform-detect'
 globalState.platform = platform
 
 import { currentRoom } from "@composables";
