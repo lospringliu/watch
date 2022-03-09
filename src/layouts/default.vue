@@ -1,10 +1,12 @@
 <template>
-  <main :style="style">
-    <div ref="navbar" class="fixed left-0 top-0 z-400 inset-x-0 opacity-95">
+  <main :style="stltop">
+    <div ref="navbar" class="fixed left-0 z-400 inset-x-0 opacity-95">
       <nav-bar />
     </div>
     <ReloadPrompt />
-    <router-view />
+    <div :style="style">
+      <router-view />
+    </div>
   </main>
 </template>
 <script setup lang="ts">
@@ -18,5 +20,7 @@ const {
 globalState.safearea = {top, right, bottom, left}
 const navbar = ref(null)
 const { height } = useElementSize(navbar)
-const style = computed(() => `padding-top: ${(Math.floor(+top.value.replace("px","")) + Math.floor(height.value))}px;`)
+// const clstop = computed(() => `top-${top.value}`)
+const stltop = computed(() => `padding-top: ${top.value};`)
+const style = computed(() => `padding-top: ${Math.floor(height.value)}px;`)
 </script>
