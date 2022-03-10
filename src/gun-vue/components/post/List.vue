@@ -85,7 +85,7 @@ const { t } = useI18n()
         @click="emit('browse', hash)"
         )
   .text-lg.w-full.text-lg.font-bold.mt-4.mb-2.flex.items-center.p-2.bg-light-600.shadow-lg.rounded-2xl.cursor-pointer(v-if="countBacklinks > 0" @click="openBacklinks = !openBacklinks") 
-    .p-2 Backlinks 
+    .p-2 {{ t('gunvue.backlinks') }} 
     .flex-1
     la-angle-down(v-if="!openBacklinks")
     la-angle-up(v-else)

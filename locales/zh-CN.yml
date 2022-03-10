@@ -6,6 +6,8 @@ button:
   home: 首页
   info: 信息
   settings: 设置
+  reload: 加载
+  close: 关闭
   toggle_dark: 切换深色模式
   toggle_langs: 切换语言
 intro:
@@ -15,6 +17,8 @@ intro:
   whats-your-name: 输入你的名字
   aka: 曾用名
 pages:
+  prompt_offline: 应用可离线使用
+  prompt_reload: 应用有更新，可重新加载
   videos: 视频
   space: 空间
   spaces: 空间
@@ -30,6 +34,7 @@ pages:
   youtube_playback_rate: 播放速度
 not-found: 未找到页面
 gunvue:
+  backlinks: 回连
   cred_saved: 我已经安全保存好了
   features: 特性
   form_text_hint: 正文内容(支持**markdown**)

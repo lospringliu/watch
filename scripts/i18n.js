@@ -35,6 +35,7 @@ const files = [
   "src/gun-vue/components/form/Link.vue",
 ]
 const REPLACES = { // key: [flag_context, flag_binding,  en, zh, pre_regex, pre_replace, post_regex, post_replace]
+  backlinks: [false, false, "Backlinks", "回连", `p-2 `],
   cred_saved: [false, false, `I've stored my key securely`, "我已经安全保存好了"],
   features: [false, false, "Features", "特性", "", "", ":"],
   form_text_hint: [false, true, "Main text content \\(with \\*\\*markdown\\*\\* support\\)", "正文内容(支持**markdown**)", `placeholder="`],

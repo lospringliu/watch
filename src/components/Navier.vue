@@ -10,7 +10,7 @@ const flag_info = ref(false)
 const toggleInfo = useToggle(flag_info)
 const toggleSettings = useToggle(flag_settings)
 const settings_prefers = ref(prefers)
-watch(flag_settings, (value, old_value) => {
+watch(flag_settings, () => {
   prefers.save()
 })
 // <button class="mx-auto mx-4" @click="toggleDark()">
@@ -20,7 +20,7 @@ watch(flag_settings, (value, old_value) => {
 </script>
 
 <template>
-  <nav class="flex justify-center items-center text-center text-xl py-1 mx-auto">
+  <nav class="flex justify-center items-center text-center bg-cyan-300 text-xl py-1 mx-auto">
     <button :title="t('button.toggle_dark')" @click="toggleDark()">
       <ph-sun class="mx-2" v-if="isDark" />
       <ph-moon class="mx-2" v-else />

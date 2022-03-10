@@ -22,18 +22,20 @@ const close = async() => {
   >
     <div class="mb-1">
       <span v-if="offlineReady">
-        App ready to work offline
+        {{ $t('pages.prompt_offline') }}
       </span>
       <span v-else>
-        New content available, click on reload button to update.
+        {{ $t('pages.prompt_reload') }}
       </span>
     </div>
     <div class="flex justify-between rounded-lg px-4">
       <button v-if="needRefresh" @click="updateServiceWorker()" class="button text-cyan-600">
         Reload
+        {{ $t('button.reload') }}
       </button>
       <button @click="close" class="button text-cyan-400">
         Close
+        {{ $t('button.close') }}
       </button>
     </div>
   </div>

@@ -6,6 +6,8 @@ button:
   home: Home
   info: Information
   settings: Settings
+  reload: Reload
+  close: Close
   toggle_dark: Toggle dark mode
   toggle_langs: Change languages
 intro:
@@ -15,6 +17,8 @@ intro:
   whats-your-name: What's your name?
   aka: AKA
 pages:
+  prompt_offline: App ready to work offline
+  prompt_reload: New content available, click on reload button to update
   videos: Videos
   space: Space
   spaces: Spaces
@@ -30,6 +34,7 @@ pages:
   youtube_playback_rate: Playback rate
 not-found: Not found
 gunvue:
+  backlinks: Backlinks
   cred_saved: Ive stored my key securely
   features: Features
   form_text_hint: Main text content (with **markdown** support)
