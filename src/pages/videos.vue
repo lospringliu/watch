@@ -1,17 +1,15 @@
 <script setup lang="ts">
-import YoutubeVideos from '~/components/YoutubeVideos.vue'
-import YoutubePlayer from '~/components/YoutubePlayer.vue'
-import Navier from '~/components/Navier.vue'
+const { top } = useScreenSafeArea()
+const style = computed(() => `padding-top: ${top.value === "0px" ? +top.value.replace("px","") - 21 : 0}px;`)
 // import VuePlyr from 'vue-plyr'
 // import 'vue-plyr/dist/vue-plyr.css'
 // replaced dyanmicaly
-import { useTimeAgo } from '@vueuse/core'
 const date = '__DATE__'
 const timeAgo = useTimeAgo(date)
 </script>
 
 <template>
-  <div>
+  <div :style="style">
     <div class="bg-black min-w-xs md_px-12 lg_px-24 xl_px-48">
       <YoutubePlayer />
     </div>

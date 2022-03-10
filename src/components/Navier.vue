@@ -15,6 +15,8 @@ watch(flag_settings, (value, old_value) => {
 })
 // <button class="mx-auto mx-4" @click="toggleDark()">
 //    <button class="mx-auto mx-4" :title="t('button.toggle_dark')" @click="toggleDark()">
+//    <Modal />
+//    <Social />
 </script>
 
 <template>

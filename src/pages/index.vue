@@ -8,7 +8,6 @@ const { t } = useI18n()
 
 <template lang="pug">
 .flex.flex-col
-
   room-page
   .flex.flex-col.shadow-lg.m-2.rounded-3xl.items-center.z-30.bg-light-200.bg-opacity-95.backdrop-filter.backdrop-blur-md(v-if="currentRoom.pub == rootRoom.pub")
 
