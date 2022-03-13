@@ -1,12 +1,21 @@
+import platform from 'platform-detect'
+const { load: load_ipfs } = useScriptTag(
+  "https://cdn.jsdelivr.net/npm/ipfs/dist/index.min.js",
+  // "/ipfs.min.js",
+  () => {},
+  { manual: true },
+)
+const { load: load_videostream } = useScriptTag(
+  "/videostream.js",
+  () => {},
+  { manual: true },
+)
 export const globalState = reactive({
   debug: true,
+  platform,
   loaded_ipfs: false,
   loaded_swtc: false,
   loaded_videostream: false,
-  ipfs: {
-    support: false,
-    tries: 0
-  },
   FEATURED: [
     {videoId: "LJ7Y2MRV0kg", videoPublishedAt: "2019-11-26T04:07:54Z", channelId: "UC7Ky7FjJBI7ojx2Yqz2pkNQ"},
     {videoId: "DPK7D_Q46YI", videoPublishedAt: "2020-04-18T09:01:31Z"}
@@ -38,13 +47,44 @@ export const globalState = reactive({
     // "QmYU7B99SfPzHXmTVVBReqcNRBxm725fiowCmFBPiMQGyU",
     "Qme7ojVGevRjWD6KVRPnL5w8fwrNYFn9YTiYptvKhzKHjZ"
   ],
-  ipfs_supported: computed(() => globalState.loaded_ipfs && (globalState.ipfs.support || globalState.ipfs.tries < 3)),
-  ipfs_online: computed(() => globalState.ipfs_supported && globalState.node && globalState.node.isOnline()),
   node: null,
+  ipfs: {
+    support: computed(() => globalState.platform?.desktop || globalState.platform?.laptop),
+    tries: 0
+  },
+  ipfs_supported: computed(() => globalState.ipfs.support || globalState.ipfs.tries < 3),
+  ipfs_online: computed(() => globalState.ipfs_supported && globalState.node && globalState.node.isOnline()),
   async ipfs_create() {
-    if (globalState.ipfs_supported && !globalState.node) {
+    if (globalState.ipfs.support && !globalState.node) {
        globalThis.node = await globalThis.Ipfs.create({repo: `ipfs-${Math.floor(Math.random() * 10000000)}`})
        globalState.node = globalThis.node
+    }
+  },
+  async videostream_load() {
+    if (!globalState.loaded_videostream) {
+      console.log(`videostream loading`)
+      try {
+        await load_videostream()
+        globalState.loaded_videostream = true
+      } catch (e) {
+        console.log(e)
+        globalState.loaded_videostream = false
+      }
+    }
+  },
+  async ipfs_load() {
+    await globalState.videostream_load()
+    if (globalState.ipfs.support && !globalState.loaded_ipfs) {
+      console.log(`ipfs loading`)
+      try {
+        globalState.ipfs.tries += 1
+        await load_ipfs()
+        globalState.loaded_ipfs = true
+        await globalState.ipfs_create()
+      } catch (e) {
+        console.log(e)
+        globalState.loaded_ipfs = false
+      }
     }
   }
 })

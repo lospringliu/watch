@@ -3,15 +3,14 @@ import { createApp } from "vue";
 import "virtual:windi.css";
 import "@components/styles/index.css";
 
-import { createRouter, createWebHashHistory } from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router"
 import generatedRoutes from 'virtual:generated-pages'
 import { setupLayouts } from 'virtual:generated-layouts'
 
-import { globalState } from './stores/globalState'
-import platform from 'platform-detect'
-globalState.platform = platform
-
-import { currentRoom } from "@composables";
+import { globalState } from "./stores/globalState"
+import { peer } from "@composables/gun"
+peer.value = globalState.gunPeer || "https://relay.bcapps.ca/gun"
+import { currentRoom } from "@composables"
 
 import App from "./App.vue";
 import { initChannels, useVideos } from "./composables/useVideos";
@@ -38,15 +37,6 @@ Object.values(import.meta.globEager('./modules/*.ts')).forEach(i => i.install?.(
 
 app.mount("#app");
 
-Promise.resolve().then(async () => {
-  const {vref, cref, gvideos, gchannels} = await initChannels()
-  globalThis.gvideos = gvideos
-  globalThis.vref = vref
-  globalThis.gchannels = gchannels
-  globalThis.cref = cref
-  await useVideos()
-}) 
-
 router.beforeEach((to, from, next) => {
   if (!currentRoom.isRoot && !to.query?.room) {
     next({ ...to, query: { room: currentRoom.pub } });
@@ -54,3 +44,12 @@ router.beforeEach((to, from, next) => {
     next();
   }
 });
+
+Promise.resolve().then(async () => {
+  const {vref, cref, gvideos, gchannels} = await initChannels()
+  globalThis.gvideos = gvideos
+  globalThis.vref = vref
+  globalThis.gchannels = gchannels
+  globalThis.cref = cref
+}) 
+useVideos().then(console.log(`loading videos`))

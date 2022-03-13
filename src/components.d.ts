@@ -32,6 +32,7 @@ declare module 'vue' {
     IonEnterOutline: typeof import('~icons/ion/enter-outline')['default']
     IonExitOutline: typeof import('~icons/ion/exit-outline')['default']
     IonShareOutline: typeof import('~icons/ion/share-outline')['default']
+    IpfsPlayer: typeof import('./components/IpfsPlayer.vue')['default']
     Keyword: typeof import('./components/Keyword.vue')['default']
     LaAngleDown: typeof import('~icons/la/angle-down')['default']
     LaAngleUp: typeof import('~icons/la/angle-up')['default']

@@ -1,11 +1,15 @@
 <script setup lang="ts">
-
-import { computed } from 'vue'
+import { globalState } from "../stores/globalState"
+const language = ref(null)
 const { t, availableLocales, locale } = useI18n()
 const toggleLocales = () => {
   const locales = availableLocales
   locale.value = locales[(locales.indexOf(locale.value) + 1) % locales.length]
 }
+onMounted(() => {
+  // const { x, y, top, right, bottom, left, width, height } = useElementBounding(language)
+  // globalState.language = { x, y, top, right, bottom, left, width, height }
+})
 
 const routes = {
   "/space/": "Space",
@@ -56,7 +60,7 @@ const color = useColor('light')
     router-link.link(to="/rooms/")
       ph-house
       .hidden.md_block {{ t('pages.rooms') }}
-    <button :title="t('button.toggle_langs')" @click="toggleLocales">
+    <button ref="language" :title="t('button.toggle_langs')" @click="toggleLocales">
       <ph-translate />
     </button>
     user-icon(

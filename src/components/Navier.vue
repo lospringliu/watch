@@ -37,6 +37,7 @@ watch(flag_settings, () => {
       <div class="grid grid-cols-1 gap-6 text-gray-700 dark_text-gray-500">
         <code>
           <pre>
+            {{ globalState?.language}}
             {{ globalState.safearea }}
             {{ globalState.platform }}
           </pre>
