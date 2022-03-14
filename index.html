@@ -11,18 +11,25 @@
     <meta name="apple-mobile-web-app-title" content="Application Title">
     <!-- possible content values: default, black or black-translucent -->
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!--
+    <script>
+      globalThis.global = globalThis
+      globalThis.process = {}
+    </script>
+    -->
     <title>Vite App</title>
   </head>
   <body>
     <div id="app"></div>
     <script type="module">
+      globalThis.global = globalThis
       import { Buffer } from "buffer"
       import process from "process"
-      // import EventEmitter from "events"
+      import EventEmitter from "events"
       globalThis.setImmediate = process.nextTick
       globalThis.process = process
       globalThis.Buffer = Buffer
-      // globalThis.EventEmitter = EventEmitter
+      globalThis.EventEmitter = EventEmitter
     </script>
     <script type="module" src="/src/main.ts"></script>
     <script>

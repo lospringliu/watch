@@ -34,6 +34,7 @@
     "buffer": "^6.0.3",
     "events": "^3.3.0",
     "get-youtube-id": "^1.0.1",
+    "it-to-stream": "^1.0.0",
     "js-yaml": "^4.1.0",
     "pinia": "^2.0.11",
     "platform-detect": "^3.0.1",

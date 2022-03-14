@@ -41,7 +41,7 @@ export default defineConfig({
       // '@composables': '@gun-vue/composables',
       // '@components': '@gun-vue/components',
       // process: "process/browser",
-      // stream: "stream-browserify",
+      stream: "stream-browserify",
       // zlib: "browserify-zlib",
       // util: "util",
       // web3: path.resolve(dirname, "./node_modules/web3/dist/web3.min.js"),

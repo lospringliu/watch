@@ -50,13 +50,13 @@ export const globalState = reactive({
   ],
   node: null,
   ipfs: {
-    support: computed(() => globalState.platform?.desktop || globalState.platform?.laptop),
+    support: computed(() => globalState.platform.desktop || globalState.platform.laptop),
     tries: 0
   },
   ipfs_supported: computed(() => globalState.ipfs.support || globalState.ipfs.tries < 3),
   ipfs_online: computed(() => globalState.ipfs_supported && globalState.node && globalState.node.isOnline()),
   async ipfs_create() {
-    if (globalState.ipfs.support && !globalState.node) {
+    if (globalState.ipfs_supported && !globalState.ipfs_online) {
        globalThis.node = await globalThis.Ipfs.create({repo: `ipfs-${Math.floor(Math.random() * 10000000)}`})
        globalState.node = globalThis.node
     }
