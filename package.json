@@ -37,6 +37,7 @@
     "js-yaml": "^4.1.0",
     "pinia": "^2.0.11",
     "platform-detect": "^3.0.1",
+    "plyr": "^3.6.12",
     "postcss": "^8.4.6",
     "process": "^0.11.10",
     "pug": "^3.0.2",

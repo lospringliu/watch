@@ -7,6 +7,7 @@ export interface IChannel {
 export interface IVideo {
   videoId: string
   videoPublishedAt: string
+  ipfs?: string
   currentTime?: number
   channelId?: string 
   channel?: IChannel

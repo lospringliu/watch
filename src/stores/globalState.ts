@@ -41,11 +41,12 @@ export const globalState = reactive({
     ],
   },
   IPFSCIDS: [
-    // "Qme7ojVGevRjWD6KVRPnL5w8fwrNYFn9YTiYptvKhzKHjZ",
-    // "QmeQ44yxX9SkC5pZvBq6mXAo7JaUxy63LsGPJcdPbMDqcQ",
-    // "QmVsXBF7xQpxJ8LVCpRkwhvdUfTZPbvgFMZYbtzrW4C9mF",
-    // "QmYU7B99SfPzHXmTVVBReqcNRBxm725fiowCmFBPiMQGyU",
-    "Qme7ojVGevRjWD6KVRPnL5w8fwrNYFn9YTiYptvKhzKHjZ"
+    "Qme7ojVGevRjWD6KVRPnL5w8fwrNYFn9YTiYptvKhzKHjZ",
+    "QmeQ44yxX9SkC5pZvBq6mXAo7JaUxy63LsGPJcdPbMDqcQ",
+    "QmVsXBF7xQpxJ8LVCpRkwhvdUfTZPbvgFMZYbtzrW4C9mF",
+    "QmYU7B99SfPzHXmTVVBReqcNRBxm725fiowCmFBPiMQGyU",
+    "Qme7ojVGevRjWD6KVRPnL5w8fwrNYFn9YTiYptvKhzKHjZ",
+    "QmVMMxTVNNixbJMVU1wjwfBgZCr3pJCRLp7BNAdmLhs7gn"
   ],
   node: null,
   ipfs: {
