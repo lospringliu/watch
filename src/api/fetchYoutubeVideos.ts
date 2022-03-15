@@ -17,7 +17,7 @@ function makeParams(options = {}) {
 }
 
 export async function fetchYoutubeVideos (channels: IChannel[] = []) {
-  if (!prefers.youtubeAppKey) {
+  if (!prefers.youtubeAccess || !prefers.youtubeAppKey) {
     console.log(`... bypass fetching videos no api key`)
     await initVideos()
     return videos.videos

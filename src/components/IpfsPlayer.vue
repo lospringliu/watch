@@ -3,7 +3,6 @@ import 'plyr/dist/plyr.css'
 import type { IVideo } from "../types"
 interface IVideoProp {
   video?: IVideo
-  ipfsGateway?: string
 }
 import { globalState } from '../stores/globalState'
 import { getRandomElement } from "../api/utils"
@@ -18,7 +17,7 @@ import { playing, playingInList, playlist, featured, prefers } from "../stores"
 const props = withDefaults(
   defineProps<IVideoProp>(), {
     video: getRandomElement(globalState.FEATURED),
-    ipfsGateway: prefers.ipfs_gateway || "https://gateway.ipfs.io"
+    
   }
 )
 
@@ -50,8 +49,6 @@ watch(playing, (value) => {
       plyrPlayer.value?.stop()
       plyrPlayer.value?.destroy()
       playingVideo.value = JSON.parse(JSON.stringify(playing.playing))
-    } else {
-      console.log(`regular ops`)
     }
   }
 })
@@ -61,20 +58,64 @@ onMounted(async () => {
     if (globalState.ipfs_online) {
       globalState.node.stop()
     }
+  } else if (globalState.ipfs_supported) { // test mobile on desktop, remove after
+    // plyrPlayer.value = new Plyr('#player', {enabled: true, key: 'plyr', autoplay: true, resetOnEnd: true})
+    await globalState.ipfs_load()
+    await globalState.ipfs_create()
+    watch(playingVideo, videoIpfs)
+    playingVideo.value = featured.playing || getRandomElement(globalState.FEATURED)
   } else {
-    if (globalState.ipfs.support) {
-      await globalState.ipfs_load()
-      await globalState.ipfs_create()
-    }
-    if (globalState.ipfs.support) {
-      watch(playingVideo, videoIpfs)
-    }
+    plyrPlayer.value = new Plyr('#player', {enabled: true, key: 'plyr', autoplay: true, resetOnEnd: true})
+    watch(playingVideo, videoGateway)
     playingVideo.value = featured.playing || getRandomElement(globalState.FEATURED)
   }
 })
 
+async function videoGateway () {
+  console.log(`catched props.video change ${playingVideo.value.ipfs}`)
+  try {
+    plyrPlayer.value?.stop()
+  } catch (e) {}
+  try { 
+    plyrPlayer.value?.destroy()
+  } catch (e) {
+    console.log(e)
+  }
+  plyrPlayer.value = new Plyr('#player', {enabled: true, key: 'plyr', resetOnEnd: true})
+  globalThis.plyr = plyrPlayer.value
+  plyrPlayer.value.on("ratechange", () => console.log(`plyr event ..... ratechange`))
+  plyrPlayer.value.once("ended", () => {
+    console.log(`plyr event ..... ended`)
+    const index = playlist.playlist.findIndex(v => v.videoId === playingVideo.value.videoId)
+    if (index !== -1) {
+      playlist.playlist.splice(index, 1)
+    }
+    if (playlist.playlist.length > 0) {
+      playingVideo.value = JSON.parse(JSON.stringify(getRandomElement(playlist.playlist)))
+    }
+  })
+  plyrPlayer.value.once("ready", (event) => {
+    console.log(`plyr event ..... ready`)
+  })
+  plyrPlayer.value.on("canplay", (event) => {
+    console.log(`plyr event ..... canplay`)
+    const instance = event.detail.plyr
+    instance.speed = prefers.playbackRate
+    instance.play()
+  })
+  plyrPlayer.value.source = {
+    type: 'video',
+    title: 'IPFS video',
+    sources: [
+      {
+        src: `${prefers.ipfsGateway}/ipfs/${to_ipfs_cid(playingVideo.value)}`,
+        type: 'video/mp4',
+      }
+    ]
+  }
+}
 async function videoIpfs () {
-  console.log(`catched props.video change`)
+  console.log(`catched props.video change ${playingVideo.value.ipfs}`)
   try {
     plyrPlayer.value?.stop()
   } catch (e) {}
@@ -156,28 +197,17 @@ function to_ipfs_cid(video: IVideo) {
     allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
     allowfullscreen
     )
-.aspect-video(v-else-if="!globalState.ipfs.support" id="player")
-  iframe.w-full.aspect-video.shadow-2xl.overflow-hidden(
-    loading="lazy"
-    :src="`${ipfsGateway}/ipfs/${video?.ipfs}`",
-    title="IPFS video player",
-    frameborder="0",
-    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
-    allowfullscreen
-    )
 .aspect-video(v-else-if="globalState.ipfs_supported")
   video.w-full.aspect-video(
     id="player"
     controls
     allowfullscren
     )
-.aspect-video(v-else id="player")
-  iframe.w-full.aspect-video.shadow-2xl.overflow-hidden(
-    loading="lazy"
-    :src="`${ipfsGateway}/ipfs/${video?.ipfs}`",
-    title="IPFS video player",
-    frameborder="0",
-    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
-    allowfullscreen
+.aspect-video(v-else)
+  video.w-full.aspect-video(
+    id="player"
+    :src="`${prefers.ipfsGateway}/ipfs/${to_ipfs_cid(playingVideo)}`"
+    controls
+    allowfullscren
     )
 </template>

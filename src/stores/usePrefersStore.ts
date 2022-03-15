@@ -2,18 +2,22 @@ import { defineStore } from "pinia"
 import { Storage } from "../services/storage"
 import { CHANNELS, PLAYLISTS } from "./channels_playlists"
 import { IChannel } from "../types"
+import pkg from "../../package.json"
 const db = new Storage("prefers")
 db.read()
-const prefers_initial = { playbackRate: 1.0,
+const prefers_initial = {
+  playbackRate: 1.0,
   maxResults: 50,
   youtubeAppKey: "",
   youtubeAccess: true,
+  ipfsGateway: "https://gateway.ipfs.io",
   channels: CHANNELS,
   playlists: PLAYLISTS
 }
-// db.data = { version: "0.0.1", prefers: prefers_initial }
-db.data ||= { version: "0.0.1", prefers: prefers_initial }
+// db.data = { version: pkg.version, prefers: prefers_initial }
+db.data ||= { version: pkg.version, prefers: prefers_initial }
 // sync from initial
+if (!db.data.prefers.hasOwnProperty("ipfsGateway")) db.data.prefers.ipfsGateway = prefers_initial.ipfsGateway
 if (!db.data.prefers.hasOwnProperty("youtubeAppKey")) db.data.prefers.youtubeAppKey = prefers_initial.youtubeAppKey
 if (!db.data.prefers.hasOwnProperty("youtubeAccess")) db.data.prefers.youtubeAccess = prefers_initial.youtubeAccess
 if (!db.data.prefers.hasOwnProperty("playbackRate")) db.data.prefers.playbackRate = prefers_initial.playbackRate

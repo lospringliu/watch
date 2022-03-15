@@ -33,6 +33,7 @@ pages:
   youtube_access: 能访问Youtube
   youtube_per_query: API查询返回数目
   youtube_playback_rate: 播放速度
+  ipfs_gateway: IPFS网关
 not-found: 未找到页面
 gunvue:
   backlinks: 回连

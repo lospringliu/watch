@@ -38,6 +38,8 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, ligh
 //   util-tools
 //  overscroll-behavior-y: contain;
 //  overscroll-behavior-y: contain;
+// .flex.flex-col.items-end.fixed.top-2.left-2.z-10000
+//   util-tools
 </script>
 
 <template lang="pug">
@@ -45,8 +47,6 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, ligh
   router-view(v-slot="{ Component }")
     transition(name="fade" mode="out-in")
       component(:is="Component")
-.flex.flex-col.items-end.fixed.top-2.left-2.z-10000
-  util-tools
 </template>
 
 <style lang="postcss">

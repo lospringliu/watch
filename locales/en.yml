@@ -33,6 +33,7 @@ pages:
   youtube_access: Have Youtube access
   youtube_per_query: Records return per API query
   youtube_playback_rate: Playback rate
+  ipfs_gateway: IPFS Gateway
 not-found: Not found
 gunvue:
   backlinks: Backlinks

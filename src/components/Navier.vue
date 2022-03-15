@@ -77,6 +77,10 @@ watch(flag_settings, () => {
           <input type="text" v-model.number="prefers.maxResults" class="mt-1 block w-full" :placeholder="t('pages.youtube_per_query')" />
         </label>
         <label class="block">
+          <span>{{ t('pages.ipfs_gateway') }}</span>
+          <input type="text" v-model.lazy="prefers.ipfsGateway" class="mt-1 block w-full" placeholder="ipfs gateway url" />
+        </label>
+        <label class="block">
           <span>{{ t('pages.youtube_playback_rate') }}</span>
           <input type="number" v-model.number="prefers.playbackRate"  class="mt-1 block w-full" placeholder="0.5 0.75 1.0 1.25 1.5 1.75 2.0" />
         </label>
