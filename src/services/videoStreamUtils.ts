@@ -43,7 +43,7 @@ const statusMessages = (stream) => {
 }
 
 const createVideoElement = () => {
-  const videoElement = document.getElementById('video') as HTMLVideoElement
+  const videoElement = document.getElementById('player') as HTMLVideoElement
   videoElement?.addEventListener('loadedmetadata', () => {
     videoElement.play()
       .catch(log)

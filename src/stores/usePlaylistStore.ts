@@ -1,9 +1,15 @@
-import { IVideo, IChannel } from "../types"
+import type { IVideo } from "../types"
 import { defineStore } from "pinia"
+import { getRandomElement } from "../api/utils"
 
 export const usePlaylistStore = defineStore('playlist', {
   state: () => {
     return { playlist: [] as IVideo[] }
+  },
+  getters: {
+    random() {
+      return this.playlist.length > 0 ? getRandomElement(this.playlist) : {} as IVideo
+    }
   },
   actions: {
     add(video, leading=false) {

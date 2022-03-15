@@ -3,7 +3,7 @@ import { defineStore } from "pinia"
 
 export const useFilteringStore = defineStore('filtering', {
   state: () => {
-    return { channel: "", keyword: "", limit: 100}
+    return { channel: "", keyword: "", limit: 100 } as any
   },
   actions: {
     setChannel(channel: IChannel) {

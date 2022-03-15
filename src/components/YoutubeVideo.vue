@@ -15,7 +15,7 @@ const play = () => {
     index = playlist.playlist.findIndex(v => v.videoId === playingInList.playing.videoId)
   }
   if (index === -1) {
-    playlist.playlist.push(video)
+    playlist.add(video)
   } else {
     playlist.playlist.splice(index, 0, video)
   }

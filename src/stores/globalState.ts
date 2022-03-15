@@ -17,8 +17,8 @@ export const globalState = reactive({
   loaded_swtc: false,
   loaded_videostream: false,
   FEATURED: [
-    {videoId: "LJ7Y2MRV0kg", videoPublishedAt: "2019-11-26T04:07:54Z", channelId: "UC7Ky7FjJBI7ojx2Yqz2pkNQ"},
-    {videoId: "DPK7D_Q46YI", videoPublishedAt: "2020-04-18T09:01:31Z"}
+    {videoId: "LJ7Y2MRV0kg", videoPublishedAt: "2019-11-26T04:07:54Z", channelId: "UC7Ky7FjJBI7ojx2Yqz2pkNQ", ipfs: "QmYkuAKeDQTHVk9wRCw8y1kkvdvyrs1KTJRRntHFRuADFu/video.mp4"},
+    {videoId: "DPK7D_Q46YI", videoPublishedAt: "2020-04-18T09:01:31Z", channelId: "UC7Ky7FjJBI7ojx2Yqz2pkNQ", ipfs: "QmVFoaQCkXnjqv2TD3ciihLz8ejgNEauH8W9hCJLhr3nHF/video.mp4"}
   ],
   VIDEOKEYS: {
     channelKeys: [

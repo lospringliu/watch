@@ -58,7 +58,8 @@ export async function initVideos() {
     if (!gvideos.hasOwnProperty(k)) {
       console.log(`video ${d.videoId}`)
       if (d.videoId && d.videoPublishedAt && d.channelId) {
-        const video = { videoId: d.videoId, videoPublishedAt: d.videoPublishedAt, channelId: d.channelId}
+        const video: IVideo = { videoId: d.videoId, videoPublishedAt: d.videoPublishedAt, channelId: d.channelId}
+        if (d.ipfs) { video.ipfs = d.ipfs }
         gvideos[k] = video
       } else {
         console.log(`strange video in gun ${d}`)
@@ -74,7 +75,8 @@ export async function useVideos() {
       if (!gvideos.hasOwnProperty(k)) {
         console.log(`video ${d.videoId}`)
         if (d.videoId && d.videoPublishedAt && d.channelId) {
-          const video = { videoId: d.videoId, videoPublishedAt: d.videoPublishedAt, channelId: d.channelId}
+          const video: IVideo = { videoId: d.videoId, videoPublishedAt: d.videoPublishedAt, channelId: d.channelId}
+          if (d.ipfs) { video.ipfs = d.ipfs }
           gvideos[k] = video
         } else {
           // console.log(`strange video in gun ${d}`)
@@ -120,18 +122,19 @@ export async function put_channel(pchannel) {
 export async function put_video(video_object) {
   if (gvideos[video_object.videoId]) return
   if (video_object.videoId && video_object.videoPublishedAt && video_object.channel) {
-    const video = {
+    const video: IVideo = {
       videoId: video_object.videoId,
       videoPublishedAt: video_object.videoPublishedAt,
       channelId: video_object.channel.id
     }
+    if (video_object.ipfs) { video.ipfs = video_object.ipfs }
     if (!gchannels.hasOwnProperty(video.channelId)) {
       await put_channel(video_object.channel)
     }
     const node = await vref.get(video.videoId).then()
     if (!node) { // video is already in gun, check if needs update
       vref.get(video.videoId).put(video)
-    }
+    } else {}
     gvideos[video.videoId] = video
   }
 }

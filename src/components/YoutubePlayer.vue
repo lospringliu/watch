@@ -13,7 +13,6 @@ const play = () => {
   youtube.value.playVideo()
   youtube.value.setPlaybackRate(prefers.playbackRate)
 }
-const logEvent = () => console.log(`playbackRateChanged`)
 watch(playlist.playlist, async (value, old_value) => {
   // console.log(youtube.value)
   let index = -1, currentTime = 0

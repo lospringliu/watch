@@ -2,12 +2,14 @@
 import { ref } from "vue"
 import { useToggle } from "@vueuse/core"
 import { isDark, toggleDark } from '../logic'
-import { prefers } from "../stores"
+import { prefers, playlist } from "../stores"
 import { globalState } from '../stores/globalState'
 const { t } = useI18n()
 const flag_settings = ref(false)
 const flag_info = ref(false)
+const flag_playlist = ref(false)
 const toggleInfo = useToggle(flag_info)
+const togglePlayList = useToggle(flag_playlist)
 const toggleSettings = useToggle(flag_settings)
 const settings_prefers = ref(prefers)
 watch(flag_settings, () => {
@@ -31,7 +33,21 @@ watch(flag_settings, () => {
     <button :title="t('button.info')" @click="toggleInfo()">
       <ph-info class="mx-2" />
     </button>
+    <button :title="t('button.playlist')" @click="togglePlayList()">
+      <ph-playlist class="mx-2" />
+    </button>
   </nav>
+  <div class="grid grid-col place-content-center" v-if="flag_playlist">
+    <div class="mt-8 max-w-md">
+      <div class="grid grid-cols-1 gap-6 text-gray-700 dark_text-gray-500">
+        <ol class="list-decimal">
+          <li v-for="video of playlist.playlist" :key="video.videoId">
+            {{ video.videoId }} {{ video?.channel?.name }}
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
   <div class="grid grid-col place-content-center" v-if="flag_info">
     <div class="mt-8 max-w-md">
       <div class="grid grid-cols-1 gap-6 text-gray-700 dark_text-gray-500">

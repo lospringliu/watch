@@ -1,6 +1,7 @@
 import { IVideo } from "../types"
 import { defineStore } from "pinia"
 import { globalState } from "./globalState"
+import { getRandomElement } from "../api/utils"
 
 export const useVideoFeaturedStore = defineStore('featured', {
   state: () => {
@@ -8,7 +9,7 @@ export const useVideoFeaturedStore = defineStore('featured', {
   },
   getters: {
     playing() {
-      return this.videos[Math.floor(Math.random() * this.videos.length)]
+      return getRandomElement(this.videos)
     }
   },
   actions: {

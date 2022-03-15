@@ -17,6 +17,7 @@ const videos = useVideoStore()
 const featured = useVideoFeaturedStore()
 const prefers = usePrefersStore()
 const filtering = useFilteringStore()
+filtering.ipfs = computed(() => !prefers.youtubeAccess)
 
 
 prefers.$subscribe((mutation, state) => {
