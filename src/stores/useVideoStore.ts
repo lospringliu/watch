@@ -10,6 +10,8 @@ export const useVideoStore = defineStore('videos', {
       const index = this.videos.findIndex(v => v.videoId === video.videoId)
       if (index === -1) {
         this.videos.push(video)
+      } else {
+        Object.assign(this.videos[index], video)
       }
     },
     sort(opts = {key: "date"} as any) {

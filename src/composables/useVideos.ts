@@ -8,8 +8,8 @@ const gun = useGun()
 const gvideos = reactive({})
 const gchannels = reactive({})
 // const baseref = gun.get("moitestmoitestmoitest")
-const vref = gun.get("moitestmoitestmoitest").get("videos").get("youtube")
-const cref = gun.get("moitestmoitestmoitest").get("channels").get("youtube")
+const vref = gun.get("gunswtcmoac").get("videos").get("youtube")
+const cref = gun.get("gunswtcmoac").get("channels").get("youtube")
 let listening = false
 
 watch(gvideos, (value, old_value) => {
@@ -30,19 +30,12 @@ watch(gchannels, (value, old_value) => {
 export async function initChannels() {
   console.log(`init channels`)
   cref.map().once((d,k) => {
-    if (!gchannels.hasOwnProperty(k)) {
+    delete d._
+    if (gchannels.hasOwnProperty(k)) {
+      Object.assign(gchannels[k], d)
+    } else {
       console.log(`channel ${d.name}`)
-      const cc = prefers.channels_playlists.find(e => e.id === k)
-      if (cc) { // channel in prefers
-        const channel = { id: cc.id, name: cc.name, title: cc.title}
-        gchannels[k] = channel
-      } else if (d.id && d.name && d.title) { // read from gun
-        const channel = { id: d.id, name: d.name, title: d.title }
-        gchannels[k] = channel
-        // prefers.addChannelPlaylist(channel)
-      } else {
-        console.log(`strange channel in gun ${d}`)
-      }
+      gchannels[k] = d
     }
   })
   await AsyncForEach(prefers.channels_playlists, async (c) => {
@@ -55,15 +48,12 @@ export async function initChannels() {
 
 export async function initVideos() {
   vref.map().once((d,k) => {
-    if (!gvideos.hasOwnProperty(k)) {
+    delete d._
+    if (gvideos.hasOwnProperty(k)) {
+      Object.assign(gvideos[k], d)
+    } else {
       console.log(`video ${d.videoId}`)
-      if (d.videoId && d.videoPublishedAt && d.channelId) {
-        const video: IVideo = { videoId: d.videoId, videoPublishedAt: d.videoPublishedAt, channelId: d.channelId}
-        if (d.ipfs) { video.ipfs = d.ipfs }
-        gvideos[k] = video
-      } else {
-        console.log(`strange video in gun ${d}`)
-      }
+      gvideos[k] = d
     }
   })
 }
@@ -72,36 +62,25 @@ export async function useVideos() {
   if (!listening) {
     listening = true
     vref.map().on((d, k) => {
-      if (!gvideos.hasOwnProperty(k)) {
+      delete d._
+      if (gvideos.hasOwnProperty(k)) {
+        Object.assign(gvideos[k], d)
+      } else {
         console.log(`video ${d.videoId}`)
-        if (d.videoId && d.videoPublishedAt && d.channelId) {
-          const video: IVideo = { videoId: d.videoId, videoPublishedAt: d.videoPublishedAt, channelId: d.channelId}
-          if (d.ipfs) { video.ipfs = d.ipfs }
-          gvideos[k] = video
-        } else {
-          // console.log(`strange video in gun ${d}`)
-          console.log(d)
-        }
+        gvideos[k] = d
       }
     // })
     }, true)  // delta value
     cref.map().on((d, k) => {
-      if (!gchannels.hasOwnProperty(k)) {
+      delete d._
+      if (gchannels.hasOwnProperty(k)) {
+        Object.assign(gchannels[k], d)
+      } else {
         console.log(`channel ${d.name}`)
-        const cc = prefers.channels_playlists.find(e => e.id === k)
-        if (cc) { // channel in prefers
-          const channel = { id: cc.id, name: cc.name, title: cc.title}
-          gchannels[k] = channel
-        } else if (d.id && d.name && d.title) { // read from gun
-          const channel = { id: d.id, name: d.name, title: d.title }
-          gchannels[k] = channel
-          prefers.addChannelPlaylist(channel)
-        } else {
-          console.log(`strange channel in gun ${d}`)
-        }
+        gchannels[k] = d
       }
-    // })
     }, true)  // delta value
+    // })
   }
 }
 
