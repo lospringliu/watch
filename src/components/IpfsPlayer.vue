@@ -58,8 +58,12 @@ onMounted(async () => {
     if (globalState.ipfs_online) {
       globalState.node.stop()
     }
+  // } else if (globalState.ipfs_supported) {
+  //   plyrPlayer.value = new Plyr('#player', {enabled: true, key: 'plyr', autoplay: true, resetOnEnd: true})
+  //   watch(playingVideo, videoGateway)
+  //   playingVideo.value = featured.playing || getRandomElement(globalState.FEATURED)
   } else if (globalState.ipfs_supported) { // test mobile on desktop, remove after
-    // plyrPlayer.value = new Plyr('#player', {enabled: true, key: 'plyr', autoplay: true, resetOnEnd: true})
+    plyrPlayer.value = new Plyr('#player', {enabled: true, key: 'plyr', resetOnEnd: true})
     await globalState.ipfs_load()
     await globalState.ipfs_create()
     watch(playingVideo, videoIpfs)
