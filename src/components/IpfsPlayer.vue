@@ -202,21 +202,24 @@ function to_ipfs_cid(video: IVideo) {
 //       type="video/mp4"
 //     )
 //    :src="`${prefers.ipfsGateway}/ipfs/${to_ipfs_cid(video)}`"
-// .aspect-video(v-else id="player")
-//   iframe.w-full.aspect-video.shadow-2xl.overflow-hidden(
-//     src="https://gateway.ipfs.io/ipfs/QmZWfHv3bjrraUAVK1MQuuuMefabD7z5QC3e1iDYypkdSK/video.mp4"
-//     title="IPFS video player",
-//     frameborder="0",
-//     allow="accelerometer; controls, clipboard-write; encrypted-media; gyroscope; picture-in-picture",
-//     controls,
-//     allowfullscreen
+// .aspect-video(v-else)
+//   video.w-full.aspect-video(
+//     id="player"
+//     autoplay
+//     controls
+//     allowfullscren
+//     )
+//     source(
+//       src="https://gateway.ipfs.io/ipfs/QmZWfHv3bjrraUAVK1MQuuuMefabD7z5QC3e1iDYypkdSK/video.mp4"
+//       type="video/mp4"
+//       origin="https://watch.bcapps.ca"
 //     )
 </script>
 
 <template lang="pug">
 .aspect-video(v-if="prefers.youtubeAccess" id="player")
   iframe.w-full.aspect-video.shadow-2xl.overflow-hidden(
-    loading="lazy"
+    loading="lazy",
     :src="`https://youtube.com/embed/${video?.videoId}`",
     title="IPFS video player",
     frameborder="0",
@@ -240,16 +243,14 @@ function to_ipfs_cid(video: IVideo) {
     controls
     allowfullscren
     )
-.aspect-video(v-else)
-  video.w-full.aspect-video(
-    id="player"
-    autoplay
-    controls
-    allowfullscren
-    )
-    source(
-      src="https://gateway.ipfs.io/ipfs/QmZWfHv3bjrraUAVK1MQuuuMefabD7z5QC3e1iDYypkdSK/video.mp4"
-      type="video/mp4"
-      origin="https://watch.bcapps.ca"
+.aspect-video(v-else id="player")
+  iframe.w-full.aspect-video.shadow-2xl.overflow-hidden(
+    loading="lazy",
+    src="https://gateway.ipfs.io/ipfs/QmZWfHv3bjrraUAVK1MQuuuMefabD7z5QC3e1iDYypkdSK/video.mp4"
+    title="IPFS video player",
+    frameborder="0",
+    allow="accelerometer; controls; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
+    controls,
+    allowfullscreen
     )
 </template>
