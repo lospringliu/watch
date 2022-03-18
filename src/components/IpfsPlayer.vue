@@ -226,15 +226,16 @@ function to_ipfs_cid(video: IVideo) {
     allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
     allowfullscreen
     )
-.aspect-video(v-else-if="globalState.platform.android")
-  iframe.w-full.aspect-video.shadow-2xl.overflow-hidden(
-    loading="lazy",
-    src="https://gateway.ipfs.io/ipfs/QmZWfHv3bjrraUAVK1MQuuuMefabD7z5QC3e1iDYypkdSK/video.mp4"
-    title="IPFS video player",
-    frameborder="0",
-    allow="accelerometer; controls; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
-    controls,
-    allowfullscreen
+.aspect-video(v-else-if="globalState.platform.phone || globalState.platform.tablet")
+  video.w-full.aspect-video(
+    id="player"
+    autoplay
+    controls
+    allowfullscren
+    )
+    source(
+      src="https://gateway.ipfs.io/ipfs/QmZWfHv3bjrraUAVK1MQuuuMefabD7z5QC3e1iDYypkdSK/video.mp4"
+      type="video/mp4"
     )
 .aspect-video(v-else-if="globalState.ipfs_supported")
   video.w-full.aspect-video(
