@@ -57,13 +57,10 @@ onMounted(async () => {
     if (globalState.ipfs_online) {
       globalState.node.stop()
     }
-  } else if (globalState.platform.phone) {
-    watch(playingVideo, videoGatewayMobile)
-    playingVideo.value = featured.playing
-  } else if (globalState.platform.firefox) {
+  } else if (globalState.platform.phone || globalState.platform.tablet) {
     plyrPlayer.value = new Plyr('#player', {enabled: true, key: 'plyr', autoplay: true, resetOnEnd: true})
     watch(playingVideo, videoGateway)
-    playingVideo.value = featured.playing || getRandomElement(globalState.FEATURED)
+    playingVideo.value = featured.playing
   } else if (globalState.ipfs_supported) {
     // plyrPlayer.value = new Plyr('#player', {enabled: true, key: 'plyr', resetOnEnd: true})
     await globalState.ipfs_load()
@@ -73,7 +70,7 @@ onMounted(async () => {
   } else {
     plyrPlayer.value = new Plyr('#player', {enabled: true, key: 'plyr', autoplay: true, resetOnEnd: true})
     watch(playingVideo, videoGateway)
-    playingVideo.value = featured.playing || getRandomElement(globalState.FEATURED)
+    playingVideo.value = featured.playing
   }
 })
 
@@ -234,7 +231,7 @@ function to_ipfs_cid(video: IVideo) {
     allowfullscren
     )
     source(
-      src="https://gateway.ipfs.io/ipfs/QmZWfHv3bjrraUAVK1MQuuuMefabD7z5QC3e1iDYypkdSK/video.mp4"
+      :src="`${prefers.ipfsGateway}/ipfs/${to_ipfs_cid(video)}`",
       type="video/mp4"
     )
 .aspect-video(v-else-if="globalState.ipfs_supported")
@@ -246,7 +243,7 @@ function to_ipfs_cid(video: IVideo) {
 .aspect-video(v-else id="player")
   iframe.w-full.aspect-video.shadow-2xl.overflow-hidden(
     loading="lazy",
-    src="https://gateway.ipfs.io/ipfs/QmZWfHv3bjrraUAVK1MQuuuMefabD7z5QC3e1iDYypkdSK/video.mp4"
+    :src="`${prefers.ipfsGateway}/ipfs/${to_ipfs_cid(video)}`",
     title="IPFS video player",
     frameborder="0",
     allow="accelerometer; controls; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
