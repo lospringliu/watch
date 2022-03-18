@@ -14,6 +14,7 @@ import "gun/lib/not";
 import "gun/lib/open";
 import "gun/lib/load";
 import "gun/lib/webrtc";
+import "gun/lib/yson";
 import "gun/nts";
 
 import { useStorage } from "@vueuse/core";

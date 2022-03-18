@@ -150,6 +150,7 @@ export default defineConfig({
       'gun/lib/open',
       'gun/lib/load',
       'gun/lib/webrtc',
+      'gun/lib/yson',
       'gun/lib/radix',
       'gun/lib/radisk',
       'gun/lib/store',

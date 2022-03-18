@@ -58,11 +58,14 @@ onMounted(async () => {
     if (globalState.ipfs_online) {
       globalState.node.stop()
     }
-  // } else if (globalState.ipfs_supported) {
-  //   plyrPlayer.value = new Plyr('#player', {enabled: true, key: 'plyr', autoplay: true, resetOnEnd: true})
-  //   watch(playingVideo, videoGateway)
-  //   playingVideo.value = featured.playing || getRandomElement(globalState.FEATURED)
-  } else if (globalState.ipfs_supported) { // test mobile on desktop, remove after
+  } else if (globalState.platform.phone) {
+    watch(playingVideo, videoGatewayMobile)
+    playingVideo.value = featured.playing
+  } else if (globalState.platform.firefox) {
+    plyrPlayer.value = new Plyr('#player', {enabled: true, key: 'plyr', autoplay: true, resetOnEnd: true})
+    watch(playingVideo, videoGateway)
+    playingVideo.value = featured.playing || getRandomElement(globalState.FEATURED)
+  } else if (globalState.ipfs_supported) {
     // plyrPlayer.value = new Plyr('#player', {enabled: true, key: 'plyr', resetOnEnd: true})
     await globalState.ipfs_load()
     await globalState.ipfs_create()
@@ -75,6 +78,9 @@ onMounted(async () => {
   }
 })
 
+async function videoGatewayMobile () {
+  console.log(`catched props.video change ${playingVideo.value.ipfs}`)
+}
 async function videoGateway () {
   console.log(`catched props.video change ${playingVideo.value.ipfs}`)
   try {
@@ -201,6 +207,16 @@ function to_ipfs_cid(video: IVideo) {
     allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
     allowfullscreen
     )
+.aspect-video(v-else-if="globalState.platform.firefox" id="player")
+  iframe.w-full.aspect-video.shadow-2xl.overflow-hidden(
+    loading="lazy",
+    :src="`${prefers.ipfsGateway}/ipfs/${to_ipfs_cid(video)}`"
+    title="IPFS video player",
+    frameborder="0",
+    allow="accelerometer; controls, clipboard-write; encrypted-media; gyroscope; picture-in-picture",
+    controls,
+    allowfullscreen
+    )
 .aspect-video(v-else-if="globalState.ipfs_supported")
   video.w-full.aspect-video(
     id="player"
@@ -208,10 +224,9 @@ function to_ipfs_cid(video: IVideo) {
     allowfullscren
     )
 .aspect-video(v-else)
-  video.w-full.aspect-video(
-    id="player"
-    :src="`${prefers.ipfsGateway}/ipfs/${to_ipfs_cid(playingVideo)}`"
-    controls
-    allowfullscren
+  video.w-full.aspect-video(id="player" controls allowfullscren)
+    source(
+      :src="`${prefers.ipfsGateway}/ipfs/${to_ipfs_cid(video)}`",
+      type="video/mp4"
     )
 </template>
