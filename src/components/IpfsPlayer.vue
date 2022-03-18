@@ -223,6 +223,17 @@ function to_ipfs_cid(video: IVideo) {
     allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
     allowfullscreen
     )
+.aspect-video(v-else-if="globalState.platform.firefox")
+  video.w-full.aspect-video(
+    id="player"
+    autoplay
+    controls
+    allowfullscren
+    )
+    source(
+      src="https://gateway.ipfs.io/ipfs/QmZWfHv3bjrraUAVK1MQuuuMefabD7z5QC3e1iDYypkdSK/video.mp4"
+      type="video/mp4"
+    )
 .aspect-video(v-else-if="globalState.ipfs_supported")
   video.w-full.aspect-video(
     id="player"
@@ -239,5 +250,6 @@ function to_ipfs_cid(video: IVideo) {
     source(
       src="https://gateway.ipfs.io/ipfs/QmZWfHv3bjrraUAVK1MQuuuMefabD7z5QC3e1iDYypkdSK/video.mp4"
       type="video/mp4"
+      origin="https://watch.bcapps.ca"
     )
 </template>
