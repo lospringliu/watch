@@ -195,6 +195,12 @@ function to_ipfs_cid(video: IVideo) {
     return video.ipfs
   }
 }
+// .aspect-video(v-else)
+//   video.w-full.aspect-video(id="player" controls allowfullscren)
+//     source(
+//       :src="`${prefers.ipfsGateway}/ipfs/${to_ipfs_cid(video)}`",
+//       type="video/mp4"
+//     )
 </script>
 
 <template lang="pug">
@@ -223,10 +229,14 @@ function to_ipfs_cid(video: IVideo) {
     controls
     allowfullscren
     )
-.aspect-video(v-else)
-  video.w-full.aspect-video(id="player" controls allowfullscren)
-    source(
-      :src="`${prefers.ipfsGateway}/ipfs/${to_ipfs_cid(video)}`",
-      type="video/mp4"
+.aspect-video(v-else id="player")
+  iframe.w-full.aspect-video.shadow-2xl.overflow-hidden(
+    loading="lazy",
+    :src="`${prefers.ipfsGateway}/ipfs/${to_ipfs_cid(video)}`"
+    title="IPFS video player",
+    frameborder="0",
+    allow="accelerometer; controls, clipboard-write; encrypted-media; gyroscope; picture-in-picture",
+    controls,
+    allowfullscreen
     )
 </template>
