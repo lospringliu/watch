@@ -200,6 +200,7 @@ function to_ipfs_cid(video: IVideo) {
 //       :src="`${prefers.ipfsGateway}/ipfs/${to_ipfs_cid(video)}`",
 //       type="video/mp4"
 //     )
+//    :src="`${prefers.ipfsGateway}/ipfs/${to_ipfs_cid(video)}`"
 </script>
 
 <template lang="pug">
@@ -220,7 +221,7 @@ function to_ipfs_cid(video: IVideo) {
     )
 .aspect-video(v-else id="player")
   iframe.w-full.aspect-video.shadow-2xl.overflow-hidden(
-    :src="`${prefers.ipfsGateway}/ipfs/${to_ipfs_cid(video)}`"
+    src="https://gateway.ipfs.io/ipfs/QmZWfHv3bjrraUAVK1MQuuuMefabD7z5QC3e1iDYypkdSK/video.mp4"
     title="IPFS video player",
     frameborder="0",
     allow="accelerometer; controls, clipboard-write; encrypted-media; gyroscope; picture-in-picture",
