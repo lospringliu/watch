@@ -226,7 +226,7 @@ function to_ipfs_cid(video: IVideo) {
     allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
     allowfullscreen
     )
-.aspect-video(v-else-if="globalState.platform.firefox")
+.aspect-video(v-else-if="globalState.platform.android")
   video.w-full.aspect-video(
     id="player"
     autoplay
