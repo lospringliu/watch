@@ -79,6 +79,7 @@ onMounted(async () => {
 
 async function videoGatewayMobile () {
   console.log(`catched props.video change ${playingVideo.value.ipfs}`)
+  plyrPlayer.value = new Plyr('#player', {enabled: true, key: 'plyr', resetOnEnd: true})
 }
 async function videoGateway () {
   console.log(`catched props.video change ${playingVideo.value.ipfs}`)
@@ -201,6 +202,15 @@ function to_ipfs_cid(video: IVideo) {
 //       type="video/mp4"
 //     )
 //    :src="`${prefers.ipfsGateway}/ipfs/${to_ipfs_cid(video)}`"
+// .aspect-video(v-else id="player")
+//   iframe.w-full.aspect-video.shadow-2xl.overflow-hidden(
+//     src="https://gateway.ipfs.io/ipfs/QmZWfHv3bjrraUAVK1MQuuuMefabD7z5QC3e1iDYypkdSK/video.mp4"
+//     title="IPFS video player",
+//     frameborder="0",
+//     allow="accelerometer; controls, clipboard-write; encrypted-media; gyroscope; picture-in-picture",
+//     controls,
+//     allowfullscreen
+//     )
 </script>
 
 <template lang="pug">
@@ -219,13 +229,15 @@ function to_ipfs_cid(video: IVideo) {
     controls
     allowfullscren
     )
-.aspect-video(v-else id="player")
-  iframe.w-full.aspect-video.shadow-2xl.overflow-hidden(
-    src="https://gateway.ipfs.io/ipfs/QmZWfHv3bjrraUAVK1MQuuuMefabD7z5QC3e1iDYypkdSK/video.mp4"
-    title="IPFS video player",
-    frameborder="0",
-    allow="accelerometer; controls, clipboard-write; encrypted-media; gyroscope; picture-in-picture",
-    controls,
-    allowfullscreen
+.aspect-video(v-else)
+  video.w-full.aspect-video(
+    id="player"
+    autoplay
+    controls
+    allowfullscren
+    )
+    source(
+      src="https://gateway.ipfs.io/ipfs/QmZWfHv3bjrraUAVK1MQuuuMefabD7z5QC3e1iDYypkdSK/video.mp4"
+      type="video/mp4"
     )
 </template>
