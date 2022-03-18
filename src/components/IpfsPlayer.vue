@@ -17,7 +17,6 @@ import { playing, playingInList, playlist, featured, prefers } from "../stores"
 const props = withDefaults(
   defineProps<IVideoProp>(), {
     video: getRandomElement(globalState.FEATURED),
-    
   }
 )
 
@@ -213,16 +212,6 @@ function to_ipfs_cid(video: IVideo) {
     allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
     allowfullscreen
     )
-.aspect-video(v-else-if="globalState.platform.firefox" id="player")
-  iframe.w-full.aspect-video.shadow-2xl.overflow-hidden(
-    loading="lazy",
-    :src="`${prefers.ipfsGateway}/ipfs/${to_ipfs_cid(video)}`"
-    title="IPFS video player",
-    frameborder="0",
-    allow="accelerometer; controls, clipboard-write; encrypted-media; gyroscope; picture-in-picture",
-    controls,
-    allowfullscreen
-    )
 .aspect-video(v-else-if="globalState.ipfs_supported")
   video.w-full.aspect-video(
     id="player"
@@ -231,7 +220,6 @@ function to_ipfs_cid(video: IVideo) {
     )
 .aspect-video(v-else id="player")
   iframe.w-full.aspect-video.shadow-2xl.overflow-hidden(
-    loading="lazy",
     :src="`${prefers.ipfsGateway}/ipfs/${to_ipfs_cid(video)}`"
     title="IPFS video player",
     frameborder="0",
