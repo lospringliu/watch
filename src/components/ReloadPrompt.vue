@@ -71,6 +71,9 @@ const close = async() => {
         {{ $t('button.close') }}
       </button>
     </div>
+    <div>
+      <hr>
+    </div>
   </div>
 </template>
 
