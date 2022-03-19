@@ -66,6 +66,7 @@ declare module 'vue' {
     NavigationBar: typeof import('./components/NavigationBar.vue')['default']
     PhChatsLight: typeof import('~icons/ph/chats-light')['default']
     PhChatsTeardrop: typeof import('~icons/ph/chats-teardrop')['default']
+    PhDog: typeof import('~icons/ph/dog')['default']
     PhGear: typeof import('~icons/ph/gear')['default']
     PhHandsClapping: typeof import('~icons/ph/hands-clapping')['default']
     PhHouse: typeof import('~icons/ph/house')['default']

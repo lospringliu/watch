@@ -1,4 +1,3 @@
-
 <script setup lang="ts">
 import { useRegisterSW } from 'virtual:pwa-register/vue'
 
@@ -17,7 +16,7 @@ const close = async() => {
 <template>
   <div
     v-if="offlineReady || needRefresh"
-    class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-teal-400"
+    class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-teal-500"
     role="alert"
   >
     <div class="mb-1">
@@ -28,7 +27,7 @@ const close = async() => {
         {{ $t('pages.prompt_reload') }}
       </span>
     </div>
-    <div class="flex justify-between rounded-lg px-4">
+    <div class="flex justify-around rounded-lg">
       <button v-if="needRefresh" @click="updateServiceWorker()" class="button text-cyan-600">
         Reload
         {{ $t('button.reload') }}
@@ -40,18 +39,3 @@ const close = async() => {
     </div>
   </div>
 </template>
-
-<style>
-.pwa-toast {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  margin: 16px;
-  padding: 12px;
-  border: 1px solid #8885;
-  border-radius: 4px;
-  z-index: 1;
-  text-align: left;
-  box-shadow: 3px 4px 5px 0px #8885;
-}
-</style>
