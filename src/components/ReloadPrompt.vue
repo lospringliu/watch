@@ -56,12 +56,14 @@ const close = async() => {
         {{ $t('pages.prompt_reload') }}
       </span>
     </div>
-    <button v-if="needRefresh" @click="updateServiceWorker()">
-      {{ $t('button.reload') }}
-    </button>
-    <button @click="close">
-      {{ $t('button.close') }}
-    </button>
+    <div class="flex justify-around">
+      <button v-if="needRefresh" @click="updateServiceWorker()">
+        {{ $t('button.reload') }}
+      </button>
+      <button @click="close">
+        {{ $t('button.close') }}
+      </button>
+    </div>
   </div>
 </template>
 
