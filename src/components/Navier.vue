@@ -4,7 +4,12 @@ import { useToggle } from "@vueuse/core"
 import { isDark, toggleDark } from '../logic'
 import { prefers, playlist } from "../stores"
 import { globalState } from '../stores/globalState'
-const { t } = useI18n()
+const language = ref(null)
+const { t, availableLocales, locale } = useI18n()
+const toggleLocales = () => {
+  const locales = availableLocales
+  locale.value = locales[(locales.indexOf(locale.value) + 1) % locales.length]
+}
 const flag_settings = ref(false)
 const flag_info = ref(false)
 const flag_playlist = ref(false)
@@ -26,6 +31,9 @@ watch(flag_settings, () => {
     <button :title="t('button.toggle_dark')" @click="toggleDark()">
       <ph-sun class="mx-2" v-if="isDark" />
       <ph-moon class="mx-2" v-else />
+    </button>
+    <button ref="language" :title="t('button.toggle_langs')" @click="toggleLocales">
+      <ph-translate />
     </button>
     <button :title="t('button.settings')" @click="toggleSettings()">
       <ph-gear class="mx-2" />
