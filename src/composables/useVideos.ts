@@ -99,7 +99,7 @@ export async function put_channel(pchannel) {
 }
 
 export async function put_video(video_object) {
-  if (gvideos[video_object.videoId]) return
+  if (gvideos[video_object.videoId] && gvideos[video_object.videoId].videoId) return
   if (video_object.videoId && video_object.videoPublishedAt && video_object.channel) {
     const video: IVideo = {
       videoId: video_object.videoId,
@@ -112,6 +112,9 @@ export async function put_video(video_object) {
     }
     const node = await vref.get(video.videoId).then()
     if (!node) { // video is already in gun, check if needs update
+      vref.get(video.videoId).put(video)
+    } else if (!node.videoId) {
+      console.log(video)
       vref.get(video.videoId).put(video)
     } else {}
     gvideos[video.videoId] = video

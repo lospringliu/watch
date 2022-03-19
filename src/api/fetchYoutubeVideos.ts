@@ -25,6 +25,7 @@ export async function fetchYoutubeVideos (channels: IChannel[] = []) {
   await AsyncForEach(channels, async (channel) => {
     const is_channel = channel.id.startsWith('UC')
     let playlistId = channel.id
+    const leagal = channel?.leagal
     try {
       if (is_channel) {
         const response = await gapi.get('channels', makeParams({ key: prefers.youtubeAppKey, id: channel.id }))
@@ -50,7 +51,7 @@ export async function fetchYoutubeVideos (channels: IChannel[] = []) {
         const video: IVideo = item.contentDetails
         video.channel = channel
         const delta = new Date().valueOf() - new Date(video.videoPublishedAt).valueOf()
-        if (delta < 5 * 24 * 60 * 60 * 1000) { // 2 day
+        if (leagal || delta < 5 * 24 * 60 * 60 * 1000) { // 2 day
           await put_video(video) // put to gun
         }
       })

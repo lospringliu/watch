@@ -2,6 +2,7 @@ export interface IChannel {
   id: string
   name?: string
   title?: string
+  leagal?: boolean
 }
 
 export interface IVideo {
