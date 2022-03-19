@@ -25,34 +25,26 @@ const close = async() => {
   offlineReady.value = false
   needRefresh.value = false
 }
-//  <div
-//    v-if="offlineReady || needRefresh"
-//    class="pwa-toast"
-//    role="alert"
-//  >
+//  <div v-if="offlineReady || needRefresh" class="pwa-toast" role="alert">
 //    <div class="message">
 //      <span v-if="offlineReady">
-//        App ready to work offline
+//        {{ $t('pages.prompt_offline') }}
 //      </span>
 //      <span v-else>
-//        New content available, click on reload button to update.
+//        {{ $t('pages.prompt_reload') }}
 //      </span>
 //    </div>
 //    <button v-if="needRefresh" @click="updateServiceWorker()">
-//      Reload
+//      {{ $t('button.reload') }}
 //    </button>
 //    <button @click="close">
-//      Close
+//      {{ $t('button.close') }}
 //    </button>
 //  </div>
 </script>
 
 <template>
-  <div
-    v-if="offlineReady || needRefresh"
-    class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-teal-500"
-    role="alert"
-  >
+  <div v-if="offlineReady || needRefresh" class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-teal-500" role="alert">
     <div class="mb-1">
       <span v-if="offlineReady">
         {{ $t('pages.prompt_offline') }}
@@ -63,17 +55,13 @@ const close = async() => {
     </div>
     <div class="flex justify-around rounded-lg">
       <button v-if="needRefresh" @click="updateServiceWorker()" class="button text-cyan-600">
-        Reload
         {{ $t('button.reload') }}
       </button>
       <button @click="close" class="button text-cyan-400">
-        Close
         {{ $t('button.close') }}
       </button>
     </div>
-    <div>
-      <hr>
-    </div>
+    <div> <hr> </div>
   </div>
 </template>
 
@@ -81,7 +69,7 @@ const close = async() => {
 .pwa-toast {
   position: fixed;
   right: 0;
-  bottom: 0;
+  bottom: 16px;
   margin: 16px;
   padding: 12px;
   border: 1px solid #8885;
