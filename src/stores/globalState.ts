@@ -13,6 +13,8 @@ const { load: load_videostream } = useScriptTag(
 export const globalState = reactive({
   debug: true,
   platform,
+  show_tools: false,
+  show_social: false,
   loaded_ipfs: false,
   loaded_swtc: false,
   loaded_videostream: false,

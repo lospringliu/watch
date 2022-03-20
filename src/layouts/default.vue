@@ -1,5 +1,7 @@
 <template>
   <main>
+    <NavSocial v-if="globalState.show_social" />
+    <Navier v-if="globalState.show_tools" />
     <router-view />
     <div :style="style">
       <hr>

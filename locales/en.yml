@@ -11,6 +11,8 @@ button:
   toggle_dark: Toggle dark mode
   toggle_langs: Change languages
   playlist: Play List
+  tools: Tools
+  social: Social
 intro:
   desc: Opinionated Vite Starter Template
   dynamic-route: Demo of dynamic route

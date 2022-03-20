@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { ref } from "vue"
-import { useToggle } from "@vueuse/core"
 import { isDark, toggleDark } from '../logic'
 import { prefers, playlist } from "../stores"
+import { useRoute } from 'vue-router'
 import { globalState } from '../stores/globalState'
 const language = ref(null)
+const route = useRoute()
 const { t, availableLocales, locale } = useI18n()
 const toggleLocales = () => {
   const locales = availableLocales
@@ -16,7 +16,7 @@ const flag_playlist = ref(false)
 const toggleInfo = useToggle(flag_info)
 const togglePlayList = useToggle(flag_playlist)
 const toggleSettings = useToggle(flag_settings)
-const settings_prefers = ref(prefers)
+const route_videos = computed(() => /videos/.test(route.path))
 watch(flag_settings, () => {
   prefers.save()
 })
@@ -27,22 +27,25 @@ watch(flag_settings, () => {
 </script>
 
 <template>
-  <nav class="flex justify-center items-center text-center bg-cyan-300 text-xl py-1 mx-auto">
+  <nav class="flex justify-around sm_px-8 md_px-16 lg_px-32 items-center text-center bg-cyan-300 text-xl py-1 mx-auto">
     <button :title="t('button.toggle_dark')" @click="toggleDark()">
-      <ph-sun class="mx-2" v-if="isDark" />
-      <ph-moon class="mx-2" v-else />
+      <ph-sun v-if="isDark" />
+      <ph-moon v-else />
     </button>
     <button ref="language" :title="t('button.toggle_langs')" @click="toggleLocales">
       <ph-translate />
     </button>
     <button :title="t('button.settings')" @click="toggleSettings()">
-      <ph-gear class="mx-2" />
+      <ph-gear />
     </button>
     <button :title="t('button.info')" @click="toggleInfo()">
-      <ph-info class="mx-2" />
+      <ph-info />
     </button>
-    <button :title="t('button.playlist')" @click="togglePlayList()">
-      <ph-playlist class="mx-2" />
+    <button v-if="route_videos" :title="t('button.playlist')" @click="togglePlayList()">
+      <ph-playlist />
+    </button>
+    <button :title="t('button.close')" @click="globalState.show_tools=false">
+      <ph-x-circle />
     </button>
   </nav>
   <div class="grid grid-col place-content-center" v-if="flag_playlist">

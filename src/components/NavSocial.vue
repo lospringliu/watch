@@ -19,9 +19,10 @@ const icons = {
 }
 
 import { useUser, currentRoom, useBackground, useColor } from '@composables';
+const { user } = useUser()
+watchEffect(() => console.log(user))
 const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200 }))
 const color = useColor('light')
-
 </script>
 
 <template lang="pug">
@@ -29,25 +30,25 @@ const color = useColor('light')
   .min-h-4vh.md_min-h-6vh.justify-around.flex.flex-wrap.items-center.bg-light-900.shadow-xl.z-400.text-xl.sticky.w-full.bg-cover.top-0(
     :style="{ ...bg }"
     )
-    router-link.link(to="/")
-      .bg-transparent.font-bold.py-2.text-4xl.text-left.write-vertical-right.text-green-700.text-opacity-10.text-stroke-sm.text-stroke-blue-700 M
-    <button :title="t('button.social')" @click="globalState.show_social=!globalState.show_social">
-      <ph-users />
+    router-link.link(to="/space/")
+      ph-hands-clapping
+      .hidden.md_block {{ t('pages.space') }}
+    router-link.link(to="/posts/")
+      ph-newspaper
+      .hidden.md_block {{ t('pages.posts') }}
+    router-link.link(to="/chats/")
+      ph-chats-teardrop
+      .hidden.md_block {{ t('pages.chats') }}
+    router-link.link(to="/users/")
+      ph-users
+      .hidden.md_block {{ t('pages.users') }}
+    router-link.link(to="/rooms/")
+      ph-house
+      .hidden.md_block {{ t('pages.rooms') }}
+    room-icon.hidden.lg_block(@room="$router.push(`/rooms/${$event}`)" @rooms="$router.push(`/rooms/`)")
+    <button :title="t('button.close')" @click="globalState.show_social=false">
+      <ph-x-circle class="mx-2" />
     </button>
-    router-link.link(to="/videos/")
-      ph-video-camera
-      .hidden.md_block {{ t('pages.videos') }}
-    <button :title="t('button.tools')" @click="globalState.show_tools=!globalState.show_tools">
-      <ph-gear />
-    </button>
-    user-icon(
-      :size="32"
-      @user="$router.push(`/users/${$event}`)" @room="$router.push(`/rooms/${$event}`)"
-      @post="$router.push(`/posts/${$event}`)"
-      @chat="$router.push(`/users/${$event}/chat`)"
-      )
-
-    
 </template>
 
 <style lang="postcss" scoped>
