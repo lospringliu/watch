@@ -84,6 +84,7 @@ declare module 'vue' {
     Navier: typeof import('./components/Navier.vue')['default']
     NavigationBar: typeof import('./components/NavigationBar.vue')['default']
     NavSocial: typeof import('./components/NavSocial.vue')['default']
+    PhCamera: typeof import('~icons/ph/camera')['default']
     PhChatsLight: typeof import('~icons/ph/chats-light')['default']
     PhChatsTeardrop: typeof import('~icons/ph/chats-teardrop')['default']
     PhGear: typeof import('~icons/ph/gear')['default']
