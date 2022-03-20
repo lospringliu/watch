@@ -28,6 +28,9 @@ watch(flag_settings, () => {
 
 <template>
   <nav class="flex justify-around sm_px-8 md_px-16 lg_px-32 items-center text-center bg-cyan-300 text-xl py-1 mx-auto">
+    <button :title="t('button.info')" @click="toggleInfo()">
+      <ph-info />
+    </button>
     <button :title="t('button.toggle_dark')" @click="toggleDark()">
       <ph-sun v-if="isDark" />
       <ph-moon v-else />
@@ -37,9 +40,6 @@ watch(flag_settings, () => {
     </button>
     <button :title="t('button.settings')" @click="toggleSettings()">
       <ph-gear />
-    </button>
-    <button :title="t('button.info')" @click="toggleInfo()">
-      <ph-info />
     </button>
     <button v-if="route_videos" :title="t('button.playlist')" @click="togglePlayList()">
       <ph-playlist />
