@@ -2,6 +2,7 @@ import { createPinia, setActivePinia } from "pinia"
 const pinia = createPinia()
 setActivePinia(pinia)
 
+import { useIpfsStore } from "./useIpfsStore"
 import { useVideoStore } from "./useVideoStore"
 import { useVideoFeaturedStore } from "./useVideoFeaturedStore"
 import { usePlayingStore } from "./usePlayingStore"
@@ -10,6 +11,7 @@ import { usePlaylistStore } from "./usePlaylistStore"
 import { usePrefersStore } from "./usePrefersStore"
 import { useFilteringStore } from "./useFilteringStore"
 
+const ipfsStore = useIpfsStore()
 const playing = usePlayingStore()
 const playingInList = usePlayingInListStore()
 const playlist = usePlaylistStore()
@@ -25,13 +27,14 @@ prefers.$subscribe((mutation, state) => {
   // mutation.type // 'direct' | 'patch object' | 'patch function'
   // mutation.storeId // 'cart'
   // mutation.payload // patch object passed to cartStore.$patch()
-  console.log(mutation)
+  // console.log(mutation)
   prefers.save()
 })
 
-export {playing, playingInList, playlist, videos, featured, prefers, filtering}
+export {ipfsStore, playing, playingInList, playlist, videos, featured, prefers, filtering}
 export {
   pinia,
+  useIpfsStore,
   useVideoStore,
   useVideoFeaturedStore,
   usePlayingStore,

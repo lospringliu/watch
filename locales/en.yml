@@ -19,6 +19,11 @@ intro:
   hi: Hi, {name}!
   whats-your-name: What's your name?
   aka: AKA
+vupload:
+  no_search_result: No results. Try other file name
+  ipfs_list: List of files that you upload will appear here
+  uploading: files being transfered
+  prompt: Drop files here or click to select files
 pages:
   prompt_offline: App ready to work offline
   prompt_reload: New content available, click on reload button to update

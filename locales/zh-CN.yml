@@ -19,6 +19,11 @@ intro:
   hi: 你好，{name}
   whats-your-name: 输入你的名字
   aka: 曾用名
+vupload:
+  no_search_result: 没有搜索结果
+  ipfs_list: 上传到IPFS上的文件列表
+  uploading: 文件正在上传
+  prompt: 拖拽文件或者点击选择文件
 pages:
   prompt_offline: 应用可离线使用
   prompt_reload: 应用有更新，可重新加载

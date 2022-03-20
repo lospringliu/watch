@@ -44,6 +44,9 @@ watch(flag_settings, () => {
     <button v-if="route_videos" :title="t('button.playlist')" @click="togglePlayList()">
       <ph-playlist />
     </button>
+    <router-link to="/upload/">
+      <ph-upload />
+    </router-link>
     <button :title="t('button.close')" @click="globalState.show_tools=false">
       <ph-x-circle />
     </button>
@@ -99,3 +102,13 @@ watch(flag_settings, () => {
     </div>
   </div>
 </template>
+
+<style lang="postcss" scoped>
+.router-link-active {
+  @apply bg-light-300;
+}
+
+.link {
+  @apply rounded-xl cursor-pointer flex items-center;
+}
+</style>

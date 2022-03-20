@@ -1,7 +1,10 @@
 import { createApp } from "vue";
+import { pinia } from "./stores"
 
 import "virtual:windi.css";
 import "@components/styles/index.css";
+import "./styles/styles.scss";
+import "notyf/notyf.min.css";
 
 import { createRouter, createWebHashHistory } from "vue-router"
 import generatedRoutes from 'virtual:generated-pages'
@@ -31,6 +34,7 @@ const router = createRouter({
 });
 
 const app = createApp(App);
+app.use(pinia)
 app.use(router)
 // install all modules under `modules/`
 Object.values(import.meta.globEager('./modules/*.ts')).forEach(i => i.install?.({ app, router, routes: routes_layouts }))

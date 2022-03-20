@@ -36,6 +36,7 @@ export default defineConfig({
     alias: {
       '~/': `${path.resolve(dirname, 'src')}/`,
       '@/': `${path.resolve(dirname, 'src')}/`,
+      '@src': `${path.resolve(dirname, 'src')}`,
       '@composables': path.resolve(dirname, 'src/gun-vue/composables'),
       '@components': path.resolve(dirname, 'src/gun-vue/components'),
       // '@composables': '@gun-vue/composables',
@@ -55,11 +56,6 @@ export default defineConfig({
     }),
     // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
     Layouts(),
-    // https://github.com/antfu/unplugin-icons
-    Icons({
-      compiler: "vue3",
-      autoInstall: true,
-    }),
     WindiCSS({
       scan: {
         dirs: ["src"],
@@ -81,10 +77,15 @@ export default defineConfig({
       resolvers: [
         IconsResolver({
           componentPrefix: '',
-          // enabledCollections: ['carbon']
+          // enabledCollections: ['mdi', "ri", "ph"]
         }),
       ],
       dts: 'src/components.d.ts',
+    }),
+    // https://github.com/antfu/unplugin-icons
+    Icons({
+      compiler: "vue3",
+      autoInstall: true,
     }),
     AutoImport({
       imports: [

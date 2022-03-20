@@ -1,5 +1,5 @@
 import { defineStore } from "pinia"
-import { Storage } from "../services/storage"
+import Storage from "../services/storage"
 import { CHANNELS, PLAYLISTS } from "./channels_playlists"
 import { IChannel } from "../types"
 import pkg from "../../package.json"

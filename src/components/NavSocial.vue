@@ -12,6 +12,7 @@ const routes = {
   "/posts/": "Posts",
   "/users/": "Users",
   "/rooms/": "Rooms",
+  "/upload/": "VUpload",
 };
 
 const icons = {
@@ -19,8 +20,6 @@ const icons = {
 }
 
 import { useUser, currentRoom, useBackground, useColor } from '@composables';
-const { user } = useUser()
-watchEffect(() => console.log(user))
 const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200 }))
 const color = useColor('light')
 </script>

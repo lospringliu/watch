@@ -1,5 +1,4 @@
-export class IPFSNetwork {
-  public endpoint: URL 
+export default class IPFSNetwork {
   constructor() {
     this.endpoint = new URL('https://ipfs.infura.io:5001');
   }
