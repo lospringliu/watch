@@ -6,7 +6,8 @@ import { computed } from 'vue'
 const props = defineProps({
   hash: { type: String, default: '' },
   feed: { type: String, default: '' }
-})
+});
+
 
 const unHash = computed(() => {
   return unsafeHash(props.feed)

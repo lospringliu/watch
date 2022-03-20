@@ -81,7 +81,6 @@ gunvue:
   room_generate: Generate a new room
   room_browse: Browse rooms
   room_hosts: Hosts
-  room_tools: Tools
   util_copy: Copy
   util_copied: Copied
   reactions: Reactions

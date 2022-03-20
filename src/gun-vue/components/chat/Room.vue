@@ -28,7 +28,7 @@ const { t } = useI18n()
 <template lang='pug'>
 .flex.flex-col.bg-dark-800.bg-opacity-40.backdrop-filter.backdrop-blur-xl.shadow-md.mx-auto.w-full
 
-  .flex.relative.max-h-96vh.items-stretch
+  .flex.relative.h-95vh.items-stretch
     transition(name="fade")
       .flex.flex-col.bg-dark-300.bg-opacity-70.gap-2.min-h-full.overflow-y-scroll.scroll-smooth.absolute.sm_static.z-20.w-220px.max-w-full.max-h-full.text-light-900.backdrop-filter.backdrop-blur-xl(style="flex: 1 1 320px" v-if="isLarge || (panelOpen && !isLarge)" ref="chatsPanel")
         .flex.flex-wrap
@@ -57,6 +57,6 @@ const { t } = useI18n()
         button.button( @click.stop.prevent="panelOpen = !panelOpen") Chats
         .flex-1.ml-2 / {{ currentChat }}
       chat-messages(:messages="messages")
-      .p-2.bg-dark-50.bg-opacity-80.flex.gap-2.flex
+      .p-4.bg-dark-50.bg-opacity-80.flex.gap-2.flex
         chat-input.flex-auto(@submit="send($event)")
 </template>

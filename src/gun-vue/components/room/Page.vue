@@ -32,7 +32,7 @@ const { t } = useI18n()
 
 <template lang='pug'>
 .flex.flex-col.items-stretch
-  .pt-42.pb-2.px-2.md_px-8.md_pb-8.bg-cover.relative.flex.flex-col.items-center(:style="{ ...bg }")
+  .pt-16.pb-2.px-2.md_px-8.md_pb-8.bg-cover.relative.flex.flex-col.items-center(:style="{ ...bg }")
     .flex.flex-col.items-stretche.bg-light-100.bg-opacity-20.p-4.md_p-12.rounded-4xl.shadow-xl.backdrop-blur-md.backdrop-filter
       .flex.flex-wrap.items-center
         .flex.flex-col
@@ -53,7 +53,7 @@ const { t } = useI18n()
         button.button(v-if="room.hosts?.[user.pub]?.enc" @click="recreateRoom(room.hosts?.[user.pub]?.enc)")
           la-tools
           .ml-2 {{ t('gunvue.renew') }}
-        .flex.flex-wrap(v-if="roomPub != rootRoom.pub")
+        .flex.flex-wrap.py-4(v-if="roomPub != rootRoom.pub")
           button.button(@click="enterRoom(roomPub)" v-if="currentRoom.pub !== roomPub")
             ion-enter-outline
             .ml-2 {{ t('gunvue.enter') }}

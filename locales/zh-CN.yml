@@ -81,7 +81,6 @@ gunvue:
   room_generate: 生成新地盘
   room_browse: 浏览地盘
   room_hosts: 堂主
-  room_tools: 工具
   util_copy: 复制
   util_copied: 已复制
   reactions: 回应
