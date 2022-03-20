@@ -31,13 +31,13 @@ const color = useColor('light')
     )
     router-link.link(to="/")
       .bg-transparent.font-bold.py-2.text-4xl.text-left.write-vertical-right.text-green-700.text-opacity-10.text-stroke-sm.text-stroke-blue-700 M
-    <button :title="t('button.social')" @click="globalState.show_social=!globalState.show_social">
+    <button v-if="!globalState.show_social" :title="t('button.social')" @click="globalState.show_social=!globalState.show_social">
       <ph-users />
     </button>
     router-link.link(to="/videos/")
       ph-video-camera
       .hidden.md_block {{ t('pages.videos') }}
-    <button :title="t('button.tools')" @click="globalState.show_tools=!globalState.show_tools">
+    <button v-if="!globalState.show_tools" :title="t('button.tools')" @click="globalState.show_tools=!globalState.show_tools">
       <ph-gear />
     </button>
     user-icon(
