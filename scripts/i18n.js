@@ -73,7 +73,6 @@ const REPLACES = { // key: [flag_context, flag_binding,  en, zh, pre_regex, pre_
   room_generate: [false, false, "Generate a new room", "生成新地盘"],
   room_browse: [false, false, "Browse rooms", "浏览地盘"],
   room_hosts: [false, false, "Hosts", "堂主", "", "", ":"],
-  room_tools: [false, false, "Tools", "工具", `\\) `, ") "],
   util_copy: [false, false, "Copy", "复制", `\\) `, `) `],
   util_copied: [false, false, "Copied", "已复制", `\\) `, `) `],
   reactions: [false, false, "Reactions", "回应"],
