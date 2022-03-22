@@ -45,12 +45,12 @@ const { t } = useI18n()
   .flex.flex-wrap.items-stretch 
 
     .flex-1.flex.flex-wrap(style="flex: 10 1 300px")
-      .flex.flex-wrap.items-start.w-full.justify-start.my-4.rounded-xl.m-2.backdrop-filter.backdrop-blur-md(
+      .flex.flex-wrap.items-start.w-full.justify-start(
         style="flex: 1 1 240px" 
         :style="{ backgroundColor: colorLight + '99' }" 
         v-if="post?.icon || post?.title || post?.statement"
         )
-        .sticky.top-8vh.w-full.flex.flex-wrap.items-center
+        .sticky.top-6vh.w-full.flex.flex-wrap.items-center
           .p-2
             img.w-20.h-20.rounded-full.m-2(
               style="flex:0 1 40px"
@@ -64,7 +64,7 @@ const { t } = useI18n()
               ) {{ post?.title }}
             ui-link(:url="post?.link" v-if="post?.link")
             .m-2(v-if="post?.statement") {{ post?.statement }} 
-          .flex.flex-wrap.p-4.bg-dark-50.bg-opacity-25.w-full.items-center.rounded-b-xl.gap-1
+          .flex.flex-wrap.p-4.bg-dark-50.bg-opacity-25.w-full.items-center.gap-1
             util-share
               p {{ t('gunvue.share') }}
             post-action-update(:hash="hash" )
@@ -74,7 +74,7 @@ const { t } = useI18n()
               .ml-2 {{ t('gunvue.download2') }}
 
 
-      .my-4.mx-2.z-20.max-w-90vw(
+      .z-20.max-w-100vw(
         style="flex: 100 1 320px" 
         v-if="post?.cover || post?.youtube || post?.text"
         )
@@ -86,8 +86,8 @@ const { t } = useI18n()
         .text-md.markdown-body.bg-light-200.rounded-2xl.m-1.px-4.py-4.leading-relaxed.max-w-55ch.z-10(
           v-if="post?.text" 
           v-html="md.render(post?.text)")
-      .mt-2.mb-4.z-20.mx-4(style="flex: 1 1 400px") 
+      .z-20(style="flex: 1 1 400px") 
 
-        post-list.sticky.top-8vh(:tag="hash" :key="tag" :header="false" @browse="$emit('browse', $event)")
+        post-list.sticky.top-6vh(:tag="hash" :key="tag" :header="false" @browse="$emit('browse', $event)")
 
 </template>
