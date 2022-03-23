@@ -8,9 +8,8 @@
     "gun": "echo file:../../gun-0.2020.1235.tgz"
   },
   "dependencies": {
-    "@gun-vue/components": "^0.7.7",
-    "@gun-vue/composables": "^0.7.7",
-    "@gun-vue/relay": "^0.3.5",
+    "@gun-vue/components": "0.7.6",
+    "@gun-vue/composables": "0.7.6",
     "ola": "^1.2.1",
     "vue": "^3.2.31"
   },
