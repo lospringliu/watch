@@ -25,10 +25,10 @@
       globalThis.global = globalThis
       import { Buffer } from "buffer"
       globalThis.Buffer = Buffer
-      import process from "process"
+      import process from "process/browser"
       import EventEmitter from "events"
-      // globalThis.setImmediate = process.nextTick
-      globalThis.setImmediate = setTimeout 
+      globalThis.setImmediate = process.nextTick
+      // globalThis.setImmediate = setTimeout 
       globalThis.process = process
       globalThis.EventEmitter = EventEmitter
     </script>
