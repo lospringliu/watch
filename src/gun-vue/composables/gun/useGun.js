@@ -16,7 +16,7 @@ import "gun/nts";
 // polyfiils for Gun 0.2020.1236
 import { Buffer } from 'buffer'
 globalThis.Buffer = Buffer
-// window.setImmediate = setTimeout
+globalThis.setImmediate = setTimeout
 
 import { useStorage } from "@vueuse/core";
 

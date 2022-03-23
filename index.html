@@ -23,13 +23,13 @@
     <div id="app"></div>
     <script type="module">
       globalThis.global = globalThis
-      import { Buffer } from "buffer"
-      globalThis.Buffer = Buffer
-      import process from "process/browser"
+      // import { Buffer } from "buffer"
+      // globalThis.Buffer = Buffer
+      // import process from "process"
       import EventEmitter from "events"
-      globalThis.setImmediate = process.nextTick
+      // globalThis.setImmediate = process.nextTick
       // globalThis.setImmediate = setTimeout 
-      globalThis.process = process
+      // globalThis.process = process
       globalThis.EventEmitter = EventEmitter
     </script>
     <script type="module" src="/src/main.ts"></script>
