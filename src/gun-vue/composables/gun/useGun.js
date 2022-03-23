@@ -12,21 +12,11 @@ import "gun/lib/rindexed";
 // import "gun/lib/webrtc";
 import "gun/nts";
 
-// import Buffer from 'buffer'
-// import setImmediate from 'setimmediate'
-// 
-// globalThis.Buffer = Buffer.Buffer
-// globalThis.document.setImmediate = setImmediate.setImmediate
-
 import { useStorage } from "@vueuse/core";
 
 export const defaultPeer = "https://etogun.glitch.me/gun";
-export const peer = useStorage("peer", "https://etogun.glitch.me/gun");
-// export let peers = ["http://192.168.1.42:4200/gun"];
-// export let peers = ["http://localhost:4200/gun"];
+export const peer = useStorage("peer", defaultPeer);
 
-// gunjs.herokuapp.com
-// gun-us.herokuapp.com
 // https://github.com/amark/gun/wiki/volunteer.dht
 // https://github.com/draeder/gun-relays
 

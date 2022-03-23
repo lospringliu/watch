@@ -9,6 +9,7 @@ import Youtube from './Youtube.vue'
 import { playing, playingInList, playlist, featured, prefers } from "../stores"
 const youtube = ref(null)
 const playingVideo = ref(null)
+const vars = ref({origin: location.origin})
 const play = () => {
   youtube.value.playVideo()
   youtube.value.setPlaybackRate(prefers.playbackRate)
@@ -50,6 +51,7 @@ playingVideo.value = featured.playing
   <Youtube
     class="aspect-video"
     ref="youtube"
+    :vars="vars"
     :src="`https://www.youtube.com/watch?v=${playingVideo.videoId}`"
     @ready="play"
   />
