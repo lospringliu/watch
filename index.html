@@ -22,9 +22,11 @@
   <body>
     <div id="app"></div>
     <script type="module">
-      globalThis.global = globalThis
       import EventEmitter from "events"
-      globalThis.EventEmitter = EventEmitter
+      import process from "process"
+      if (!globalThis.hasOwnProperty("global")) globalThis.global = globalThis
+      if (!globalThis.hasOwnProperty("process")) globalThis.process = process
+      if (!globalThis.hasOwnProperty("EventEmitter")) globalThis.EventEmitter = EventEmitter
     </script>
     <script type="module" src="/src/main.ts"></script>
     <script>

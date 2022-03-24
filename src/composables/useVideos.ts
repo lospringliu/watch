@@ -30,12 +30,14 @@ watch(gchannels, (value, old_value) => {
 export async function initChannels() {
   console.log(`init channels`)
   cref.map().once((d,k) => {
-    delete d._
-    if (gchannels.hasOwnProperty(k)) {
-      Object.assign(gchannels[k], d)
-    } else {
-      console.log(`channel ${d.name}`)
-      gchannels[k] = d
+    if (d && d._) {
+      delete d._
+      if (gchannels.hasOwnProperty(k)) {
+        Object.assign(gchannels[k], d)
+      } else {
+        console.log(`channel ${d.name}`)
+        gchannels[k] = d
+      }
     }
   })
   await AsyncForEach(prefers.channels_playlists, async (c) => {
@@ -48,15 +50,17 @@ export async function initChannels() {
 
 export async function initVideos() {
   vref.map().once((d,k) => {
-    delete d._
-    if (gvideos.hasOwnProperty(k)) {
-      Object.assign(gvideos[k], d)
-    } else {
-      if (d.videoId) {
-        gvideos[k] = d
+    if (d && d._) {
+      delete d._
+      if (gvideos.hasOwnProperty(k)) {
+        Object.assign(gvideos[k], d)
       } else {
-        console.log(`incomplete video ${k}`)
-        console.log(d)
+        if (d.videoId) {
+          gvideos[k] = d
+        } else {
+          console.log(`incomplete video ${k}`)
+          console.log(d)
+        }
       }
     }
   })
@@ -66,26 +70,30 @@ export async function useVideos() {
   if (!listening) {
     listening = true
     vref.map().on((d, k) => {
-      delete d._
-      if (gvideos.hasOwnProperty(k)) {
-        Object.assign(gvideos[k], d)
-      } else {
-        if (d.videoId) {
-          gvideos[k] = d
+      if (d && d._) {
+        delete d._
+        if (gvideos.hasOwnProperty(k)) {
+          Object.assign(gvideos[k], d)
         } else {
-          console.log(`video ${k} ${d.videoId}`)
-          console.log(d)
+          if (d.videoId) {
+            gvideos[k] = d
+          } else {
+            console.log(`video ${k} ${d.videoId}`)
+            console.log(d)
+          }
         }
       }
     // })
     }, true)  // delta value
     cref.map().on((d, k) => {
-      delete d._
-      if (gchannels.hasOwnProperty(k)) {
-        Object.assign(gchannels[k], d)
-      } else {
-        console.log(`channel ${d.name}`)
-        gchannels[k] = d
+      if (d && d._) {
+        delete d._
+        if (gchannels.hasOwnProperty(k)) {
+          Object.assign(gchannels[k], d)
+        } else {
+          console.log(`channel ${d.name}`)
+          gchannels[k] = d
+        }
       }
     }, true)  // delta value
     // })
