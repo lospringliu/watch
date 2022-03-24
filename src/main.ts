@@ -2,7 +2,7 @@ import { createApp } from "vue";
 import { pinia } from "./stores"
 
 import "virtual:windi.css";
-import "@components/styles/index.css";
+import "./gun-vue/components/styles/index.css";
 import "./styles/styles.scss";
 import "notyf/notyf.min.css";
 
@@ -12,17 +12,18 @@ import { setupLayouts } from 'virtual:generated-layouts'
 
 // polyfill start
 import { Buffer } from 'buffer'
-globalThis.Buffer = Buffer
-globalThis.setImmediate = setTimeout
+if (!globalThis.hasOwnProperty("global")) globalThis.global = globalThis
+if (!globalThis.hasOwnProperty("Buffer")) globalThis.Buffer = Buffer
+if (!globalThis.hasOwnProperty("setImmediate")) globalThis.setImmediate = setTimeout
 // polyfill end
 
 import { globalState } from "./stores/globalState"
-import { peer } from "@composables/gun"
+import { peer } from "./gun-vue/composables/gun"
 peer.value = globalState.gunPeer || "https://relay.bcapps.ca/gun"
-import { currentRoom } from "@composables"
+import { currentRoom } from "./gun-vue/composables"
 
 import App from "./App.vue";
-import { initChannels, useVideos } from "./composables/useVideos";
+import { initChannels } from "./composables/useVideos";
 
 const routes_layouts = setupLayouts(generatedRoutes)
 
@@ -45,7 +46,14 @@ app.use(router)
 // install all modules under `modules/`
 Object.values(import.meta.globEager('./modules/*.ts')).forEach(i => i.install?.({ app, router, routes: routes_layouts }))
 
-app.mount("#app");
+router.isReady().then(async () => {
+  app.mount("#app");
+  const {vref, cref, gvideos, gchannels} = await initChannels()
+  globalThis.gvideos = gvideos
+  globalThis.vref = vref
+  globalThis.gchannels = gchannels
+  globalThis.cref = cref
+})
 
 router.beforeEach((to, from, next) => {
   if (!currentRoom.isRoot && !to.query?.room) {
@@ -54,12 +62,3 @@ router.beforeEach((to, from, next) => {
     next();
   }
 });
-
-Promise.resolve().then(async () => {
-  const {vref, cref, gvideos, gchannels} = await initChannels()
-  globalThis.gvideos = gvideos
-  globalThis.vref = vref
-  globalThis.gchannels = gchannels
-  globalThis.cref = cref
-}) 
-useVideos().then(console.log(`loading videos`))

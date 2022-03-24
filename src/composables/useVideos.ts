@@ -8,8 +8,8 @@ const gun = useGun()
 const gvideos = reactive({})
 const gchannels = reactive({})
 // const baseref = gun.get("moitestmoitestmoitest")
-const vref = gun.get("gunswtcmoac").get("videos").get("youtube")
-const cref = gun.get("gunswtcmoac").get("channels").get("youtube")
+const vref = gun.get("gunvueswtcmoac").get("videos").get("youtube")
+const cref = gun.get("gunvueswtcmoac").get("channels").get("youtube")
 let listening = false
 
 watch(gvideos, (value, old_value) => {
@@ -55,7 +55,7 @@ export async function initVideos() {
       if (d.videoId) {
         gvideos[k] = d
       } else {
-        console.log(`video ${k} ${d.videoId}`)
+        console.log(`incomplete video ${k}`)
         console.log(d)
       }
     }

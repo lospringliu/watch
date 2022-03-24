@@ -2,24 +2,29 @@ import axios from 'axios'
 import { IVideo, IChannel } from "../types"
 import AsyncForEach from "async-await-foreach"
 import { videos, prefers } from "../stores"
-import { put_video, initVideos } from "~/composables/useVideos"
+import { put_video, initVideos, useVideos } from "~/composables/useVideos"
 const gapi = axios.create({ baseURL: 'https://youtube.googleapis.com/youtube/v3/' })
 gapi.defaults.headers.common.Accept = 'application/json'
+let inited = false
 
 function makeParams(options = {}) {
   return {
     params: Object.assign({}, {
       part: 'snippet,contentDetails',
       // maxResults: Math.min(50, prefers.maxResults),
-      maxResults: Math.min(50, prefers.maxResults),
+      maxResults: Math.min(5, prefers.maxResults),
     }, options),
   }
 }
 
 export async function fetchYoutubeVideos (channels: IChannel[] = []) {
+  if (!inited) {
+    inited = true
+    initVideos().then(() => {console.log('init videos')}).catch(() => {})
+    useVideos().then(() => {console.log('use videos')}).catch(() => {})
+  }
   if (!prefers.youtubeAccess || !prefers.youtubeAppKey) {
     console.log(`... bypass fetching videos no api key`)
-    await initVideos()
     return videos.videos
   }
   await AsyncForEach(channels, async (channel) => {

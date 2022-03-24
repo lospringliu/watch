@@ -1,5 +1,4 @@
 import path from "path"
-const filename = __filename
 const dirname = __dirname
 
 import { defineConfig } from 'vite'
