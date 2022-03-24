@@ -10,6 +10,12 @@ import { createRouter, createWebHashHistory } from "vue-router"
 import generatedRoutes from 'virtual:generated-pages'
 import { setupLayouts } from 'virtual:generated-layouts'
 
+// polyfill start
+import { Buffer } from 'buffer'
+globalThis.Buffer = Buffer
+globalThis.setImmediate = setTimeout
+// polyfill end
+
 import { globalState } from "./stores/globalState"
 import { peer } from "@composables/gun"
 peer.value = globalState.gunPeer || "https://relay.bcapps.ca/gun"
