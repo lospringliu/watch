@@ -52,8 +52,12 @@ export async function initVideos() {
     if (gvideos.hasOwnProperty(k)) {
       Object.assign(gvideos[k], d)
     } else {
-      console.log(`video ${d.videoId}`)
-      gvideos[k] = d
+      if (d.videoId) {
+        gvideos[k] = d
+      } else {
+        console.log(`video ${k} ${d.videoId}`)
+        console.log(d)
+      }
     }
   })
 }
@@ -66,8 +70,12 @@ export async function useVideos() {
       if (gvideos.hasOwnProperty(k)) {
         Object.assign(gvideos[k], d)
       } else {
-        console.log(`video ${d.videoId}`)
-        gvideos[k] = d
+        if (d.videoId) {
+          gvideos[k] = d
+        } else {
+          console.log(`video ${k} ${d.videoId}`)
+          console.log(d)
+        }
       }
     // })
     }, true)  // delta value
