@@ -15,6 +15,7 @@ export const globalState = reactive({
   version: pkg.version,
   debug: true,
   platform,
+  gunPeer: "https://etogun.glitch.me/gun",
   show_tools: false,
   show_social: false,
   loaded_ipfs: false,
