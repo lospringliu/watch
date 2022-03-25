@@ -15,10 +15,6 @@ const routes = {
   "/upload/": "VUpload",
 };
 
-const icons = {
-  'Space': 'ic-round-filter-center-focus'
-}
-
 import { useUser, currentRoom, useBackground, useColor } from '@composables';
 const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200 }))
 const color = useColor('light')

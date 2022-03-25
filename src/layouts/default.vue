@@ -8,7 +8,7 @@
     </div>
     <div ref="navbar" class="fixed left-0 bottom-0 z-400 inset-x-0 opacity-99">
       <ReloadPrompt />
-      <nav-bar />
+      <NavBar />
     </div>
   </main>
 </template>

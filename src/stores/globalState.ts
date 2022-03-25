@@ -1,4 +1,5 @@
 import platform from 'platform-detect'
+import pkg from "../../package.json"
 const { load: load_ipfs } = useScriptTag(
   "https://cdn.jsdelivr.net/npm/ipfs/dist/index.min.js",
   // "/ipfs.min.js",
@@ -11,6 +12,7 @@ const { load: load_videostream } = useScriptTag(
   { manual: true },
 )
 export const globalState = reactive({
+  version: pkg.version,
   debug: true,
   platform,
   show_tools: false,

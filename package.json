@@ -49,6 +49,7 @@
     "unplugin-auto-import": "^0.6.6",
     "unplugin-icons": "^0.14.0",
     "unplugin-vue-components": "^0.18.3",
+    "url-regex": "^5.0.0",
     "vite": "^2.8.6",
     "vite-node": "^0.7.7",
     "vite-plugin-pages": "^0.22.0",

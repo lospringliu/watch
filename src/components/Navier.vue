@@ -17,32 +17,46 @@ const toggleInfo = useToggle(flag_info)
 const togglePlayList = useToggle(flag_playlist)
 const toggleSettings = useToggle(flag_settings)
 const route_videos = computed(() => /videos/.test(route.path))
-watch(flag_settings, () => {
-  prefers.save()
+const show = reactive({
+  graph: false,
+  log: false,
+  share: false,
+  info: false,
+  settings: false,
 })
-// <button class="mx-auto mx-4" @click="toggleDark()">
-//    <button class="mx-auto mx-4" :title="t('button.toggle_dark')" @click="toggleDark()">
-//    <Modal />
-//    <Social />
+watch(show, (value, old_value) => {
+  if (value.settings && !old_value.settings) {
+    prefers.save()
+  } else {
+    console.log(`not settings`)
+  }
+})
+//    <button :title="t('button.settings')" @click="toggleSettings()">
 </script>
 
 <template>
   <nav class="flex justify-around sm_px-8 md_px-16 lg_px-32 items-center text-center bg-cyan-300 text-xl py-1 mx-auto">
-    <button :title="t('button.info')" @click="toggleInfo()">
+    <button :title="t('button.info')" @click="show.info = !show.info">
       <ph-info />
     </button>
-    <button :title="t('button.toggle_dark')" @click="toggleDark()">
+    <button :title="t('button.toggle_dark')" @click="toggleDark">
       <ph-sun v-if="isDark" />
       <ph-moon v-else />
     </button>
     <button ref="language" :title="t('button.toggle_langs')" @click="toggleLocales">
       <ph-translate />
     </button>
-    <button :title="t('button.settings')" @click="toggleSettings()">
+    <button :title="t('button.settings')" @click="show.settings = !show.settings">
       <ph-gear />
     </button>
-    <button v-if="route_videos" :title="t('button.playlist')" @click="togglePlayList()">
+    <button v-if="route_videos" :title="t('button.playlist')" @click="togglePlayList">
       <ph-playlist />
+    </button>
+    <button :title="t('button.graph')" @click="show.graph = !show.graph">
+      <mdi-graph-outline />
+    </button>
+    <button :title="t('button.relays')">
+      <UtilRelay />
     </button>
     <router-link to="/upload/">
       <ph-upload />
@@ -51,53 +65,23 @@ watch(flag_settings, () => {
       <ph-x-circle />
     </button>
   </nav>
+  <UiLayer :open="show.graph" @close="show.graph=false">
+    <UtilGraph />
+  </UiLayer>
+  <UiLayer :open="show.info" @close="show.info=false">
+    <ShowInfo />
+  </UiLayer>
+  <UiLayer :open="show.settings" @close="show.settings=false">
+    <Settings />
+  </UiLayer>
   <div class="grid grid-col place-content-center" v-if="flag_playlist">
-    <div class="mt-8 max-w-md">
+    <div class="mt-8 max-w-lg">
       <div class="grid grid-cols-1 gap-6 text-gray-700 dark_text-gray-500">
         <ol class="list-decimal">
           <li v-for="video of playlist.playlist" :key="video.videoId">
             {{ video.videoId }} {{ video?.channel?.name }}
           </li>
         </ol>
-      </div>
-    </div>
-  </div>
-  <div class="grid grid-col place-content-center" v-if="flag_info">
-    <div class="mt-8 max-w-md">
-      <div class="grid grid-cols-1 gap-6 text-gray-700 dark_text-gray-500">
-        <code>
-          <pre>
-            {{ globalState?.language}}
-            {{ globalState.safearea }}
-            {{ globalState.platform }}
-          </pre>
-        </code>
-      </div>
-    </div>
-  </div>
-  <div class="grid grid-col place-content-center" v-if="flag_settings">
-    <div class="mt-8 max-w-md">
-      <div class="grid grid-cols-1 gap-6 text-gray-700 dark_text-gray-500">
-        <label class="block">
-          <input type="checkbox" v-model="prefers.youtubeAccess" class="mt-1 mr-4" />
-          <span> {{ t('pages.youtube_access') }}? {{ prefers.youtubeAccess }}</span>
-        </label>
-        <label v-show="prefers.youtubeAccess" class="block">
-          <span>Youtube API Key</span>
-          <input type="text" v-model.lazy="prefers.youtubeAppKey" class="mt-1 block w-full" placeholder="google api key" />
-        </label>
-        <label v-show="prefers.youtubeAccess" class="block">
-          <span> {{ t('pages.youtube_per_query') }} </span>
-          <input type="text" v-model.number="prefers.maxResults" class="mt-1 block w-full" :placeholder="t('pages.youtube_per_query')" />
-        </label>
-        <label class="block">
-          <span>{{ t('pages.ipfs_gateway') }}</span>
-          <input type="text" v-model.lazy="prefers.ipfsGateway" class="mt-1 block w-full" placeholder="ipfs gateway url" />
-        </label>
-        <label class="block">
-          <span>{{ t('pages.youtube_playback_rate') }}</span>
-          <input type="number" v-model.number="prefers.playbackRate"  class="mt-1 block w-full" placeholder="0.5 0.75 1.0 1.25 1.5 1.75 2.0" />
-        </label>
       </div>
     </div>
   </div>

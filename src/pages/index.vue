@@ -1,8 +1,5 @@
 <script setup>
 import { currentRoom, rootRoom } from '@composables';
-import { useGun } from '@composables';
-const gun = useGun()
-globalThis.gun = gun
 const { t } = useI18n()
 </script>
 

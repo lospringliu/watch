@@ -14,14 +14,12 @@ import "gun/nts";
 
 
 // polyfiils for Gun 0.2020.1236
-// import { Buffer } from 'buffer'
-// globalThis.Buffer = Buffer
-// globalThis.setImmediate = setTimeout
+import { Buffer } from 'buffer'
+window.Buffer = Buffer
+window.setImmediate = setTimeout
 
-import { useStorage } from "@vueuse/core";
+import { peer } from './useRelay'
 
-export const defaultPeer = "https://etogun.glitch.me/gun";
-export const peer = useStorage("peer", defaultPeer);
 
 // https://github.com/amark/gun/wiki/volunteer.dht
 // https://github.com/draeder/gun-relays

@@ -13,6 +13,8 @@ button:
   playlist: 播放列表
   tools: 工具
   social: 社交
+  relays: 转发
+  graph: 数据
 intro:
   desc: 固执己见的 Vite 项目模板
   dynamic-route: 动态路由演示
@@ -43,6 +45,9 @@ pages:
   ipfs_gateway: IPFS网关
 not-found: 未找到页面
 gunvue:
+  relay_host: 主机
+  relay_set: 设置
+  relay_reset: 重置
   backlinks: 回连
   cred_saved: 我已经安全保存好了
   features: 特性

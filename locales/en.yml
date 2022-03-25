@@ -13,6 +13,8 @@ button:
   playlist: Play List
   tools: Tools
   social: Social
+  relays: Relay
+  graph: Graph
 intro:
   desc: Opinionated Vite Starter Template
   dynamic-route: Demo of dynamic route
@@ -43,6 +45,9 @@ pages:
   ipfs_gateway: IPFS Gateway
 not-found: Not found
 gunvue:
+  relay_host: Host
+  relay_set: Set
+  relay_reset: Reset
   backlinks: Backlinks
   cred_saved: Ive stored my key securely
   features: Features

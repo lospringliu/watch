@@ -18,12 +18,14 @@ if (!globalThis.hasOwnProperty("setImmediate")) globalThis.setImmediate = setTim
 // polyfill end
 
 import { globalState } from "./stores/globalState"
-import { peer } from "./gun-vue/composables/gun"
+import { peer } from "./gun-vue/composables/gun/useRelay"
 peer.value = globalState.gunPeer || "https://relay.bcapps.ca/gun"
-import { currentRoom } from "./gun-vue/composables"
+import { useGun, currentRoom } from './gun-vue/composables'
+const gun = useGun()
+globalThis.gun = gun
 
-import App from "./App.vue";
-import { initChannels } from "./composables/useVideos";
+import App from "./App.vue"
+import { initChannels } from "./composables/useVideos"
 
 const routes_layouts = setupLayouts(generatedRoutes)
 

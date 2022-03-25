@@ -26,6 +26,7 @@ const files = [
   "src/gun-vue/components/room/Profile.vue",
   "src/gun-vue/components/space/Plane.vue",
   "src/gun-vue/components/util/Share.vue",
+  "src/gun-vue/components/util/Relay.vue",
   "src/gun-vue/components/post/Form.vue",
   "src/gun-vue/components/post/List.vue",
   "src/gun-vue/components/post/Page.vue",
@@ -35,6 +36,9 @@ const files = [
   "src/gun-vue/components/form/Link.vue",
 ]
 const REPLACES = { // key: [flag_context, flag_binding,  en, zh, pre_regex, pre_replace, post_regex, post_replace]
+  relay_host: [false, false, "Host", "主机", "", "", `:`, ``],
+  relay_set: [false, false, "Set", "设置", `"\\) `, `") `],
+  relay_reset: [false, false, "Reset", "重置", `"\\) `, `") `],
   backlinks: [false, false, "Backlinks", "回连", `p-2 `],
   cred_saved: [false, false, `I've stored my key securely`, "我已经安全保存好了"],
   features: [false, false, "Features", "特性", "", "", ":"],

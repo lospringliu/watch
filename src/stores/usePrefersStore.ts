@@ -24,6 +24,7 @@ if (!db.data.prefers.hasOwnProperty("playbackRate")) db.data.prefers.playbackRat
 if (!db.data.prefers.hasOwnProperty("maxResults")) db.data.prefers.maxResults = prefers_initial.maxResults
 if (!db.data.prefers.hasOwnProperty("channels")) db.data.prefers.channels = prefers_initial.channels
 if (!db.data.prefers.hasOwnProperty("playlists")) db.data.prefers.playlists = prefers_initial.playlists
+db.data.prefers.version = pkg.version
 prefers_initial.channels.forEach(channel => {
   if (db.data.prefers.channels.filter(c => c.id === channel.id).length === 0) {
     db.data.prefers.channels.push(channel)

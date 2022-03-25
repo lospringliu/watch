@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { globalState } from "../stores/globalState"
+import { currentRoom, useBackground, useColor } from '@composables';
 const { t } = useI18n()
 onMounted(() => {
   // const { x, y, top, right, bottom, left, width, height } = useElementBounding(language)
@@ -18,7 +19,6 @@ const icons = {
   'Space': 'ic-round-filter-center-focus'
 }
 
-import { useUser, currentRoom, useBackground, useColor } from '@composables';
 const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200 }))
 const color = useColor('light')
 
