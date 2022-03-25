@@ -39,9 +39,6 @@ const color = useColor('light')
     ph-house
     .hidden.md_block {{ t('pages.rooms') }}
   room-icon.hidden.lg_block(@room="$router.push(`/rooms/${$event}`)" @rooms="$router.push(`/rooms/`)")
-  <button :title="t('button.close')" @click="globalState.show_social=false">
-    <ph-x-circle />
-  </button>
 </template>
 
 <style lang="postcss" scoped>

@@ -2,7 +2,6 @@
 import { isDark, toggleDark } from '../logic'
 import { prefers, playlist } from "../stores"
 import { useRoute } from 'vue-router'
-import { globalState } from '../stores/globalState'
 const language = ref(null)
 const route = useRoute()
 const { t, availableLocales, locale } = useI18n()
@@ -31,7 +30,9 @@ watch(show, (value, old_value) => {
     console.log(`not settings`)
   }
 })
-//    <button :title="t('button.settings')" @click="toggleSettings()">
+//    <button :title="t('button.relays')">
+//      <UtilRelay />
+//    </button>
 </script>
 
 <template>
@@ -61,9 +62,6 @@ watch(show, (value, old_value) => {
     <router-link to="/upload/">
       <ph-upload />
     </router-link>
-    <button :title="t('button.close')" @click="globalState.show_tools=false">
-      <ph-x-circle />
-    </button>
   </nav>
   <UiLayer :open="show.graph" @close="show.graph=false">
     <UtilGraph />
