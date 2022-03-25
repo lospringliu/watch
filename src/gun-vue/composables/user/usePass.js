@@ -36,14 +36,14 @@ export const pass = reactive({
   },
 });
 
-function genLink(text = "") {
+function genLink(text = "", auth_url="#/auth/") {
   let base = base32.encode(text);
-  return window.location.origin + window.location.pathname + "#/auth/" + base;
+  return window.location.origin + window.location.pathname + auth_url + base;
 }
 
-export function parseLink(link) {
-  let index = link.indexOf("#/auth/");
-  let base = link.substr(index + 7);
+export function parseLink(link, auth_url="#/auth/") {
+  let index = link.indexOf(auth_url);
+  let base = link.substr(index + auth_url.length);
   return base32.decode(base);
 }
 
@@ -74,7 +74,7 @@ export function usePass() {
         pass.dec.pass = await SEA.decrypt(pass.safe.pass, user.pair());
         pass.input = pass.dec.pass;
       }
-      if (pass.show && pass?.safe?.enc) {
+      if (pass?.show && pass?.safe?.enc) {
         pass.dec.pair = await SEA.decrypt(pass.safe.enc, pass.dec.pass);
       }
     });
