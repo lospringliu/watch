@@ -11,7 +11,10 @@ const customize = {
     [`function genLink\\(text = ""\\)`,`function genLink(text = "", auth_url="#/auth/")`], // params
     [`function parseLink\\(link\\)`,`function parseLink(link, auth_url="#/auth/")`], // params
   ],
-  // "./src/gun-vue/composables/user/usePass.js"
+  "./src/gun-vue/components/space/Plane.vue": [
+    [`text-2xl.p-8.top-15vh.cursor-pointer`, `text-2xl.p-2.top-3vh.cursor-pointer`],
+    [`svg.h-80vh.w-98vw`, `svg.h-95vh.w-98vw`]
+  ]
 }
 
 Promise.resolve().then(async () => {
