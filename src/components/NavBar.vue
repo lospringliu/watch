@@ -26,18 +26,16 @@ const color = useColor('light')
 
 <template lang="pug">
 .flex.flex-col
-  .min-h-4vh.md_min-h-6vh.justify-around.flex.flex-wrap.items-center.bg-light-900.shadow-xl.z-400.text-xl.sticky.w-full.bg-cover.top-0(
-    :style="{ ...bg }"
-    )
+  .min-h-4vh.md_min-h-6vh.justify-around.flex.flex-wrap.items-center.bg-light-900.shadow-xl.z-400.text-xl.sticky.w-full.bg-cover.top-0
     router-link.link(to="/")
       .bg-transparent.font-bold.py-2.text-4xl.text-left.write-vertical-right.text-green-700.text-opacity-10.text-stroke-sm.text-stroke-blue-700 M
-    button(:title="t('button.social')" @click="globalState.show_social=!globalState.show_social")
+    button.text-2xl(:title="t('button.social')" @click="globalState.show_social=!globalState.show_social")
       ph-x-circle(v-if="globalState.show_social")
       ph-users(v-else)
-    router-link.link(to="/videos/")
+    router-link.text-2xl.link(to="/videos/")
       ph-video-camera
       .hidden.md_block {{ t('pages.videos') }}
-    button(:title="t('button.tools')" @click="globalState.show_tools=!globalState.show_tools")
+    button.text-2xl(:title="t('button.tools')" @click="globalState.show_tools=!globalState.show_tools")
       ph-x-circle(v-if="globalState.show_tools")
       ph-gear(v-else)
     user-icon(
