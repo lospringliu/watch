@@ -4,12 +4,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview",
-    "gun": "echo file:../../gun-0.2020.1235.tgz"
+    "serve": "vite preview"
   },
   "dependencies": {
-    "@gun-vue/components": "0.7.8",
-    "@gun-vue/composables": "0.7.8",
     "@qrcode/svg": "^1.0.0-beta.2",
     "@vueuse/core": "8.1.2",
     "@vueuse/sound": "^1.1.7",
@@ -17,6 +14,7 @@
     "buffer": "^6.0.3",
     "color-hash": "^2.0.1",
     "curved-arrows": "^0.1.0",
+    "force-graph": "^1.42.9",
     "fuse.js": "^6.5.3",
     "grapheme-breaker-mjs": "^1.0.4",
     "gun": "0.2020.1236",

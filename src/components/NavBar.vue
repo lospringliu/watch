@@ -9,9 +9,10 @@ onMounted(() => {
 
 const routes = {
   "/space/": "Space",
-  "/chats/": "Chats",
+  "/topics/": "Topics",
   "/posts/": "Posts",
   "/users/": "Users",
+  "/chats/": "Chats",
   "/rooms/": "Rooms",
 };
 
@@ -42,7 +43,7 @@ const color = useColor('light')
       :size="32"
       @user="$router.push(`/users/${$event}`)" @room="$router.push(`/rooms/${$event}`)"
       @post="$router.push(`/posts/${$event}`)"
-      @chat="$router.push(`/users/${$event}/chat`)"
+      @chat="$router.push(`/users/${$event}`)"
       )
 </template>
 

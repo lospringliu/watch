@@ -26,7 +26,8 @@ export { default as UserHome } from "./user/Home.vue";
 export { default as UserIcon } from "./user/Icon.vue";
 export { default as UserPanel } from "./user/Panel.vue";
 export { default as UserProfile } from "./user/Profile.vue";
-export { default as UserProfileField } from "./user/Profile/Field.vue";
+export { default as UserGraph } from "./user/Graph.vue";
+export { default as UserProfileField } from "./user/profile/Field.vue";
 
 export { default as RoomProfile } from "./room/Profile.vue";
 
@@ -55,8 +56,8 @@ export { default as PostActionBan } from "./post/action/Ban.vue";
 
 export { default as ChatRoom } from "./chat/Room.vue";
 export { default as ChatMessage } from "./chat/Message.vue";
-export { default as ChatPrivate } from "./chat/Private.vue";
-export { default as ChatPrivateCount } from "./chat/PrivateCount.vue";
+export { default as ChatPrivate } from "./chat/private/Index.vue";
+export { default as ChatPrivateCount } from "./chat/private/Count.vue";
 
 // FORMS
 

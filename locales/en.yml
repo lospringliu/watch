@@ -43,6 +43,7 @@ pages:
   youtube_per_query: Records return per API query
   youtube_playback_rate: Playback rate
   ipfs_gateway: IPFS Gateway
+  topics: Topics
 not-found: Not found
 gunvue:
   relay_host: Host

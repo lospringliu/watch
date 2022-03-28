@@ -56,9 +56,6 @@ watch(show, (value, old_value) => {
     <button :title="t('button.graph')" @click="show.graph = !show.graph">
       <mdi-graph-outline />
     </button>
-    <button :title="t('button.relays')">
-      <UtilRelay />
-    </button>
     <router-link to="/upload/">
       <ph-upload />
     </router-link>

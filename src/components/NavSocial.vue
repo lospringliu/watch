@@ -26,15 +26,18 @@ const color = useColor('light')
   router-link.link(to="/space/")
     ph-hands-clapping
     .hidden.md_block {{ t('pages.space') }}
+  router-link.link(to="/topics/")
+    la-broadcast-tower
+    .hidden.md_block {{ t('pages.topics') }}
   router-link.link(to="/posts/")
     ph-newspaper
     .hidden.md_block {{ t('pages.posts') }}
-  router-link.link(to="/chats/")
-    ph-chats-teardrop
-    .hidden.md_block {{ t('pages.chats') }}
   router-link.link(to="/users/")
     ph-users
     .hidden.md_block {{ t('pages.users') }}
+  router-link.link(to="/chats/")
+    ph-chats-teardrop
+    .hidden.md_block {{ t('pages.chats') }}
   router-link.link(to="/rooms/")
     ph-house
     .hidden.md_block {{ t('pages.rooms') }}
