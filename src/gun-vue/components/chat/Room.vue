@@ -32,7 +32,7 @@ const { t } = useI18n()
 <template lang='pug'>
 .flex.flex-col.bg-dark-800.bg-opacity-40.backdrop-filter.backdrop-blur-xl.shadow-md.mx-auto.w-full
 
-  .flex.relative.h-78vh.items-stretch
+  .flex.relative.min-h-88vh.items-stretch
     transition(name="fade")
       .flex.flex-col.bg-dark-300.bg-opacity-70.gap-2.min-h-full.overflow-y-scroll.scroll-smooth.absolute.sm_static.z-20.w-220px.max-w-full.max-h-full.text-light-900.backdrop-filter.backdrop-blur-xl(style="flex: 1 1 320px" v-if="isLarge || (panelOpen && !isLarge)" ref="chatsPanel")
         .flex.flex-wrap

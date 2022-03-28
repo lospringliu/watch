@@ -14,7 +14,7 @@ watch(() => props.messages, () => {
 </script>
 
 <template lang='pug'>
-.flex.flex-col.bg-opacity-80.p-4.gap-2.overflow-y-scroll.scroll-smooth.flex-auto(ref="chatWindow"  )
+.flex.flex-col.bg-opacity-80.p-2.gap-1.overflow-y-scroll.scroll-smooth.flex-auto(ref="chatWindow"  )
   transition-group(name="fade")
     chat-message(
       :style="{ order: Math.round(Number(message.timestamp) / 1000) - 1640995200 }"

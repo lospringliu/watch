@@ -18,10 +18,10 @@ const { t } = useI18n()
 
 <template lang="pug">
 .flex.gap-2(v-if="user.pub")
-  textarea.p-2.rounded-xl.bg-light-200.flex-1(v-model="message" :placeholder="t('gunvue.your_message')" @keydown.enter.prevent.stop="send()")
+  textarea.px-2.rounded-xl.bg-light-200.flex-1(v-model="message" :placeholder="t('gunvue.your_message')" @keydown.enter.prevent.stop="send()")
   button.button(@click="send()" v-if="user.pub")
     la-comment-dots.mx-2
-.p-4.flex.flex-col.items-center(v-else)
+.p-2.flex.flex-col.items-center(v-else)
   button.button(@click="user.auth = true")
     | {{ t('gunvue.login_for_message') }}
 </template>

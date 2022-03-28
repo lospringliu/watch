@@ -14,6 +14,16 @@ const customize = {
   "./src/gun-vue/components/space/Plane.vue": [
     [`text-2xl.p-8.top-15vh.cursor-pointer`, `text-2xl.p-2.top-3vh.cursor-pointer`],
     [`svg.h-80vh.w-98vw`, `svg.h-95vh.w-98vw`]
+  ],
+  "./src/gun-vue/components/chat/Input.vue": [
+    [`textarea.p-2.rounded-xl.bg-light-200`, `textarea.px-2.rounded-xl.bg-light-200`],
+    [`p-4.flex.flex-col.items-center`, `p-2.flex.flex-col.items-center`],
+  ],
+  "./src/gun-vue/components/chat/Messages.vue": [
+    [`flex.flex-col.bg-opacity-80.p-4.gap-2`, `flex.flex-col.bg-opacity-80.p-2.gap-1`],
+  ],
+  "./src/gun-vue/components/chat/Room.vue": [
+    [`flex.relative.h-78vh`, `flex.relative.min-h-88vh`],
   ]
 }
 
