@@ -155,7 +155,7 @@ declare module 'vue' {
     UserPanel: typeof import('./gun-vue/components/user/panel.vue')['default']
     UserPass: typeof import('./gun-vue/components/user/Pass.vue')['default']
     UserProfile: typeof import('./gun-vue/components/user/profile.vue')['default']
-    UserProfileField: typeof import('./gun-vue/components/user/profile/field.vue')['default']
+    UserProfileField: typeof import('./gun-vue/components/user/profile/Field.vue')['default']
     UserRooms: typeof import('./gun-vue/components/user/Rooms.vue')['default']
     UtilGraph: typeof import('./gun-vue/components/util/graph.vue')['default']
     UtilPulse: typeof import('./gun-vue/components/util/pulse.vue')['default']
