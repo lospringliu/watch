@@ -5,6 +5,7 @@ const chalk = require("chalk")
 const yaml = require("js-yaml")
 
 const files = [
+  "src/gun-vue/components/user/List.vue",
   "src/gun-vue/components/user/Icon.vue",
   "src/gun-vue/components/user/Login.vue",
   "src/gun-vue/components/user/Auth.vue",
@@ -36,6 +37,8 @@ const files = [
   "src/gun-vue/components/form/Link.vue",
 ]
 const REPLACES = { // key: [flag_context, flag_binding,  en, zh, pre_regex, pre_replace, post_regex, post_replace]
+  user_users_list: [false, false, "Users list", "用户列表", `ml-1 `],
+  user_room_join: [false, false, "Join", "加入", `ml-2 `],
   relay_host: [false, false, "Host", "主机", "", "", `:`, ``],
   relay_set: [false, false, "Set", "设置", `"\\) `, `") `],
   relay_reset: [false, false, "Reset", "重置", `"\\) `, `") `],

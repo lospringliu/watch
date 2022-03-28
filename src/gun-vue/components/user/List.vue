@@ -21,6 +21,7 @@ onClickOutside(panel, () => {
 
 const isInRoom = computed(() => guests.guests[user.pub])
 
+const { t } = useI18n()
 </script>
 
 <template lang='pug'>
@@ -28,10 +29,10 @@ const isInRoom = computed(() => guests.guests[user.pub])
   .absolute.left-2.top-2.z-200.flex.gap-2
     button.button(@click="open = !open")
       la-users.text-3xl
-      .ml-1 Users list
+      .ml-1 {{ t('gunvue.user_users_list') }}
     button.button(v-if="user.is && !isInRoom" @click="joinRoom()")
       la-plus
-      .ml-2 Join
+      .ml-2 {{ t('gunvue.user_room_join') }}
   transition(name="fade")
     .absolute.left-0.w-50.bg-light-200.z-100.h-80vh.overflow-y-scroll.px-2.pt-12(v-show="open" )
       .flex.flex-col.my-2(v-for="state in ['online', 'offline']" :key="state")

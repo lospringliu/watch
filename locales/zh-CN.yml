@@ -26,6 +26,8 @@ vupload:
   ipfs_list: 上传到IPFS上的文件列表
   uploading: 文件正在上传
   prompt: 拖拽文件或者点击选择文件
+customize:
+  chat_title: 私聊
 pages:
   prompt_offline: 应用可离线使用
   prompt_reload: 应用有更新，可重新加载
@@ -46,6 +48,8 @@ pages:
   topics: 主题
 not-found: 未找到页面
 gunvue:
+  user_users_list: 用户列表
+  user_room_join: 加入
   relay_host: 主机
   relay_set: 设置
   relay_reset: 重置

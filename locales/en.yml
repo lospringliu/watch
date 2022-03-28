@@ -26,6 +26,8 @@ vupload:
   ipfs_list: List of files that you upload will appear here
   uploading: files being transfered
   prompt: Drop files here or click to select files
+customize:
+  chat_title: Private Chats
 pages:
   prompt_offline: App ready to work offline
   prompt_reload: New content available, click on reload button to update
@@ -46,6 +48,8 @@ pages:
   topics: Topics
 not-found: Not found
 gunvue:
+  user_users_list: Users list
+  user_room_join: Join
   relay_host: Host
   relay_set: Set
   relay_reset: Reset
