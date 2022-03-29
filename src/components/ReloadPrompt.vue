@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useRegisterSW } from 'virtual:pwa-register/vue'
 const reloadSW: any = '__RELOAD_SW__'
+const { t } = useI18n()
 
 const {
   offlineReady,
@@ -28,18 +29,18 @@ const close = async() => {
 //  <div v-if="offlineReady || needRefresh" class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-teal-500 z-1" role="alert">
 //    <div class="mb-1">
 //      <span v-if="offlineReady">
-//        {{ $t('pages.prompt_offline') }}
+//        {{ t('pages.prompt_offline') }}
 //      </span>
 //      <span v-else>
-//        {{ $t('pages.prompt_reload') }}
+//        {{ t('pages.prompt_reload') }}
 //      </span>
 //    </div>
 //    <div class="flex justify-around rounded-lg">
 //      <button v-if="needRefresh" @click="updateServiceWorker()" class="button text-cyan-600">
-//        {{ $t('button.reload') }}
+//        {{ t('button.reload') }}
 //      </button>
 //      <button @click="close" class="button text-cyan-400">
-//        {{ $t('button.close') }}
+//        {{ t('button.close') }}
 //      </button>
 //    </div>
 //    <div> <hr> </div>
@@ -50,18 +51,18 @@ const close = async() => {
   <div v-if="offlineReady || needRefresh" class="pwa-toast" role="alert">
     <div class="message">
       <span v-if="offlineReady">
-        {{ $t('pages.prompt_offline') }}
+        {{ t('pages.prompt_offline') }}
       </span>
       <span v-else>
-        {{ $t('pages.prompt_reload') }}
+        {{ t('pages.prompt_reload') }}
       </span>
     </div>
     <div class="flex justify-around">
       <button v-if="needRefresh" @click="updateServiceWorker()">
-        {{ $t('button.reload') }}
+        {{ t('button.reload') }}
       </button>
       <button @click="close">
-        {{ $t('button.close') }}
+        {{ t('button.close') }}
       </button>
     </div>
   </div>

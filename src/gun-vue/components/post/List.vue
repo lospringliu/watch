@@ -54,14 +54,14 @@ const { t } = useI18n()
             la-plus(v-if="!add")
             la-times(v-else)
           .ml-2.mr-1 {{ t('gunvue.add2') }}
-        label.flex-auto.cursor-pointer.button.transition.bg-light-800.shadow-lg.m-2.flex.items-center.justify-center(title="Upload feed" for="import-feed")
+        label.flex-auto.cursor-pointer.button.transition.bg-light-800.shadow-lg.m-2.flex.items-center.justify-center(v-if="1 > 2" title="Upload feed" for="import-feed")
           la-file-upload
           .ml-2.mr-1 {{ t('gunvue.upload') }}
         button.flex-auto.button.p-4.transition.shadow-lg.m-2.flex.items-center.justify-center(@click="showHidden = !showHidden")
           la-eye(v-if="showHidden")
           la-eye-slash(v-else)
           .ml-2 {{ t('gunvue.visibility') }}
-        button.flex-auto.button.p-4.transition.shadow-lg.m-2.flex.items-center.justify-center(title="Download feed" @click="downloadPosts()" v-if="countPosts > 0")
+        button.flex-auto.button.p-4.transition.shadow-lg.m-2.flex.items-center.justify-center(title="Download feed" @click="downloadPosts()" v-if="countPosts < -1")
           la-file-download(v-if="!downloading")
           la-redo-alt.animate-spin(v-else)
           .ml-2.mr-1 {{ t('gunvue.download') }}

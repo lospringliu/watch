@@ -25,6 +25,16 @@ const customize = {
   "./src/gun-vue/components/chat/Room.vue": { replaces: [
     [`flex.relative.h-78vh`, `flex.relative.min-h-88vh`],
   ]},
+  "./src/gun-vue/components/post/List.vue": { replaces: [
+    [`\\(title="Upload feed"`, `(v-if="1 > 2" title="Upload feed"`],
+    [`v-if="countPosts > 0"`, `v-if="countPosts < -1"`],
+  ]},
+  "./src/gun-vue/components/post/Page.vue": { replaces: [
+    [`button.button.flex.items-center\\(@click`, `button.button.flex.items-center(v-if="false" @click`],
+  ]},
+  "./src/gun-vue/components/user/Avatar.vue": { replaces: [
+    [`form-picture.absolute\\(`, `form-picture.absolute(\n    v-if="false"`],
+  ]},
   "./src/pages/chats.vue": { i18n: true, replaces: [
     [`chat-private-list\\(@chat`, `chat-private-list(:title="t('customize.chat_title')" @chat`],
   ]}

@@ -68,7 +68,7 @@ const { t } = useI18n()
             util-share
               p {{ t('gunvue.share') }}
             post-action-update(:hash="hash" )
-            button.button.flex.items-center(@click="download()")
+            button.button.flex.items-center(v-if="false" @click="download()")
               la-file-download(v-if="!downloading")
               la-redo-alt.animate-spin(v-else)
               .ml-2 {{ t('gunvue.download2') }}

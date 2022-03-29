@@ -75,7 +75,6 @@ declare module 'vue' {
     LaUndo: typeof import('~icons/la/undo')['default']
     LaUnlock: typeof import('~icons/la/unlock')['default']
     LaUser: typeof import('~icons/la/user')['default']
-    LaUsers: typeof import('~icons/la/users')['default']
     LaYoutube: typeof import('~icons/la/youtube')['default']
     LogTree: typeof import('./gun-vue/components/log/tree.vue')['default']
     MdiGraphOutline: typeof import('~icons/mdi/graph-outline')['default']
