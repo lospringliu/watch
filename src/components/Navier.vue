@@ -4,6 +4,7 @@ import { prefers, playlist } from "../stores"
 import { useRoute } from 'vue-router'
 const language = ref(null)
 const route = useRoute()
+const location_origin = ref(location.origin)
 const { t, availableLocales, locale } = useI18n()
 const toggleLocales = () => {
   const locales = availableLocales
@@ -56,7 +57,7 @@ watch(show, (value, old_value) => {
     <button :title="t('button.graph')" @click="show.graph = !show.graph">
       <mdi-graph-outline />
     </button>
-    <button :title="t('button.relays')">
+    <button v-if="!/3000/.test(location_origin)" :title="t('button.relays')">
       <UtilRelay />
     </button>
     <router-link to="/upload/">
