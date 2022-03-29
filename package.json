@@ -1,6 +1,6 @@
 {
   "name": "vitev",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -17,7 +17,6 @@
     "force-graph": "^1.42.9",
     "fuse.js": "^6.5.3",
     "grapheme-breaker-mjs": "^1.0.4",
-    "gun": "0.2020.1236",
     "gun-avatar": "1.6.2",
     "gun-util": "^0.0.17",
     "jsqr": "^1.4.0",
