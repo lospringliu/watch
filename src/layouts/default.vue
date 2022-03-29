@@ -2,12 +2,12 @@
   <main>
     <NavSocial v-if="globalState.show_social" />
     <Navier v-if="globalState.show_tools" />
+    <ReloadPrompt />
     <router-view />
     <div :style="style">
       <hr>
     </div>
     <div ref="navbar" class="fixed left-0 bottom-0 z-400 inset-x-0 opacity-99">
-      <ReloadPrompt />
       <NavBar />
     </div>
   </main>
