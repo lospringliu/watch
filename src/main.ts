@@ -1,4 +1,4 @@
-import { createApp } from "vue";
+import { createApp, ref } from "vue";
 import { pinia } from "./stores"
 
 import "virtual:windi.css";
@@ -20,9 +20,15 @@ if (!globalThis.hasOwnProperty("setImmediate")) globalThis.setImmediate = setTim
 import { globalState } from "./stores/globalState"
 import { peer } from "./gun-vue/composables/gun/useRelay"
 peer.value = globalState.gunPeer || "https://relay.bcapps.ca/gun"
-import { useGun, currentRoom } from './gun-vue/composables'
-const gun = useGun()
+// import { useGun, currentRoom } from './gun-vue/composables'
+// const gun = useGun()
+// globalThis.gun = gun
+import * as GunComposable from './gun-vue/composables'
+const gun = GunComposable.useGun()
+const currentRoom = GunComposable.currentRoom
 globalThis.gun = gun
+globalThis.ref = ref
+globalThis.GunComposable = GunComposable
 
 import App from "./App.vue"
 import { initChannels } from "./composables/useVideos"
