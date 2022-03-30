@@ -30,12 +30,12 @@ const { t } = useI18n()
 
 <template lang='pug'>
 .flex.flex-col.items-center.relative
-  .text-2xl.p-2.top-3vh.cursor-pointer.absolute.rounded-3xl.shadow-xl.border-2(
+  .text-2xl.p-2.top-3vh.cursor-pointer.absolute.rounded-3xl.shadow-xl.border-4(
     v-if="!space.joined && user.is" 
     @click="join()"
     :style="{ borderColor: user.color }"
     ) {{ t('gunvue.space_enter') }}
-  svg.h-95vh.w-98vw.md_h-90vh(
+  svg.h-95vh.w-98vw(
     ref="plane"
     style="cursor:none;"
     @click="place(); !user.is ? user.auth = true : null"

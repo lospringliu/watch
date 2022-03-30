@@ -10,12 +10,8 @@ const toggleLocales = () => {
   const locales = availableLocales
   locale.value = locales[(locales.indexOf(locale.value) + 1) % locales.length]
 }
-const flag_settings = ref(false)
-const flag_info = ref(false)
 const flag_playlist = ref(false)
-const toggleInfo = useToggle(flag_info)
 const togglePlayList = useToggle(flag_playlist)
-const toggleSettings = useToggle(flag_settings)
 const route_videos = computed(() => /videos/.test(route.path))
 const show = reactive({
   graph: false,

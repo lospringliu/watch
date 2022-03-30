@@ -37,17 +37,13 @@ const errors = reactive({})
  */
 
 export async function loadRelays({
-  urls = ['https://relay.peer.ooo/gun', 'https://replicant.adamantium.online/gun'],
   source = 'https://raw.githubusercontent.com/wiki/amark/gun/volunteer.dht.md'
 } = {}) {
-  if (!urls || urls.length === 0) {
-    let res = await fetch(source)
-    let data = await res.text()
-    urls = data.match(urlRegex())
-    urls = Array.from(urls)
-  }
-  console.log(urls)
-  urls.unshift(relay.peer)
+  let res = await fetch(source)
+  let data = await res.text()
+  let urls = data.match(urlRegex())
+  urls.push(relay.peer)
+  urls = Array.from(urls)
   urls.forEach((u) => {
     let testUrl = new URL(u)
     if (testUrl.pathname === '/gun' && testUrl.pathname.indexOf('~~') === -1) {

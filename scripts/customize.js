@@ -35,6 +35,10 @@ const customize = {
   "./src/gun-vue/components/user/Avatar.vue": { replaces: [
     [`form-picture.absolute\\(`, `form-picture.absolute(\n    v-if="false"`],
   ]},
+  "./src/gun-vue/components/room/Page.vue": { replaces: [
+    [`pt-42.pb-2.px-2`, `pt-12.pb-2.px-2`],
+    [`flex.flex-wrap`, `flex.flex-wrap.justify-between`],
+  ]},
   "./src/pages/chats.vue": { i18n: true, replaces: [
     [`chat-private-list\\(@chat`, `chat-private-list(:title="t('customize.chat_title')" @chat`],
   ]}
