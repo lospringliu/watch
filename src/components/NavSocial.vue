@@ -22,7 +22,7 @@ const color = useColor('light')
 </script>
 
 <template lang="pug">
-.flex.justify-around.sm_px-8.md_px-16.lg_px-32.items-center.text-center.bg-cyan-300.text-xl.py-1.mx-auto
+.flex.justify-around.sm_px-8.md_px-16.lg_px-32.items-center.text-center.bg-cyan-300.text-2xl.py-1.mx-auto
   router-link.link(to="/space/")
     ph-hands-clapping
     .hidden.md_block {{ t('pages.space') }}
