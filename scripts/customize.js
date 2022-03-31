@@ -13,7 +13,7 @@ const customize = {
     [`function parseLink\\(link\\)`,`function parseLink(link, auth_url="#/auth/")`], // params
   ]},
   "./src/gun-vue/components/space/Plane.vue": { replaces: [
-    [`text-2xl.p-8.top-15vh.cursor-pointer.absolute.rounded-3xl.shadow-xl.border-4`, `text-2xl.p-2.top-3vh.cursor-pointer.absolute.rounded-3xl.shadow-xl.border-2`],
+    [`text-2xl.p-8.top-15vh.cursor-pointer.absolute.rounded-3xl.shadow-xl.border-4`, `text-2xl.p-0.sm_p-2.md_p-4.lg_p-8.top-1vh.md_top-2vh.lg_top-4vh.cursor-pointer.absolute.rounded-3xl.shadow-xl.border-2`],
     [`svg.h-80vh.w-98vw`, `svg.h-95vh.w-98vw`]
   ]},
   "./src/gun-vue/components/chat/Input.vue": { replaces: [
@@ -34,7 +34,8 @@ const customize = {
     [`button.button.flex.items-center\\(@click`, `button.button.flex.items-center(v-if="false" @click`],
   ]},
   "./src/gun-vue/components/user/Avatar.vue": { replaces: [
-    [`form-picture.absolute\\(\n    :options`, `form-picture.absolute(\n    v-if="false"\n    :options`],
+    // [`form-picture.absolute\\(\n    :options`, `form-picture.absolute(\n    v-if="false"\n    :options`],
+    [`form-picture.absolute\\(`, `form-picture.absolute(\n    v-if="false"`],
   ]},
   "./src/gun-vue/components/room/Page.vue": { replaces: [
     [`pt-42.pb-2.px-2`, `pt-12.pb-2.px-2`],

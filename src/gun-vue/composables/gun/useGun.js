@@ -9,8 +9,6 @@ import "gun/lib/radix";
 import "gun/lib/radisk";
 import "gun/lib/store";
 import "gun/lib/rindexed";
-// import "gun/lib/open";
-// import "gun/lib/load";
 // import "gun/lib/webrtc";
 import "gun/nts";
 
