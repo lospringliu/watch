@@ -59,6 +59,9 @@ watch(show, (value, old_value) => {
     <router-link to="/upload/">
       <ph-upload />
     </router-link>
+    <router-link to="/wallets/">
+      <ph-wallet />
+    </router-link>
   </nav>
   <UiLayer :open="show.graph" @close="show.graph=false">
     <UtilGraph />

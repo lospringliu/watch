@@ -15,7 +15,7 @@ function show(option) {
 }
 
 watch(pair, (p) => {
-  console.log(p)
+// console.log(p)
   if (p && typeof p == 'string' && p.substring(0, 3) == 'SEA') {
     passphrase.value = ''
   }

@@ -6,7 +6,8 @@ const chalk = require("chalk")
 const customize = {
   "./src/gun-vue/composables/user/usePass.js": { replaces: [
     [`if \\(pass.show `, `if (pass?.show `], // less strict
-    [`"#\\/auth\\/"`, `auth_url`], // history mode
+    [` "#\\/auth\\/" `, ` auth_url `], // history mode
+    [`indexOf\\("#\\/auth\\/"`, `indexOf(auth_url`], // history mode
     [`link.substr\\(index \\+ 7\\)`,`link.substr(index + auth_url.length)`], // paramize
     [`function genLink\\(text = ""\\)`,`function genLink(text = "", auth_url="#/auth/")`], // params
     [`function parseLink\\(link\\)`,`function parseLink(link, auth_url="#/auth/")`], // params
@@ -33,11 +34,14 @@ const customize = {
     [`button.button.flex.items-center\\(@click`, `button.button.flex.items-center(v-if="false" @click`],
   ]},
   "./src/gun-vue/components/user/Avatar.vue": { replaces: [
-    [`form-picture.absolute\\(`, `form-picture.absolute(\n    v-if="false"`],
+    [`form-picture.absolute\\(\n    :options`, `form-picture.absolute(\n    v-if="false"\n    :options`],
   ]},
   "./src/gun-vue/components/room/Page.vue": { replaces: [
     [`pt-42.pb-2.px-2`, `pt-12.pb-2.px-2`],
-    [`flex.flex-wrap`, `flex.flex-wrap.justify-between`],
+    [`flex.flex-wrap$`, `flex.flex-wrap.justify-between`],
+  ]},
+  "./src/gun-vue/components/user/auth.vue": { replaces: [
+    [`  console.log\\(p\\)`, `// console.log(p)`],
   ]},
   "./src/pages/chats.vue": { i18n: true, replaces: [
     [`chat-private-list\\(@chat`, `chat-private-list(:title="t('customize.chat_title')" @chat`],

@@ -1,20 +1,11 @@
 <script setup lang="ts">
 import { globalState } from "../stores/globalState"
-import { currentRoom, useBackground, useColor } from '@composables';
+import { currentRoom, useBackground, useColor } from '../gun-vue/composables';
 const { t } = useI18n()
 onMounted(() => {
   // const { x, y, top, right, bottom, left, width, height } = useElementBounding(language)
   // globalState.language = { x, y, top, right, bottom, left, width, height }
 })
-
-const routes = {
-  "/space/": "Space",
-  "/topics/": "Topics",
-  "/posts/": "Posts",
-  "/users/": "Users",
-  "/chats/": "Chats",
-  "/rooms/": "Rooms",
-};
 
 const icons = {
   'Space': 'ic-round-filter-center-focus'
@@ -23,6 +14,9 @@ const icons = {
 const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200 }))
 const color = useColor('light')
 
+//    user-wallet(
+//      :size="32"
+//      )
 </script>
 
 <template lang="pug">
