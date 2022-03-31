@@ -14,7 +14,7 @@ const customize = {
   ]},
   "./src/gun-vue/components/space/Plane.vue": { replaces: [
     [`text-2xl.p-8.top-15vh.cursor-pointer.absolute.rounded-3xl.shadow-xl.border-4`, `text-2xl.p-0.sm_p-2.md_p-4.lg_p-8.top-1vh.md_top-2vh.lg_top-4vh.cursor-pointer.absolute.rounded-3xl.shadow-xl.border-2`],
-    [`svg.h-80vh.w-98vw`, `svg.h-95vh.w-98vw`]
+    [`svg.h-80vh.w-98vw`, `svg.h-100vh.w-100vw`]
   ]},
   "./src/gun-vue/components/chat/Input.vue": { replaces: [
     [`textarea.p-2.rounded-xl.bg-light-200`, `textarea.px-2.rounded-xl.bg-light-200`],
