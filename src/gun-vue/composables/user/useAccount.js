@@ -48,6 +48,7 @@
         }
       }),
       blink: false,
+      wallets: {jingtum: {chain: "jingtum"}},
       db: gun.user(pub.value),
     });
 
@@ -63,6 +64,14 @@
       .map()
       .on((data, key) => {
         obj.profile[key] = data;
+      });
+    gun.user(pub.value)
+      .get("wallets")
+      .get("defaults")
+      .map()
+      .on((d, k) => {
+        delete d._
+        obj.wallets[k] = d;
       });
     return obj;
   });

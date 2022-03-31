@@ -88,6 +88,7 @@ export const user = reactive({
     saved: null,
     password: null,
   },
+  wallets: {jingtum: {chain: "jingtum"}},
   pair() {
     return gun?.user?.()?._?.sea;
   },
@@ -133,6 +134,14 @@ function init() {
   if (user.pulser) {
     clearInterval(user.pulser);
   }
+  gun.user()
+    .get("wallets")
+    .get("defaults")
+    .map()
+    .on((d, k) => {
+      delete d._
+      user.wallets[k] = d;
+    });
   user.pulser = setInterval(() => {
     gun.user().get("pulse").put(Date.now());
   }, 1000);

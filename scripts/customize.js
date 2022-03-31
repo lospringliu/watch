@@ -44,6 +44,14 @@ const customize = {
   "./src/gun-vue/components/user/auth.vue": { replaces: [
     [`  console.log\\(p\\)`, `// console.log(p)`],
   ]},
+  "./src/gun-vue/composables/user/useAccount.js": { replaces: [
+    [`db: gun.user`, `wallets: {jingtum: {chain: "jingtum"}},\n      db: gun.user`],
+    [`return obj;`, `gun.user(pub.value)\n      .get("wallets")\n      .get("defaults")\n      .map()\n      .on((d, k) => {\n        delete d._\n        obj.wallets[k] = d;\n      });\n    return obj;`]
+  ]},
+  "./src/gun-vue/composables/user/useUser.js": { replaces: [
+    [`pair\\(\\) {`, `wallets: {jingtum: {chain: "jingtum"}},\n  pair() {`],
+    [`user.pulser = setInterval`, `gun.user()\n    .get("wallets")\n    .get("defaults")\n    .map()\n    .on((d, k) => {\n      delete d._\n      user.wallets[k] = d;\n    });\n  user.pulser = setInterval`]
+  ]},
   "./src/pages/chats.vue": { i18n: true, replaces: [
     [`chat-private-list\\(@chat`, `chat-private-list(:title="t('customize.chat_title')" @chat`],
   ]}
