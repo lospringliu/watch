@@ -39,13 +39,16 @@ const { t } = useI18n()
 
 <template lang="pug">
 .grid.grid-col-1.place-content-around.gap-2.m-2.min-h-90vh
-  .flex.flex-col.p-6.max-w-sm.mx-auto.bg-white.rounded-xl.shadow-lg.space-x-4
-    .mx-auto.text-blue-600
-      mdi-wallet.w-16.h-16
-    .tracking-tight.mx-auto {{ wallet.address }}
+  .flex.flex-col.gap-2.max-w-sm.p-2.bg-white.rounded-xl.shadow-lg
+    .flex.justify-center.items-center.gap-4.text-blue-600
+      p {{ wallet.chain }}
+      mdi-wallet.w-12.h-12
+      p {{ wallet.algorithm }}
+    .font-mono.tracking-tight.mx-auto {{ wallet.address }}
     .border-b
-    div(v-if="user.wallets.jingtum?.activated")
+    .flex.flex-col.gap-2(v-if="user.wallets.jingtum?.activated")
       p {{ t('wallets.balance') }} {{ wallet.balance.native.quantity }} {{ wallet.balance.native.token}}
+      .border-b
       div(v-if="wallet.balance.tokens")
         p {{ t('wallets.tokens') }}
         ul.pl-4(v-for="(quantity, token) of wallet.balance?.tokens" :key="token")
