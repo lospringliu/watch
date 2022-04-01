@@ -25,6 +25,8 @@ const customize = {
   ]},
   "./src/gun-vue/components/chat/Room.vue": { replaces: [
     [`flex.relative.h-78vh`, `flex.relative.min-h-88vh`],
+    [`import { useChat, useUser, useBackground, currentRoom }`, `import { useChat, useUser, useBackground, currentRoom, rootRoom }`],
+    [`cursor-pointer.self-center.text-2xl.p-2\\(@click`, `cursor-pointer.self-center.text-2xl.p-2(v-if="currentRoom.pub !== rootRoom.pub || user.wallets.jingtum?.activated" @click`]
   ]},
   "./src/gun-vue/components/post/List.vue": { replaces: [
     [`\\(title="Upload feed"`, `(v-if="1 > 2" title="Upload feed"`],
@@ -35,7 +37,7 @@ const customize = {
   ]},
   "./src/gun-vue/components/user/Avatar.vue": { replaces: [
     // [`form-picture.absolute\\(\n    :options`, `form-picture.absolute(\n    v-if="false"\n    :options`],
-    [`form-picture.absolute\\(`, `form-picture.absolute(\n    v-if="false"`],
+    [`form-picture.absolute\\(`, `form-picture.absolute(\n    v-if="user.wallets.jingtum?.activated"`],
   ]},
   "./src/gun-vue/components/room/Page.vue": { replaces: [
     [`pt-42.pb-2.px-2`, `pt-12.pb-2.px-2`],
@@ -46,7 +48,7 @@ const customize = {
   ]},
   "./src/gun-vue/composables/user/useAccount.js": { replaces: [
     [`db: gun.user`, `wallets: {jingtum: {chain: "jingtum"}},\n      db: gun.user`],
-    [`return obj;`, `gun.user(pub.value)\n      .get("wallets")\n      .get("defaults")\n      .map()\n      .on((d, k) => {\n        delete d._\n      delete d["#"]\n      delete d[">"]\n        obj.wallets[k] = d;\n      });\n    return obj;`]
+    [`return obj;`, `gun.user(pub.value)\n      .get("wallets")\n      .get("defaults")\n      .map()\n      .on((d, k) => {\n        delete d._\n        delete d["#"]\n        delete d[">"]\n        obj.wallets[k] = d;\n      });\n    return obj;`]
   ]},
   "./src/gun-vue/composables/user/useUser.js": { replaces: [
     [`gun.user\\(\\).leave\\(\\);`, `user.wallets = {jingtum: {chain: "jingtum"}};\n  gun.user().leave();`],

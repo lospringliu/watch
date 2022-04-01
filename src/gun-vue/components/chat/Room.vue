@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed, watch, nextTick } from 'vue'
 import { useMediaQuery, onClickOutside } from '@vueuse/core'
-import { useChat, useUser, useBackground, currentRoom } from '@composables';
+import { useChat, useUser, useBackground, currentRoom, rootRoom } from '@composables';
 
 const props = defineProps({
   title: { type: String, default: 'Topics' }
@@ -38,7 +38,7 @@ const { t } = useI18n()
         .flex.flex-wrap
           .text-xl.font-bold.p-2 {{ title }}
           .flex-1
-          .cursor-pointer.self-center.text-2xl.p-2(@click="adding = !adding")
+          .cursor-pointer.self-center.text-2xl.p-2(v-if="currentRoom.pub !== rootRoom.pub || user.wallets.jingtum?.activated" @click="adding = !adding")
             transition(name="fade" mode="out-in")
               la-plus(v-if="!adding")
               la-times(v-else)

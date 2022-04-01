@@ -45,7 +45,7 @@ function removeAvatar() {
   account-avatar(:pub="user.pub" :size="size" )
 
   form-picture.absolute(
-    v-if="false"
+    v-if="user.wallets.jingtum?.activated"
     :options="{ picSize: props.pic, preserveRatio: false }"
     @update="uploadAvatar($event)"
     )

@@ -20,6 +20,7 @@ export const globalState = reactive({
   debug: true,
   platform,
   gunPeer: "https://etogun.glitch.me/gun",
+  // gunPeer: "https://relay.bcapps.ca/gun",
   show_tools: false,
   show_social: false,
   loaded_ipfs: false,

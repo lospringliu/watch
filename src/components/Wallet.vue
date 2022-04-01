@@ -39,7 +39,7 @@ const { t } = useI18n()
 
 <template lang="pug">
 .grid.grid-col-1.place-content-around.gap-2.m-2.min-h-90vh
-  .flex.flex-col.p-6.max-w-md.mx-auto.bg-white.rounded-xl.shadow-lg.space-x-4
+  .flex.flex-col.p-6.max-w-sm.mx-auto.bg-white.rounded-xl.shadow-lg.space-x-4
     .mx-auto.text-blue-600
       mdi-wallet.w-16.h-16
     .tracking-tight.mx-auto {{ wallet.address }}
