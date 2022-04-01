@@ -1,5 +1,6 @@
 import { createApp, ref } from "vue";
 import { pinia } from "./stores"
+import { globalState } from "./stores/globalState"
 
 import "virtual:windi.css";
 import "./gun-vue/components/styles/index.css";
@@ -16,21 +17,11 @@ if (!globalThis.hasOwnProperty("Buffer")) globalThis.Buffer = Buffer
 if (!globalThis.hasOwnProperty("setImmediate")) globalThis.setImmediate = setTimeout
 // polyfill end
 
-import { globalState } from "./stores/globalState"
 import { peer } from "./gun-vue/composables/gun/useRelay"
 peer.value = globalState.gunPeer || "https://relay.bcapps.ca/gun"
-// import { useGun, currentRoom } from './gun-vue/composables'
-// const gun = useGun()
-// globalThis.gun = gun
-import * as GunComposable from './gun-vue/composables'
-const gun = GunComposable.useGun()
-const currentRoom = GunComposable.currentRoom
-globalThis.gun = gun
-globalThis.ref = ref
-globalThis.GunComposable = GunComposable
+import { currentRoom } from './gun-vue/composables';
 
 import App from "./App.vue"
-import { initChannels } from "./composables/useVideos"
 
 const routes_layouts = setupLayouts(generatedRoutes)
 
@@ -55,11 +46,6 @@ Object.values(import.meta.globEager('./modules/*.ts')).forEach(i => i.install?.(
 
 router.isReady().then(async () => {
   app.mount("#app");
-  const {vref, cref, gvideos, gchannels} = await initChannels()
-  globalThis.gvideos = gvideos
-  globalThis.vref = vref
-  globalThis.gchannels = gchannels
-  globalThis.cref = cref
 })
 
 router.beforeEach((to, from, next) => {
