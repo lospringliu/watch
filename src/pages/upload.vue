@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import VUpload from "../components/VUpload.vue"
+import "notyf/notyf.min.css";
 </script>
 
 <template>

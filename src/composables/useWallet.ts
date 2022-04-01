@@ -1,10 +1,11 @@
 import { useUser } from "../gun-vue/composables"
 import { getRandomElement } from "../api/utils"
+import { Remote } from "@swtc/rpc"
 // import { prefers } from '../stores'
 const { user } = useUser()
 const wallet = reactive({
-  Remote: null,
-  Wallet: null,
+  Remote: Remote,
+  Wallet: Remote.Wallet,
   chain: "jingtum",
   algorithm: "ed25519",
   remote: null,
@@ -69,7 +70,7 @@ export function useWallet({
 function wallet_init(){
   if (!wallet.initiated) {
     if (!wallet.address) {
-      wallet.address = wallet.Wallet?.fromSecret(Buffer.from(user?.pair()?.priv, "base64").toString("hex"), wallet.algorithm)?.address
+      wallet.address = wallet.Wallet.fromSecret(Buffer.from(user?.pair()?.priv, "base64").toString("hex"), wallet.algorithm)?.address
       user.db.get("wallets").get("defaults").get(wallet.chain).put({chain: wallet.chain, address: wallet.address, algorithm: wallet.algorithm })
     }
     wallet.remote = new wallet.Remote({server: getRandomElement(wallet.endpoints)})

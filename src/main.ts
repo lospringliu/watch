@@ -4,7 +4,6 @@ import { pinia } from "./stores"
 import "virtual:windi.css";
 import "./gun-vue/components/styles/index.css";
 import "./styles/styles.scss";
-import "notyf/notyf.min.css";
 
 import { createRouter, createWebHashHistory } from "vue-router"
 import generatedRoutes from 'virtual:generated-pages'

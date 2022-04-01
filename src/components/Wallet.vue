@@ -4,8 +4,7 @@ import { useWallet } from '../composables/useWallet'
 const { user } = useUser()
 const { wallet, wallet_init, wallet_balance } = useWallet()
 globalThis.wallet = wallet
-import { globalState } from "../stores/globalState"
-const [lib_name] = wallet.librarys[0]
+// const [lib_name] = wallet.librarys[0]
 // const { load } = useScriptTag(
 //   lib_script,
 //   () => {},
@@ -16,22 +15,12 @@ onBeforeMount(() => {
   if (!user.is) {
     user.auth = true
   }
-  if (!globalThis[lib_name]) {
-    console.log(`import library`)
-    globalState.swtc_load().then(() => {
-      console.log(`loaded ${lib_name}`)
-      wallet.Remote = globalThis[lib_name].Remote
-      wallet.Wallet = wallet.Remote.Wallet
-      if (!wallet.address || !wallet.remote) {
-        if (!user.is) {
-        } else {
-          wallet_init()
-          console.log(user.wallets.jingtum)
-          wallet.balance_raw = user.wallets.jingtum
-          wallet_balance()
-        }
-      }
-    })
+  if (!wallet.initiated) {
+    if (user.is) {
+      wallet_init()
+      wallet.balance_raw = user.wallets.jingtum
+      wallet_balance()
+    }
   }
 })
 </script>

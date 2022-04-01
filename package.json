@@ -37,6 +37,7 @@
     "@iconify/json": "^2.1.17",
     "@intlify/vite-plugin-vue-i18n": "^3.3.0",
     "@skynetlabs/skynet-nodejs": "^2.5.1",
+    "@swtc/rpc": "^1.1.1",
     "@types/youtube": "^0.0.46",
     "@vitejs/plugin-vue": "^2.2.4",
     "@vueuse/components": "^8.1.2",
