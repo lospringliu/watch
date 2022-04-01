@@ -1,11 +1,10 @@
 import { useUser } from "../gun-vue/composables"
 import { getRandomElement } from "../api/utils"
-import { Remote } from "@swtc/rpc"
 // import { prefers } from '../stores'
 const { user } = useUser()
 const wallet = reactive({
-  Remote: Remote,
-  Wallet: Remote.Wallet,
+  Remote: null,
+  Wallet: null,
   chain: "jingtum",
   algorithm: "ed25519",
   remote: null,
@@ -37,22 +36,16 @@ const wallet = reactive({
 })
 
 export function useWallet({
-    chain = "jingtum",
-    algorithm = "ed25519",
     need_activation=true,
     endpoints=['https://srje115qd43qw2.swtc.top', 'https://srje071qdew231.swtc.top']
   } = {}) {
-    wallet.chain = chain
-    wallet.algorithm = algorithm
     wallet.activated = !need_activation
     wallet.endpoints = endpoints
     const user_is = computed(() => user.is)
-    const stop_watch_auth = watch(user_is, (value, old_value) => {
+    const stop_watch_auth = watch(user_is, () => {
       if (!user_is) {
         wallet.address = ''
         wallet.balances = {}
-      } else {
-
       }
     })
     const stop_watch_address = watch(user.wallets, () => {
@@ -70,9 +63,14 @@ export function useWallet({
 function wallet_init(){
   if (!wallet.initiated) {
     if (!wallet.address) {
-      wallet.address = wallet.Wallet.fromSecret(Buffer.from(user?.pair()?.priv, "base64").toString("hex"), wallet.algorithm)?.address
+      wallet.address = wallet.Wallet?.fromSecret(Buffer.from(user?.pair()?.priv, "base64").toString("hex"), wallet.algorithm)?.address
       user.db.get("wallets").get("defaults").get(wallet.chain).put({chain: wallet.chain, address: wallet.address, algorithm: wallet.algorithm })
     }
+    setTimeout(() => {
+      if (!wallet.activated && user.wallets?.jingtum?.activated) {
+        wallet.activated = true
+      }
+    }, 1000)
     wallet.remote = new wallet.Remote({server: getRandomElement(wallet.endpoints)})
   }
 } 

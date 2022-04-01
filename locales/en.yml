@@ -28,6 +28,10 @@ vupload:
   prompt: Drop files here or click to select files
 customize:
   chat_title: Private Chats
+wallets:
+  not_activated: Not Activated
+  balance: Balance
+  tokens: Tokens
 pages:
   prompt_offline: App ready to work offline
   prompt_reload: New content available, click on reload button to update
