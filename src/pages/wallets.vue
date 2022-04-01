@@ -5,6 +5,8 @@ const style = computed(() => `padding-top: ${top.value === "0px" ? +top.value.re
 
 <template>
   <div :style="style">
-    <Wallet />
+    <transition :name="'fade'" mode="out-in">
+      <Wallet />
+    </transition>
   </div>
 </template>

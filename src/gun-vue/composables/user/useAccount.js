@@ -71,6 +71,8 @@
       .map()
       .on((d, k) => {
         delete d._
+      delete d["#"]
+      delete d[">"]
         obj.wallets[k] = d;
       });
     return obj;

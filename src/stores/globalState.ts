@@ -1,8 +1,12 @@
 import platform from 'platform-detect'
 import pkg from "../../package.json"
+const { load: load_swtc } = useScriptTag(
+  "https://unpkg.com/@swtc/rpc@1.1.1/dist/swtc-rpc.js",
+  () => {},
+  { manual: true },
+)
 const { load: load_ipfs } = useScriptTag(
   "https://cdn.jsdelivr.net/npm/ipfs/dist/index.min.js",
-  // "/ipfs.min.js",
   () => {},
   { manual: true },
 )
@@ -90,6 +94,18 @@ export const globalState = reactive({
       } catch (e) {
         console.log(e)
         globalState.loaded_ipfs = false
+      }
+    }
+  },
+  async swtc_load() {
+    if (!globalState.loaded_swtc) {
+      globalState.loaded_ipfs = true
+      console.log(`swtc loading`)
+      try {
+        await load_swtc()
+      } catch (e) {
+        console.log(e)
+        globalState.loaded_swtc = false
       }
     }
   }

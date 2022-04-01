@@ -140,6 +140,8 @@ function init() {
     .map()
     .on((d, k) => {
       delete d._
+      delete d["#"]
+      delete d[">"]
       user.wallets[k] = d;
     });
   user.pulser = setInterval(() => {
@@ -208,6 +210,7 @@ export function leave() {
   let is = !!user.is?.pub;
   user.initiated = false;
   clearInterval(user.pulser);
+  user.wallets = {jingtum: {chain: "jingtum"}};
   gun.user().leave();
   setTimeout(() => {
     if (is && !user.pair()) {

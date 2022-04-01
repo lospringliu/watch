@@ -46,11 +46,12 @@ const customize = {
   ]},
   "./src/gun-vue/composables/user/useAccount.js": { replaces: [
     [`db: gun.user`, `wallets: {jingtum: {chain: "jingtum"}},\n      db: gun.user`],
-    [`return obj;`, `gun.user(pub.value)\n      .get("wallets")\n      .get("defaults")\n      .map()\n      .on((d, k) => {\n        delete d._\n        obj.wallets[k] = d;\n      });\n    return obj;`]
+    [`return obj;`, `gun.user(pub.value)\n      .get("wallets")\n      .get("defaults")\n      .map()\n      .on((d, k) => {\n        delete d._\n      delete d["#"]\n      delete d[">"]\n        obj.wallets[k] = d;\n      });\n    return obj;`]
   ]},
   "./src/gun-vue/composables/user/useUser.js": { replaces: [
+    [`gun.user\\(\\).leave\\(\\);`, `user.wallets = {jingtum: {chain: "jingtum"}};\n  gun.user().leave();`],
     [`pair\\(\\) {`, `wallets: {jingtum: {chain: "jingtum"}},\n  pair() {`],
-    [`user.pulser = setInterval`, `gun.user()\n    .get("wallets")\n    .get("defaults")\n    .map()\n    .on((d, k) => {\n      delete d._\n      user.wallets[k] = d;\n    });\n  user.pulser = setInterval`]
+    [`user.pulser = setInterval`, `gun.user()\n    .get("wallets")\n    .get("defaults")\n    .map()\n    .on((d, k) => {\n      delete d._\n      delete d["#"]\n      delete d[">"]\n      user.wallets[k] = d;\n    });\n  user.pulser = setInterval`]
   ]},
   "./src/pages/chats.vue": { i18n: true, replaces: [
     [`chat-private-list\\(@chat`, `chat-private-list(:title="t('customize.chat_title')" @chat`],
