@@ -7,16 +7,9 @@ onMounted(() => {
   // globalState.language = { x, y, top, right, bottom, left, width, height }
 })
 
-const icons = {
-  'Space': 'ic-round-filter-center-focus'
-}
-
 const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200 }))
 const color = useColor('light')
 
-//    user-wallet(
-//      :size="32"
-//      )
 </script>
 
 <template lang="pug">
@@ -25,13 +18,13 @@ const color = useColor('light')
     router-link.link(to="/")
       .bg-transparent.font-bold.py-2.text-4xl.text-left.write-vertical-right.text-green-700.text-opacity-10.text-stroke-sm.text-stroke-blue-700 M
     button.text-2xl(:title="t('button.social')" @click="globalState.show_social=!globalState.show_social")
-      ph-x-circle(v-if="globalState.show_social")
+      la-times(v-if="globalState.show_social")
       ph-users(v-else)
     router-link.text-2xl.link(to="/videos/")
       ph-video-camera
       .hidden.md_block {{ t('pages.videos') }}
     button.text-2xl(:title="t('button.tools')" @click="globalState.show_tools=!globalState.show_tools")
-      ph-x-circle(v-if="globalState.show_tools")
+      la-times(v-if="globalState.show_tools")
       ph-gear(v-else)
     user-icon(
       :size="32"
