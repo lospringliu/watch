@@ -32,6 +32,7 @@ wallets:
   not_activated: 未激活
   balance: 余额
   tokens: 通证
+  login_first: 请先登录
 pages:
   prompt_offline: 应用可离线使用
   prompt_reload: 应用有更新，可重新加载

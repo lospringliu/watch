@@ -100,7 +100,7 @@ export const globalState = reactive({
   },
   async swtc_load() {
     if (!globalState.loaded_swtc) {
-      globalState.loaded_ipfs = true
+      globalState.loaded_swtc = true
       console.log(`swtc loading`)
       try {
         await load_swtc()
