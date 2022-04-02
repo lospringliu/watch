@@ -2,14 +2,15 @@
 import { useUser } from '../gun-vue/composables';
 import { useWallet } from '../composables/useWallet'
 const { user } = useUser()
-const { wallet, load_library, wallet_init, wallet_balance } = useWallet()
+const { wallet, load_library, update_balance } = useWallet()
 globalThis.wallet = wallet
+const noop = () => {console.log(`...debug doing nothing`)}
 const balance = computed(() => {
   const balance = {sequence: 0, native: {} as any, tokens: {} as any} as any
   try {
     const jingtum = JSON.parse(user.wallets.jingtum?.balance || "{}")
     const native_token = "SWT"
-    const whitelists = ["#", ">", "undefined", "balance", "chain", "activated", "address", "algorithm", "sequence", "SWT"]
+    const whitelists = ["_", "#", ">", "undefined", "balance", "chain", "activated", "address", "algorithm", "sequence", "SWT"]
     balance.sequence = jingtum.sequence || 0
     if (!jingtum.balances) {
       return balance
@@ -22,7 +23,6 @@ const balance = computed(() => {
       jingtum.balances.forEach(token => {
         if (whitelists.find(t => t === token.currency)) { return }
         if (token.value < 0.000001) {
-          // whitelists.push(token)
         } else {
           balance.tokens[token.currency] = token
         }
@@ -33,7 +33,7 @@ const balance = computed(() => {
 })
 
 onBeforeMount(() => {
-  load_library()
+  load_library(wallet)
   if (!user.is) {
     user.auth = true
   }
@@ -52,18 +52,20 @@ const { t } = useI18n()
     .font-mono.tracking-tight.mx-auto {{ wallet.address }}
     .flex.flex-col.gap-2(v-if="user.wallets.jingtum?.activated")
       .border-b
-      div(v-if="balance.tokens")
+      div(v-if="Object.keys(balance.tokens).length > 0")
         p {{ t('wallets.tokens') }}
         ul.pl-4(v-for="(value, token) of balance.tokens" :key="token")
           li {{ value.value }} {{ token }}
       .flex.place-content-around
-        button.button.text-green-800(@click="wallet_balance")
-          carbon-update-now(v-if="!wallet.query")
-        button.button
-          ph-spinner-bold.text-yellow-500(v-if="wallet.querying")
-          ph-spinner-thin.text-green-100(v-else)
+        button.button.text-green-800
+          ph-spinner-bold.text-yellow-500(v-if="wallet.querying" @click="noop()")
+          carbon-update-now(v-else @click="update_balance(wallet)")
     div(v-else)
-      p {{ t('wallets.not_activated') }}
+      .flex.place-content-around
+        p {{ t('wallets.not_activated') }}
+        button.button.text-green-800(@click="update_balance(wallet)")
+          ph-spinner-bold.text-yellow-500(v-if="wallet.querying" @click="noop()")
+          carbon-update-now(v-else @click="update_balance(wallet)")
   .flex.flex-col.gap-2.max-w-sm.p-2.bg-white.rounded-xl.shadow-lg(v-else)
     p {{ t('wallets.login_first') }}
 </template>
