@@ -63,9 +63,9 @@ export const isVideo = (type) => {
  */
 export const generateLink = (item, isShorten = false) => {
   if (isShorten && !!item.shorten) return item.shorten;
-  if (isVideo(item.file.type)) return `https://${item.cid}.ipfs.dweb.link`;
+  if (isVideo(item.file.type)) return `https://ipfs.infura.io/ipfs/${item.cid}`;
 
-  return `https://cloudflare-ipfs.com/ipfs/${item.cid}`
+  return `https://ipfs.infura.io/ipfs/${item.cid}`
 }
 
 /**

@@ -10,7 +10,7 @@ const prefers_initial = {
   maxResults: 50,
   youtubeAppKey: "",
   youtubeAccess: true,
-  ipfsGateway: "https://gateway.ipfs.io",
+  ipfsGateway: "https://ipfs.infura.io",
   channels: CHANNELS,
   playlists: PLAYLISTS
 }
