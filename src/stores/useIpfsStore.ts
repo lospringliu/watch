@@ -45,7 +45,6 @@ export const useIpfsStore = defineStore({
       this.results = this.results.filter(({ cid }) => !!cid);
 
       db.data.results = [ ...this.results ];
-      console.log(db.data)
       db.write();
     },
     /**
