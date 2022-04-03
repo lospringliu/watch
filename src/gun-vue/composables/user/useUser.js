@@ -88,7 +88,7 @@ export const user = reactive({
     saved: null,
     password: null,
   },
-  wallets: {jingtum: {chain: "jingtum"}},
+  wallets: {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}},
   pair() {
     return gun?.user?.()?._?.sea;
   },
@@ -210,7 +210,7 @@ export function leave() {
   let is = !!user.is?.pub;
   user.initiated = false;
   clearInterval(user.pulser);
-  user.wallets = {jingtum: {chain: "jingtum"}};
+  user.wallets = {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}};
   gun.user().leave();
   setTimeout(() => {
     if (is && !user.pair()) {

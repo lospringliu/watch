@@ -9,21 +9,14 @@ const balance = computed(() => {
   const balance = {sequence: 0, native: {} as any, tokens: {} as any} as any
   try {
     const jingtum = JSON.parse(user.wallets.jingtum?.balance || "{}")
-    const native_token = "SWT"
-    const whitelists = ["_", "#", ">", "undefined", "balance", "chain", "activated", "address", "algorithm", "sequence", "SWT"]
     balance.sequence = jingtum.sequence || 0
-    if (!jingtum.balances) {
-      return balance
-    }
-    const native = jingtum.balances.find(t => t.issuer === "")
+    const native = (jingtum.balances || []).find(t => t.issuer === "")
     if (native) {
       balance.native.token = native.currency
       balance.native.value = native.value
       balance.native.freezed = native.freezed
-      jingtum.balances.forEach(token => {
-        if (whitelists.find(t => t === token.currency)) { return }
-        if (token.value < 0.000001) {
-        } else {
+      jingtum.balances.filter(t => t.issuer).forEach(token => {
+        if (token.value > 0.000001) {
           balance.tokens[token.currency] = token
         }
       })

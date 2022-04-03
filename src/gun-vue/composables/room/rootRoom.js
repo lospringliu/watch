@@ -1,4 +1,4 @@
-export const rootRoom = {
+export const rootRoom = reactive({
     pub: 'bXSxmGzo199ZMFrEq_JkCYeXhCYe5UYPCV6rRHo2qPw._8xeuGjpyWW7-_s7HqNgJTsOtlBT8Mtq1SNHnr9Phyw',
     hosts: {
       'upVi5VlWfUDpqcrPcOZaeV74YOAhiRDiPvUVfOqEWZQ.El47jc3yE5pANhsbnnmy0B1qQE7bud7bMZe3vtWxKqk': {
@@ -15,4 +15,4 @@ export const rootRoom = {
       links: 'SEA{"m":{"c":"*","w":{"*":"links","+":"*"}},"s":"G9hcgQGuOSvKfVqFwIf9Zlcp8OZqQMlbphX+fERBtnO/UCMIMX5ccqbdcV0fafUOr7oEL15+I0c+5TnhibPg5Q=="}',
       chat: 'SEA{"m":{"c":"*","w":{"*":"chat","+":"*"}},"s":"13zWs899WnN+hdSxVSePIBGQNH/aWgVvA8P6rbP/i502fXtkzAgOeU90aFQ/grDMnjF854lQ41QCOebesxDYsQ=="}'
     }
-  }
+  })

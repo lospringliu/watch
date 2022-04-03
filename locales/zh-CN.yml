@@ -59,7 +59,7 @@ gunvue:
   relay_set: 设置
   relay_reset: 重置
   backlinks: 回连
-  cred_saved: 我已经安全保存好了
+  cred_saved: 已安全保存好
   features: 特性
   form_text_hint: 正文内容(支持**markdown**)
   form_add_to_post: 添加到文章
@@ -101,7 +101,7 @@ gunvue:
   reactions: 回应
   my_rooms: 我的地盘
   save_keys: 请确保安全存储你的密钥供以后使用
-  already_account: 我已经有账号了
+  already_account: 我已有帐号
   login_saved_key: 用保存的密钥登录
   your_message: 你的信息
   paste_keys: 粘贴密钥

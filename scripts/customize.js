@@ -47,12 +47,12 @@ const customize = {
     [`  console.log\\(p\\)`, `// console.log(p)`],
   ]},
   "./src/gun-vue/composables/user/useAccount.js": { replaces: [
-    [`db: gun.user`, `wallets: {jingtum: {chain: "jingtum"}},\n      db: gun.user`],
+    [`db: gun.user`, `wallets: {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}},\n      db: gun.user`],
     [`return obj;`, `gun.user(pub.value)\n      .get("wallets")\n      .get("defaults")\n      .map()\n      .on((d, k) => {\n        delete d._\n        delete d["#"]\n        delete d[">"]\n        obj.wallets[k] = d;\n      });\n    return obj;`]
   ]},
   "./src/gun-vue/composables/user/useUser.js": { replaces: [
-    [`gun.user\\(\\).leave\\(\\);`, `user.wallets = {jingtum: {chain: "jingtum"}};\n  gun.user().leave();`],
-    [`pair\\(\\) {`, `wallets: {jingtum: {chain: "jingtum"}},\n  pair() {`],
+    [`gun.user\\(\\).leave\\(\\);`, `user.wallets = {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}};\n  gun.user().leave();`],
+    [`pair\\(\\) {`, `wallets: {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}},\n  pair() {`],
     [`user.pulser = setInterval`, `gun.user()\n    .get("wallets")\n    .get("defaults")\n    .map()\n    .on((d, k) => {\n      delete d._\n      delete d["#"]\n      delete d[">"]\n      user.wallets[k] = d;\n    });\n  user.pulser = setInterval`]
   ]},
   "./src/pages/chats.vue": { i18n: true, replaces: [

@@ -1,71 +1,7 @@
 import { useUser } from "../gun-vue/composables"
 import { getRandomElement } from "../api/utils"
-// import { prefers } from '../stores'
 const { user } = useUser()
-const default_chain = "jingtum"
-const wallet = reactive({
-  Remote: null,
-  Wallet: null,
-  chain: "jingtum",
-  address: "",
-  remote: null,
-  activated: false,
-  transactions: [],
-  querying: false,
-  balance_raw: {},
-  initiated: computed(() => wallet.address && wallet.remote),
-  balance: computed(() => {
-    // reference implementation, not used
-    const balance = {sequence: 0, native: {} as any, tokens: {} as any} as any
-    try {
-      balance.sequence = wallet.balance_raw.sequence || 0
-      const native = (wallet.balance_raw.balances || []).find(t => t.issuer === "")
-      if (native) {
-        balance.native.token = native.currency
-        balance.native.value = native.value
-        balance.native.freezed = native.freezed
-        wallet.balance_raw.balances.forEach(token => {
-          if (token.value > 0.000001) {
-            balance.tokens[token.currency] = token
-          }
-        })
-      }
-    } catch (e) { console.log(e) }
-    return balance
-  }),
-})
-
-export function useWallet({ chain_name=default_chain } = {}) {
-  const chain = chains[chain_name]
-    wallet.chain = chain_name
-    wallet.activated = !chain.need_activation
-    wallet.algorithm = chain.algorithm
-    wallet.endpoints = chain.endpoints
-    if (chain.lib_name) {
-      wallet.lib_name = chain.lib_name
-      wallet.lib_url = chain.lib_url
-    }
-    const user_is = computed(() => user.is)
-    const stop_watch_auth = watch(user_is, () => {
-      if (!user_is) {
-        wallet.address = ''
-        wallet.balances = {}
-      }
-    })
-    const stop_watch_address = watch(user.wallets, () => {
-      if (!wallet.address && user.wallets?.[chain_name]?.address) {
-        wallet.address = user.wallets[chain_name].address
-      }
-      if (!wallet.activated && user.wallets?.[chain_name]?.activated) {
-        wallet.activated = user.wallets[chain_name].activated
-      }
-    })
-  return {
-    wallet,
-    load_library: chain.load_library,
-    wallet_init: chain.wallet_init,
-    update_balance: chain.update_balance }
-}
+export const default_chain_name = ref("jingtum")
 
 export const chains = reactive({
   ethereum: {
@@ -108,7 +44,7 @@ export const chains = reactive({
             wallet.address = wallet.Wallet?.fromSecret(Buffer.from(user?.pair()?.priv, "base64").toString("hex"), wallet.algorithm)?.address
             user.db.get("wallets").get("defaults").get(wallet.chain).put({chain: wallet.chain, address: wallet.address, algorithm: wallet.algorithm })
           }
-          wallet.remote = new wallet.Remote({server: getRandomElement(wallet.endpoints)})
+          wallet.api = new wallet.Remote({server: getRandomElement(wallet.endpoints)})
           chains.jingtum.update_balance(wallet)
           setTimeout(() => {
             if (!wallet.activated && user.wallets?.jingtum?.activated) {
@@ -122,7 +58,7 @@ export const chains = reactive({
       await chains.jingtum.wallet_init(wallet)
       wallet.querying = true
       try {
-        const r = await wallet.remote.getAccountBalances(wallet.address)
+        const r = await wallet.api.getAccountBalances(wallet.address)
         wallet.activated = true
         r.balances.forEach(t => {
           if (t.issuer === "") {
@@ -146,9 +82,85 @@ export const chains = reactive({
           }
         } else {
           console.log(`error get account balances`)
-          wallet.remote = new wallet.Remote({server: getRandomElement(wallet.endpoints)})
+          wallet.api = new wallet.Remote({server: getRandomElement(wallet.endpoints)})
         }
       }
     } 
   },
 })
+
+export const default_chain = computed(() => chains[default_chain_name.value])
+
+const wallets = computed(() => {
+  const obj = {} as any
+  Object.entries(chains).forEach(([chain_name, chain]) => {
+    obj[chain_name] = chain
+  })
+  return obj
+})
+export function useWallets() {
+  return {
+    wallets
+  }
+}
+
+const wallet = reactive({
+  chain: "",
+  address: "",
+  activated: false,
+  balance_raw: {},
+  api: null,
+  initiated: computed(() => wallet.address && wallet.api),
+  querying: false,
+})
+
+export function useWallet({ algorithm="", chain_name=default_chain_name.value } = {}) {
+  const chain = chains[chain_name]
+  wallet.chain = chain_name
+  wallet.activated = !chain.need_activation
+  wallet.algorithm = algorithm || chain.algorithm
+  wallet.endpoints = chain.endpoints
+  if (chain.lib_name) {
+    wallet.lib_name = chain.lib_name
+    wallet.lib_url = chain.lib_url
+  }
+  const user_is = computed(() => user.is)
+  const stop_watch_auth = watch(user_is, () => {
+    if (!user_is) {
+      wallet.address = ''
+      wallet.balances = {}
+    }
+  })
+  const stop_watch_address = watch(user.wallets, () => {
+    if (!wallet.address && user.wallets?.[chain_name]?.address) {
+      wallet.address = user.wallets[chain_name].address
+    }
+    if (!wallet.activated && user.wallets?.[chain_name]?.activated) {
+      wallet.activated = user.wallets[chain_name].activated
+    }
+  })
+  return {
+    wallet,
+    load_library: chain.load_library,
+    wallet_init: chain.wallet_init,
+    update_balance: chain.update_balance }
+}
+//  balance: computed(() => {
+//    // reference implementation, not used
+//    const balance = {sequence: 0, native: {} as any, tokens: {} as any} as any
+//    try {
+//      balance.sequence = wallet.balance_raw.sequence || 0
+//      const native = (wallet.balance_raw.balances || []).find(t => t.issuer === "")
+//      if (native) {
+//        balance.native.token = native.currency
+//        balance.native.value = native.value
+//        balance.native.freezed = native.freezed
+//        wallet.balance_raw.balances.forEach(token => {
+//          if (token.value > 0.000001) {
+//            balance.tokens[token.currency] = token
+//          }
+//        })
+//      }
+//    } catch (e) { console.log(e) }
+//    return balance
+//  }),

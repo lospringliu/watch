@@ -48,7 +48,7 @@
         }
       }),
       blink: false,
-      wallets: {jingtum: {chain: "jingtum"}},
+      wallets: {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}},
       db: gun.user(pub.value),
     });
 
@@ -71,8 +71,8 @@
       .map()
       .on((d, k) => {
         delete d._
-      delete d["#"]
-      delete d[">"]
+        delete d["#"]
+        delete d[">"]
         obj.wallets[k] = d;
       });
     return obj;
