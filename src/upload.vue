@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import VUpload from "../components/VUpload.vue"
-import { user } from "../gun-vue/composables"
+import { ipfsStore } from "../stores"
+import { useUser } from "../gun-vue/composables"
+const { user } = useUser()
+onMounted(async () => {
+  console.log(`reading store from gun`)
+  await ipfsStore.read()
+})
 const { t } = useI18n()
 </script>
 

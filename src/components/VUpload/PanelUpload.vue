@@ -114,6 +114,7 @@ export default {
         }, 0)
       }
     });
+    onBeforeMount(() => store.read())
 
     return {
       t,

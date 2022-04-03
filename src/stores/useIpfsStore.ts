@@ -12,20 +12,27 @@ export const useIpfsStore = defineStore({
   id: "store",
   state() {
     return {
+      readed: false,
       files: [],
       results: db.data.results
     }
   },
   actions: {
     async read() {
-      if (!user.is) {
-        user.auth = true
-      } else if (Object.keys(db.cur).length === 0) {
+      watch(user.is, async () => {
+        console.log(`... watched user statechange for gun user db read`)
+        await sleep(1000)
         db.read()
         await sleep(1000)
         this.results = []
         Object.keys(db.cur).forEach(key => this.results.push({cid: key, file: db.cur[key]}) )
-      } else {}
+      })
+      if (user.is) {
+        db.read()
+        await sleep(1000)
+        this.results = []
+        Object.keys(db.cur).forEach(key => this.results.push({cid: key, file: db.cur[key]}) )
+      }
     },
     resetFiles() {
       this.files = [];
