@@ -43,7 +43,6 @@ export default {
         },
       ]
     })
-
     provide("notyf", NotfyProvider);
   }
 }
