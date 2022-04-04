@@ -24,7 +24,7 @@ function leave() {
 
 <template lang='pug'>
 .flex.flex-col.items-center 
-  space-plane(@user="$router.push('/users/' + $event)" :key="currentRoom.pub" @enter="enter()" @leave="leave()")
+  space-plane(@user="$router.push('/users/' + $event)" :key="currentRoom.pub" pad="20" @enter="enter()" @leave="leave()")
   router-view(v-slot="{ Component }")
     transition(name="fade")
       component(:is="Component")

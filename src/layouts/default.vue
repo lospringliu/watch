@@ -1,5 +1,5 @@
 <template>
-  <main class="h-100vh w-100vw" :style="style">
+  <main class="h-screen" :style="globalState.style">
     <div ref="navbar" class="fixed left-0 top-0 z-400 inset-x-0 opacity-60">
       <NavSocial v-if="globalState.show_social" />
       <Navier v-if="globalState.show_tools" />
@@ -25,5 +25,5 @@ const { height } = useElementSize(navbar)
 // const clstop = computed(() => `top-${top.value}`)
 // const stltop = computed(() => `padding-top: ${top.value === "0px" ? +top.value.replace("px","") - 21 : 0}px;`)
 // const style = computed(() => `padding-top: ${Math.floor(height.value)}px;`)
-const style = computed(() => `padding-bottom: ${Math.floor(height.value)}px;`)
+globalState.style = computed(() => `padding-bottom: ${Math.floor(height.value)}px;`)
 </script>

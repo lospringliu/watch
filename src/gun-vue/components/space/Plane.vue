@@ -29,12 +29,12 @@ const { t } = useI18n()
 
 <template lang='pug'>
 .flex.flex-col.items-center.relative
-  .text-2xl.p-0.sm_p-2.md_p-4.lg_p-8.top-1vh.md_top-2vh.lg_top-4vh.cursor-pointer.absolute.rounded-3xl.shadow-xl.border-2(
+  .text-2xl.p-8.top-15vh.cursor-pointer.absolute.rounded-3xl.shadow-xl.border-4(
     v-if="!space.joined && user.is" 
     @click="join()"
     :style="{ borderColor: user.color }"
     ) {{ t('gunvue.space_enter') }}
-  svg.h-100vh.w-100vw(
+  svg.h-96vh.w-98vw(
     ref="plane"
     style="cursor:none;"
     @click="place(); !user.is ? user.auth = true : null"

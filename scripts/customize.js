@@ -13,8 +13,7 @@ const customize = {
     [`function parseLink\\(link\\)`,`function parseLink(link, auth_url="#/auth/")`], // params
   ]},
   "./src/gun-vue/components/space/Plane.vue": { replaces: [
-    [`text-2xl.p-8.top-15vh.cursor-pointer.absolute.rounded-3xl.shadow-xl.border-4`, `text-2xl.p-0.sm_p-2.md_p-4.lg_p-8.top-1vh.md_top-2vh.lg_top-4vh.cursor-pointer.absolute.rounded-3xl.shadow-xl.border-2`],
-    [`svg.h-80vh.w-98vw`, `svg.h-100vh.w-100vw`]
+    [`svg.h-80vh.w-98vw`, `svg.h-96vh.w-98vw`]
   ]},
   "./src/gun-vue/components/chat/Input.vue": { replaces: [
     [`textarea.p-2.rounded-xl.bg-light-200`, `textarea.px-2.rounded-xl.bg-light-200`],
@@ -24,7 +23,8 @@ const customize = {
     [`flex.flex-col.bg-opacity-80.p-4.gap-2`, `flex.flex-col.bg-opacity-80.p-2.gap-1`],
   ]},
   "./src/gun-vue/components/chat/Room.vue": { replaces: [
-    [`flex.relative.h-78vh`, `flex.relative.min-h-88vh`],
+    [`backdrop-blur-xl.shadow-md.mx-auto.w-full`, `backdrop-blur-xl.shadow-md.mx-auto.w-full.h-full`],
+    [`flex.relative.h-78vh.items-stretch`, `flex.relative.h-full.items-stretch`],
     [`import { useChat, useUser, useBackground, currentRoom }`, `import { useChat, useUser, useBackground, currentRoom, rootRoom }`],
     [`cursor-pointer.self-center.text-2xl.p-2\\(@click`, `cursor-pointer.self-center.text-2xl.p-2(v-if="currentRoom.pub !== rootRoom.pub || user.wallets.jingtum?.activated" @click`]
   ]},
@@ -54,6 +54,9 @@ const customize = {
     [`gun.user\\(\\).leave\\(\\);`, `user.wallets = {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}};\n  gun.user().leave();`],
     [`pair\\(\\) {`, `wallets: {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}},\n  pair() {`],
     [`user.pulser = setInterval`, `gun.user()\n    .get("wallets")\n    .get("defaults")\n    .map()\n    .on((d, k) => {\n      delete d._\n      delete d["#"]\n      delete d[">"]\n      user.wallets[k] = d;\n    });\n  user.pulser = setInterval`]
+  ]},
+  "./src/pages/space.vue": { replaces: [
+    [`:key="currentRoom.pub" @enter=`, `:key="currentRoom.pub" pad="20" @enter=`],
   ]},
   "./src/pages/chats.vue": { i18n: true, replaces: [
     [`chat-private-list\\(@chat`, `chat-private-list(:title="t('customize.chat_title')" @chat`],
