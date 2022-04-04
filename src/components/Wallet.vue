@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { useUser } from '../gun-vue/composables';
-import { useWallet } from '../composables/useWallet'
+import { useWallet, useWallets } from '../composables/useWallet'
 const { user } = useUser()
-const { wallet, load_library, update_balance } = useWallet()
-globalThis.wallet = wallet
+const { wallet } = useWallet()
+// const { wallets } = useWallets()
+// const wallet = wallets.jingtum
 const noop = () => {console.log(`...debug doing nothing`)}
 const balance = computed(() => {
   const balance = {sequence: 0, native: {} as any, tokens: {} as any} as any
@@ -26,7 +27,7 @@ const balance = computed(() => {
 })
 
 onBeforeMount(() => {
-  load_library(wallet)
+  wallet.chainobj.load_library(wallet)
   if (!user.is) {
     user.auth = true
   }
@@ -52,13 +53,13 @@ const { t } = useI18n()
       .flex.place-content-around
         button.button.text-green-800
           ph-spinner-bold.text-yellow-500(v-if="wallet.querying" @click="noop()")
-          carbon-update-now(v-else @click="update_balance(wallet)")
+          carbon-update-now(v-else @click="wallet.chainobj.update_balance(wallet)")
     div(v-else)
       .flex.place-content-around
         p {{ t('wallets.not_activated') }}
-        button.button.text-green-800(@click="update_balance(wallet)")
+        button.button.text-green-800(@click="wallet.chainobj.update_balance(wallet)")
           ph-spinner-bold.text-yellow-500(v-if="wallet.querying" @click="noop()")
-          carbon-update-now(v-else @click="update_balance(wallet)")
+          carbon-update-now(v-else @click="wallet.chainobj.update_balance(wallet)")
   .flex.flex-col.gap-2.max-w-sm.p-2.bg-white.rounded-xl.shadow-lg(v-else)
     p {{ t('wallets.login_first') }}
 </template>
