@@ -46,28 +46,35 @@ const wallets = reactive({
 
 export function useWallets() {
   Object.entries(chains).forEach(([chain_name, chain]) => {
-    wallets[chain_name] = {
-      chain: chain_name,
-      chainobj: chain,
-      address: "",
-      activated: !chain.need_activation,
-      balance_raw: {},
-      api: null,
-      initiated: computed(() => wallets[chain_name].address && wallets[chain_name].api),
-      querying: false,
+    if (!wallets.hasOwnProperty(chain_name)) {
+      wallets[chain_name] = {
+        address: "",
+        api: null,
+        chain: chain_name,
+        chainobj: chain,
+        activated: !chain.need_activation,
+        balance_raw: {},
+        querying: false,
+        algorithm: chain.algorithm,
+        endpoints: chain.endpoints
+      }
     }
-    const stop_watch_auth = watch(user_is, () => {
+    const wallet = wallets[chain_name]
+    wallet.initiated = computed(() => wallet.address && wallet.api)
+    if (wallet.stop_watch_auth) { wallet.stop_watch_auth() }
+    if (wallet.stop_watch_address) { wallet.stop_watch_address() }
+    wallet.stop_watch_auth = watch(user_is, () => {
       if (!user_is) {
-        wallets[chain_name].address = ''
-        wallets[chain_name].balances = {}
+        wallet.address = ''
+        wallet.balances = {}
       }
     })
-    const stop_watch_address = watch(user.wallets, () => {
-      if (!wallets[chain_name].address && user.wallets?.[chain_name]?.address) {
-        wallets[chain_name].address = user.wallets[chain_name].address
+    wallet.stop_watch_address = watch(user.wallets, () => {
+      if (!wallet.address && user.wallets?.[chain_name]?.address) {
+        wallet.address = user.wallets[chain_name].address
       }
-      if (!wallets[chain_name].activated && user.wallets?.[chain_name]?.activated) {
-        wallets[chain_name].activated = user.wallets[chain_name].activated
+      if (!wallet.activated && user.wallets?.[chain_name]?.activated) {
+        wallet.activated = user.wallets[chain_name].activated
       }
     })
   })

@@ -43,7 +43,8 @@ export const chains = reactive({
       await wallet.chainobj.wallet_init(wallet)
       wallet.querying = true
       try {
-        const r = await wallet.api.eth.getBalance(wallet.address)
+        const b = await wallet.api.eth.getBalance(wallet.address)
+        const r = {sequence: 1, balances: [{currency: "ether", value: b, issuer: ""}]}
         wallet.activated = true
         wallet.querying = false
         if (user.is) {
@@ -53,7 +54,7 @@ export const chains = reactive({
       } catch (e) {
         wallet.querying = false
         console.log(`error get account balances`)
-        wallet.api = new wallet.Remote({server: getRandomElement(wallet.endpoints)})
+        wallet.api = new globalThis.Web3(getRandomElement(wallet.chainobj.endpoints))
       }
     } 
   },
@@ -97,7 +98,8 @@ export const chains = reactive({
       await wallet.chainobj.wallet_init(wallet)
       wallet.querying = true
       try {
-        const r = await wallet.api.eth.getBalance(wallet.address)
+        const b = await wallet.api.eth.getBalance(wallet.address)
+        const r = {sequence: 1, balances: [{currency: "moac", value: b, issuer: ""}]}
         wallet.activated = true
         wallet.querying = false
         if (user.is) {
@@ -107,7 +109,7 @@ export const chains = reactive({
       } catch (e) {
         wallet.querying = false
         console.log(`error get account balances`)
-        wallet.api = new wallet.Remote({server: getRandomElement(wallet.endpoints)})
+        wallet.api = new globalThis.Web3(getRandomElement(wallet.chainobj.endpoints))
       }
     } 
   },
