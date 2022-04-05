@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { prefers } from "../stores"
-const { top } = useScreenSafeArea()
-const style = computed(() => `padding-top: ${top.value === "0px" ? +top.value.replace("px","") - 21 : 0}px;`)
 // import VuePlyr from 'vue-plyr'
 // import 'vue-plyr/dist/vue-plyr.css'
 // replaced dyanmicaly
@@ -10,7 +8,7 @@ const timeAgo = useTimeAgo(date)
 </script>
 
 <template>
-  <div :style="style">
+  <div>
     <div v-if="prefers.youtubeAccess" class="bg-black min-w-xs md_px-12 lg_px-24 xl_px-48">
       <YoutubePlayer />
     </div>

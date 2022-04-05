@@ -10,6 +10,7 @@ function isSafe() {
   user.db.get('safe').get('saved').put(true)
 }
 
+const { t } = useI18n()
 </script>
 
 <template lang='pug'>
@@ -29,6 +30,6 @@ function isSafe() {
       @click="$emit('user', user.pub); $emit('close')"
       :style="{ backgroundColor: user.color }"
     )
-      slot  My public profile
+      slot  {{ t('gunvue.go_homepage') }}
     
 </template>

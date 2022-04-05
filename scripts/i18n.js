@@ -49,7 +49,7 @@ const REPLACES = { // key: [flag_context, flag_binding,  en, zh, pre_regex, pre_
   form_add_to_post: [false, false, "Save", "保存", `ml-2 `],
   post_feed_search: [false, true, "Search for a feed", "搜索反馈", `placeholder="`],
   create_profile_field: [false, true, "New profile field", "新建属性", `placeholder="`],
-  go_homepage: [false, false, "Go to my page", "去个人页面"],
+  go_homepage: [false, false, "My public profile", "我的名片"],
   login_for_message: [false, false, "Log in to post messages", "登录后发送信息"],
   or: [false, false, "or", "或者", `generate"\\) `, `generate") `],
   share: [false, false, "Share", "分享", `p `],

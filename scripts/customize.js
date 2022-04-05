@@ -52,10 +52,10 @@ const customize = {
   "./src/gun-vue/composables/user/useUser.js": { replaces: [
     [`gun.user\\(\\).leave\\(\\);`, `user.wallets = {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}};\n  gun.user().leave();`],
     [`pair\\(\\) {`, `wallets: {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}},\n  pair() {`],
-    [`user.pulser = setInterval`, `gun.user()\n    .get("wallets")\n    .get("defaults")\n    .map()\n    .on((d, k) => {\n      delete d._\n      delete d["#"]\n      delete d[">"]\n      user.wallets[k] = d;\n    });\n  user.pulser = setInterval`]
+    [`user.pulser = setInterval`, `gun.user()\n    .get("wallets")\n    .get("defaults")\n    .map()\n    .on((d, k) => {\n      if (d) {\n        delete d._\n        delete d["#"]\n        delete d[">"]\n        user.wallets[k] = d;\n      }\n    });\n  user.pulser = setInterval`]
   ]},
   "./src/pages/space.vue": { replaces: [
-    [`:key="currentRoom.pub" @enter=`, `:key="currentRoom.pub" pad="20" @enter=`],
+    [`:key="currentRoom.pub" @enter=`, `:key="currentRoom.pub" :pad="20" @enter=`],
   ]},
   "./src/pages/chats.vue": { i18n: true, replaces: [
     [`chat-private-list\\(@chat`, `chat-private-list(:title="t('customize.chat_title')" @chat`],

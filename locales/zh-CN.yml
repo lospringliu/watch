@@ -62,10 +62,10 @@ gunvue:
   cred_saved: 已安全保存好
   features: 特性
   form_text_hint: 正文内容(支持**markdown**)
-  form_add_to_post: 添加到文章
+  form_add_to_post: 保存
   post_feed_search: 搜索反馈
   create_profile_field: 新建属性
-  go_homepage: 去个人页面
+  go_homepage: 我的名片
   login_for_message: 登录后发送信息
   or: 或者
   share: 分享

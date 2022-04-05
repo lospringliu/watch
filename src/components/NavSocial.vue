@@ -15,14 +15,14 @@ const routes = {
   "/upload/": "VUpload",
 };
 
-import { useUser, currentRoom, useBackground, useColor } from '@composables';
+import { useUser, currentRoom, useBackground, useColor } from '../gun-vue/composables';
 const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200 }))
 const color = useColor('light')
 // flex justify-around sm_px-8 md_px-16 lg_px-32 items-center text-center bg-cyan-300 text-xl py-1 mx-auto"
 </script>
 
 <template lang="pug">
-.flex.justify-around.sm_px-8.md_px-16.lg_px-32.items-center.text-center.bg-cyan-300.text-2xl.py-1.mx-auto
+.flex.justify-around.sm_px-8.md_px-16.lg_px-32.items-center.text-center.bg-cyan-300.text-xl.py-1.mx-auto
   router-link.link(to="/space/")
     ph-hands-clapping
     .hidden.md_block {{ t('pages.space') }}

@@ -39,7 +39,7 @@ const { t } = useI18n()
 
 <template lang='pug'>
 .flex.flex-col.items-stretch
-  .pt-32.px-2.md_px-8.bg-cover.relative.flex.flex-col.items-center(:style="{ ...bg }")
+  .pt-12.px-2.md_px-8.bg-cover.relative.flex.flex-col.items-center(:style="{ ...bg }")
     .w-200.max-w-full.flex.flex-col.items-stretche.bg-light-100.bg-opacity-20.p-4.md_p-12.shadow-xl.backdrop-blur-md.backdrop-filter.rounded-t-xl
       .flex.flex-wrap.items-center
         .flex.flex-col

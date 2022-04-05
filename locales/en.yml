@@ -62,10 +62,10 @@ gunvue:
   cred_saved: Ive stored my key securely
   features: Features
   form_text_hint: Main text content (with **markdown** support)
-  form_add_to_post: Add to post
+  form_add_to_post: Save
   post_feed_search: Search for a feed
   create_profile_field: New profile field
-  go_homepage: Go to my page
+  go_homepage: My public profile
   login_for_message: Log in to post messages
   or: or
   share: Share

@@ -9,7 +9,7 @@ cp -av /Users/xcliu/tests/gun-vue/app/src/components/*  src/components/
 rm -frv src/pages/*
 cp -av /Users/xcliu/tests/gun-vue/app/src/pages/*  src/pages/
 # cp -av /Users/xcliu/tests/gun-vue/app/public/*  public/
-cp -v src/videos.vue src/wallets.vue src/upload.vue src/pages
+git checkout src/pages/videos.vue src/pages/wallets.vue src/pages/upload.vue
 
 cp -av /Users/xcliu/tests/gun-vue/app/src/main.js src/main.ts
 cp -av /Users/xcliu/tests/gun-vue/app/src/app.vue src/App.vue

@@ -139,10 +139,12 @@ function init() {
     .get("defaults")
     .map()
     .on((d, k) => {
-      delete d._
-      delete d["#"]
-      delete d[">"]
-      user.wallets[k] = d;
+      if (d) {
+        delete d._
+        delete d["#"]
+        delete d[">"]
+        user.wallets[k] = d;
+      }
     });
   user.pulser = setInterval(() => {
     gun.user().get("pulse").put(Date.now());
