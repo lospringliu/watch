@@ -23,7 +23,7 @@ const { t } = useI18n()
     user-panel(@browse="$emit('browse', $event); $emit('close')")
     .p-4.flex.flex-col.items-start
       user-profile
-      chat-private-list(@chat="$emit('chat', $event)")
+      chat-private-list(:title="t('customize.chat_title')" @chat="$emit('chat', $event)")
       account-mate-list(:pub="user.pub"  @browse="$emit('user', $event)")
       user-rooms(@browse="$emit('room', $event)")
     button.p-4.m-4.rounded-xl.font-bold.text-lg.shadow-md(

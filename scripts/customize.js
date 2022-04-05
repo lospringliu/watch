@@ -57,7 +57,13 @@ const customize = {
   "./src/pages/space.vue": { replaces: [
     [`:key="currentRoom.pub" @enter=`, `:key="currentRoom.pub" :pad="20" @enter=`],
   ]},
+  "./src/gun-vue/components/user/home.vue": { i18n: true, replaces: [
+    [`chat-private-list\\(@chat`, `chat-private-list(:title="t('customize.chat_title')" @chat`],
+  ]},
   "./src/pages/chats.vue": { i18n: true, replaces: [
+    [`chat-private-list\\(@chat`, `chat-private-list(:title="t('customize.chat_title')" @chat`],
+  ]},
+  "./src/pages/my/chat/index.vue": { i18n: true, replaces: [
     [`chat-private-list\\(@chat`, `chat-private-list(:title="t('customize.chat_title')" @chat`],
   ]}
 }

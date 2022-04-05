@@ -130,7 +130,7 @@ declare module 'vue' {
     UserCreate: typeof import('./gun-vue/components/user/create.vue')['default']
     UserCredentials: typeof import('./gun-vue/components/user/credentials.vue')['default']
     UserGraph: typeof import('./gun-vue/components/user/Graph.vue')['default']
-    UserHome: typeof import('./gun-vue/components/user/home.vue')['default']
+    UserHome: typeof import('./gun-vue/components/user/Home.vue')['default']
     UserIcon: typeof import('./gun-vue/components/user/icon.vue')['default']
     UserList: typeof import('./gun-vue/components/user/List.vue')['default']
     UserLogin: typeof import('./gun-vue/components/user/login.vue')['default']
