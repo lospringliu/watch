@@ -15,10 +15,17 @@ const { load: load_videostream } = useScriptTag(
   () => {},
   { manual: true },
 )
+const sa = {
+  pub: 'y2K4ADMuYGPRmi4D4kI0vATgPXbaoUysOQ6YcPnvTOo.LONtv2UTG66p6P2AiMeYE73sdTac5mbUNsf3TSFMd50',
+  epub: '7pY-DXYgpJjPcZ6t_XVVHSZ0EiA948dL4s3MQEX3bLQ.6p2FwHGMedKomkfsjALQN-zig7QQSThI4lx1LsM7yMA',
+}
+const cert = 'SEA{"m":{"c":"*","e":1680651080827,"w":{"#":{"*":"youtube"}}},"s":"ETGmel2Byh4uXOJsustdvoar0JppCgFC92A+tx3rD54nqY0+y7/+RJSkxYXxktqJ5ajsZX39OK5Sup4QwRDDoA=="}'
 export const globalState = reactive({
   version: pkg.version,
   debug: true,
   platform,
+  sa,
+  cert,
   gunPeer: "https://etogun.glitch.me/gun",
   // gunPeer: "https://relay.bcapps.ca/gun",
   show_tools: false,

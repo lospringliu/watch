@@ -1,15 +1,16 @@
 // import { computed, reactive, ref } from "vue";
-import { useGun } from "@composables";
+import { useGun, useUser } from "@composables";
 import { globalState } from "~/stores/globalState"
 import { IVideo, IChannel } from "~/types"
 import { prefers, videos } from "~/stores"
 import AsyncForEach from "async-await-foreach"
 const gun = useGun()
+const { user } = useUser()
 const gvideos = reactive({})
 const gchannels = reactive({})
 // const baseref = gun.get("moitestmoitestmoitest")
-const vref = gun.get("gunvueswtcmoac").get("videos").get("youtube")
-const cref = gun.get("gunvueswtcmoac").get("channels").get("youtube")
+const vref = gun.user(globalState.sa.pub).get("youtube").get("videos")
+const cref = gun.user(globalState.sa.pub).get("youtube").get("channels")
 let listening = false
 
 watch(gvideos, (value, old_value) => {
@@ -107,7 +108,9 @@ export async function put_channel(pchannel) {
       const node = await cref.get(channel.id).then()
       if (!node) {
         gchannels[channel.id] = channel
-        cref.get(channel.id).put(channel)
+        if (user.is) {
+          cref.get(channel.id).put(channel, null, {opt: {cert: globalState.cert}})
+        }
         globalState.debug && console.log(`... put channel ${channel.id}`)
       }
     }
@@ -128,10 +131,14 @@ export async function put_video(video_object) {
     }
     const node = await vref.get(video.videoId).then()
     if (!node) { // video is already in gun, check if needs update
-      vref.get(video.videoId).put(video)
+      if (user.is) {
+        vref.get(video.videoId).put(video, null, {opt: {cert: globalState.cert}})
+      }
     } else if (!node.videoId) {
       console.log(video)
-      vref.get(video.videoId).put(video)
+      if (user.is) {
+        vref.get(video.videoId).put(video, null, {opt: {cert: globalState.cert}})
+      }
     } else {}
     gvideos[video.videoId] = video
   }

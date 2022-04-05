@@ -1,6 +1,6 @@
 <template>
   <main class="h-screen" :style="globalState.style">
-    <div ref="navbar" class="fixed left-0 top-0 z-400 inset-x-0 opacity-60">
+    <div ref="navbar" class="fixed left-0 top-0 z-400 inset-x-0 opacity-90">
       <NavSocial v-if="globalState.show_social" />
       <Navier v-if="globalState.show_tools" />
       <ReloadPrompt />
