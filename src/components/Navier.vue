@@ -50,7 +50,7 @@ watch(show, (value, old_value) => {
     <button v-if="route_videos" :title="t('button.playlist')" @click="togglePlayList">
       <ph-playlist />
     </button>
-    <button :title="t('button.graph')" @click="show.graph = !show.graph">
+    <button v-if="false" :title="t('button.graph')" @click="show.graph = !show.graph">
       <mdi-graph-outline />
     </button>
     <button v-if="!/3000/.test(location_origin)" :title="t('button.relays')">
