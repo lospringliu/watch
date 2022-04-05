@@ -15,6 +15,8 @@ button:
   social: 社交
   relays: 转发
   graph: 数据
+tags:
+  posts: 发布
 intro:
   desc: 固执己见的 Vite 项目模板
   dynamic-route: 动态路由演示

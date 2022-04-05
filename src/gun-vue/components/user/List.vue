@@ -35,10 +35,10 @@ const { t } = useI18n()
       .ml-2 {{ t('gunvue.user_room_join') }}
   transition(name="fade")
     .absolute.left-0.w-50.bg-light-200.z-100.h-80vh.overflow-y-scroll.px-2.pt-12(v-show="open" )
-      .flex.flex-col.my-2(v-for="state in ['online', 'offline']" :key="state")
-        .flex.items-center.my-2
+      .flex.flex-col.my-6.gap-2(v-for="state in ['online', 'offline']" :key="state")
+        .flex.items-center.bg-light-400.py-2
           .text-xl.mr-2.capitalize {{ state }}
-          .p-2.bg-light-900.rounded-xl {{ guests.count[state] }}
+          .px-2.py-1.bg-light-900.rounded-xl.font-bold {{ guests.count[state] }}
         .flex.flex-wrap
           transition-group(name="fade")
             account-badge.shadow-md.m-1(

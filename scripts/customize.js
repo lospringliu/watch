@@ -2,6 +2,7 @@ const fsp = require("fs/promises")
 const fs = require("fs")
 const AsyncForEach = require("async-await-foreach")
 const chalk = require("chalk")
+const { htmlTags } = require("vite-plugin-windicss")
 
 const customize = {
   "./src/gun-vue/composables/user/usePass.js": { replaces: [
@@ -31,6 +32,7 @@ const customize = {
   "./src/gun-vue/components/post/List.vue": { replaces: [
     [`\\(title="Upload feed"`, `(v-if="1 > 2" title="Upload feed"`],
     [`v-if="countPosts > 0"`, `v-if="countPosts < -1"`],
+    [`{{ tag }}`, "{{ t(`tags.${tag}`) }}"]
   ]},
   "./src/gun-vue/components/post/Page.vue": { replaces: [
     [`button.button.flex.items-center\\(@click`, `button.button.flex.items-center(v-if="false" @click`],

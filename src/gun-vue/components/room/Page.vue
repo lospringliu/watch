@@ -51,7 +51,7 @@ const { t } = useI18n()
           .text-md {{ room.profile.description }}
           .flex.items-center.flex-wrap
             .font-bold.mr-2 {{ t('gunvue.room_hosts') }}: 
-            .p-2(v-for="(enc, host) in room.hosts" :key="host")
+            .p-2.flex.flex-col.items-start.gap-2(v-for="(enc, host) in room.hosts" :key="host")
               account-badge( :pub="host" :selectable="true")
               room-features(:features="enc") 🗝
 
