@@ -13,7 +13,7 @@ const customize = {
     [`function parseLink\\(link\\)`,`function parseLink(link, auth_url="#/auth/")`], // params
   ]},
   "./src/gun-vue/components/space/Plane.vue": { replaces: [
-    [`svg.h-80vh.w-98vw`, `svg.h-96vh.w-98vw`]
+    [`svg.max-h-78vh.w-98vw`, `svg.h-96vh.w-98vw`]
   ]},
   "./src/gun-vue/components/chat/Input.vue": { replaces: [
     [`textarea.p-2.rounded-xl.bg-light-200`, `textarea.px-2.rounded-xl.bg-light-200`],
@@ -24,7 +24,7 @@ const customize = {
   ]},
   "./src/gun-vue/components/chat/Room.vue": { replaces: [
     [`backdrop-blur-xl.shadow-md.mx-auto.w-full`, `backdrop-blur-xl.shadow-md.mx-auto.w-full.h-full`],
-    [`flex.relative.h-78vh.items-stretch`, `flex.relative.h-full.items-stretch`],
+    [`flex.relative.items-stretch.max-h-78vh`, `flex.relative.items-stretch.h-full`],
     [`import { useChat, useUser, useBackground, currentRoom }`, `import { useChat, useUser, useBackground, currentRoom, rootRoom }`],
     [`cursor-pointer.self-center.text-2xl.p-2\\(@click`, `cursor-pointer.self-center.text-2xl.p-2(v-if="currentRoom.pub !== rootRoom.pub || user.wallets.jingtum?.activated" @click`]
   ]},
@@ -40,8 +40,7 @@ const customize = {
     [`form-picture.absolute\\(`, `form-picture.absolute(\n    v-if="user.wallets.jingtum?.activated"`],
   ]},
   "./src/gun-vue/components/room/Page.vue": { replaces: [
-    [`pt-42.pb-2.px-2`, `pt-12.pb-2.px-2`],
-    [`flex.flex-wrap$`, `flex.flex-wrap.justify-between`],
+    [`pt-32.px-2`, `pt-12.px-2`],
   ]},
   "./src/gun-vue/components/user/auth.vue": { replaces: [
     [`  console.log\\(p\\)`, `// console.log(p)`],

@@ -30,9 +30,9 @@ const { t } = useI18n()
 </script>
 
 <template lang='pug'>
-.flex.flex-col.bg-dark-800.bg-opacity-40.backdrop-filter.backdrop-blur-xl.shadow-md.mx-auto.h-full.w-full
+.flex.flex-col.bg-dark-800.bg-opacity-40.backdrop-filter.backdrop-blur-xl.shadow-md.mx-auto.w-full.h-full
 
-  .flex.relative.h-full.items-stretch
+  .flex.relative.items-stretch.max-h-78vh
     transition(name="fade")
       .flex.flex-col.bg-dark-300.bg-opacity-70.gap-2.min-h-full.overflow-y-scroll.scroll-smooth.absolute.sm_static.z-20.w-220px.max-w-full.max-h-full.text-light-900.backdrop-filter.backdrop-blur-xl(style="flex: 1 1 320px" v-if="isLarge || (panelOpen && !isLarge)" ref="chatsPanel")
         .flex.flex-wrap
@@ -56,11 +56,11 @@ const { t } = useI18n()
             .flex-1 {{ topic }}
             account-avatar(v-for="(isAuthor, author) in authors" :key="author" :size="20" :pub="author")
 
-    .flex.flex-col(style="flex: 1000 1 auto")
+    .flex.flex-col.overflow-y-scroll(style="flex: 1000 1 auto")
       .p-4.flex.flex-wrap.items-center
         button.button( @click.stop.prevent="panelOpen = !panelOpen" v-if="!isLarge") {{ title }}
         .flex-1.ml-2 / {{ currentChat }}
       chat-messages(:messages="messages")
-      .p-4.bg-dark-50.bg-opacity-80.flex.gap-2.flex
+      .p-4.bg-dark-50.bg-opacity-80.flex.gap-2.flex.sticky.bottom-0
         chat-input.flex-auto(@submit="send($event)")
 </template>

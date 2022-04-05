@@ -2,7 +2,7 @@
 import { computed, ref } from 'vue'
 import { useUser } from '@composables';
 
-const emit = defineEmits(['user', 'room', 'close'])
+const emit = defineEmits(['user', 'room', 'close', 'chat'])
 
 const { user } = useUser()
 
@@ -10,7 +10,6 @@ function isSafe() {
   user.db.get('safe').get('saved').put(true)
 }
 
-const { t } = useI18n()
 </script>
 
 <template lang='pug'>
@@ -23,10 +22,13 @@ const { t } = useI18n()
     user-panel(@browse="$emit('browse', $event); $emit('close')")
     .p-4.flex.flex-col.items-start
       user-profile
+      chat-private-list(@chat="$emit('chat', $event)")
       account-mate-list(:pub="user.pub"  @browse="$emit('user', $event)")
       user-rooms(@browse="$emit('room', $event)")
     button.p-4.m-4.rounded-xl.font-bold.text-lg.shadow-md(
       @click="$emit('user', user.pub); $emit('close')"
       :style="{ backgroundColor: user.color }"
-    ) {{ t('gunvue.go_homepage') }}
+    )
+      slot  My public profile
+    
 </template>

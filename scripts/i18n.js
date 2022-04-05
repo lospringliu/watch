@@ -46,7 +46,7 @@ const REPLACES = { // key: [flag_context, flag_binding,  en, zh, pre_regex, pre_
   cred_saved: [false, false, `I've stored my key securely`, "已安全保存好"],
   features: [false, false, "Features", "特性", "", "", ":"],
   form_text_hint: [false, true, "Main text content \\(with \\*\\*markdown\\*\\* support\\)", "正文内容(支持**markdown**)", `placeholder="`],
-  form_add_to_post: [false, false, "Add to post", "添加到文章", `ml-2 `],
+  form_add_to_post: [false, false, "Save", "保存", `ml-2 `],
   post_feed_search: [false, true, "Search for a feed", "搜索反馈", `placeholder="`],
   create_profile_field: [false, true, "New profile field", "新建属性", `placeholder="`],
   go_homepage: [false, false, "Go to my page", "去个人页面"],

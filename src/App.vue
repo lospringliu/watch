@@ -43,10 +43,12 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, ligh
 </script>
 
 <template lang="pug">
-.p-0.flex.flex-col(style="flex: 1000 1 100%" :style="{ ...bg }")
+.p-0.flex.flex-col.h-100vh(style="flex: 1000 1 100%" )
   router-view(v-slot="{ Component }")
     transition(name="fade" mode="out-in")
-      component(:is="Component")
+      keep-alive
+        component.flex-auto.overflow-y-scroll(:is="Component")
+ </template>
 </template>
 
 <style lang="postcss">
@@ -55,9 +57,9 @@ html {
   hyphens: auto;
 }
 body {
-  @apply bg-light-400 dark_bg-dark-100;
+  @apply bg-light-600 dark_bg-dark-200;
 }
 #app {
-  @apply min-h-100vh flex flex-col;
+  @apply min-h-100vh max-h-100vh flex flex-col;
 }
 </style>
