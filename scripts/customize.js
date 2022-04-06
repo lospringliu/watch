@@ -34,8 +34,26 @@ const customize = {
     [`v-if="countPosts > 0"`, `v-if="countPosts < -1"`],
     [`{{ tag }}`, "{{ t(`tags.${tag}`) }}"]
   ]},
+  "./src/gun-vue/components/post/Form.vue": { replaces: [
+    [`text: false`, `ipfs: false,\n  text: false`],
+    [`ui-layer\\(:open="add.text"`, `ui-layer(:open="add.ipfs" @close="add.ipfs = false" :offset="'22vh'")\n    form-ipfs(v-model:cid="postData.ipfs")\n  ui-layer(:open="add.text"`],
+    [`la-youtube`, `la-youtube\n    .flex.flex-wrap
+      button.button.m-1(
+        @click="add.ipfs = !add.ipfs"
+        :class="{ active: postData.ipfs }"
+        )
+       simple-icons-ipfs`],
+  ]},
+  "./src/gun-vue/components/post/Card.vue": { replaces: [
+    [`mdi-text-long.mx-1`, `simple-icons-ipfs.mx-1(v-if="post?.ipfs")\n          mdi-text-long.mx-1`],
+  ]},
+  "./src/gun-vue/components/post/Line.vue": { replaces: [
+    [`mdi-text-long`, `simple-icons-ipfs(v-if="post?.ipfs")\n          mdi-text-long`],
+  ]},
   "./src/gun-vue/components/post/Page.vue": { replaces: [
     [`button.button.flex.items-center\\(@click`, `button.button.flex.items-center(v-if="false" @click`],
+    [`v-if="post\\?.cover \\|\\| post\\?.youtube`, `v-if="post?.cover || post?.youtube || post?.ipfs`],
+    [`embed-youtube.mb-6`, `embed-ipfs.mb-6.shadow-xl.flex-1(\n        v-if="post?.ipfs"\n        :video="post?.ipfs"\n        )\n      embed-youtube.mb-6`],
   ]},
   "./src/gun-vue/components/user/Avatar.vue": { replaces: [
     // [`form-picture.absolute\\(\n    :options`, `form-picture.absolute(\n    v-if="false"\n    :options`],

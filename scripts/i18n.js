@@ -34,6 +34,7 @@ const files = [
   "src/gun-vue/components/post/feed/List.vue",
   "src/gun-vue/components/form/Text.vue",
   "src/gun-vue/components/form/Youtube.vue",
+  "src/gun-vue/components/form/Ipfs.vue",
   "src/gun-vue/components/form/Link.vue",
 ]
 const REPLACES = { // key: [flag_context, flag_binding,  en, zh, pre_regex, pre_replace, post_regex, post_replace]
@@ -99,6 +100,8 @@ const REPLACES = { // key: [flag_context, flag_binding,  en, zh, pre_regex, pre_
   cred_json: [false, false, "JSON", "文件", "px-2 "],
   form_link: [false, false, "Paste a link", "粘贴链接", "text-lg "],
   form_link_url: [false, true, "Paste a URL", "粘贴链接地址", `placeholder="`],
+  form_ipfs: [false, false, "Add a ipfs video", "添加Ipfs视频", "font-bold "],
+  form_ipfs_video: [false, true, "Paste a ipfs video link", "粘贴Ipfs视频链接", `placeholder="`],
   form_youtube: [false, false, "Add a youtube video", "添加Youtube视频", "font-bold "],
   form_youtube_video: [false, true, "Paste a Youtube video link", "粘贴Youtube视频链接", `placeholder="`],
   login_qr: [false, false, "QR", "二维码", "font-bold "],

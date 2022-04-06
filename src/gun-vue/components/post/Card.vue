@@ -31,6 +31,7 @@ const { post } = usePost({ hash: props.hash })
         .flex.flex-wrap.items-center
           .text-xl.font-bold.my-2(v-if="post?.title") {{ post.title }}
           la-youtube.mx-1(v-if="post?.youtube")
+          simple-icons-ipfs.mx-1(v-if="post?.ipfs")
           mdi-text-long.mx-1(v-if="post?.text")
           ui-link(:url="post?.link" v-if="post?.link")
         .statement(v-if="post?.statement") {{ post.statement }}

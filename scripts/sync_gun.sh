@@ -2,6 +2,13 @@ rm -fr src/gun-vue/*
 cp -av /Users/xcliu/tests/gun-vue/composables/src src/gun-vue/composables
 git checkout src/gun-vue/composables/room/rootRoom.js
 cp -av /Users/xcliu/tests/gun-vue/components/src src/gun-vue/components
+git checkout src/gun-vue/components/embed/Ipfs.vue
+git checkout src/gun-vue/components/form/Ipfs.vue
+
+cat << ENDF >> src/gun-vue/components/index.js
+export { default as FormIpfs } from "./form/Ipfs.vue";
+export { default as EmbedIpfs } from "./embed/Ipfs.vue";
+ENDF
 # sed -ibak 's|import "virtual:windi.css"|// import "virtual:windi.css"|' src/gun/components/index.js
 # rm -fv src/gun/components/index.jsback
 

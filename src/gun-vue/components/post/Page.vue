@@ -54,9 +54,13 @@ const { posts, backlinks } = usePosts(props.tag)
   .flex-1.flex.flex-col.items-stretch(style="flex: 10 1 300px")
     .z-20.max-w-100vw(
 
-      v-if="post?.cover || post?.youtube || post?.text"
+      v-if="post?.cover || post?.youtube || post?.ipfs || post?.text"
       )
       img.sticky.top-0(:src="post.cover")
+      embed-ipfs.mb-6.shadow-xl.flex-1(
+        v-if="post?.ipfs"
+        :video="post?.ipfs"
+        )
       embed-youtube.mb-6.shadow-xl.flex-1(
         v-if="post?.youtube" 
         :video="post?.youtube"

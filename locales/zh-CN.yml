@@ -117,6 +117,8 @@ gunvue:
   cred_json: 文件
   form_link: 粘贴链接
   form_link_url: 粘贴链接地址
+  form_ipfs: 添加Ipfs视频
+  form_ipfs_video: 粘贴Ipfs视频链接
   form_youtube: 添加Youtube视频
   form_youtube_video: 粘贴Youtube视频链接
   login_qr: 二维码

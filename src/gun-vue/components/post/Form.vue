@@ -26,6 +26,7 @@ const postData = ref({})
 const add = reactive({
   form: false,
   youtube: false,
+  ipfs: false,
   text: false,
 })
 
@@ -86,6 +87,12 @@ form.w-full.flex.flex-col.p-2.shadow-xl.m-1.rounded-2xl(action="javascript:void(
         :class="{ active: postData.youtube }"
         )
         la-youtube
+    .flex.flex-wrap
+      button.button.m-1(
+        @click="add.ipfs = !add.ipfs"
+        :class="{ active: postData.ipfs }"
+        )
+       simple-icons-ipfs
     button.m-1.button(
       @click="add.text = true" 
       :class="{ active: postData.text }"
@@ -104,6 +111,8 @@ form.w-full.flex.flex-col.p-2.shadow-xl.m-1.rounded-2xl(action="javascript:void(
         la-trash-alt
   ui-layer(:open="add.youtube" @close="add.youtube = false" :offset="'22vh'")
     form-youtube(v-model:id="postData.youtube")
+  ui-layer(:open="add.ipfs" @close="add.ipfs = false" :offset="'22vh'")
+    form-ipfs(v-model:cid="postData.ipfs")
   ui-layer(:open="add.text" @close="add.text = false" :offset="'22vh'")
     form-text(v-model:text="postData.text" @close="add.text = false")
   

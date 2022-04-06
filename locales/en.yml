@@ -117,6 +117,8 @@ gunvue:
   cred_json: JSON
   form_link: Paste a link
   form_link_url: Paste a URL
+  form_ipfs: Add a ipfs video
+  form_ipfs_video: Paste a ipfs video link
   form_youtube: Add a youtube video
   form_youtube_video: Paste a Youtube video link
   login_qr: QR
