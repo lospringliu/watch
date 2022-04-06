@@ -1,5 +1,5 @@
 <script setup>
-import { usePosts, useUser } from '@composables'
+import { usePosts, useUser, countRating } from '@composables'
 import { ref, computed } from 'vue'
 
 const { user } = useUser()
@@ -10,7 +10,7 @@ const props = defineProps({
 })
 const emit = defineEmits(['close', 'browse', 'user'])
 
-const { posts, backlinks, countPosts, countBacklinks, downloadPosts, downloading, uploadPosts, countRating } = usePosts(props.tag)
+const { posts, backlinks, countPosts, countBacklinks, downloadPosts, downloading, uploadPosts } = usePosts(props.tag)
 
 const add = ref()
 
@@ -38,7 +38,7 @@ const { t } = useI18n()
     .text-xl.ml-2.font-bold.cursor-pointer(style="flex: 1 100px " @click="$emit('close')") # {{ t(`tags.${tag}`) }} 
     .flex-1
     .p-2.font-bold.mx-2 {{ countPosts }}
-  .flex.flex-wrap.bg-dark-50.bg-opacity-20.backdrop-filter.backdrop-blur-md.flex-1.p-2.w-full
+  .flex.flex-col.items-center.bg-dark-50.bg-opacity-20.backdrop-filter.backdrop-blur-md.flex-1.p-2.w-full.gap-8
     .p-2.flex.flex-wrap.z-300.text-sm.bg-light-300.bg-opacity-40.rounded-2xl.m-2.flex-1(
       style="order:-2147483647; flex: 1000 100%"
       v-if="user.pub"
@@ -47,7 +47,6 @@ const { t } = useI18n()
       util-share(v-if="header")
       .flex.flex-wrap(
         v-if="user.pub"
-
         )
         button.flex-auto.add.button.transition.bg-light-800.shadow-lg.m-2.flex.items-center.justify-center(@click="add = !add")
           transition(name="fade" mode="out-in")
@@ -75,10 +74,11 @@ const { t } = useI18n()
       )
       transition(name="fade")
         post-form(:tag="tag" v-if="add" @close="add = false")
+    .p-2(v-if="!user.pub" style="order:-2147483647; flex: 1000 100%")
+      button.button(@click="user.auth = true") Authorize to post here
 
     transition-group(name="list")
-      post-card.max-w-640px(
-        style="flex: 1 1 320px"
+      post-card.max-w-3xl.w-full.shadow-xl(
         v-show="tag != hash"
         :style="{ order: -countRating(authors), opacity: countRating(authors) > 0 ? 1 : 0.3 }"
         v-for="(authors, hash) in filteredPosts" 

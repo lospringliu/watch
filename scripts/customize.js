@@ -24,8 +24,8 @@ const customize = {
     [`flex.flex-col.bg-opacity-80.p-4.gap-2`, `flex.flex-col.bg-opacity-80.p-2.gap-1`],
   ]},
   "./src/gun-vue/components/chat/Room.vue": { replaces: [
-    [`backdrop-blur-xl.shadow-md.mx-auto.w-full`, `backdrop-blur-xl.shadow-md.mx-auto.w-full.h-full`],
-    [`flex.relative.items-stretch.max-h-78vh`, `flex.relative.items-stretch.h-full`],
+    [`flex.flex-col.overflow-y-scroll.*`, `flex.flex-col.w-full.h-full`],
+    [`p-4.bg-dark-50.bg-opacity-80`, `p-1.bg-dark-50.bg-opacity-80`],
     [`import { useChat, useUser, useBackground, currentRoom }`, `import { useChat, useUser, useBackground, currentRoom, rootRoom }`],
     [`cursor-pointer.self-center.text-2xl.p-2\\(@click`, `cursor-pointer.self-center.text-2xl.p-2(v-if="currentRoom.pub !== rootRoom.pub || user.wallets.jingtum?.activated" @click`]
   ]},
@@ -45,7 +45,7 @@ const customize = {
        simple-icons-ipfs`],
   ]},
   "./src/gun-vue/components/post/Card.vue": { replaces: [
-    [`mdi-text-long.mx-1`, `simple-icons-ipfs.mx-1(v-if="post?.ipfs")\n          mdi-text-long.mx-1`],
+    [`mdi-text-long.mx-1`, `simple-icons-ipfs.mx-1(v-if="post?.ipfs")\n        mdi-text-long.mx-1`],
   ]},
   "./src/gun-vue/components/post/Line.vue": { replaces: [
     [`mdi-text-long`, `simple-icons-ipfs(v-if="post?.ipfs")\n          mdi-text-long`],
