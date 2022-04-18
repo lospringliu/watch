@@ -44,7 +44,7 @@ watch(playlist.playlist, async (value, old_value) => {
   }
   youtube.value.setPlaybackRate(prefers.playbackRate)
 })
-playingVideo.value = featured.playing
+playingVideo.value = featured.playing()
 </script>
 
 <template>

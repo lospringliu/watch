@@ -8,7 +8,6 @@ import { globalState } from '../stores/globalState'
         <pre>
           {{ globalState?.version}}
           {{ globalState?.language}}
-          {{ globalState.safearea }}
           {{ globalState.platform }}
         </pre>
       </code>

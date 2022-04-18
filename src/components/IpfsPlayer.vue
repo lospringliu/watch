@@ -15,6 +15,7 @@ const props = withDefaults(
 )
 
 const playingVideo = ref(props.video)
+watchEffect(() => console.log(playingVideo))
 
 onMounted(async () => {
   console.log(`mounted`)
@@ -22,6 +23,11 @@ onMounted(async () => {
 </script>
 
 <template>
-  <IpfsGateway v-if="globalState.platform.phone || globalState.platform.tablet" :video="video" />
+  <IpfsGateway v-if="globalState.platform.phone || globalState.platform.tablet || globalState.platform.desktop || globalState.platform.laptop" :video="video" />
   <IpfsVideo v-else :video="video" />
+  <div class="flex justify-center">
+    <button class="text-center rounded-sm bg-cyan-500" @click="playing.play(featured.playing())">
+      <MdiShuffle class="h-8 w-8 text-center" />
+    </button>
+  </div>
 </template>

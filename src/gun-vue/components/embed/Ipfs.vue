@@ -1,13 +1,14 @@
 <script setup>
-defineProps(['video']);
-// const gateway = ref(`https://ipfs.infura.io`)
-//    loading="lazy"
+const props = defineProps({
+  video: String,
+  gateway: { type: String, default: "https://ipfs.infura.io" }
+});
 </script>
 
 <template lang="pug">
 .iframe-container
   iframe.shadow-2xl.rounded-2xl.overflow-hidden.mx-auto(
-    :src="`https://ipfs.infura.io/ipfs/${video}`", 
+    :src="`${gateway}/${video}`", 
     title="Ipfs video player", 
     frameborder="0", 
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture", 

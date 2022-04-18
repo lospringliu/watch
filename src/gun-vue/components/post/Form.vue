@@ -4,7 +4,7 @@ import { reactive, ref, onMounted, watch, computed } from 'vue'
 import { addPost, useColor } from '@composables'
 
 const props = defineProps({
-  tag: { type: String, default: 'posts' }
+  tag: { type: String, default: ' ' }
 })
 
 const emit = defineEmits(['close'])
@@ -65,13 +65,13 @@ form.w-full.flex.flex-col.p-2.shadow-xl.m-1.rounded-2xl(action="javascript:void(
     :placeholder="t('gunvue.post_statement')"
     @keyup.enter.ctrl="submit()"
     )
-  .flex.flex-wrap
+  .flex.flex-wrap.z-100
     button.button.m-1(
       @click="add.title = !add.title" 
       :class="{ active: postData.title }"
       :title="t('gunvue.post_title_add')"
-      )
-      tabler-heading
+      ) H1
+
     form-picture(
       @update="postData.icon = $event" 
       field="icon" 
@@ -80,19 +80,8 @@ form.w-full.flex.flex-col.p-2.shadow-xl.m-1.rounded-2xl(action="javascript:void(
       la-info-circle
     form-picture(@update="postData.cover = $event")
     form-link(@update="postData.link = $event")
-
-    .flex.flex-wrap
-      button.button.m-1(
-        @click="add.youtube = !add.youtube" 
-        :class="{ active: postData.youtube }"
-        )
-        la-youtube
-    .flex.flex-wrap
-      button.button.m-1(
-        @click="add.ipfs = !add.ipfs"
-        :class="{ active: postData.ipfs }"
-        )
-       simple-icons-ipfs
+    form-youtube(@update="postData.youtube = $event")
+    form-ipfs(@update="postData.ipfs = $event")
     button.m-1.button(
       @click="add.text = true" 
       :class="{ active: postData.text }"
@@ -110,9 +99,8 @@ form.w-full.flex.flex-col.p-2.shadow-xl.m-1.rounded-2xl(action="javascript:void(
       button.m-1.button.text-xl( @click="reset()")
         la-trash-alt
   ui-layer(:open="add.youtube" @close="add.youtube = false" :offset="'22vh'")
-    form-youtube(v-model:id="postData.youtube")
+
   ui-layer(:open="add.ipfs" @close="add.ipfs = false" :offset="'22vh'")
-    form-ipfs(v-model:cid="postData.ipfs")
   ui-layer(:open="add.text" @close="add.text = false" :offset="'22vh'")
     form-text(v-model:text="postData.text" @close="add.text = false")
   
@@ -123,9 +111,11 @@ input,
 textarea {
   @apply p-2 rounded-xl m-1;
 }
+
 button:disabled {
   @apply opacity-40;
 }
+
 .active {
   background-color: v-bind(addColor);
 }
@@ -135,6 +125,7 @@ button:disabled {
   background-color: v-bind(addColor);
   filter: grayscale(50%) brightness(100%);
 }
+
 .plus:hover {
   filter: grayscale(0%) brightness(120%);
 }

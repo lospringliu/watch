@@ -43,14 +43,14 @@ export { default as PostCard } from "./post/Card.vue";
 export { default as PostForm } from "./post/Form.vue";
 export { default as PostList } from "./post/List.vue";
 export { default as PostPage } from "./post/Page.vue";
+export { default as PostGraph } from "./post/Graph.vue";
 
-export { default as PostFeedBlock } from "./post/feed/Block.vue";
-export { default as PostFeedLabel } from "./post/feed/Label.vue";
-export { default as PostFeedList } from "./post/feed/List.vue";
 
 export { default as PostActionStar } from "./post/action/Star.vue";
 export { default as PostActionUpdate } from "./post/action/Update.vue";
 export { default as PostActionBan } from "./post/action/Ban.vue";
+
+export { default as ReactionTabs } from "./reaction/Tabs.vue";
 
 //CHAT
 
@@ -59,6 +59,19 @@ export { default as ChatRoom } from "./chat/Room.vue";
 export { default as ChatMessage } from "./chat/Message.vue";
 export { default as ChatPrivate } from "./chat/private/Index.vue";
 export { default as ChatPrivateCount } from "./chat/private/Count.vue";
+
+// DICTIONARY
+
+export { default as DictDefCard } from './dict/def/Card.vue'
+export { default as DictDefList } from './dict/def/List.vue'
+export { default as DictDefPage } from './dict/def/Page.vue'
+export { default as DictWordCard } from './dict/word/Card.vue'
+export { default as DictWordList } from './dict/word/List.vue'
+export { default as DictWordPage } from './dict/word/Page.vue'
+export { default as DictLinkList } from './dict/link/List.vue'
+export { default as DictLinkButton } from './dict/link/Button.vue'
+export { default as DictPanel } from './dict/Panel.vue'
+
 
 // FORMS
 
@@ -77,6 +90,7 @@ export { default as QrLoad } from "./qr/Load.vue";
 export { default as EmbedYoutube } from "./embed/Youtube.vue";
 
 export { default as UiModal } from "./ui/Modal.vue";
+export { default as UiLayer } from "./ui/Layer.vue";
 
 export { default as UtilPulse } from "./util/Pulse.vue";
 export { default as UtilGraph } from "./util/Graph.vue";

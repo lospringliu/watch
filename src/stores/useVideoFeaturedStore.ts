@@ -7,11 +7,6 @@ export const useVideoFeaturedStore = defineStore('featured', {
   state: () => {
     return { videos: globalState.FEATURED as IVideo[] }
   },
-  getters: {
-    playing() {
-      return getRandomElement(this.videos)
-    }
-  },
   actions: {
     add(video) {
       const index = this.videos.findIndex(v => v.videoId === video.videoId)
@@ -25,5 +20,8 @@ export const useVideoFeaturedStore = defineStore('featured', {
         this.videos.splice(index, 1)
       }
     },
+    playing() {
+      return getRandomElement(this.videos)
+    }
   },
 })

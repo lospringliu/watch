@@ -1,10 +1,10 @@
 {
   "background_color": "#fff",
   "display": "standalone",
-  "homepage_url": "https://watch.bcapps.ca",
+  "homepage_url": "https://moi.bcapps.ca",
   "providedBy": {
     "name": "MOI",
-    "url": "https://watch.bcapps.ca"
+    "url": "https://moi.bcapps.ca"
   },
   "icons": [
     {

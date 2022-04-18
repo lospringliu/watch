@@ -52,9 +52,9 @@ const { t } = useI18n()
 
 <template lang='pug'>
 .flex.flex-col
-  .flex.flex-col.text-left.p-4
+  .flex.flex-col.text-left.mb-30
     textarea#myMD(ref="md"  :placeholder="t('gunvue.form_text_hint')")
-  .flex.flex-wrap.bg-dark-100.p-4
+  .flex.flex-wrap.bg-dark-100.p-4.fixed.z-100.bottom-0.left-1.right-1
     button.button.m-1(@click="$emit('close')")
       la-check
       .ml-2 {{ t('gunvue.form_add_to_post') }}

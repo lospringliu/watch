@@ -32,17 +32,12 @@ const customize = {
   "./src/gun-vue/components/post/List.vue": { replaces: [
     [`\\(title="Upload feed"`, `(v-if="1 > 2" title="Upload feed"`],
     [`v-if="countPosts > 0"`, `v-if="countPosts < -1"`],
-    [`{{ tag }}`, "{{ t(`tags.${tag}`) }}"]
+    // [`{{ tag }}`, "{{ t(`tags.${tag}`) }}"]
   ]},
   "./src/gun-vue/components/post/Form.vue": { replaces: [
     [`text: false`, `ipfs: false,\n  text: false`],
-    [`ui-layer\\(:open="add.text"`, `ui-layer(:open="add.ipfs" @close="add.ipfs = false" :offset="'22vh'")\n    form-ipfs(v-model:cid="postData.ipfs")\n  ui-layer(:open="add.text"`],
-    [`la-youtube`, `la-youtube\n    .flex.flex-wrap
-      button.button.m-1(
-        @click="add.ipfs = !add.ipfs"
-        :class="{ active: postData.ipfs }"
-        )
-       simple-icons-ipfs`],
+    [`ui-layer\\(:open="add.text"`, `ui-layer(:open="add.ipfs" @close="add.ipfs = false" :offset="'22vh'")\n  ui-layer(:open="add.text"`],
+    [`form-youtube\\(@update="postData.youtube = \\$event"\\)`, `form-youtube(@update="postData.youtube = $event")\n    form-ipfs(@update="postData.ipfs = $event")`],
   ]},
   "./src/gun-vue/components/post/Card.vue": { replaces: [
     [`mdi-text-long.mx-1`, `simple-icons-ipfs.mx-1(v-if="post?.ipfs")\n        mdi-text-long.mx-1`],
@@ -74,14 +69,20 @@ const customize = {
     [`pair\\(\\) {`, `wallets: {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}},\n  pair() {`],
     [`user.pulser = setInterval`, `gun.user()\n    .get("wallets")\n    .get("defaults")\n    .map()\n    .on((d, k) => {\n      if (d) {\n        delete d._\n        delete d["#"]\n        delete d[">"]\n        user.wallets[k] = d;\n      }\n    });\n  user.pulser = setInterval`]
   ]},
+  "./src/gun-vue/components/ui/layer.vue": { replaces: [
+    [`10vh`, `5vh`],
+  ]},
   "./src/pages/space.vue": { replaces: [
     [`:key="currentRoom.pub" @enter=`, `:key="currentRoom.pub" :pad="20" @enter=`],
   ]},
   "./src/gun-vue/components/user/home.vue": { i18n: true, replaces: [
     [`chat-private-list\\(@chat`, `chat-private-list(:title="t('customize.chat_title')" @chat`],
   ]},
-  "./src/pages/chats.vue": { i18n: true, replaces: [
-    [`chat-private-list\\(@chat`, `chat-private-list(:title="t('customize.chat_title')" @chat`],
+  // "./src/pages/chats.vue": { i18n: true, replaces: [
+  //   [`chat-private-list\\(@chat`, `chat-private-list(:title="t('customize.chat_title')" @chat`],
+  // ]},
+  "./src/gun-vue/components/styles/index.css": { replaces: [
+    [`10px`, `0`],
   ]},
   "./src/pages/my/chat/index.vue": { i18n: true, replaces: [
     [`chat-private-list\\(@chat`, `chat-private-list(:title="t('customize.chat_title')" @chat`],

@@ -36,7 +36,7 @@ watch(playingInList, async (value, old_value) => {
 watch(playing, (value) => {
   console.log(`watched playing change`)
   console.log(value.playing)
-  if (playing.playing.hasOwnProperty("ipfs")) {
+  if (playing?.playing?.hasOwnProperty("ipfs")) {
     if (playing.playing.ipfs !== playingVideo.value.ipfs) {
       console.log(`setting playing.playing for hi priority`)
       plyrPlayer.value?.stop()

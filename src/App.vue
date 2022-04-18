@@ -59,6 +59,6 @@ body {
   @apply bg-light-600 dark_bg-dark-200;
 }
 #app {
-  @apply min-h-100vh max-h-100vh flex flex-col;
+  @apply h-full w-full flex flex-col;
 }
 </style>

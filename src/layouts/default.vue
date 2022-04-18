@@ -1,5 +1,5 @@
 <template>
-  <main class="h-screen" :style="globalState.style">
+  <main class="h-screen" :style="style">
     <div ref="navier" class="fixed left-0 top-0 z-400 inset-x-0 opacity-95">
       <NavSocial v-if="globalState.show_social" />
       <Navier v-if="globalState.show_tools" />
@@ -14,20 +14,10 @@
 
 <script setup lang="ts">
 import { globalState } from '../stores/globalState'
-const {
-  top,
-  right,
-  bottom,
-  left,
-} = useScreenSafeArea()
-globalState.safearea = {top, right, bottom, left}
+const { top } = useScreenSafeArea()
 const navbar = ref(null)
 const navier = ref(null)
 const { height } = useElementSize(navbar)
 const { height: heightNavier } = useElementSize(navier)
-// const clstop = computed(() => `top-${top.value}`)
-// const stltop = computed(() => `padding-top: ${top.value === "0px" ? +top.value.replace("px","") - 21 : 0}px;`)
-// const style = computed(() => `padding-top: ${Math.floor(height.value)}px;`)
-// globalState.style = computed(() => `padding-bottom: ${Math.floor(height.value)}px;`)
-globalState.style = computed(() => `padding-top: ${Math.floor(heightNavier.value) + parseInt(top.value.replace(/px/,""))}px; padding-bottom: ${Math.floor(height.value)}px;`)
+const style = computed(() => `padding-top: ${Math.floor(heightNavier.value) + parseInt(top.value.replace(/px/,""))}px; padding-bottom: ${Math.floor(height.value)}px;`)
 </script>

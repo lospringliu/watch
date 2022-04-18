@@ -27,16 +27,16 @@ watch(show, (value, old_value) => {
     console.log(`not settings`)
   }
 })
-//    <button :title="t('button.relays')">
-//      <UtilRelay />
+//    <button :title="t('button.info')" @click="show.info = !show.info">
+//      <ph-info />
 //    </button>
+//  <UiLayer :open="show.info" @close="show.info=false">
+//    <ShowInfo />
+//  </UiLayer>
 </script>
 
 <template>
   <nav class="flex justify-around sm_px-8 md_px-16 lg_px-32 items-center text-center bg-cyan-300 text-xl py-1 mx-auto">
-    <button :title="t('button.info')" @click="show.info = !show.info">
-      <ph-info />
-    </button>
     <button :title="t('button.toggle_dark')" @click="toggleDark">
       <ph-sun v-if="isDark" />
       <ph-moon v-else />
@@ -57,17 +57,17 @@ watch(show, (value, old_value) => {
       <UtilRelay />
     </button>
     <router-link to="/upload/">
-      <ph-upload />
+      <simple-icons-ipfs />
     </router-link>
     <router-link to="/wallets/">
       <ph-wallet />
     </router-link>
+    <router-link to="/nfts/">
+      NFT
+    </router-link>
   </nav>
   <UiLayer :open="show.graph" @close="show.graph=false">
     <UtilGraph />
-  </UiLayer>
-  <UiLayer :open="show.info" @close="show.info=false">
-    <ShowInfo />
   </UiLayer>
   <UiLayer :open="show.settings" @close="show.settings=false">
     <Settings />

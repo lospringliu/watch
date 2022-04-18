@@ -8,7 +8,7 @@ const gun = useGun()
 const md = useMd()
 
 const props = defineProps({
-  tag: { type: String, default: 'posts' },
+  tag: { type: String, default: '' },
   hash: { type: String, default: '' },
 })
 
@@ -19,14 +19,13 @@ const colorDeep = computed(() => useColor('deep').hex(props.hash))
 
 const { post, download, downloading, } = usePost({ hash: props.hash })
 
-const { posts, backlinks } = usePosts(props.tag)
-
+const { posts, backlinks } = usePosts(props.hash)
 
 </script>
 
 <template lang='pug'>
 .rounded-lg.max-w-65ch.flex.flex-col.mx-auto.items-stretch.justify-center.w-full.overscroll-contain.bg-light-200
-  .flex.flex-wrap
+  .flex.flex-wrap 
     post-line(
       style="flex: 1 1 220px"
       v-for="(authors, hash) in backlinks" 
@@ -52,7 +51,7 @@ const { posts, backlinks } = usePosts(props.tag)
 
 
   .flex-1.flex.flex-col.items-stretch(style="flex: 10 1 300px")
-    .z-20.max-w-100vw(
+    .z-1.max-w-100vw(
 
       v-if="post?.cover || post?.youtube || post?.ipfs || post?.text"
       )
@@ -90,9 +89,10 @@ const { posts, backlinks } = usePosts(props.tag)
             la-file-download(v-if="!downloading")
             la-redo-alt.animate-spin(v-else)
 
-    .text-md.markdown-body.bg-light-200.rounded-2xl.m-1.px-4.py-4.leading-relaxed.max-w-55ch.z-10(
+    .text-md.markdown-body.bg-light-200.rounded-2xl.m-1.px-4.py-4.leading-relaxed.max-w-55ch.z-10.overflow-scroll.max-h-50vh(
       v-if="post?.text" 
-      v-html="md.render(post?.text)")
+      v-html="md.render(post?.text)"
+      )
     post-list(  :tag="hash" :key="tag" :header="false" @browse="$emit('browse', $event)")
 
 </template>

@@ -47,6 +47,7 @@ pages:
   rooms: 地盘
   rooms_description: 开放数据集
   chats: 聊天
+  dicts: 字典
   users: 用户
   youtube_access: 能访问Youtube
   youtube_per_query: API查询返回数目
@@ -115,7 +116,7 @@ gunvue:
   cred_link: 连接
   cred_text: 文本
   cred_json: 文件
-  form_link: 粘贴链接
+  form_link: 添加链接
   form_link_url: 粘贴链接地址
   form_ipfs: 添加Ipfs视频
   form_ipfs_video: 粘贴Ipfs视频链接
